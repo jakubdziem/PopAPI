@@ -1,6 +1,5 @@
 package com.dziem.popapi.model;
 
-import com.dziem.popapi.model.YearAndPopulation;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 

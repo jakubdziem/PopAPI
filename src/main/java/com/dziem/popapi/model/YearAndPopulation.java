@@ -1,6 +1,5 @@
 package com.dziem.popapi.model;
 
-import com.dziem.popapi.model.Country;
 import jakarta.persistence.*;
 import lombok.Data;
 
