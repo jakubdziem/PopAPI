@@ -1,6 +1,5 @@
 package com.dziem.popapi.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 @Data
@@ -10,6 +9,5 @@ public class YearAndPopulationDTO {
     private String population;
     private String annualGrowth;
 
-    @JsonBackReference
     private Country country;
 }

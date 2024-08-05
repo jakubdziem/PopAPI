@@ -1,5 +1,6 @@
 package com.dziem.popapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,5 +15,6 @@ public class YearAndPopulation {
     private String annualGrowth;
     @ManyToOne
     @JoinColumn(name = "country_name", referencedColumnName = "countryName")
+    @JsonBackReference
     private Country country;
 }

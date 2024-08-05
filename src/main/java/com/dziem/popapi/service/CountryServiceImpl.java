@@ -47,13 +47,14 @@ public class CountryServiceImpl implements CountryService{
             }
             default: {
                 countries = allCountries.stream().filter(c ->
-                        c.getCountryName().charAt(c.getCountryName().length()-1) != '0' ||
-                                c.getCountryName().charAt(c.getCountryName().length()-1) != '9').toList();
+                        (!c.getCountryName().endsWith("1989") &&
+                        !c.getCountryName().endsWith("1900") &&
+                        !c.getCountryName().endsWith("1939"))).toList();
                 yearAndPopulationList = allYearsAndPopulations.stream().filter(yearAndPopulation ->
-                        yearAndPopulation.getCountry().getCountryName()
-                                .charAt(yearAndPopulation.getCountry().getCountryName().length()-1) != '0' ||
-                                yearAndPopulation.getCountry().getCountryName()
-                                        .charAt(yearAndPopulation.getCountry().getCountryName().length()-1) != '9').toList();
+                        (!yearAndPopulation.getCountry().getCountryName().endsWith("1989") &&
+                                !yearAndPopulation.getCountry().getCountryName().endsWith("1900") &&
+                                !yearAndPopulation.getCountry().getCountryName().endsWith("1939"))
+                                && yearAndPopulation.getYearOfMeasurment().equals(year)).toList();
                 break;
             }
         }
