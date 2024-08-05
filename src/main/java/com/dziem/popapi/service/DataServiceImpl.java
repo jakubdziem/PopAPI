@@ -25,7 +25,7 @@ public class DataServiceImpl implements DataService {
     @Transactional
     public void getData2024_2100() {
         try (Stream<String> stream = Files.lines(Paths.get("src/main/resources/2024-2100 data.txt"))) {
-            stream.skip(2).forEach(line -> {
+            stream.skip(1).forEach(line -> {
                 Country country = getCountry(line);
                 countryRepository.save(country);
             });
@@ -41,6 +41,7 @@ public class DataServiceImpl implements DataService {
             country.setCountryName(values[1].substring(1,6) + " Korea");
         }
         country.setGENC(values[values.length-5].replace("\"", ""));
+        country.setFlagUrl("/images/" + country.getGENC() + ".png");
         YearAndPopulation yearAndPopulation = new YearAndPopulation();
         yearAndPopulation.setYearOfMeasurment(values[values.length-4].replace("\"", ""));
         yearAndPopulation.setPopulation(values[values.length-3].replace("\"", ""));

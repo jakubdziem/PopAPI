@@ -9,5 +9,5 @@ public class CountryDTO {
     private String countryName;
     private List<YearAndPopulation> yearAndPopulations;
     private String GENC;
-
+    private String flagUrl;
 }

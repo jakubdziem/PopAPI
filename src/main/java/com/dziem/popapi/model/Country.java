@@ -21,4 +21,5 @@ public class Country {
     public Country() {
         yearAndPopulations = new ArrayList<>();
     }
+    private String flagUrl;
 }
