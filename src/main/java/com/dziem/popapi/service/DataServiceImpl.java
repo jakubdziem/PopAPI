@@ -37,6 +37,9 @@ public class DataServiceImpl implements DataService {
         String[] values = line.split(",");
         Country country = new Country();
         country.setCountryName(values[0].replace("\"", ""));
+        if(country.getCountryName().equals("Korea")) {
+            country.setCountryName(values[1].substring(1,6) + " Korea");
+        }
         country.setGENC(values[values.length-5].replace("\"", ""));
         YearAndPopulation yearAndPopulation = new YearAndPopulation();
         yearAndPopulation.setYearOfMeasurment(values[values.length-4].replace("\"", ""));
