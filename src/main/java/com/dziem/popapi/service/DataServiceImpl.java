@@ -41,7 +41,7 @@ public class DataServiceImpl implements DataService {
             country.setCountryName(values[1].substring(1,6) + " Korea");
         }
         country.setGENC(values[values.length-5].replace("\"", ""));
-        country.setFlagUrl("/images/" + country.getGENC() + ".png");
+        country.setFlagUrl("/images/" + country.getGENC().toLowerCase() + ".png");
         YearAndPopulation yearAndPopulation = new YearAndPopulation();
         yearAndPopulation.setYearOfMeasurment(values[values.length-4].replace("\"", ""));
         yearAndPopulation.setPopulation(values[values.length-3].replace("\"", ""));
