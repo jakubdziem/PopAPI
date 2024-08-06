@@ -81,6 +81,7 @@ public class CountryServiceImpl implements CountryService{
                 countries.get(i).setYearAndPopulations(singleYearAndPopulation);
 
                 CountryDTO countryDTO = countryMapper.countryToCountryDto(countries.get(i));
+                countryDTO.setFlagUrl(countryDTO.getFlagUrl().toLowerCase());
                 countryDTOS.add(countryDTO);
             }
         } else {
