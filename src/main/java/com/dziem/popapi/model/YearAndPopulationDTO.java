@@ -8,6 +8,5 @@ public class YearAndPopulationDTO {
     private String yearOfMeasurment;
     private String population;
     private String annualGrowth;
-
     private Country country;
 }
