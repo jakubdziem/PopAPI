@@ -44,12 +44,15 @@ public class DataServiceImpl implements DataService {
         country.setFlagUrl("/images/" + country.getGENC().toLowerCase() + ".png");
         YearAndPopulation yearAndPopulation = new YearAndPopulation();
         yearAndPopulation.setYearOfMeasurement(values[values.length-4].replace("\"", ""));
+        yearAndPopulationDefaultSet(country, values, yearAndPopulation);
+        return country;
+    }
+    private void yearAndPopulationDefaultSet(Country country, String[] values, YearAndPopulation yearAndPopulation) {
         yearAndPopulation.setPopulation(values[values.length-3].replace("\"", ""));
         yearAndPopulation.setAnnualGrowth(values[values.length-2].replace("\"", "")
                 .concat(","+values[values.length-1].replace("\"", "")));
         yearAndPopulation.setCountry(country);
         country.getYearAndPopulations().add(yearAndPopulation);
-        return country;
     }
 
     @Override
