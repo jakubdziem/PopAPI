@@ -40,10 +40,10 @@ public class DataServiceImpl implements DataService {
         if(country.getCountryName().equals("Korea")) {
             country.setCountryName(values[1].substring(1,6) + " Korea");
         }
-        country.setGENC(values[values.length-5].replace("\"", ""));
+        country.setGENC(values[values.length - 5].replace("\"", ""));
         country.setFlagUrl("/images/" + country.getGENC().toLowerCase() + ".png");
         YearAndPopulation yearAndPopulation = new YearAndPopulation();
-        yearAndPopulation.setYearOfMeasurement(values[values.length-4].replace("\"", ""));
+        yearAndPopulation.setYearOfMeasurement(values[values.length - 4].replace("\"", ""));
         yearAndPopulationDefaultSet(country, values, yearAndPopulation);
         return country;
     }
