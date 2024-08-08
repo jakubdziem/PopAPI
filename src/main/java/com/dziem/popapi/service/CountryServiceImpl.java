@@ -82,6 +82,9 @@ public class CountryServiceImpl implements CountryService{
 
                 CountryDTO countryDTO = countryMapper.countryToCountryDto(countries.get(i));
                 countryDTO.setFlagUrl(countryDTO.getFlagUrl().toLowerCase());
+                String countryName = countryDTO.getCountryName();
+                countryDTO.setCountryName(countryName.endsWith("1900") || countryName.endsWith("1939") || countryName.endsWith("1989")
+                        ? countryName.substring(0, countryName.length()-5) : countryName);
                 countryDTOS.add(countryDTO);
             }
         } else {
