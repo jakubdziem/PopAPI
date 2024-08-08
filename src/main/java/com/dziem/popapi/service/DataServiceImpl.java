@@ -43,7 +43,7 @@ public class DataServiceImpl implements DataService {
         country.setGENC(values[values.length-5].replace("\"", ""));
         country.setFlagUrl("/images/" + country.getGENC().toLowerCase() + ".png");
         YearAndPopulation yearAndPopulation = new YearAndPopulation();
-        yearAndPopulation.setYearOfMeasurment(values[values.length-4].replace("\"", ""));
+        yearAndPopulation.setYearOfMeasurement(values[values.length-4].replace("\"", ""));
         yearAndPopulation.setPopulation(values[values.length-3].replace("\"", ""));
         yearAndPopulation.setAnnualGrowth(values[values.length-2].replace("\"", "")
                 .concat(","+values[values.length-1].replace("\"", "")));
@@ -54,14 +54,14 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public void getData2100_2150() {
-        List<YearAndPopulation> list2100 = new ArrayList<>(yearAndPopulationRepository.findAll().stream().filter(y -> y.getYearOfMeasurment().equals("2100")).toList());
+        List<YearAndPopulation> list2100 = new ArrayList<>(yearAndPopulationRepository.findAll().stream().filter(y -> y.getYearOfMeasurement().equals("2100")).toList());
         String currentYear = "2100";
         for(int i = 1; i <= 50; i++) {
             currentYear = Integer.parseInt(currentYear) >= 2109 ? "21" + i : "210" + i;
             for(int j = 0; j < list2100.size(); j++) {
                 YearAndPopulation yearAndPopulation = new YearAndPopulation();
                 yearAndPopulation.setAnnualGrowth(list2100.get(j).getAnnualGrowth());
-                yearAndPopulation.setYearOfMeasurment(currentYear);
+                yearAndPopulation.setYearOfMeasurement(currentYear);
                 yearAndPopulation.setCountry(list2100.get(j).getCountry());
 
                 double annualGrowth = list2100.get(j).getAnnualGrowth().indexOf(0) == '-' ?

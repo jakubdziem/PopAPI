@@ -10,7 +10,7 @@ public class YearAndPopulation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String yearOfMeasurment;
+    private String yearOfMeasurement;
     private String population;
     private String annualGrowth;
     @ManyToOne

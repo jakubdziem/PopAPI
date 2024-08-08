@@ -62,7 +62,7 @@ public class CountryServiceImpl implements CountryService{
                             (!yearAndPopulation.getCountry().getCountryName().endsWith("1989") &&
                                     !yearAndPopulation.getCountry().getCountryName().endsWith("1900") &&
                                     !yearAndPopulation.getCountry().getCountryName().endsWith("1939"))
-                                    && yearAndPopulation.getYearOfMeasurment().equals(year)).toList();
+                                    && yearAndPopulation.getYearOfMeasurement().equals(year)).toList();
                 } else {
                     ArrayList<CountryDTO> emptyList = new ArrayList<>();
                     emptyList.add(CountryDTO.builder().countryName("The " + year + " is not in the database.")
