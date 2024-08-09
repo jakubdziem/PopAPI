@@ -1,6 +1,5 @@
 package com.dziem.popapi.config;
 
-import com.dziem.popapi.service.CountryService;
 import com.dziem.popapi.service.DataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -15,5 +14,6 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         dataService.getData2024_2100();
         dataService.getData2100_2150();
+        dataService.getDataSpotifyTopArtists();
     }
 }
