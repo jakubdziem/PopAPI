@@ -1,401 +1,401 @@
 09.08.2024
-1 Taylor Swift Taylor Swift
+1 Taylor Swift Taylor Swift 
 87,411,273,008 439 12 220 389 433 806,614,342
-2 Drake Drake
+2 Drake Drake 
 78,026,689,143 331 13 190 318 321 23,903,711,505
-3 Bad Bunny Bad Bunny
+3 Bad Bunny Bad Bunny 
 73,682,837,363 191 16 148 186 187 10,212,682,258
-4 The Weeknd The Weeknd
+4 The Weeknd The Weeknd 
 59,687,560,286 228 16 93 167 224 8,609,376,205
-5 Ed Sheeran Ed Sheeran
+5 Ed Sheeran Ed Sheeran 
 49,093,288,771 298 11 74 209 269 3,943,574,773
-6 Ariana Grande Ariana Grande
+6 Ariana Grande Ariana Grande 
 46,396,670,417 221 14 91 156 209 3,212,260,794
-7 Eminem Eminem
+7 Eminem Eminem 
 44,434,187,646 333 11 87 260 298 5,709,927,281
-8 Justin Bieber Justin Bieber
+8 Justin Bieber Justin Bieber 
 43,766,544,812 228 11 71 177 197 13,132,024,877
-9 Post Malone Post Malone
+9 Post Malone Post Malone 
 40,562,661,209 122 12 69 103 105 4,165,051,408
-10 Kanye West Kanye West
+10 Kanye West Kanye West 
 40,450,201,783 290 7 87 218 264 7,806,108,211
-11 BTS BTS
+11 BTS BTS 
 39,390,814,907 274 4 119 227 274 767,452,972
-12 Billie Eilish Billie Eilish
+12 Billie Eilish Billie Eilish 
 37,537,339,765 80 9 67 75 77 10,274
-13 Rihanna Rihanna
+13 Rihanna Rihanna 
 33,288,927,786 375 12 55 120 226 9,763,004,455
-14 J Balvin J Balvin
+14 J Balvin J Balvin 
 33,078,272,421 265 3 74 172 245 11,369,548,928
-15 Coldplay Coldplay
+15 Coldplay Coldplay 
 33,029,991,789 304 11 42 194 285 883,792
-16 Travis Scott Travis Scott
+16 Travis Scott Travis Scott 
 32,757,965,573 143 4 77 118 135 14,604,357,193
-17 Dua Lipa Dua Lipa
+17 Dua Lipa Dua Lipa 
 32,222,054,248 240 9 43 102 199 443,171,764
-18 Imagine Dragons Imagine Dragons
+18 Imagine Dragons Imagine Dragons 
 31,183,233,560 237 10 46 135 200 91,324,385
-19 Juice WRLD Juice WRLD
+19 Juice WRLD Juice WRLD 
 31,098,317,236 125 3 72 123 124 5,719,351,872
-20 XXXTENTACION XXXTENTACION
+20 XXXTENTACION XXXTENTACION 
 29,324,022,307 149 9 51 117 149 3,491,806,538
-21 Ozuna Ozuna
+21 Ozuna Ozuna 
 28,440,230,174 301 2 61 195 262 9,539,203,471
-22 David Guetta David Guetta
+22 David Guetta David Guetta 
 28,416,848,150 869 2 55 194 499 2,336,895,201
-23 Kendrick Lamar Kendrick Lamar
+23 Kendrick Lamar Kendrick Lamar 
 28,165,504,265 126 5 52 117 123 9,700,744,156
-24 Bruno Mars Bruno Mars
+24 Bruno Mars Bruno Mars 
 27,476,247,356 82 11 35 61 77 6,214,503,964
-25 Maroon 5 Maroon 5
+25 Maroon 5 Maroon 5 
 27,040,147,072 249 10 32 114 207 4,903,032
-26 Khalid Khalid
+26 Khalid Khalid 
 26,325,277,482 148 7 47 106 127 3,495,746,789
-27 Lana Del Rey Lana Del Rey
+27 Lana Del Rey Lana Del Rey 
 25,289,277,433 196 2 69 153 185 2,490,796,345
-28 Calvin Harris Calvin Harris
+28 Calvin Harris Calvin Harris 
 25,005,759,121 337 11 34 102 234 782,218,712
-29 KAROL G KAROL G
+29 KAROL G KAROL G 
 24,441,399,616 120 4 57 107 112 787,682,996
-30 Shawn Mendes Shawn Mendes
+30 Shawn Mendes Shawn Mendes 
 24,193,697,928 135 6 36 101 133 150,639,205
-31 Beyoncé Beyoncé
+31 Beyoncé Beyoncé 
 24,180,290,206 449 2 58 208 310 3,150,920,487
-32 Sam Smith Sam Smith
+32 Sam Smith Sam Smith 
 23,627,984,519 219 7 39 104 171 372,074,518
-33 Daddy Yankee Daddy Yankee
+33 Daddy Yankee Daddy Yankee 
 23,149,413,928 400 3 54 130 279 9,671,018,305
-34 Queen Queen
+34 Queen Queen 
 22,985,041,703 637 5 30 118 438 12,977,385
-35 Harry Styles Harry Styles
+35 Harry Styles Harry Styles 
 22,492,982,767 38 5 36 37 38 34,058,669
-36 Future Future
+36 Future Future 
 22,229,315,662 561 2 48 282 419 15,751,017,689
-37 Lady Gaga Lady Gaga
+37 Lady Gaga Lady Gaga 
 22,026,885,694 341 6 34 122 216 118,377,124
-38 Rauw Alejandro Rauw Alejandro
+38 Rauw Alejandro Rauw Alejandro 
 21,904,155,442 215 2 49 148 185 4,463,191,255
-39 One Direction One Direction
+39 One Direction One Direction 
 21,743,027,088 123 4 54 100 120 0
-40 J. Cole J. Cole
+40 J. Cole J. Cole 
 21,581,106,189 144 3 50 128 143 4,983,142,340
-41 Adele Adele
+41 Adele Adele 
 21,412,986,170 70 8 31 61 70 62,134,434
-42 Nicki Minaj Nicki Minaj
+42 Nicki Minaj Nicki Minaj 
 21,380,754,401 229 4 48 156 206 14,196,551,798
-43 Anuel AA Anuel AA
+43 Anuel AA Anuel AA 
 21,351,259,559 219 1 48 192 218 7,691,839,895
-44 Shakira Shakira
+44 Shakira Shakira 
 20,822,731,201 258 3 47 115 228 617,343,096
-45 Chris Brown Chris Brown
+45 Chris Brown Chris Brown 
 20,732,182,260 491 2 45 260 400 11,435,304,888
-46 SZA SZA
+46 SZA SZA 
 20,011,706,098 88 5 40 74 86 4,012,229,287
-47 Linkin Park Linkin Park
+47 Linkin Park Linkin Park 
 19,732,083,950 374 3 43 130 304 35,498,917
-48 The Beatles The Beatles
+48 The Beatles The Beatles 
 19,707,846,878 766 1 49 209 542 0
-49 Arctic Monkeys Arctic Monkeys
+49 Arctic Monkeys Arctic Monkeys 
 19,698,278,089 148 5 32 103 143 0
-50 Doja Cat Doja Cat
+50 Doja Cat Doja Cat 
 19,602,915,301 121 6 35 91 114 4,344,549,342
-51 The Chainsmokers The Chainsmokers
+51 The Chainsmokers The Chainsmokers 
 19,135,185,706 250 5 30 97 207 449,575,662
-52 Selena Gomez Selena Gomez
+52 Selena Gomez Selena Gomez 
 18,970,245,601 144 6 33 87 127 2,706,837,541
-53 Metro Boomin Metro Boomin
+53 Metro Boomin Metro Boomin 
 18,775,859,229 213 2 43 118 172 287,084,663
-54 Marshmello Marshmello
+54 Marshmello Marshmello 
 18,508,337,882 215 4 28 108 194 633,728,312
-55 Maluma Maluma
+55 Maluma Maluma 
 18,480,251,856 246 1 45 156 233 7,743,945,723
-56 Sia Sia
+56 Sia Sia 
 18,477,715,385 432 3 33 122 274 4,781,280,206
-57 Katy Perry Katy Perry
+57 Katy Perry Katy Perry 
 18,472,117,758 184 4 31 94 142 1,659,974,518
-58 Olivia Rodrigo Olivia Rodrigo
+58 Olivia Rodrigo Olivia Rodrigo 
 18,467,341,776 56 7 28 43 56 2,142,744
-59 Lil Uzi Vert Lil Uzi Vert
+59 Lil Uzi Vert Lil Uzi Vert 
 18,415,437,659 179 3 40 162 175 11,582,116,200
-60 Arijit Singh Arijit Singh
+60 Arijit Singh Arijit Singh 
 18,077,525,056 847 0 61 216 420 1,271,467,524
-61 21 Savage 21 Savage
+61 21 Savage 21 Savage 
 18,002,998,085 217 1 46 124 165 12,240,788,029
-62 Halsey Halsey
+62 Halsey Halsey 
 17,567,425,739 186 3 30 104 148 3,199,172,636
-63 Feid Feid
+63 Feid Feid 
 17,207,127,516 207 1 40 145 180 4,874,738,760
-64 Twenty One Pilots Twenty One Pilots
+64 Twenty One Pilots Twenty One Pilots 
 16,690,182,894 131 3 41 91 129 4,464,482
-65 Miley Cyrus Miley Cyrus
+65 Miley Cyrus Miley Cyrus 
 16,596,209,297 220 2 25 111 200 2,115,016,598
-66 Avicii Avicii
+66 Avicii Avicii 
 16,312,335,800 272 5 22 95 168 732,793,022
-67 Peso Pluma Peso Pluma
+67 Peso Pluma Peso Pluma 
 16,289,565,724 130 2 40 90 119 724,940,956
-68 Red Hot Chili Peppers Red Hot Chili Peppers
+68 Red Hot Chili Peppers Red Hot Chili Peppers 
 15,790,952,372 285 5 27 140 257 1,592,163
-69 Lil Baby Lil Baby
+69 Lil Baby Lil Baby 
 15,752,071,601 223 2 31 161 211 12,381,949,680
-70 OneRepublic OneRepublic
+70 OneRepublic OneRepublic 
 15,663,925,747 212 2 33 88 170 265,515,838
-71 Myke Towers Myke Towers
+71 Myke Towers Myke Towers 
 15,356,333,508 249 0 38 140 235 7,902,280,138
-72 Kygo Kygo
+72 Kygo Kygo 
 15,330,626,778 140 2 36 99 134 1,318,565,785
-73 Farruko Farruko
+73 Farruko Farruko 
 15,051,031,862 390 2 32 130 332 8,628,554,216
-74 Pritam Pritam
-66,449,538 1,098 0 43 234 497 140,088,430
-75 Camila Cabello Camila Cabello
+74 Pritam Pritam 
+y(s) old data 14,966,449,538 1,098 0 43 234 497 140,088,430
+75 Camila Cabello Camila Cabello 
 14,783,905,167 63 2 25 48 60 1,393,184,371
-76 $uicideboy$ $uicideboy$
+76 $uicideboy$ $uicideboy$ 
 14,295,527,201 360 0 31 244 359 522,440,643
-77 Michael Jackson Michael Jackson
+77 Michael Jackson Michael Jackson 
 14,291,804,767 343 2 30 100 250 728,097,477
-78 Tyler, The Creator Tyler, The Creator
+78 Tyler, The Creator Tyler, The Creator 
 14,077,626,932 185 2 38 109 126 2,322,718,917
-79 Pitbull Pitbull
+79 Pitbull Pitbull 
 13,873,848,743 437 3 24 97 250 4,257,914,761
-80 Charlie Puth Charlie Puth
+80 Charlie Puth Charlie Puth 
 13,739,250,202 119 3 16 71 107 487,174,103
-81 Junior H Junior H
-73,403,465 162 0 36 133 160 930,033,813
-82 Elton John Elton John
+81 Junior H Junior H 
+13,591,500,284 162 0 36 133 160 931,389,287
+82 Elton John Elton John 
 13,494,889,212 889 3 23 76 295 753,538,527
-83 Mac Miller Mac Miller
+83 Mac Miller Mac Miller 
 13,426,349,904 209 0 36 146 193 934,327,226
-84 Jason Derulo Jason Derulo
+84 Jason Derulo Jason Derulo 
 13,342,196,052 253 3 27 78 178 1,619,602,358
-85 Lil Peep Lil Peep
+85 Lil Peep Lil Peep 
 13,306,878,833 161 2 37 102 151 518,868,729
-86 Frank Ocean Frank Ocean
+86 Frank Ocean Frank Ocean 
 13,305,325,139 46 3 31 46 46 3,359,877,834
-87 Metallica Metallica
+87 Metallica Metallica 
 13,247,896,256 502 2 23 138 299 37,328,704
-88 Morgan Wallen Morgan Wallen
+88 Morgan Wallen Morgan Wallen 
 13,125,311,710 95 0 34 83 94 990,466,726
-89 Tiësto Tiësto
+89 Tiësto Tiësto 
 13,063,927,171 870 1 26 141 418 1,323,667,299
-90 Pop Smoke Pop Smoke
+90 Pop Smoke Pop Smoke 
 12,882,745,419 100 3 29 89 98 1,283,502,136
-91 Demi Lovato Demi Lovato
+91 Demi Lovato Demi Lovato 
 12,869,630,287 263 2 24 112 223 2,026,834,747
-92 BLACKPINK BLACKPINK
+92 BLACKPINK BLACKPINK 
 12,806,286,410 105 1 31 52 105 659,415,677
-93 The Neighbourhood The Neighbourhood
+93 The Neighbourhood The Neighbourhood 
 12,745,936,945 124 2 26 77 94 8,760,393
-94 Ellie Goulding Ellie Goulding
+94 Ellie Goulding Ellie Goulding 
 12,405,118,247 246 2 22 86 177 460,597,988
-95 Alan Walker Alan Walker
+95 Alan Walker Alan Walker 
 12,403,631,266 233 1 24 94 192 2,045,000,829
-96 James Arthur James Arthur
+96 James Arthur James Arthur 
 12,346,163,502 179 1 21 81 160 86,608,233
-97 AC/DC AC/DC
+97 AC/DC AC/DC 
 12,304,421,829 313 4 17 99 253 0
-98 DJ Snake DJ Snake
+98 DJ Snake DJ Snake 
 12,282,150,305 178 4 17 64 129 357,932,053
-99 Lil Wayne Lil Wayne
+99 Lil Wayne Lil Wayne 
 12,164,425,585 564 1 23 144 377 18,346,690,501
-100 YoungBoy Never Broke Again YoungBoy Never Broke Again
+100 Disney Disney 
+11,998,179,977 687 0 27 184 477 23,572,495
+101 YoungBoy Never Broke Again YoungBoy Never Broke Again 
 11,991,634,999 616 0 18 261 552 1,914,627,933
-101 Disney Disney
-89,309,127 687 0 27 184 477 23,552,538
-102 Luis Miguel Luis Miguel
+102 Luis Miguel Luis Miguel 
 11,962,253,069 312 0 32 156 269 1,146,529
-103 Luke Combs Luke Combs
+103 Luke Combs Luke Combs 
 11,932,783,682 106 0 26 92 104 341,010,218
-104 P!nk P!nk
+104 P!nk P!nk 
 11,873,377,001 251 1 27 101 186 878,318,475
-105 Romeo Santos Romeo Santos
+105 Romeo Santos Romeo Santos 
 11,802,414,978 148 0 32 98 125 1,627,129,045
-106 DaBaby DaBaby
+106 DaBaby DaBaby 
 11,737,979,428 189 2 23 93 175 5,824,735,054
-107 Sech Sech
+107 Sech Sech 
 11,615,028,034 167 0 31 80 128 4,209,170,011
-108 Young Thug Young Thug
+108 Young Thug Young Thug 
 11,557,337,753 376 0 22 163 240 13,172,014,292
-109 Lil Nas X Lil Nas X
+109 Lil Nas X Lil Nas X 
 11,528,275,245 39 5 16 33 38 2,618,998
-110 Cardi B Cardi B
+110 Cardi B Cardi B 
 11,447,607,519 103 2 19 63 80 7,365,476,447
-111 Fall Out Boy Fall Out Boy
+111 Fall Out Boy Fall Out Boy 
 11,344,455,170 220 1 22 110 185 134,250,011
-112 Nirvana Nirvana
+112 Nirvana Nirvana 
 11,308,711,393 358 2 20 70 256 0
-113 Martin Garrix Martin Garrix
+113 Martin Garrix Martin Garrix 
 11,264,678,166 214 2 20 97 169 155,650,063
-114 Panic! At The Disco Panic! At The Disco
+114 Panic! At The Disco Panic! At The Disco 
 11,238,043,102 149 1 28 83 140 874,117,406
-115 Gunna Gunna
+115 Gunna Gunna 
 11,181,416,774 215 1 21 140 204 8,487,198,987
-116 Bizarrap Bizarrap
-26,675,617 102 1 32 81 102 1,054,212,736
-117 Wiz Khalifa Wiz Khalifa
+116 Bizarrap Bizarrap 
+11,132,752,613 102 1 32 81 102 1,054,934,983
+117 Wiz Khalifa Wiz Khalifa 
 11,124,295,858 577 2 19 122 378 8,811,236,265
-118 Natanael Cano Natanael Cano
+118 Natanael Cano Natanael Cano 
 11,081,003,831 182 0 30 129 180 490,084,070
-119 NF NF
+119 NF NF 
 11,066,308,071 94 1 33 94 94 187,851,526
-120 Nicky Jam Nicky Jam
+120 Nicky Jam Nicky Jam 
 11,052,932,560 245 1 29 92 171 12,901,261,666
-121 A$AP Rocky A$AP Rocky
+121 A$AP Rocky A$AP Rocky 
 11,047,031,078 109 1 26 90 103 6,917,552,814
-122 Lewis Capaldi Lewis Capaldi
+122 Lewis Capaldi Lewis Capaldi 
 11,046,488,811 76 3 15 46 71 3,066
-123 Hozier Hozier
+123 Hozier Hozier 
 10,984,901,804 92 1 21 72 90 53,229
-124 Sebastian Yatra Sebastian Yatra
+124 Sebastian Yatra Sebastian Yatra 
 10,801,766,933 119 0 24 75 108 3,042,846,289
-125 Green Day Green Day
+125 Green Day Green Day 
 10,755,597,049 451 1 16 98 334 29,844,438
-126 A Boogie Wit da Hoodie A Boogie Wit da Hoodie
+126 A Boogie Wit da Hoodie A Boogie Wit da Hoodie 
 10,672,858,616 252 0 24 123 188 4,098,598,929
-127 Bob Marley & The Wailers Bob Marley & The Wailers
+127 Bob Marley & The Wailers Bob Marley & The Wailers 
 10,654,212,829 726 1 23 102 406 97,826,468
-128 Trippie Redd Trippie Redd
+128 Trippie Redd Trippie Redd 
 10,638,447,856 262 0 27 132 241 3,948,430,300
-129 Fleetwood Mac Fleetwood Mac
+129 Fleetwood Mac Fleetwood Mac 
 10,614,377,607 819 3 18 63 262 664,545
-130 G-Eazy G-Eazy
+130 G-Eazy G-Eazy 
 10,565,615,767 243 1 20 122 222 2,320,475,758
-131 Bebe Rexha Bebe Rexha
+131 Bebe Rexha Bebe Rexha 
 10,558,509,909 184 3 20 76 128 4,193,492,626
-132 Black Eyed Peas Black Eyed Peas
+132 Black Eyed Peas Black Eyed Peas 
 10,476,689,064 226 2 20 60 129 114,668,446
-133 Major Lazer Major Lazer
+133 Major Lazer Major Lazer 
 10,441,564,559 301 3 17 76 184 811,587,721
-134 JAY-Z JAY-Z
+134 JAY-Z JAY-Z 
 10,330,765,434 341 3 20 96 263 8,308,044,860
-135 John Mayer John Mayer
+135 John Mayer John Mayer 
 10,312,856,609 208 0 26 123 190 436,425,431
-136 Tyga Tyga
+136 Tyga Tyga 
 10,280,630,806 341 1 22 128 292 5,322,717,784
-137 Fuerza Regida Fuerza Regida
-04,753,560 255 0 27 111 240 378,741,514
-138 Britney Spears Britney Spears
+137 Fuerza Regida Fuerza Regida 
+10,219,903,205 255 0 27 111 240 379,234,546
+138 Britney Spears Britney Spears 
 10,178,061,523 306 1 22 77 198 997,754,280
-139 The Kid LAROI The Kid LAROI
+139 The Kid LAROI The Kid LAROI 
 10,169,244,030 78 1 22 64 74 1,169,442,656
-140 Marília Mendonça Marília Mendonça
+140 Marília Mendonça Marília Mendonça 
 10,155,458,135 139 0 34 125 132 2,143,317,248
-141 50 Cent 50 Cent
+141 50 Cent 50 Cent 
 10,135,411,521 204 1 18 74 134 4,265,414,114
-142 Joji Joji
+142 Joji Joji 
 10,123,169,728 59 2 25 51 59 879,915,116
-143 Justin Timberlake Justin Timberlake
+143 Justin Timberlake Justin Timberlake 
 10,120,061,784 210 2 17 86 149 3,298,404,209
-144 Playboi Carti Playboi Carti
+144 Zach Bryan Zach Bryan 
+9,997,672,050 156 0 24 120 156 0
+145 Playboi Carti Playboi Carti 
 9,983,943,624 84 0 28 68 83 4,870,054,172
-145 Lauv Lauv
+146 Lauv Lauv 
 9,937,105,082 122 1 25 75 113 160,475,927
-146 5 Seconds of Summer 5 Seconds of Summer
+147 5 Seconds of Summer 5 Seconds of Summer 
 9,933,026,373 201 1 15 113 191 598,866,659
-147 Kodak Black Kodak Black
+148 Kodak Black Kodak Black 
 9,804,562,450 330 1 21 113 285 4,011,188,347
-148 Pink Floyd Pink Floyd
+149 Pink Floyd Pink Floyd 
 9,776,105,280 464 0 20 126 327 0
-149 Guns N Guns N' Roses
+150 Guns N Guns N' Roses 
 9,743,282,584 170 3 13 64 113 0
-150 Henrique & Juliano Henrique & Juliano
+151 Henrique & Juliano Henrique & Juliano 
 9,728,658,327 218 0 29 154 212 1,454,606,256
-151 Little Mix Little Mix
+152 Little Mix Little Mix 
 9,694,358,911 226 0 23 111 161 15,330,266
-152 Carin Leon Carin Leon
-1,608,648 356 0 21 113 303 148,601,480
-153 Anne-Marie Anne-Marie
+153 Carin Leon Carin Leon 
+y(s) old data 9,631,608,648 356 0 21 113 303 148,601,480
+154 Anne-Marie Anne-Marie 
 9,622,018,939 177 3 16 53 117 933,605,899
-154 Robin Schulz Robin Schulz
+155 Robin Schulz Robin Schulz 
 9,616,781,635 262 3 18 67 181 601,850,575
-155 Logic Logic
+156 Logic Logic 
 9,612,414,501 233 1 18 141 226 2,317,956,622
-156 The Rolling Stones The Rolling Stones
+157 The Rolling Stones The Rolling Stones 
 9,611,714,317 1,122 1 17 86 445 10,610,270
-157 Manuel Turizo Manuel Turizo
+158 Manuel Turizo Manuel Turizo 
 9,519,937,765 85 1 21 53 82 4,276,804,933
-158 2Pac 2Pac
+159 2Pac 2Pac 
 9,516,714,009 311 0 20 95 245 472,489,459
-159 Polo G Polo G
+160 Polo G Polo G 
 9,504,401,941 95 0 20 85 93 3,326,134,559
-160 Duki Duki
+161 Duki Duki 
 9,501,574,522 180 0 28 125 171 2,015,650,972
-161 Ava Max Ava Max
+162 Ava Max Ava Max 
 9,471,735,816 133 1 20 58 100 274,988,717
-162 Don Omar Don Omar
+163 Don Omar Don Omar 
 9,463,454,852 304 1 20 75 153 2,870,901,491
-163 Gorillaz Gorillaz
+164 Gorillaz Gorillaz 
 9,451,397,128 284 1 19 116 215 2,155,839
-164 Christian Nodal Christian Nodal
+165 Christian Nodal Christian Nodal 
 9,416,370,537 89 0 27 73 89 611,318,704
-165 Machine Gun Kelly Machine Gun Kelly
+166 Machine Gun Kelly Machine Gun Kelly 
 9,361,668,983 173 0 24 124 153 1,168,037,897
-166 Migos Migos
+167 Migos Migos 
 9,318,197,612 277 0 19 87 181 4,436,797,179
-167 DJ Khaled DJ Khaled
+168 DJ Khaled DJ Khaled 
 9,301,882,830 183 2 19 86 142 217,065,140
-168 Banda MS de Sergio Lizárraga Banda MS de Sergio Lizárraga
+169 Banda MS de Sergio Lizárraga Banda MS de Sergio Lizárraga 
 9,288,202,434 277 0 25 135 242 32,446,827
-169 Radiohead Radiohead
+170 Radiohead Radiohead 
 9,244,103,880 235 1 16 110 215 3,081,867
-170 Becky G Becky G
+171 Becky G Becky G 
 9,234,929,727 145 0 21 74 132 1,639,318,952
-171 Michael Bublé Michael Bublé
+172 Michael Bublé Michael Bublé 
 9,215,806,843 254 1 20 109 211 444,094,263
-172 Macklemore Macklemore
+173 Macklemore Macklemore 
 9,215,554,516 117 2 12 69 112 1,234,571,774
-173 Kid Cudi Kid Cudi
+174 Kid Cudi Kid Cudi 
 9,170,958,588 219 0 15 108 211 2,515,290,385
-174 Anitta Anitta
+175 Anitta Anitta 
 9,165,867,515 226 0 29 123 206 2,164,800,022
-175 Enrique Iglesias Enrique Iglesias
+176 Enrique Iglesias Enrique Iglesias 
 9,146,795,704 263 0 17 86 188 345,020,288
-176 Diplo Diplo
+177 Diplo Diplo 
 9,105,979,331 447 1 23 92 254 3,333,369,584
-177 Flo Rida Flo Rida
+178 Flo Rida Flo Rida 
 9,058,664,254 281 2 12 51 120 3,201,673,486
-178 Mariah Carey Mariah Carey
+179 Mariah Carey Mariah Carey 
 9,030,653,684 706 1 19 87 282 615,706,854
-179 Zedd Zedd
+180 Zedd Zedd 
 9,027,149,526 151 3 14 46 108 1,159,336,431
-180 Childish Gambino Childish Gambino
+181 Childish Gambino Childish Gambino 
 9,026,191,610 105 1 14 63 103 826,241,285
-181 Usher Usher
+182 Usher Usher 
 8,999,428,513 294 1 19 69 189 4,440,922,646
-182 Melanie Martinez Melanie Martinez
+183 Melanie Martinez Melanie Martinez 
 8,989,071,855 89 0 29 64 88 457,080
-183 Morat Morat
+184 Morat Morat 
 8,961,841,412 114 0 31 81 88 1,160,567,164
-184 blackbear blackbear
+185 blackbear blackbear 
 8,735,766,942 180 1 18 112 163 2,207,056,824
-185 Frank Sinatra Frank Sinatra
+186 Frank Sinatra Frank Sinatra 
 8,712,788,133 1,966 0 16 105 428 82,713,468
-186 TWICE TWICE
+187 TWICE TWICE 
 8,678,580,680 279 0 21 146 224 56,553,076
-187 ABBA ABBA
+188 ABBA ABBA 
 8,610,434,775 166 1 20 62 150 1,168,741
-188 Clean Bandit Clean Bandit
+189 Clean Bandit Clean Bandit 
 8,563,107,725 195 4 12 46 136 27,745,578
-189 System Of A Down System Of A Down
+190 System Of A Down System Of A Down 
 8,514,182,068 77 1 16 71 76 1,519,058
-190 Tame Impala Tame Impala
+191 Tame Impala Tame Impala 
 8,513,150,096 113 1 18 70 106 258,051,724
-191 Zara Larsson Zara Larsson
+192 Zara Larsson Zara Larsson 
 8,474,528,371 124 2 16 52 103 1,536,034,007
-192 Tory Lanez Tory Lanez
+193 Tory Lanez Tory Lanez 
 8,438,254,239 296 0 17 123 265 3,828,517,785
-193 Russ Russ
+194 Russ Russ 
 8,435,908,343 420 0 17 136 313 191,902,358
-194 Elvis Presley Elvis Presley
+195 Quevedo Quevedo 
+8,384,760,282 67 1 22 57 67 269,419,146
+196 Elvis Presley Elvis Presley 
 8,384,724,032 1,698 0 16 105 493 16,461,730
-195 Quevedo Quevedo
-8,402,149 67 1 22 57 67 269,202,029
-196 Camilo Camilo
+197 Camilo Camilo 
 8,376,703,838 69 0 24 52 64 2,187,257,500
-197 Foo Fighters Foo Fighters
+198 Foo Fighters Foo Fighters 
 8,340,474,912 248 1 15 93 187 0
-198 Meghan Trainor Meghan Trainor
+199 Meghan Trainor Meghan Trainor 
 8,282,133,934 202 1 12 71 163 1,271,848,683
-199 ZAYN ZAYN
+200 ZAYN ZAYN 
 8,244,626,109 109 2 17 74 103 268,696,285
-200 Reik Reik
-8,220,680,279 188 0 22 80 159 1,285,477,995
