@@ -14,6 +14,14 @@ public class CountryController {
     private final CountryService countryService;
     @GetMapping("/api/v1/pop/{year}")
     public List<CountryDTO> getPopInDistinctYear(@PathVariable("year") String year) {
-        return countryService.findCountriesByDistinctYear(year);
+        return countryService.findCountriesByDistinctYear(year, false);
+    }
+    @GetMapping("/api/v1/pop/{chaos}/{year}")
+    public List<CountryDTO> getPopInDistinctYearChaos(@PathVariable("chaos") boolean chaos, @PathVariable("year") String year) {
+        if(!chaos) {
+            return countryService.findCountriesByDistinctYear(year, false);
+        } else {
+            return countryService.findCountriesByDistinctYear(year, true);
+        }
     }
 }

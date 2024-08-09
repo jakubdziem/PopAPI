@@ -5,5 +5,6 @@ import com.dziem.popapi.model.CountryDTO;
 import java.util.List;
 
 public interface CountryService {
-    List<CountryDTO> findCountriesByDistinctYear(String year);
+    List<CountryDTO> findCountriesByDistinctYear(String year, boolean chaos);
+
 }
