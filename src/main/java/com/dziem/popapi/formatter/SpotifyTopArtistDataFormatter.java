@@ -25,6 +25,11 @@ public class SpotifyTopArtistDataFormatter {
             if(i==0) {
                 formattedString = formattedString.concat(strip[i]).concat("\n");
             } else {
+                String[] split = strip[i].split(" ");
+                String artistName = "";
+                for(int j = 1; j <= split.length/2; j++) {
+                    artistName = artistName.concat(split[j]).concat(i == split.length/2 ? "" : " ");
+                }
                 formattedString = formattedString.concat(strip[i]).concat(i % 2 == 1 ? ";" : "\n");
             }
         }

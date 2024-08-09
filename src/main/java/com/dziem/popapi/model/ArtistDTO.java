@@ -11,6 +11,7 @@ public class ArtistDTO {
     Long id;
     String artistName;
     String leadStreams;
+    String imageUrl;
     @JsonIgnore
     LocalDate lastUpdate;
 }
