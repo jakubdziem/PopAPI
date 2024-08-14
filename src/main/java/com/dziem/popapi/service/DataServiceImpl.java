@@ -117,9 +117,9 @@ public class DataServiceImpl implements DataService {
         artist.setArtistName(artistName);
         artist.setLeadStreams(streams[0]);
         if(artist.getArtistName().contains("/")) {
-            artist.setImageUrl("/images/spotify/" + artistName.replace('/', ' ') + ".jpeg");
+            artist.setImageUrl("/images/spotify/" + artistName.replace('/', ' ') + ".jpg");
         } else {
-            artist.setImageUrl("/images/spotify/" + artistName + ".jpeg");
+            artist.setImageUrl("/images/spotify/" + artistName + ".jpg");
         }
 
 
