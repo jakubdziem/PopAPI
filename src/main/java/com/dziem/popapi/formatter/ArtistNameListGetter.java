@@ -22,7 +22,7 @@ public class ArtistNameListGetter {
         try {
             FileWriter myWriter = new FileWriter("src/main/resources/spotifyArtistsInFormatSuitableToExtractImages.txt");
             for(int i = 0; i < artistsNames.size(); i++) {
-                myWriter.write("\""+artistsNames.get(i)+"\",\n");
+                myWriter.write(artistsNames.get(i)+"\n");
             }
             myWriter.close();
         } catch (IOException e) {
