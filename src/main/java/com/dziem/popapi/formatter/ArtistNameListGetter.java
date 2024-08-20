@@ -19,12 +19,10 @@ public class ArtistNameListGetter {
         for(Artist artist : artists) {
             artistsNames.add(artist.getArtistName());
         }
-        try {
-            FileWriter myWriter = new FileWriter("src/main/resources/spotifyArtistsInFormatSuitableToExtractImages.txt");
+        try (FileWriter myWriter = new FileWriter("src/main/resources/spotifyArtistsInFormatSuitableToExtractImages.txt", false)){
             for(int i = 0; i < artistsNames.size(); i++) {
                 myWriter.write(artistsNames.get(i)+"\n");
             }
-            myWriter.close();
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
