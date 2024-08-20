@@ -11,11 +11,12 @@ public class Score {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer bestScore;
-    @OneToOne
-    @JoinColumn(name="mode_name", referencedColumnName = "mode_name")
-    private Mode mode;
+
+    private String mode;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @JsonBackReference
     private User user;
 }
+

@@ -14,9 +14,11 @@ public class DataLoader implements CommandLineRunner {
     private final ArtistNameListGetter artistNameListGetter;
     @Override
     public void run(String... args) throws Exception {
+        System.out.println("DataLoader is running...");
         dataService.getData2024_2100();
         dataService.getData2100_2150();
         dataService.getDataSpotifyTopArtists();
         artistNameListGetter.getList();
+        System.out.println("DataLoader finished execution.");
     }
 }

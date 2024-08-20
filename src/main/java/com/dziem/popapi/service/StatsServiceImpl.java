@@ -30,7 +30,7 @@ public class StatsServiceImpl implements StatsService {
         AtomicBoolean result = new AtomicBoolean(false);
         statsRepository.findById(uuid).ifPresentOrElse(existing -> {
             result.set(true);
-            String[] split = stats.split(";");
+            String[] split = stats.split(",");
             existing.setTotalGamePlayed(existing.getTotalGamePlayed()+1L);
             existing.setAvgScore(new BigDecimal(split[0]));
             existing.setTimePlayed(existing.getTimePlayed()+Long.parseLong(split[1]));
