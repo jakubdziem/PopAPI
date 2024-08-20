@@ -4,6 +4,7 @@ import com.dziem.popapi.model.Score;
 import com.dziem.popapi.model.ScoreDTO;
 import com.dziem.popapi.model.User;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface ScoreService {
@@ -11,5 +12,7 @@ public interface ScoreService {
 
     boolean updateBestScore(UUID uuid, String mode, String newScore);
 
-    ScoreDTO getScoreByIdAndMode(UUID anonimUserId, String mode);
+    ScoreDTO getScoreByUserIdAndMode(UUID anonimUserId, String mode);
+
+    List<ScoreDTO> getScoreById(UUID anonimUserId);
 }

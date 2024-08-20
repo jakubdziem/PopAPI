@@ -35,10 +35,10 @@ public class StatsServiceImpl implements StatsService {
             result.set(true);
             String[] split = stats.split(",");
             existing.setTotalGamePlayed(existing.getTotalGamePlayed()+1L);
-            existing.setAvgScore(new BigDecimal(split[0]));
-            existing.setTimePlayed(existing.getTimePlayed()+Long.parseLong(split[1]));
-            existing.setTotalScoredPoints(existing.getTotalScoredPoints()+Long.parseLong(split[2]));
-            if(split[3].equals("y"))
+            existing.setAvgScore(new BigDecimal("12.3"));
+            existing.setTimePlayed(existing.getTimePlayed()+Long.parseLong(split[0]));
+            existing.setTotalScoredPoints(existing.getTotalScoredPoints()+Long.parseLong(split[1]));
+            if(split[2].equals("y"))
                 existing.setNumberOfWonGames( existing.getNumberOfWonGames() + 1);
             statsRepository.save(existing);
         }, () -> result.set(false));
@@ -46,7 +46,7 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    public StatsDTO getStatsById(UUID anonimUserId) {
+    public StatsDTO getStatsByUserId(UUID anonimUserId) {
         return statsMapper.statsToStatsDTO(statsRepository.findById(anonimUserId).get());
         //it is checked if its present in controller
     }

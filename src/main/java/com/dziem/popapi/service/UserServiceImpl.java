@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService {
         user.setBestScores(bestScore);
         return userRepository.save(user);
     }
+
+    @Override
+    public boolean userExists(UUID anonimUserId) {
+        return userRepository.existsById(anonimUserId);
+    }
 }

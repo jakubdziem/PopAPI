@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
@@ -19,7 +20,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -30,15 +30,19 @@ public class DataServiceImpl implements DataService {
     @Override
     @Transactional
     public void getData2024_2100() {
-        try (Stream<String> stream = Files.lines(Paths.get("src/main/resources/2024-2100 data.txt"))) {
-            stream.skip(1).forEach(line -> {
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/2024-2100 data.txt"))) {
+            List<Country> countries = new ArrayList<>();
+            reader.lines().skip(1).forEach(line -> {
                 Country country = getCountry(line);
-                countryRepository.save(country);
+                countries.add(country);
             });
+            countryRepository.saveAll(countries); // Batch save
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
     private Country getCountry(String line) {
         String[] values = line.split(",");
         Country country = new Country();
@@ -62,33 +66,38 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
+    @Transactional
     public void getData2100_2150() {
-        List<YearAndPopulation> list2100 = new ArrayList<>(yearAndPopulationRepository.findAll().stream().filter(y -> y.getYearOfMeasurement().equals("2100")).toList());
+        List<YearAndPopulation> list2100 = yearAndPopulationRepository.findByYearOfMeasurement("2100");
+        List<YearAndPopulation> toSave = new ArrayList<>();
         String currentYear = "2100";
-        for(int i = 1; i <= 50; i++) {
+
+        for (int i = 1; i <= 50; i++) {
             currentYear = Integer.parseInt(currentYear) >= 2109 ? "21" + i : "210" + i;
-            for(int j = 0; j < list2100.size(); j++) {
-                YearAndPopulation yearAndPopulation = new YearAndPopulation();
-                yearAndPopulation.setAnnualGrowth(list2100.get(j).getAnnualGrowth());
-                yearAndPopulation.setYearOfMeasurement(currentYear);
-                yearAndPopulation.setCountry(list2100.get(j).getCountry());
+            for (YearAndPopulation y : list2100) {
+                YearAndPopulation newEntry = new YearAndPopulation();
+                newEntry.setAnnualGrowth(y.getAnnualGrowth());
+                newEntry.setYearOfMeasurement(currentYear);
+                newEntry.setCountry(y.getCountry());
 
-                double annualGrowth = list2100.get(j).getAnnualGrowth().indexOf(0) == '-' ?
-                        -Double.parseDouble(list2100.get(j).getAnnualGrowth().substring(1)) :
-                        Double.parseDouble(list2100.get(j).getAnnualGrowth().replace(',', '.'));
-                BigDecimal population = new BigDecimal(list2100.get(j).getPopulation());
-                BigDecimal populationCalculated = population.add(population.multiply(new BigDecimal(annualGrowth/100)));
+                double annualGrowth = y.getAnnualGrowth().startsWith("-") ?
+                        -Double.parseDouble(y.getAnnualGrowth().substring(1).replace(',','.')) :
+                        Double.parseDouble(y.getAnnualGrowth().replace(',', '.'));
 
-                String populationInTheNextYear = String.valueOf(populationCalculated.intValue());
-                list2100.get(j).setPopulation(populationInTheNextYear);
-                list2100.set(j, list2100.get(j)); //updating
-                yearAndPopulation.setPopulation(populationInTheNextYear);
-                yearAndPopulationRepository.save(yearAndPopulation);
+                BigDecimal population = new BigDecimal(y.getPopulation());
+                BigDecimal populationCalculated = population.add(population.multiply(BigDecimal.valueOf(annualGrowth / 100)));
+
+                newEntry.setPopulation(populationCalculated.toString());
+                toSave.add(newEntry);
             }
         }
+        yearAndPopulationRepository.saveAll(toSave); // Batch save
     }
 
+
+
     @Override
+    @Transactional
     public void getDataSpotifyTopArtists() {
         LocalDate date = LocalDate.MIN;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");

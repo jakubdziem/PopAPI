@@ -7,4 +7,6 @@ public interface UserService {
     UUID generateUniqueUUID();
 
     User createAnonimUser(UUID uuid);
+
+    boolean userExists(UUID anonimUserId);
 }

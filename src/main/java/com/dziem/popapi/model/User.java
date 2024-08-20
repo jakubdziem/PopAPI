@@ -15,7 +15,7 @@ public class User {
     @Id
     @Column(name="user_id")
     private UUID userId;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Stats statistics;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

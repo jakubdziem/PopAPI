@@ -11,7 +11,7 @@ import java.util.UUID;
 @Entity
 public class Stats {
     @Id
-    private UUID userId;  // Bezpośredni klucz główny
+    private UUID userId;
 
     @OneToOne
     @MapsId

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -28,20 +29,36 @@ public class UserController {
         return uuid;
     }
     @PutMapping("/api/v1/{anonimUserId}/{stats}")
-    public ResponseEntity<StatsDTO> updateStatistics(@PathVariable UUID anonimUserId, @PathVariable String stats) {
+    public ResponseEntity updateStatistics(@PathVariable UUID anonimUserId, @PathVariable String stats) {
         if(!statsService.updateStatistics(anonimUserId, stats)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         } else {
-
-            return new ResponseEntity<>(statsService.getStatsById(anonimUserId), HttpStatus.ACCEPTED);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }
     @PutMapping("/api/v1/{anonimUserId}/{mode}/{newScore}")
-    public ResponseEntity<ScoreDTO> updateBestScore(@PathVariable UUID anonimUserId, @PathVariable String mode, @PathVariable String newScore) {
+    public ResponseEntity updateBestScore(@PathVariable UUID anonimUserId, @PathVariable String mode, @PathVariable String newScore) {
         if(!scoreService.updateBestScore(anonimUserId, mode, newScore)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(scoreService.getScoreByIdAndMode(anonimUserId, mode),HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+    @GetMapping("/api/v1/bestscore/{anonimUserId}")
+    public ResponseEntity<List<ScoreDTO>> getBestScoreForUser(@PathVariable UUID anonimUserId) {
+        if(!userService.userExists(anonimUserId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            List<ScoreDTO> bestScoreList = scoreService.getScoreById(anonimUserId);
+            return new ResponseEntity<>(bestScoreList,HttpStatus.FOUND);
+        }
+    }
+    @GetMapping("api/v1/stats/{anonimUserId}")
+    public ResponseEntity<StatsDTO> getStatsForUser(@PathVariable UUID anonimUserId) {
+        if(!userService.userExists(anonimUserId)) {
+            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(statsService.getStatsByUserId(anonimUserId), HttpStatus.FOUND);
         }
     }
 }

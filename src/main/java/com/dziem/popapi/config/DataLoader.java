@@ -4,7 +4,10 @@ import com.dziem.popapi.formatter.ArtistNameListGetter;
 import com.dziem.popapi.service.DataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.CompletableFuture;
 
 
 @Component
@@ -12,13 +15,25 @@ import org.springframework.stereotype.Component;
 public class DataLoader implements CommandLineRunner {
     private final DataService dataService;
     private final ArtistNameListGetter artistNameListGetter;
+    @Async
+    public CompletableFuture<Void> asyncGetData2024_2100() {
+        dataService.getData2024_2100();
+        return CompletableFuture.completedFuture(null);
+    }
+
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("DataLoader is running...");
-        dataService.getData2024_2100();
-        dataService.getData2100_2150();
-        dataService.getDataSpotifyTopArtists();
-        artistNameListGetter.getList();
-        System.out.println("DataLoader finished execution.");
+//        System.out.println("DataLoader is running...");
+//        System.out.println("Data 2024_2100 is running...");
+//        asyncGetData2024_2100().join(); // Wait for the async operation to complete
+//        System.out.println("Data 2024_2100 completed.");
+//        System.out.println("Data 2100_2150 is running.");
+//        dataService.getData2100_2150();
+//        System.out.println("Data 2100_2150 completed.");
+//        System.out.println("Data spotify is running...");
+//        dataService.getDataSpotifyTopArtists();
+//        System.out.println("Data spotify completed.");
+//        artistNameListGetter.getList();
+//        System.out.println("DataLoader finished execution.");
     }
 }

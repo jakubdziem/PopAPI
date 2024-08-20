@@ -9,5 +9,5 @@ import java.util.UUID;
 public interface StatsService {
     Stats initializeStats(User user);
     boolean updateStatistics(UUID uuid, String stats);
-    StatsDTO getStatsById(UUID anonimUserId);
+    StatsDTO getStatsByUserId(UUID anonimUserId);
 }

@@ -9,6 +9,7 @@ import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -43,7 +44,7 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public ScoreDTO getScoreByIdAndMode(UUID anonimUserId, String mode) {
+    public ScoreDTO getScoreByUserIdAndMode(UUID anonimUserId, String mode) {
         List<Score> bestScores = userRepository.findById(anonimUserId).get().getBestScores();
         for(int i = 0; i < bestScores.size(); i++) {
             String currentMode = bestScores.get(i).getMode();
@@ -51,5 +52,15 @@ public class ScoreServiceImpl implements ScoreService {
                 return scoreMapper.scoreToScoreDTO(bestScores.get(i));
         }
         return new ScoreDTO();
+    }
+
+    @Override
+    public List<ScoreDTO> getScoreById(UUID anonimUserId) {
+        List<Score> bestScores = userRepository.findById(anonimUserId).get().getBestScores();
+        List<ScoreDTO> scoreDTOS = new ArrayList<>();
+        for(Score score : bestScores) {
+            scoreDTOS.add(scoreMapper.scoreToScoreDTO(score));
+        }
+        return scoreDTOS;
     }
 }
