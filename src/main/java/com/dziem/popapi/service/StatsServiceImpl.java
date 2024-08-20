@@ -1,6 +1,8 @@
 package com.dziem.popapi.service;
 
+import com.dziem.popapi.mapper.StatsMapper;
 import com.dziem.popapi.model.Stats;
+import com.dziem.popapi.model.StatsDTO;
 import com.dziem.popapi.model.User;
 import com.dziem.popapi.repository.StatsRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @RequiredArgsConstructor
 public class StatsServiceImpl implements StatsService {
     private final StatsRepository statsRepository;
+    private final StatsMapper statsMapper;
     @Override
     public Stats initializeStats(User user) {
         Stats stats = new Stats();
@@ -40,6 +43,12 @@ public class StatsServiceImpl implements StatsService {
             statsRepository.save(existing);
         }, () -> result.set(false));
         return result.get();
+    }
+
+    @Override
+    public StatsDTO getStatsById(UUID anonimUserId) {
+        return statsMapper.statsToStatsDTO(statsRepository.findById(anonimUserId).get());
+        //it is checked if its present in controller
     }
 
 }

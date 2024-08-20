@@ -1,5 +1,7 @@
 package com.dziem.popapi.controller;
 
+import com.dziem.popapi.model.ScoreDTO;
+import com.dziem.popapi.model.StatsDTO;
 import com.dziem.popapi.service.ScoreService;
 import com.dziem.popapi.service.StatsService;
 import com.dziem.popapi.service.UserService;
@@ -26,19 +28,20 @@ public class UserController {
         return uuid;
     }
     @PutMapping("/api/v1/{anonimUserId}/{stats}")
-    public ResponseEntity updateStatistics(@PathVariable UUID anonimUserId, @PathVariable String stats) {
+    public ResponseEntity<StatsDTO> updateStatistics(@PathVariable UUID anonimUserId, @PathVariable String stats) {
         if(!statsService.updateStatistics(anonimUserId, stats)) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+
+            return new ResponseEntity<>(statsService.getStatsById(anonimUserId), HttpStatus.ACCEPTED);
         }
     }
     @PutMapping("/api/v1/{anonimUserId}/{mode}/{newScore}")
-    public ResponseEntity updateBestScore(@PathVariable UUID anonimUserId, @PathVariable String mode, @PathVariable String newScore) {
+    public ResponseEntity<ScoreDTO> updateBestScore(@PathVariable UUID anonimUserId, @PathVariable String mode, @PathVariable String newScore) {
         if(!scoreService.updateBestScore(anonimUserId, mode, newScore)) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(scoreService.getScoreByIdAndMode(anonimUserId, mode),HttpStatus.ACCEPTED);
         }
     }
 }

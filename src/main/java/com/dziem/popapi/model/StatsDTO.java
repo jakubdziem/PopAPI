@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Data
 public class StatsDTO {
+    @JsonIgnore
     private UUID userId;
     @JsonIgnore
     private User user;

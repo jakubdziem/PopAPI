@@ -10,5 +10,6 @@ public class ScoreDTO {
     private Long id;
     private Integer bestScore;
     private String mode;
+    @JsonIgnore
     private User user;
 }
