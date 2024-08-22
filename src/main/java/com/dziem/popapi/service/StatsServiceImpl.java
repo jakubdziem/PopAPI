@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 @Service
@@ -35,11 +36,11 @@ public class StatsServiceImpl implements StatsService {
             result.set(true);
             String[] split = stats.split(",");
             existing.setTotalGamePlayed(existing.getTotalGamePlayed()+1L);
-            existing.setAvgScore(new BigDecimal("12.3"));
             existing.setTimePlayed(existing.getTimePlayed()+Long.parseLong(split[0]));
             existing.setTotalScoredPoints(existing.getTotalScoredPoints()+Long.parseLong(split[1]));
             if(split[2].equals("y"))
                 existing.setNumberOfWonGames( existing.getNumberOfWonGames() + 1);
+            existing.setAvgScore(calculateAvgScore(existing.getTotalScoredPoints(), existing.getTotalGamePlayed()));
             statsRepository.save(existing);
         }, () -> result.set(false));
         return result.get();
@@ -50,5 +51,8 @@ public class StatsServiceImpl implements StatsService {
         return statsMapper.statsToStatsDTO(statsRepository.findById(anonimUserId).get());
         //it is checked if its present in controller
     }
-
+    private BigDecimal calculateAvgScore(Long totalScoredPoints, Long totalGamePlayed) {
+        BigDecimal scoredPoints = new BigDecimal(totalScoredPoints);
+        return scoredPoints.divide(new BigDecimal(totalGamePlayed),2,RoundingMode.HALF_UP);
+    }
 }
