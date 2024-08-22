@@ -55,3 +55,10 @@
 -- CREATE INDEX idx_year_of_measurement ON year_and_population (year_of_measurement);
 
 -- STATS, USER, and SCORE tables are not dropped
+CREATE TABLE u_name(
+                       user_id UUID PRIMARY KEY,
+                       name VARCHAR(255),
+                       last_update TIMESTAMP,
+                       CONSTRAINT fk_user
+                           FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
+);

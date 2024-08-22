@@ -60,3 +60,11 @@
 -- -- Create indexes
 -- CREATE INDEX idx_genc ON COUNTRY (genc);
 -- CREATE INDEX idx_year_of_measurement ON YEAR_AND_POPULATION (year_of_measurement);
+-- DROP TABLE user_name;
+-- CREATE TABLE u_name(
+--     user_id UUID PRIMARY KEY,
+--     name VARCHAR(255),
+--     last_update TIMESTAMP,
+--     CONSTRAINT fk_user
+--         FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
+--                                                                  );
