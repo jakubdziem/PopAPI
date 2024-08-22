@@ -4,13 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 
 @Data
 public class StatsDTO {
     @JsonIgnore
-    private UUID userId;
+    private String userId;
     @JsonIgnore
     private User user;
     private Long totalGamePlayed;

@@ -2,6 +2,8 @@ package com.dziem.popapi.service;
 
 import com.dziem.popapi.model.User;
 
+import java.util.Optional;
+
 public interface UserService {
     String generateUniqueUUID();
 
@@ -9,5 +11,5 @@ public interface UserService {
 
     boolean userExists(String anonimUserId);
 
-    boolean migrateProfileToGoogle(String anonimUserId, String googleId);
+    Optional<String> migrateProfileToGoogle(String anonimUserId, String googleId);
 }

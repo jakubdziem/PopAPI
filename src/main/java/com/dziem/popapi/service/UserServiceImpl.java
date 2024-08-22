@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 @Service
 @RequiredArgsConstructor
@@ -47,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean migrateProfileToGoogle(String anonimUserId, String googleId) {
+    public Optional<String> migrateProfileToGoogle(String anonimUserId, String googleId) {
         if (userExists(anonimUserId) || userExists(googleId)) {
             User anonimUser = userRepository.findById(anonimUserId).get();
             userRepository.delete(anonimUser);
@@ -74,9 +75,9 @@ public class UserServiceImpl implements UserService {
                             .user(googleUser)
                     .build());
             userRepository.save(googleUser);
-            return true;
+            return Optional.of(googleUser.getUName().getName());
         }
-        return false;
+        return Optional.empty();
 
 
     }

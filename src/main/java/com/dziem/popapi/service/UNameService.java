@@ -7,4 +7,6 @@ public interface UNameService {
     String generateRandomUserName();
 
     UName initializeUserName(User user);
+
+    boolean setUserName(String userId, String name);
 }

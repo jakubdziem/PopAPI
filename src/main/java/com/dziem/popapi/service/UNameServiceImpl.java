@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
+
 @Service
 @RequiredArgsConstructor
 public class UNameServiceImpl implements UNameService {
@@ -39,5 +41,20 @@ public class UNameServiceImpl implements UNameService {
                 .name("Not assigned")
                 .build());
 
+    }
+
+    @Override
+    public boolean setUserName(String userId, String name) {
+        AtomicReference<Boolean> atomicReference = new AtomicReference<>();
+        uNameRepository.findById(userId).ifPresentOrElse(
+                uName -> {
+                    atomicReference.set(true);
+                    uName.setName(name);
+                    uNameRepository.save(uName);
+                },
+                () -> atomicReference.set(false)
+        );
+
+        return atomicReference.get();
     }
 }
