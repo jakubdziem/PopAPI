@@ -30,9 +30,9 @@
 -- );
 --
 -- STATS, USER, and SCORE tables are not dropped
-DROP TABLE "user";
-DROP TABLE stats;
-DROP TABLE score;
+-- DROP TABLE "user";
+-- DROP TABLE stats;
+-- DROP TABLE score;
 CREATE TABLE "user" (
                         user_id UUID PRIMARY KEY,              -- Primary key for the user
     -- Relationships will be handled via the Stats and Score tables

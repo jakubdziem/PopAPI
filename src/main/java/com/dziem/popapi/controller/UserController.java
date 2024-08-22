@@ -1,5 +1,6 @@
 package com.dziem.popapi.controller;
 
+import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.ScoreDTO;
 import com.dziem.popapi.model.StatsDTO;
 import com.dziem.popapi.service.ScoreService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,6 +40,9 @@ public class UserController {
     }
     @PutMapping("/api/v1/{anonimUserId}/{mode}/{newScore}")
     public ResponseEntity updateBestScore(@PathVariable UUID anonimUserId, @PathVariable String mode, @PathVariable String newScore) {
+        if(!scoreService.checkIsMode(mode)) {
+            return new ResponseEntity<>("Mode not found, list of modes:" + Arrays.toString(Mode.values()),HttpStatus.NOT_FOUND);
+        }
         if(!scoreService.updateBestScore(anonimUserId, mode, newScore)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {

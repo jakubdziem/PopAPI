@@ -1,6 +1,7 @@
 package com.dziem.popapi.service;
 
 import com.dziem.popapi.mapper.ScoreMapper;
+import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.Score;
 import com.dziem.popapi.model.ScoreDTO;
 import com.dziem.popapi.model.User;
@@ -46,10 +47,10 @@ public class ScoreServiceImpl implements ScoreService {
     @Override
     public ScoreDTO getScoreByUserIdAndMode(UUID anonimUserId, String mode) {
         List<Score> bestScores = userRepository.findById(anonimUserId).get().getBestScores();
-        for(int i = 0; i < bestScores.size(); i++) {
-            String currentMode = bestScores.get(i).getMode();
-            if(currentMode.equals(mode))
-                return scoreMapper.scoreToScoreDTO(bestScores.get(i));
+        for (Score bestScore : bestScores) {
+            String currentMode = bestScore.getMode();
+            if (currentMode.equals(mode))
+                return scoreMapper.scoreToScoreDTO(bestScore);
         }
         return new ScoreDTO();
     }
@@ -63,4 +64,15 @@ public class ScoreServiceImpl implements ScoreService {
         }
         return scoreDTOS;
     }
+
+    @Override
+    public boolean checkIsMode(String mode) {
+        for(Mode modeEnum : Mode.values()) {
+            if(mode.equals(modeEnum.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

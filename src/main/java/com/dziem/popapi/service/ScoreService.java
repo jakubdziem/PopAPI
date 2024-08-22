@@ -15,4 +15,5 @@ public interface ScoreService {
     ScoreDTO getScoreByUserIdAndMode(UUID anonimUserId, String mode);
 
     List<ScoreDTO> getScoreById(UUID anonimUserId);
+    boolean checkIsMode(String mode);
 }
