@@ -9,4 +9,6 @@ public interface UserService {
     User createAnonimUser(UUID uuid);
 
     boolean userExists(UUID anonimUserId);
+
+    boolean migrateProfileToGoogle(UUID anonimUserId, String googleId);
 }

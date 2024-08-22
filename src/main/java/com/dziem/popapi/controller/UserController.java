@@ -30,12 +30,20 @@ public class UserController {
         userService.createAnonimUser(uuid);
         return uuid;
     }
+    @PutMapping("api/v1/google/{anonimUserId}/{googleId}")
+    public ResponseEntity migrateProfileToGoogle(@PathVariable UUID anonimUserId, @PathVariable String googleId){
+        if(!userService.migrateProfileToGoogle(anonimUserId, googleId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
     @PutMapping("/api/v1/{anonimUserId}/{stats}")
     public ResponseEntity updateStatistics(@PathVariable UUID anonimUserId, @PathVariable String stats) {
         if(!statsService.updateStatistics(anonimUserId, stats)) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
     @PutMapping("/api/v1/{anonimUserId}/{mode}/{newScore}")

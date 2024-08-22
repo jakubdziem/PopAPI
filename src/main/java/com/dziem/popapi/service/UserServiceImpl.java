@@ -2,6 +2,7 @@ package com.dziem.popapi.service;
 
 import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.Score;
+import com.dziem.popapi.model.Stats;
 import com.dziem.popapi.model.User;
 import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,5 +44,36 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean userExists(UUID anonimUserId) {
         return userRepository.existsById(anonimUserId);
+    }
+
+    @Override
+    public boolean migrateProfileToGoogle(UUID anonimUserId, String googleId) {
+        if (userExists(anonimUserId)) {
+            User anonimUser = userRepository.findById(anonimUserId).get();
+            userRepository.delete(anonimUser);
+            User googleUser = User.builder()
+            .userId(UUID.fromString(googleId))
+                    .build();
+            Stats stats = Stats.builder()
+                    .user(googleUser)
+                    .avgScore(anonimUser.getStatistics().getAvgScore())
+                    .numberOfWonGames(anonimUser.getStatistics().getNumberOfWonGames())
+                    .timePlayed(anonimUser.getStatistics().getTimePlayed())
+                    .totalGamePlayed(anonimUser.getStatistics().getTotalGamePlayed())
+                    .totalScoredPoints(anonimUser.getStatistics().getTotalScoredPoints())
+                    .build();
+            googleUser.setStatistics(stats);
+            List<Score> googleBestScores = new ArrayList<>();
+            for(Score score : anonimUser.getBestScores()) {
+                score.setUser(googleUser);
+                googleBestScores.add(score);
+            }
+            googleUser.setBestScores(googleBestScores);
+            userRepository.save(googleUser);
+            return true;
+        }
+        return false;
+
+
     }
 }
