@@ -50,6 +50,7 @@ public class UNameServiceImpl implements UNameService {
                 uName -> {
                     atomicReference.set(true);
                     uName.setName(name);
+                    uName.setLastUpdate(LocalDateTime.now());
                     uNameRepository.save(uName);
                 },
                 () -> atomicReference.set(false)
