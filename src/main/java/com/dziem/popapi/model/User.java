@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Builder
@@ -20,7 +19,7 @@ import java.util.UUID;
 public class User {
     @Id
     @Column(name="user_id")
-    private UUID userId;
+    private String userId;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Stats statistics;

@@ -18,18 +18,18 @@ public class UserServiceImpl implements UserService {
     private final UNameService uNameService;
 
     @Override
-    public UUID generateUniqueUUID() {
+    public String generateUniqueUUID() {
         UUID uuid = UUID.randomUUID();
-        while(userRepository.existsById(uuid)) {
+        while(userRepository.existsById(uuid.toString())) {
             uuid = UUID.randomUUID();
         }
-        return uuid;
+        return uuid.toString();
     }
 
     @Override
-    public User createAnonimUser(UUID uuid) {
+    public User createAnonimUser(String userId) {
         User user = new User();
-        user.setUserId(uuid);
+        user.setUserId(userId);
         user.setStatistics(statsService.initializeStats(user));
         List<Score> bestScore = new ArrayList<>();
 
@@ -42,17 +42,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean userExists(UUID anonimUserId) {
+    public boolean userExists(String anonimUserId) {
         return userRepository.existsById(anonimUserId);
     }
 
     @Override
-    public boolean migrateProfileToGoogle(UUID anonimUserId, String googleId) {
-        if (userExists(anonimUserId)) {
+    public boolean migrateProfileToGoogle(String anonimUserId, String googleId) {
+        if (userExists(anonimUserId) || userExists(googleId)) {
             User anonimUser = userRepository.findById(anonimUserId).get();
             userRepository.delete(anonimUser);
             User googleUser = User.builder()
-            .userId(UUID.fromString(googleId))
+            .userId(googleId)
                     .build();
             googleUser.setStatistics(Stats.builder()
                     .user(googleUser)

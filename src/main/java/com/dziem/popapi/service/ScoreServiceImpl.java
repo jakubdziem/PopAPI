@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 @Service
 @RequiredArgsConstructor
@@ -30,9 +29,9 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public boolean updateBestScore(UUID uuid, String mode, String newScore) {
+    public boolean updateBestScore(String userId, String mode, String newScore) {
         AtomicBoolean result = new AtomicBoolean(false);
-        userRepository.findById(uuid).ifPresentOrElse(existing -> {
+        userRepository.findById(userId).ifPresentOrElse(existing -> {
             result.set(true);
             List<Score> bestScores = existing.getBestScores();
             List<Score> scoreToUpdate = bestScores.stream().filter(score -> score.getMode().equals(mode)).toList();
@@ -45,7 +44,7 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public ScoreDTO getScoreByUserIdAndMode(UUID anonimUserId, String mode) {
+    public ScoreDTO getScoreByUserIdAndMode(String anonimUserId, String mode) {
         List<Score> bestScores = userRepository.findById(anonimUserId).get().getBestScores();
         for (Score bestScore : bestScores) {
             String currentMode = bestScore.getMode();
@@ -56,7 +55,7 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public List<ScoreDTO> getScoreById(UUID anonimUserId) {
+    public List<ScoreDTO> getScoreById(String anonimUserId) {
         List<Score> bestScores = userRepository.findById(anonimUserId).get().getBestScores();
         List<ScoreDTO> scoreDTOS = new ArrayList<>();
         for(Score score : bestScores) {

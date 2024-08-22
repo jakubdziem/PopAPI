@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 @Service
 @RequiredArgsConstructor
@@ -30,9 +29,9 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    public boolean updateStatistics(UUID uuid, String stats) {
+    public boolean updateStatistics(String userId, String stats) {
         AtomicBoolean result = new AtomicBoolean(false);
-        statsRepository.findById(uuid).ifPresentOrElse(existing -> {
+        statsRepository.findById(userId).ifPresentOrElse(existing -> {
             result.set(true);
             String[] split = stats.split(",");
             existing.setTotalGamePlayed(existing.getTotalGamePlayed()+1L);
@@ -47,7 +46,7 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    public StatsDTO getStatsByUserId(UUID anonimUserId) {
+    public StatsDTO getStatsByUserId(String anonimUserId) {
         return statsMapper.statsToStatsDTO(statsRepository.findById(anonimUserId).get());
         //it is checked if its present in controller
     }

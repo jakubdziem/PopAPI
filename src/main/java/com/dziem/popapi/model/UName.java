@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 @Data
 @Entity
 @Builder
@@ -17,7 +16,7 @@ import java.util.UUID;
 @Table(name="\"u_name\"")
 public class UName {
     @Id
-    private UUID userId;
+    private String userId;
 
     @OneToOne
     @MapsId

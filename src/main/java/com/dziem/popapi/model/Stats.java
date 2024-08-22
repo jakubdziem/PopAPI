@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Data
 @Entity
@@ -17,7 +16,7 @@ import java.util.UUID;
 @Builder
 public class Stats {
     @Id
-    private UUID userId;
+    private String userId;
 
     @OneToOne
     @MapsId

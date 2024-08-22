@@ -29,42 +29,41 @@
 --                                      FOREIGN KEY (country_name) REFERENCES COUNTRY (country_name)
 -- );
 --
--- -- Create the "user" table
--- CREATE TABLE "user" (
---                         user_id UUID PRIMARY KEY,
---                         CONSTRAINT unique_user_id UNIQUE (user_id)
--- );
---
--- -- Create the STATS table
--- CREATE TABLE stats (
---                        user_id UUID PRIMARY KEY,
---                        total_game_played BIGINT,
---                        avg_score DECIMAL,
---                        time_played BIGINT,
---                        total_scored_points BIGINT,
---                        number_of_won_games INTEGER,
---                        CONSTRAINT fk_user
---                            FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
--- );
---
--- -- Create the SCORE table
--- CREATE TABLE score (
---                        id SERIAL PRIMARY KEY,
---                        best_score INTEGER,
---                        mode VARCHAR(255),
---                        user_id UUID,
---                        CONSTRAINT fk_user
---                            FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
--- );
 --
 -- -- Create indexes
 -- CREATE INDEX idx_genc ON COUNTRY (genc);
 -- CREATE INDEX idx_year_of_measurement ON YEAR_AND_POPULATION (year_of_measurement);
 -- DROP TABLE user_name;
--- CREATE TABLE u_name(
---     user_id UUID PRIMARY KEY,
---     name VARCHAR(255),
---     last_update TIMESTAMP,
---     CONSTRAINT fk_user
---         FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
---                                                                  );
+DROP TABLE stats;
+DROP TABLE score;
+DROP TABLE u_name;
+DROP TABLE "user";
+CREATE TABLE "user" (
+                        user_id VARCHAR(255) PRIMARY KEY,
+                        CONSTRAINT unique_user_id UNIQUE (user_id)
+);
+CREATE TABLE stats (
+                       user_id VARCHAR(255) PRIMARY KEY,
+                       total_game_played BIGINT,
+                       avg_score DECIMAL,
+                       time_played BIGINT,
+                       total_scored_points BIGINT,
+                       number_of_won_games INTEGER,
+                       CONSTRAINT fk_user
+                           FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
+);
+CREATE TABLE score (
+                       id SERIAL PRIMARY KEY,
+                       best_score INTEGER,
+                       mode VARCHAR(255),
+                       user_id VARCHAR(255),
+                       CONSTRAINT fk_user
+                           FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
+);
+CREATE TABLE u_name(
+                       user_id VARCHAR(255) PRIMARY KEY,
+                       name VARCHAR(255),
+                       last_update TIMESTAMP,
+                       CONSTRAINT fk_user
+                           FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
+);

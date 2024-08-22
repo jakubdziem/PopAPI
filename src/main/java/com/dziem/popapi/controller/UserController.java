@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,13 +24,13 @@ public class UserController {
     private final StatsService statsService;
     private final ScoreService scoreService;
     @GetMapping("/api/v1/anonim_user_id")
-    public UUID createAnonimUser() {
-        UUID uuid = userService.generateUniqueUUID();
+    public String createAnonimUser() {
+        String uuid = userService.generateUniqueUUID();
         userService.createAnonimUser(uuid);
         return uuid;
     }
     @PutMapping("api/v1/google/{anonimUserId}/{googleId}")
-    public ResponseEntity migrateProfileToGoogle(@PathVariable UUID anonimUserId, @PathVariable String googleId){
+    public ResponseEntity migrateProfileToGoogle(@PathVariable String anonimUserId, @PathVariable String googleId){
         if(!userService.migrateProfileToGoogle(anonimUserId, googleId)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -39,7 +38,7 @@ public class UserController {
         }
     }
     @PutMapping("/api/v1/{anonimUserId}/{stats}")
-    public ResponseEntity updateStatistics(@PathVariable UUID anonimUserId, @PathVariable String stats) {
+    public ResponseEntity updateStatistics(@PathVariable String anonimUserId, @PathVariable String stats) {
         if(!statsService.updateStatistics(anonimUserId, stats)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -47,7 +46,7 @@ public class UserController {
         }
     }
     @PutMapping("/api/v1/{anonimUserId}/{mode}/{newScore}")
-    public ResponseEntity updateBestScore(@PathVariable UUID anonimUserId, @PathVariable String mode, @PathVariable String newScore) {
+    public ResponseEntity updateBestScore(@PathVariable String anonimUserId, @PathVariable String mode, @PathVariable String newScore) {
         if(!scoreService.checkIsMode(mode)) {
             return new ResponseEntity<>("Mode not found, list of modes:" + Arrays.toString(Mode.values()),HttpStatus.NOT_FOUND);
         }
@@ -58,7 +57,7 @@ public class UserController {
         }
     }
     @GetMapping("/api/v1/bestscore/{anonimUserId}")
-    public ResponseEntity<List<ScoreDTO>> getBestScoreForUser(@PathVariable UUID anonimUserId) {
+    public ResponseEntity<List<ScoreDTO>> getBestScoreForUser(@PathVariable String anonimUserId) {
         if(!userService.userExists(anonimUserId)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -67,7 +66,7 @@ public class UserController {
         }
     }
     @GetMapping("api/v1/stats/{anonimUserId}")
-    public ResponseEntity<StatsDTO> getStatsForUser(@PathVariable UUID anonimUserId) {
+    public ResponseEntity<StatsDTO> getStatsForUser(@PathVariable String anonimUserId) {
         if(!userService.userExists(anonimUserId)) {
             return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
