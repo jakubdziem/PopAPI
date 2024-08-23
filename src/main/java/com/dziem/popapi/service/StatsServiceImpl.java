@@ -1,21 +1,24 @@
 package com.dziem.popapi.service;
 
 import com.dziem.popapi.mapper.StatsMapper;
-import com.dziem.popapi.model.Stats;
-import com.dziem.popapi.model.StatsDTO;
-import com.dziem.popapi.model.User;
+import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.StatsRepository;
+import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 @Service
 @RequiredArgsConstructor
 public class StatsServiceImpl implements StatsService {
     private final StatsRepository statsRepository;
     private final StatsMapper statsMapper;
+    private final UserRepository userRepository;
+    private final ScoreService scoreService;
+
     @Override
     public Stats initializeStats(User user) {
         Stats stats = new Stats();
@@ -36,10 +39,19 @@ public class StatsServiceImpl implements StatsService {
             String[] split = stats.split(",");
             existing.setTotalGamePlayed(existing.getTotalGamePlayed()+1L);
             existing.setTimePlayed(existing.getTimePlayed()+Long.parseLong(split[0]));
-            existing.setTotalScoredPoints(existing.getTotalScoredPoints()+Long.parseLong(split[1]));
+            long scoredPoints = Long.parseLong(split[1]);
+            existing.setTotalScoredPoints(existing.getTotalScoredPoints()+ scoredPoints);
             if(split[2].equals("y"))
                 existing.setNumberOfWonGames( existing.getNumberOfWonGames() + 1);
             existing.setAvgScore(calculateAvgScore(existing.getTotalScoredPoints(), existing.getTotalGamePlayed()));
+            String currentMode = split[3];
+            List<Score> bestScores = userRepository.findById(userId).get().getBestScores();
+            for(Score score : bestScores) {
+                if(currentMode.equals(score.getMode()) && scoredPoints > score.getBestScore()) {
+                    scoreService.updateBestScore(userId, currentMode, String.valueOf(scoredPoints));
+                    break;
+                }
+            }
             statsRepository.save(existing);
         }, () -> result.set(false));
         return result.get();
