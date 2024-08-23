@@ -1,6 +1,7 @@
 package com.dziem.popapi.service;
 
 import com.dziem.popapi.model.*;
+import com.dziem.popapi.repository.LeaderboardRepository;
 import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ public class UserServiceImpl implements UserService {
     private final StatsService statsService;
     private final ScoreService scoreService;
     private final UNameService uNameService;
+    private final LeaderboardRepository leaderboardRepository;
 
     @Override
     public String generateUniqueUUID() {
@@ -38,6 +40,7 @@ public class UserServiceImpl implements UserService {
             bestScore.add(scoreService.initializeScore(mode.toString(), user));
         }
         user.setBestScores(bestScore);
+        user.setGuest(true);
 //        user.setUserName(userNameService.initializeUserName(user));
         return userRepository.save(user);
     }
@@ -49,9 +52,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<String> migrateProfileToGoogle(String anonimUserId, String googleId) {
-        if (userExists(anonimUserId) || userExists(googleId)) {
+        if (userExists(anonimUserId)) {
             User anonimUser = userRepository.findById(anonimUserId).get();
-            userRepository.delete(anonimUser);
             User googleUser = User.builder()
             .userId(googleId)
                     .build();
@@ -64,16 +66,32 @@ public class UserServiceImpl implements UserService {
                     .totalScoredPoints(anonimUser.getStatistics().getTotalScoredPoints())
                     .build());
             List<Score> googleBestScores = new ArrayList<>();
+            googleUser.setGuest(false);
+            googleUser = userRepository.save(googleUser); //persist in db to successfully save leaderboard
+
+            googleUser.setUName(UName.builder()
+                    .name(uNameService.generateRandomUserName())
+                    .lastUpdate(LocalDateTime.now())
+                    .user(googleUser)
+                    .build());
+            List<Leaderboard> leaderboardList = new ArrayList<>();
             for(Score score : anonimUser.getBestScores()) {
+
+                Leaderboard leaderboardEntity = Leaderboard.builder()
+                        .score(score.getBestScore())
+                            .mode(score.getMode())
+                            .user(googleUser)
+                            .name(googleUser.getUName().getName())
+                            .build();
+                leaderboardList.add(leaderboardEntity);
+                leaderboardRepository.save(leaderboardEntity);
+
                 score.setUser(googleUser);
                 googleBestScores.add(score);
             }
             googleUser.setBestScores(googleBestScores);
-            googleUser.setUName(UName.builder()
-                            .name(uNameService.generateRandomUserName())
-                            .lastUpdate(LocalDateTime.now())
-                            .user(googleUser)
-                    .build());
+            googleUser.setLeaderboard(leaderboardList);
+            userRepository.delete(anonimUser);
             userRepository.save(googleUser);
             return Optional.of(googleUser.getUName().getName());
         }

@@ -2,14 +2,12 @@ package com.dziem.popapi.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
-@Data
+@Getter
+@Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +15,6 @@ import java.math.BigDecimal;
 public class Stats {
     @Id
     private String userId;
-
     @OneToOne
     @MapsId
     @JoinColumn(name = "user_id")

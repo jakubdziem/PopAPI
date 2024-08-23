@@ -10,4 +10,5 @@ public class UserDTO {
     private Stats statistics;
     private List<Score> bestScores;
     private UName uName;
+    boolean guest;
 }

@@ -23,26 +23,28 @@ public class UNameServiceImpl implements UNameService {
             "FuturisticPopMaster",
             "TopTunesMaster",
             "HitSpotter",
+            "PopMastermind",
+            "TuneTracker",
+            "TuneTracker",
+            "HitHunter",
+            "HitScout",
+            "NationExplorer",
+            "CountryDetective",
+            "NationNerd",
+            "SongSpotter",
+            "SoundSniper",
+            "MusicMastermind",
+            "ArtistHunter",
+            "ArtistScout"
     };
     @Override
     public String generateRandomUserName() {
         long count = uNameRepository.count();
         Random random = new Random();
         int min = 0;
-        int max = 7;
+        int max = exampleNames.length-1;
         return exampleNames[random.nextInt(max - min + 1) + min] + count;
     }
-
-    @Override
-    public UName initializeUserName(User user) {
-        return uNameRepository.save(UName.builder()
-                .user(user)
-                .lastUpdate(LocalDateTime.now())
-                .name("Not assigned")
-                .build());
-
-    }
-
     @Override
     public boolean setUserName(String userId, String name) {
         AtomicReference<Boolean> atomicReference = new AtomicReference<>();
@@ -57,5 +59,16 @@ public class UNameServiceImpl implements UNameService {
         );
 
         return atomicReference.get();
+    }
+
+
+    @Override
+    public UName initializeUserName(User user) {
+        return uNameRepository.save(UName.builder()
+                .user(user)
+                .lastUpdate(LocalDateTime.now())
+                .name("Not assigned")
+                .build());
+
     }
 }

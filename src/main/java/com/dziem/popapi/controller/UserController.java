@@ -36,7 +36,7 @@ public class UserController {
     public ResponseEntity migrateProfileToGoogle(@PathVariable String anonimUserId, @PathVariable String googleId){
         AtomicReference<ResponseEntity> atomicReference = new AtomicReference<>();
         userService.migrateProfileToGoogle(anonimUserId, googleId).ifPresentOrElse(
-                username -> atomicReference.set(new ResponseEntity(username,HttpStatus.FOUND)),
+                username -> atomicReference.set(new ResponseEntity(username,HttpStatus.ACCEPTED)),
                 () -> atomicReference.set(new ResponseEntity(HttpStatus.NOT_FOUND)));
         return atomicReference.get();
     }
@@ -73,7 +73,7 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             List<ScoreDTO> bestScoreList = scoreService.getScoreById(anonimUserId);
-            return new ResponseEntity<>(bestScoreList,HttpStatus.FOUND);
+            return new ResponseEntity<>(bestScoreList,HttpStatus.ACCEPTED);
         }
     }
     @GetMapping("api/v1/stats/{anonimUserId}")
@@ -81,7 +81,7 @@ public class UserController {
         if(!userService.userExists(anonimUserId)) {
             return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(statsService.getStatsByUserId(anonimUserId), HttpStatus.FOUND);
+            return new ResponseEntity<>(statsService.getStatsByUserId(anonimUserId), HttpStatus.ACCEPTED);
         }
     }
 }

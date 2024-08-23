@@ -66,3 +66,15 @@ CREATE TABLE u_name(
                        CONSTRAINT fk_user
                            FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
 );
+
+CREATE TABLE leaderboard(
+                            id SERIAL PRIMARY KEY,
+                            user_id VARCHAR(255),
+                            mode VARCHAR(255),
+                            score INTEGER,
+                            name VARCHAR(255),
+                            CONSTRAINT fk_user
+                                FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
+);
+ALTER TABLE "user" add guest boolean;
+UPDATE "user" set guest = true ;
