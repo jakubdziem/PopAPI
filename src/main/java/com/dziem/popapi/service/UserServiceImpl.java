@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<String> migrateProfileToGoogle(String anonimUserId, String googleId) {
-        if (userExists(anonimUserId)) {
+        if (userExists(anonimUserId) && !userExists(googleId)) {
             User anonimUser = userRepository.findById(anonimUserId).get();
             User googleUser = User.builder()
             .userId(googleId)
