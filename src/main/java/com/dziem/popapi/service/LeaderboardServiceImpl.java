@@ -26,4 +26,19 @@ public class LeaderboardServiceImpl implements LeaderboardService {
         return leaderboardDTOList.stream().sorted(Comparator.comparingInt(LeaderboardDTO::getScore).reversed()).toList();
     }
 
+    @Override
+    public List<Leaderboard> initializeLeaderboard(String userId, User user) {
+        List<Leaderboard> leaderboardList = new ArrayList<>();
+        for(Mode mode : Mode.values()) {
+            Leaderboard leaderboard = Leaderboard.builder()
+                    .user(user)
+                    .mode(mode.toString())
+                    .score(0)
+                    .build();
+            leaderboardList.add(leaderboard);
+            leaderboardRepository.save(leaderboard);
+        }
+        return leaderboardList;
+    }
+
 }

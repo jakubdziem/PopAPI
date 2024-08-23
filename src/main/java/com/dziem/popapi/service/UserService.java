@@ -7,9 +7,11 @@ import java.util.Optional;
 public interface UserService {
     String generateUniqueUUID();
 
-    User createAnonimUser(String uuid);
+    User createUser(String uuid, boolean guest);
 
     boolean userExists(String anonimUserId);
 
     Optional<String> migrateProfileToGoogle(String anonimUserId, String googleId);
+
+    Optional<String> createGoogleUser(String googleId);
 }

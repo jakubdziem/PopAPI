@@ -1,8 +1,10 @@
 package com.dziem.popapi.controller;
 
+import com.dziem.popapi.mapper.UserMapper;
 import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.ScoreDTO;
 import com.dziem.popapi.model.StatsDTO;
+import com.dziem.popapi.model.UserDTO;
 import com.dziem.popapi.service.ScoreService;
 import com.dziem.popapi.service.StatsService;
 import com.dziem.popapi.service.UNameService;
@@ -10,10 +12,7 @@ import com.dziem.popapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,11 +25,20 @@ public class UserController {
     private final StatsService statsService;
     private final ScoreService scoreService;
     private final UNameService uNameService;
+    private final UserMapper userMapper;
+    @PostMapping("api/v1/google/{googleId}")
+    public ResponseEntity createGoogleUser(@PathVariable String googleId) {
+        AtomicReference<ResponseEntity> atomicReference = new AtomicReference<>();
+        userService.createGoogleUser(googleId).ifPresentOrElse(
+                username -> atomicReference.set(new ResponseEntity(username,HttpStatus.ACCEPTED)),
+                () -> atomicReference.set(new ResponseEntity(HttpStatus.CONFLICT))
+        );
+        return atomicReference.get();
+    }
     @GetMapping("/api/v1/anonim_user_id")
-    public String createAnonimUser() {
+    public UserDTO createAnonimUser() {
         String uuid = userService.generateUniqueUUID();
-        userService.createAnonimUser(uuid);
-        return uuid;
+        return userMapper.userToUserDTO(userService.createUser(uuid, true));
     }
     @PutMapping("api/v1/google/{anonimUserId}/{googleId}")
     public ResponseEntity migrateProfileToGoogle(@PathVariable String anonimUserId, @PathVariable String googleId){

@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
     private final ScoreService scoreService;
     private final UNameService uNameService;
     private final LeaderboardRepository leaderboardRepository;
+    private final LeaderboardService leaderboardService;
 
     @Override
     public String generateUniqueUUID() {
@@ -28,9 +29,8 @@ public class UserServiceImpl implements UserService {
         }
         return uuid.toString();
     }
-
     @Override
-    public User createAnonimUser(String userId) {
+    public User createUser(String userId, boolean guest) {
         User user = new User();
         user.setUserId(userId);
         user.setStatistics(statsService.initializeStats(user));
@@ -40,8 +40,12 @@ public class UserServiceImpl implements UserService {
             bestScore.add(scoreService.initializeScore(mode.toString(), user));
         }
         user.setBestScores(bestScore);
-        user.setGuest(true);
-//        user.setUserName(userNameService.initializeUserName(user));
+        user.setGuest(guest);
+        user.setUName(UName.builder()
+                .name(uNameService.generateRandomUserName())
+                .lastUpdate(LocalDateTime.now())
+                .user(user)
+                .build());
         return userRepository.save(user);
     }
 
@@ -70,7 +74,7 @@ public class UserServiceImpl implements UserService {
             googleUser = userRepository.save(googleUser); //persist in db to successfully save leaderboard
 
             googleUser.setUName(UName.builder()
-                    .name(uNameService.generateRandomUserName())
+                    .name(anonimUser.getUName().getName())
                     .lastUpdate(LocalDateTime.now())
                     .user(googleUser)
                     .build());
@@ -98,5 +102,17 @@ public class UserServiceImpl implements UserService {
         return Optional.empty();
 
 
+    }
+
+    @Override
+    public Optional<String> createGoogleUser(String googleId) {
+        if(userRepository.existsById(googleId)) {
+            return Optional.empty();
+        } else {
+            User user = createUser(googleId, false);
+            user.setLeaderboard(leaderboardService.initializeLeaderboard(googleId, user));
+            userRepository.save(user);
+            return Optional.of(user.getUName().getName());
+        }
     }
 }
