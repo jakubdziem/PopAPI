@@ -43,6 +43,9 @@ public class UserController {
     @PutMapping("api/v1/google/{anonimUserId}/{googleId}")
     public ResponseEntity migrateProfileToGoogle(@PathVariable String anonimUserId, @PathVariable String googleId){
         AtomicReference<ResponseEntity> atomicReference = new AtomicReference<>();
+        if(userService.userExists(googleId)) {
+            return new ResponseEntity("This google account already exists in database.",HttpStatus.CONFLICT); //409
+        }
         userService.migrateProfileToGoogle(anonimUserId, googleId).ifPresentOrElse(
                 username -> atomicReference.set(new ResponseEntity(username,HttpStatus.ACCEPTED)),
                 () -> atomicReference.set(new ResponseEntity(HttpStatus.NOT_FOUND)));
