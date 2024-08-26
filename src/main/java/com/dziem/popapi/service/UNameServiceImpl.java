@@ -6,7 +6,12 @@ import com.dziem.popapi.repository.UNameRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -60,7 +65,26 @@ public class UNameServiceImpl implements UNameService {
 
         return atomicReference.get();
     }
-
+    @Override
+    public boolean validateUserName(String name) {
+        if(name.length() < 3 || name.length() > 20) {
+            return false;
+        }
+        AtomicReference<Boolean> atomicReference = new AtomicReference<>(false);
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/restricted_words.txt"))) {
+            List<String> list = reader.lines().toList();
+            for(int i = 3; i <= name.length(); i++) {
+                for(int j = 0; j < i; j++) {
+                    if(list.contains(name.substring(j,i).toLowerCase())) {
+                        atomicReference.set(true);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return !atomicReference.get();
+    }
 
     @Override
     public UName initializeUserName(User user) {

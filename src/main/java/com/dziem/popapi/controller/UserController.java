@@ -53,6 +53,9 @@ public class UserController {
     }
     @PutMapping("api/v1/set_name/{googleId}/{name}")
     public ResponseEntity setUserNameForGoogleUser(@PathVariable String googleId, @PathVariable String name) {
+        if(!uNameService.validateUserName(name)) {
+            return new ResponseEntity("Contained restricted word.",HttpStatus.BAD_REQUEST); //400
+        }
         if(!uNameService.setUserName(googleId, name)) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         } else {
