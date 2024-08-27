@@ -37,7 +37,7 @@ public class NameListGetter {
         List<Song> songs = songRepository.findAll();
         List<String> songNames = new ArrayList<>();
         for(Song song : songs) {
-            songNames.add(song.getSongName());
+            songNames.add(song.getSongName() + ";" + song.getArtistName());
         }
         try (FileWriter myWriter = new FileWriter("src/main/resources/spotifySongsInFormatSuitableToExtractImages.txt", false)){
             for(int i = 0; i < songNames.size(); i++) {

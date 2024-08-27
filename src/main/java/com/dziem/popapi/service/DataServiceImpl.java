@@ -147,11 +147,7 @@ public class DataServiceImpl implements DataService {
         }
         song.setTotalStreams(streams[i-1]);
         song.setArtistName(artistName.substring(0,artistName.length()-1));
-        if(song.getSongName().contains("/")) {
-            song.setImageUrl("/images/spotify/songs/" + songName.replace('/', ' ') + ".jpg");
-        } else {
-            song.setImageUrl("/images/spotify/songs/" + songName + ".jpg");
-        }
+        song.setImageUrl("/images/spotify/songs/" + song.getSongName().replace('/', ' ').replace("?", "") + ";" + song.getArtistName().replace('/', ' ').replace("?", "") + ".jpg");
         return song;
     }
 
