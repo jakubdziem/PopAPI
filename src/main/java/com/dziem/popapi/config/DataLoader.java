@@ -1,6 +1,6 @@
 package com.dziem.popapi.config;
 
-import com.dziem.popapi.formatter.ArtistNameListGetter;
+import com.dziem.popapi.formatter.NameListGetter;
 import com.dziem.popapi.service.DataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 @RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
     private final DataService dataService;
-    private final ArtistNameListGetter artistNameListGetter;
+    private final NameListGetter nameListGetter;
     @Async
     public CompletableFuture<Void> asyncGetData2024_2100() {
         dataService.getData2024_2100();
@@ -33,7 +33,9 @@ public class DataLoader implements CommandLineRunner {
 //        System.out.println("Data spotify is running...");
 //        dataService.getDataSpotifyTopArtists();
 //        System.out.println("Data spotify completed.");
-//        artistNameListGetter.getList();
+//        nameListGetter.getList();
 //        System.out.println("DataLoader finished execution.");
+        dataService.getDataSpotifyTopSongs();
+//        nameListGetter.getListSongs();
     }
 }

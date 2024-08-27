@@ -67,14 +67,22 @@
 --                        CONSTRAINT fk_user
 --                            FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
 -- );
-CREATE TABLE leaderboard(
+-- CREATE TABLE leaderboard(
+--                             id SERIAL PRIMARY KEY,
+--                             user_id VARCHAR(255),
+--                             mode VARCHAR(255),
+--                             score INTEGER,
+--                             name VARCHAR(255),
+--                             CONSTRAINT fk_user
+--                                 FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
+-- );
+-- ALTER TABLE "user" add guest boolean;
+-- UPDATE "user" set guest = true ;
+CREATE TABLE song(
                             id SERIAL PRIMARY KEY,
-                            user_id VARCHAR(255),
-                            mode VARCHAR(255),
-                            score INTEGER,
-                            name VARCHAR(255),
-                            CONSTRAINT fk_user
-                                FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
+                            song_name varchar(255),
+                            artist_name varchar(255),
+                            total_streams varchar(255),
+                            image_url varchar(255),
+                            last_update TIMESTAMP
 );
-ALTER TABLE "user" add guest boolean;
-UPDATE "user" set guest = true ;

@@ -3,9 +3,11 @@ package com.dziem.popapi.service;
 import com.dziem.popapi.formatter.SpotifyTopArtistDataFormatter;
 import com.dziem.popapi.model.Artist;
 import com.dziem.popapi.model.Country;
+import com.dziem.popapi.model.Song;
 import com.dziem.popapi.model.YearAndPopulation;
 import com.dziem.popapi.repository.ArtistRepository;
 import com.dziem.popapi.repository.CountryRepository;
+import com.dziem.popapi.repository.SongRepository;
 import com.dziem.popapi.repository.YearAndPopulationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,7 @@ public class DataServiceImpl implements DataService {
     private final CountryRepository countryRepository;
     private final YearAndPopulationRepository yearAndPopulationRepository;
     private final ArtistRepository artistRepository;
+    private final SongRepository songRepository;
     @Override
     @Transactional
     public void getData2024_2100() {
@@ -98,11 +101,66 @@ public class DataServiceImpl implements DataService {
 
     @Override
     @Transactional
+    public void getDataSpotifyTopSongs() {
+        LocalDate date = LocalDate.MIN;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        String dateAndAllArtists = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/spotifyTopSongsData.txt");
+        String[] split = dateAndAllArtists.split("\n");
+        for(int i = 0; i < split.length; i++) {
+            if(i==0) {
+                date = LocalDate.parse(split[i], formatter);
+            } else {
+                Song song = getSong(split[i], date);
+                songRepository.save(song);
+            }
+        }
+    }
+
+    private Song getSong(String line, LocalDate lastUpdate) {
+        Song song = new Song();
+        song.setLastUpdate(lastUpdate);
+        String[] split = line.split(";");
+        String[] name = split[0].split(" ");
+        String[] streams = split[1].split(" ");
+        String songName = "";
+        for(int i = 2; i < name.length; i++) {
+            songName = songName.concat(name[i]).concat(i == name.length-1 ? "" : " ");
+        }
+        song.setSongName(songName);
+        String artistName = "";
+        int i = 0;
+        boolean canRun = true;
+        while(canRun) {
+            try {
+                int compared = new BigDecimal(streams[i].replace(",","")).compareTo(new BigDecimal("100000"));
+                if(compared > 0) {
+                    canRun = false;
+                } else {
+                    artistName = artistName.concat(streams[i]).concat(" ");
+                }
+                i++;
+            }
+            catch(NumberFormatException e) {
+                artistName = artistName.concat(streams[i]).concat(" ");
+                i++;
+            }
+        }
+        song.setTotalStreams(streams[i-1]);
+        song.setArtistName(artistName.substring(0,artistName.length()-1));
+        if(song.getSongName().contains("/")) {
+            song.setImageUrl("/images/spotify/" + songName.replace('/', ' ') + ".jpg");
+        } else {
+            song.setImageUrl("/images/spotify/" + songName + ".jpg");
+        }
+        return song;
+    }
+
+    @Override
     public void getDataSpotifyTopArtists() {
         LocalDate date = LocalDate.MIN;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String dateAndAllArtists = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/spotifyTopArtistData.txt");
-        String[] split = dateAndAllArtists.split("\n");
+        String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/spotifyTopArtistData.txt");
+        String[] split = dateAndAllSongs.split("\n");
         for(int i = 0; i < split.length; i++) {
             if(i==0) {
                 date = LocalDate.parse(split[i], formatter);

@@ -1,7 +1,9 @@
 package com.dziem.popapi.formatter;
 
 import com.dziem.popapi.model.Artist;
+import com.dziem.popapi.model.Song;
 import com.dziem.popapi.repository.ArtistRepository;
+import com.dziem.popapi.repository.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 @Component
 @RequiredArgsConstructor
-public class ArtistNameListGetter {
+public class NameListGetter {
     private final ArtistRepository artistRepository;
+    private final SongRepository songRepository;
     public void getList() {
         List<Artist> artists = artistRepository.findAll();
         List<String> artistsNames = new ArrayList<>();
@@ -29,6 +32,21 @@ public class ArtistNameListGetter {
         }
 //        src/main/resources/spotifyArtistsInFormatSuitableToExtractImages.txt
 
+    }
+    public void getListSongs() {
+        List<Song> songs = songRepository.findAll();
+        List<String> songNames = new ArrayList<>();
+        for(Song song : songs) {
+            songNames.add(song.getSongName());
+        }
+        try (FileWriter myWriter = new FileWriter("src/main/resources/spotifySongsInFormatSuitableToExtractImages.txt", false)){
+            for(int i = 0; i < songNames.size(); i++) {
+                myWriter.write(songNames.get(i)+"\n");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
 }
