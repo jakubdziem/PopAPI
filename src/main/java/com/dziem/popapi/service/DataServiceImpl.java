@@ -1,5 +1,6 @@
 package com.dziem.popapi.service;
 
+import com.dziem.popapi.formatter.FirstLineOfFormatSongsFiles;
 import com.dziem.popapi.formatter.SpotifyTopArtistDataFormatter;
 import com.dziem.popapi.model.Artist;
 import com.dziem.popapi.model.Country;
@@ -26,6 +27,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DataServiceImpl implements DataService {
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private final CountryRepository countryRepository;
     private final YearAndPopulationRepository yearAndPopulationRepository;
     private final ArtistRepository artistRepository;
@@ -101,14 +103,15 @@ public class DataServiceImpl implements DataService {
 
     @Override
     @Transactional
-    public void getDataSpotifyTopSongs() {
+    public void getDataSpotifyTopSongs(String genre) {
         LocalDate date = LocalDate.MIN;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String dateAndAllArtists = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/spotifyTopSongsData.txt");
+        String path = "src/main/resources/spotifyTopSongsData" + genre + ".txt";
+        FirstLineOfFormatSongsFiles.formatSpotifyFile(path);
+        String dateAndAllArtists = SpotifyTopArtistDataFormatter.formatSpotifyFile(path);
         String[] split = dateAndAllArtists.split("\n");
         for(int i = 0; i < split.length; i++) {
             if(i==0) {
-                date = LocalDate.parse(split[i], formatter);
+                date = LocalDate.parse(split[i], FORMATTER);
             } else {
                 Song song = getSong(split[i], date);
                 songRepository.save(song);
