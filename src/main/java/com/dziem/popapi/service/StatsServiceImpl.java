@@ -37,14 +37,14 @@ public class StatsServiceImpl implements StatsService {
         statsRepository.findById(userId).ifPresentOrElse(existing -> {
             result.set(true);
             String[] split = stats.split(",");
-            existing.setTotalGamePlayed(existing.getTotalGamePlayed()+1L);
-            existing.setTimePlayed(existing.getTimePlayed()+Long.parseLong(split[0]));
-            long scoredPoints = Long.parseLong(split[1]);
+            existing.setTotalGamePlayed(existing.getTotalGamePlayed()+Long.parseLong(split[0]));
+            existing.setTimePlayed(existing.getTimePlayed()+Long.parseLong(split[1]));
+            long scoredPoints = Long.parseLong(split[2]);
             existing.setTotalScoredPoints(existing.getTotalScoredPoints()+ scoredPoints);
-            if(split[2].equals("y"))
+            if(split[3].equals("y"))
                 existing.setNumberOfWonGames( existing.getNumberOfWonGames() + 1);
             existing.setAvgScore(calculateAvgScore(existing.getTotalScoredPoints(), existing.getTotalGamePlayed()));
-            String currentMode = split[3];
+            String currentMode = split[4];
             List<Score> bestScores = userRepository.findById(userId).get().getBestScores();
             for(Score score : bestScores) {
                 if(currentMode.equals(score.getMode()) && scoredPoints > score.getBestScore()) {
