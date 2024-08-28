@@ -23,4 +23,14 @@ public class SongServiceImpl implements SongService {
         }
         return songDTOS;
     }
+
+    @Override
+    public List<SongDTO> getTop200SongsGenre(String genre) {
+        List<Song> songs = songRepository.findAll().stream().filter(song -> song.getGenre().equals(genre)).toList();
+        List<SongDTO> songDTOS = new ArrayList<>();
+        for(Song song : songs) {
+            songDTOS.add(songMapper.songToSongDTO(song));
+        }
+        return songDTOS;
+    }
 }

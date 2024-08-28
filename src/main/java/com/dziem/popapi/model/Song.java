@@ -18,5 +18,6 @@ public class Song {
     String artistName;
     String totalStreams;
     String imageUrl;
+    String genre;
     LocalDate lastUpdate;
 }

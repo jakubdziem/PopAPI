@@ -14,5 +14,7 @@ public class SongDTO {
     String totalStreams;
     String imageUrl;
     @JsonIgnore
+    String genre;
+    @JsonIgnore
     LocalDate lastUpdate;
 }

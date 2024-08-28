@@ -113,13 +113,13 @@ public class DataServiceImpl implements DataService {
             if(i==0) {
                 date = LocalDate.parse(split[i], FORMATTER);
             } else {
-                Song song = getSong(split[i], date);
+                Song song = getSong(split[i], date, genre);
                 songRepository.save(song);
             }
         }
     }
 
-    private Song getSong(String line, LocalDate lastUpdate) {
+    private Song getSong(String line, LocalDate lastUpdate, String genre) {
         Song song = new Song();
         song.setLastUpdate(lastUpdate);
         String[] split = line.split(";");
@@ -151,6 +151,7 @@ public class DataServiceImpl implements DataService {
         song.setTotalStreams(streams[i-1]);
         song.setArtistName(artistName.substring(0,artistName.length()-1));
         song.setImageUrl("/images/spotify/songs/" + song.getSongName().replace('/', ' ').replace("?", "") + " - " + song.getArtistName().replace('/', ' ').replace("?", "") + ".jpg");
+        song.setGenre(genre);
         return song;
     }
 
