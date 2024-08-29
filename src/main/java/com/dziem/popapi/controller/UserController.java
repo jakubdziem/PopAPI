@@ -1,10 +1,7 @@
 package com.dziem.popapi.controller;
 
 import com.dziem.popapi.mapper.UserMapper;
-import com.dziem.popapi.model.Mode;
-import com.dziem.popapi.model.ScoreDTO;
-import com.dziem.popapi.model.StatsDTO;
-import com.dziem.popapi.model.UserDTO;
+import com.dziem.popapi.model.*;
 import com.dziem.popapi.service.ScoreService;
 import com.dziem.popapi.service.StatsService;
 import com.dziem.popapi.service.UNameService;
@@ -65,6 +62,14 @@ public class UserController {
     @PutMapping("/api/v1/{anonimUserId}/{stats}")
     public ResponseEntity updateStatistics(@PathVariable String anonimUserId, @PathVariable String stats) {
         if(!statsService.updateStatistics(anonimUserId, stats)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+    @PutMapping(value = "/api/v1/statsjson/{userId}", consumes = "application/json")
+    public ResponseEntity updateStatisticsMultipleInput(@PathVariable String userId, @RequestBody List<GameStatsDTO> gameStatsDTOS) {
+        if(!statsService.updateStatisticsMultipleInput(userId, gameStatsDTOS)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

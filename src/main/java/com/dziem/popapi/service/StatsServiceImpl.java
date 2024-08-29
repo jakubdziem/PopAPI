@@ -62,6 +62,25 @@ public class StatsServiceImpl implements StatsService {
         return statsMapper.statsToStatsDTO(statsRepository.findById(anonimUserId).get());
         //it is checked if its present in controller
     }
+
+    @Override
+    public boolean updateStatisticsMultipleInput(String userId, List<GameStatsDTO> gameStatsDTOS) {
+        AtomicBoolean result = new AtomicBoolean(false);
+        statsRepository.findById(userId).ifPresentOrElse(existing -> {
+            for(GameStatsDTO gameStatsDTO : gameStatsDTOS) {
+                String stats = gameStatsDTO.getTimePlayedSeconds().toString().concat(",")
+                        .concat(gameStatsDTO.getScoredPoints().toString()).concat(",")
+                        .concat(gameStatsDTO.isWonGame() ? "y" : "n").concat(",")
+                        .concat(gameStatsDTO.getGameMode());
+                updateStatistics(userId, stats);
+            }
+            result.set(true);
+        }, () -> {
+            result.set(false);
+        });
+        return result.get();
+    }
+
     private BigDecimal calculateAvgScore(Long totalScoredPoints, Long totalGamePlayed) {
         BigDecimal scoredPoints = new BigDecimal(totalScoredPoints);
         return scoredPoints.divide(new BigDecimal(totalGamePlayed),2,RoundingMode.HALF_UP);
