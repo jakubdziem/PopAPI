@@ -9,4 +9,7 @@ public interface ModeStatsService {
     boolean updateStatistics(String uuid, String stats);
     List<ModeStatsDTO> getStatsByUserId(String userId);
     boolean updateStatisticsMultipleInput(String userId, List<GameStatsDTO> gameStatsDTOS);
+    List<BaseGameModelDTO> convertCountryDTOtoBaseGameModelDTO(String year, boolean chaos);
+    List<BaseGameModelDTO> convertArtistDTOStoBaseGameModelDTO();
+    List<BaseGameModelDTO> convertSongDTOStoBaseGameModelDTO(String genre);
 }

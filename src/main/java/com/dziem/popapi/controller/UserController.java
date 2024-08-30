@@ -23,11 +23,11 @@ public class UserController {
     private final UserMapper userMapper;
     private final ModeStatsService modeStatsService;
     @PostMapping("api/v1/google/{googleId}")
-    public ResponseEntity createGoogleUser(@PathVariable String googleId) {
-        AtomicReference<ResponseEntity> atomicReference = new AtomicReference<>();
+    public ResponseEntity<String> createGoogleUser(@PathVariable String googleId) {
+        AtomicReference<ResponseEntity<String>> atomicReference = new AtomicReference<>();
         userService.createGoogleUser(googleId).ifPresentOrElse(
-                username -> atomicReference.set(new ResponseEntity(username,HttpStatus.ACCEPTED)),
-                () -> atomicReference.set(new ResponseEntity(HttpStatus.CONFLICT))
+                username -> atomicReference.set(new ResponseEntity<>(username,HttpStatus.ACCEPTED)),
+                () -> atomicReference.set(new ResponseEntity<>(HttpStatus.CONFLICT))
         );
         return atomicReference.get();
     }
@@ -37,29 +37,29 @@ public class UserController {
         return userMapper.userToUserDTO(userService.createUser(uuid, true));
     }
     @PutMapping("api/v1/google/{anonimUserId}/{googleId}")
-    public ResponseEntity migrateProfileToGoogle(@PathVariable String anonimUserId, @PathVariable String googleId){
-        AtomicReference<ResponseEntity> atomicReference = new AtomicReference<>();
+    public ResponseEntity<String> migrateProfileToGoogle(@PathVariable String anonimUserId, @PathVariable String googleId){
+        AtomicReference<ResponseEntity<String>> atomicReference = new AtomicReference<>();
         if(userService.userExists(googleId)) {
-            return new ResponseEntity("This google account already exists in database.",HttpStatus.CONFLICT); //409
+            return new ResponseEntity<>("This google account already exists in database.",HttpStatus.CONFLICT); //409
         }
         userService.migrateProfileToGoogle(anonimUserId, googleId).ifPresentOrElse(
-                username -> atomicReference.set(new ResponseEntity(username,HttpStatus.ACCEPTED)),
-                () -> atomicReference.set(new ResponseEntity(HttpStatus.NOT_FOUND)));
+                username -> atomicReference.set(new ResponseEntity<>(username,HttpStatus.ACCEPTED)),
+                () -> atomicReference.set(new ResponseEntity<>(HttpStatus.NOT_FOUND)));
         return atomicReference.get();
     }
     @PutMapping("api/v1/set_name/{googleId}/{name}")
-    public ResponseEntity setUserNameForGoogleUser(@PathVariable String googleId, @PathVariable String name) {
+    public ResponseEntity<String> setUserNameForGoogleUser(@PathVariable String googleId, @PathVariable String name) {
         if(!uNameService.validateUserName(name)) {
-            return new ResponseEntity("Contained restricted word.",HttpStatus.BAD_REQUEST); //400
+            return new ResponseEntity<>("Contained restricted word.",HttpStatus.BAD_REQUEST); //400
         }
         if(!uNameService.setUserName(googleId, name)) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
     @PutMapping("/api/v1/{anonimUserId}/{stats}")
-    public ResponseEntity updateStatistics(@PathVariable String anonimUserId, @PathVariable String stats) {
+    public ResponseEntity<Void> updateStatistics(@PathVariable String anonimUserId, @PathVariable String stats) {
         if(!statsService.updateStatistics(anonimUserId, stats)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -68,7 +68,7 @@ public class UserController {
         }
     }
     @PutMapping(value = "/api/v1/statsjson/{userId}", consumes = "application/json")
-    public ResponseEntity updateStatisticsMultipleInput(@PathVariable String userId, @RequestBody List<GameStatsDTO> gameStatsDTOS) {
+    public ResponseEntity<Void> updateStatisticsMultipleInput(@PathVariable String userId, @RequestBody List<GameStatsDTO> gameStatsDTOS) {
         if(!statsService.updateStatisticsMultipleInput(userId, gameStatsDTOS)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -77,7 +77,7 @@ public class UserController {
         }
     }
     @PutMapping("/api/v1/{anonimUserId}/{mode}/{newScore}")
-    public ResponseEntity updateBestScore(@PathVariable String anonimUserId, @PathVariable String mode, @PathVariable String newScore) {
+    public ResponseEntity<String> updateBestScore(@PathVariable String anonimUserId, @PathVariable String mode, @PathVariable String newScore) {
         if(!scoreService.checkIsMode(mode)) {
             return new ResponseEntity<>("Mode not found, list of modes:" + Arrays.toString(Mode.values()),HttpStatus.NOT_FOUND);
         }

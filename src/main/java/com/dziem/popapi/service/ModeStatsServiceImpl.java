@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ModeStatsServiceImpl implements ModeStatsService {
     private final ModeStatsRepository modeStatsRepository;
+    private final CountryService countryService;
+    private final ArtistService artistService;
+    private final SongService songService;
     private final ModeStatsMapper modeStatsMapper;
     private final UserRepository userRepository;
     @Override
@@ -75,5 +79,63 @@ public class ModeStatsServiceImpl implements ModeStatsService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<BaseGameModelDTO> convertCountryDTOtoBaseGameModelDTO(String year, boolean chaos) {
+        List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
+        List<CountryDTO> countryDTOS;
+        if(chaos) {
+            countryDTOS = countryService.findCountriesByDistinctYear("1900", true);
+            countryDTOS.addAll(countryService.findCountriesByDistinctYear("1939", true));
+            countryDTOS.addAll(countryService.findCountriesByDistinctYear("1989", true));
+            int currentYear = LocalDate.now().getYear();
+            countryDTOS.addAll(countryService.findCountriesByDistinctYear(String.valueOf(currentYear), true));
+            countryDTOS.addAll(countryService.findCountriesByDistinctYear(String.valueOf(currentYear + 100), true));
+        } else {
+            countryDTOS = countryService.findCountriesByDistinctYear(year, false);
+        }
+        for(CountryDTO countryDTO : countryDTOS) {
+            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+                    .name(countryDTO.getCountryName())
+                    .comparableValue(Float.parseFloat(countryDTO.getYearAndPopulations().getFirst().getPopulation()))
+                    .comparableValueLabel("population")
+                    .imageUrl(countryDTO.getFlagUrl())
+                    .build();
+            baseGameModelDTOS.add(baseGameModelDTO);
+        }
+        return baseGameModelDTOS;
+    }
+
+    @Override
+    public List<BaseGameModelDTO> convertArtistDTOStoBaseGameModelDTO() {
+        List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
+        List<ArtistDTO> artistDTOS = artistService.getTop200Artists();
+        for(ArtistDTO artistDTO : artistDTOS) {
+            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+                    .name(artistDTO.getArtistName())
+                    .comparableValue(Float.parseFloat(artistDTO.getLeadStreams().replace(",","")))
+                    .comparableValueLabel("streams")
+                    .imageUrl(artistDTO.getImageUrl())
+                    .build();
+            baseGameModelDTOS.add(baseGameModelDTO);
+        }
+        return baseGameModelDTOS;
+    }
+
+    @Override
+    public List<BaseGameModelDTO> convertSongDTOStoBaseGameModelDTO(String genre) {
+        List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
+        List<SongDTO> songDTOS = songService.getTop200SongsGenre(genre);
+        for(SongDTO songDTO : songDTOS) {
+            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+                    .name(songDTO.getSongName() + " - " + songDTO.getArtistName())
+                    .comparableValue(Float.parseFloat(songDTO.getTotalStreams().replace(",","")))
+                    .comparableValueLabel("streams")
+                    .imageUrl(songDTO.getImageUrl())
+                    .build();
+            baseGameModelDTOS.add(baseGameModelDTO);
+        }
+        return baseGameModelDTOS;
     }
 }
