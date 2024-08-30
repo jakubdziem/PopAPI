@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -109,6 +110,22 @@ public class UserController {
             return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(modeStatsService.getStatsByUserId(userId), HttpStatus.ACCEPTED);
+        }
+    }
+    @GetMapping("api/v1/won_games/{userId}")
+    public ResponseEntity<List<WonGameDTO>> getWonGames(@PathVariable String userId) {
+        if(!userService.userExists(userId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            List<WonGameDTO> result = new ArrayList<>();
+            List<ModeStatsDTO> modeStatsDTOS = modeStatsService.getStatsByUserId(userId);
+            for (ModeStatsDTO modeStatsDTO : modeStatsDTOS) {
+                WonGameDTO wonGameDTO = new WonGameDTO();
+                wonGameDTO.setWon(modeStatsDTO.getNumberOfWonGames() > 0);
+                wonGameDTO.setMode(modeStatsDTO.getMode());
+                result.add(wonGameDTO);
+            }
+            return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
         }
     }
 }
