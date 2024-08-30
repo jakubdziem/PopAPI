@@ -81,7 +81,7 @@ public class StatsServiceImpl implements StatsService {
         return result.get();
     }
 
-    private BigDecimal calculateAvgScore(Long totalScoredPoints, Long totalGamePlayed) {
+    protected static BigDecimal calculateAvgScore(Long totalScoredPoints, Long totalGamePlayed) {
         BigDecimal scoredPoints = new BigDecimal(totalScoredPoints);
         return scoredPoints.divide(new BigDecimal(totalGamePlayed),2,RoundingMode.HALF_UP);
     }

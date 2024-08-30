@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService {
     private final UNameService uNameService;
     private final LeaderboardRepository leaderboardRepository;
     private final LeaderboardService leaderboardService;
+    private final ModeStatsService modeStatsService;
 
     @Override
     public String generateUniqueUUID() {
@@ -35,10 +36,12 @@ public class UserServiceImpl implements UserService {
         user.setUserId(userId);
         user.setStatistics(statsService.initializeStats(user));
         List<Score> bestScore = new ArrayList<>();
-
+        List<ModeStats> modeStatsList = new ArrayList<>();
         for(Mode mode : Mode.values()) {
             bestScore.add(scoreService.initializeScore(mode.toString(), user));
+            modeStatsList.add(modeStatsService.initializeModeStats(user, mode.toString()));
         }
+        user.setModeStats(modeStatsList);
         user.setBestScores(bestScore);
         user.setGuest(guest);
         user.setUName(UName.builder()
@@ -92,6 +95,14 @@ public class UserServiceImpl implements UserService {
                 score.setUser(googleUser);
                 googleBestScores.add(score);
             }
+
+            List<ModeStats> modeStatsList = new ArrayList<>();
+            for(ModeStats modeStats : anonimUser.getModeStats()) {
+                modeStats.setUser(googleUser);
+                modeStatsList.add(modeStats);
+            }
+
+            googleUser.setModeStats(modeStatsList);
             googleUser.setBestScores(googleBestScores);
             googleUser.setLeaderboard(leaderboardList);
             userRepository.delete(anonimUser);

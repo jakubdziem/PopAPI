@@ -2,10 +2,7 @@ package com.dziem.popapi.controller;
 
 import com.dziem.popapi.mapper.UserMapper;
 import com.dziem.popapi.model.*;
-import com.dziem.popapi.service.ScoreService;
-import com.dziem.popapi.service.StatsService;
-import com.dziem.popapi.service.UNameService;
-import com.dziem.popapi.service.UserService;
+import com.dziem.popapi.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +20,7 @@ public class UserController {
     private final ScoreService scoreService;
     private final UNameService uNameService;
     private final UserMapper userMapper;
+    private final ModeStatsService modeStatsService;
     @PostMapping("api/v1/google/{googleId}")
     public ResponseEntity createGoogleUser(@PathVariable String googleId) {
         AtomicReference<ResponseEntity> atomicReference = new AtomicReference<>();
@@ -64,6 +62,7 @@ public class UserController {
         if(!statsService.updateStatistics(anonimUserId, stats)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
+            modeStatsService.updateStatistics(anonimUserId, stats);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
@@ -72,6 +71,7 @@ public class UserController {
         if(!statsService.updateStatisticsMultipleInput(userId, gameStatsDTOS)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
+            modeStatsService.updateStatisticsMultipleInput(userId, gameStatsDTOS);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
@@ -95,12 +95,20 @@ public class UserController {
             return new ResponseEntity<>(bestScoreList,HttpStatus.ACCEPTED);
         }
     }
-    @GetMapping("api/v1/stats/{anonimUserId}")
-    public ResponseEntity<StatsDTO> getStatsForUser(@PathVariable String anonimUserId) {
-        if(!userService.userExists(anonimUserId)) {
+    @GetMapping("api/v1/stats/{userId}")
+    public ResponseEntity<StatsDTO> getStatsForUser(@PathVariable String userId) {
+        if(!userService.userExists(userId)) {
             return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(statsService.getStatsByUserId(anonimUserId), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(statsService.getStatsByUserId(userId), HttpStatus.ACCEPTED);
+        }
+    }
+    @GetMapping("api/v1/all_stats/{userId}")
+    public ResponseEntity<List<ModeStatsDTO>> getStatsForUserAll(@PathVariable String userId) {
+        if(!userService.userExists(userId)) {
+            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(modeStatsService.getStatsByUserId(userId), HttpStatus.ACCEPTED);
         }
     }
 }

@@ -87,3 +87,17 @@ CREATE TABLE song(
                      image_url varchar(255),
                      last_update TIMESTAMP
 );
+-- Table: public.score
+CREATE TABLE IF NOT EXISTS mode_stats
+(
+    id SERIAL PRIMARY KEY,
+    total_game_played BIGINT,
+    avg_score DECIMAL,
+    time_played BIGINT,
+    total_scored_points BIGINT,
+    number_of_won_games INTEGER,
+    mode varchar(255),
+    user_id VARCHAR(255),
+    CONSTRAINT fk_user
+        FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
+)

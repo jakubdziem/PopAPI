@@ -15,4 +15,6 @@ public class UserDTO {
     private String name;
     @JsonIgnore
     boolean guest;
+    @JsonIgnore
+    private List<ModeStats> modeStats;
 }

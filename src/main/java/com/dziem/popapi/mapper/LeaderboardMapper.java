@@ -8,7 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 
 public interface LeaderboardMapper {
-    Leaderboard leaderboardDTOToLeaderboard(LeaderboardDTO leaderboardDTO);
     @Mapping(source = "user.userId", target = "userId")
     @Mapping(source = "user.UName.name", target = "name")
     LeaderboardDTO leaderboardtoLeaderboardDTO(Leaderboard leaderboard);
