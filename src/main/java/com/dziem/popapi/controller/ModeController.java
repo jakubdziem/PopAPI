@@ -41,7 +41,7 @@ public class ModeController {
         for(CountryDTO countryDTO : countryDTOS) {
             BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
                     .name(countryDTO.getCountryName())
-                    .comparableValue(countryDTO.getYearAndPopulations().getFirst().getPopulation())
+                    .comparableValue(Float.parseFloat(countryDTO.getYearAndPopulations().getFirst().getPopulation()))
                     .comparableValueLabel("population")
                     .imageUrl(countryDTO.getFlagUrl())
                     .build();
@@ -55,7 +55,7 @@ public class ModeController {
         for(ArtistDTO artistDTO : artistDTOS) {
             BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
                     .name(artistDTO.getArtistName())
-                    .comparableValue(artistDTO.getLeadStreams())
+                    .comparableValue(Float.parseFloat(artistDTO.getLeadStreams().replace(",","")))
                     .comparableValueLabel("streams")
                     .imageUrl(artistDTO.getImageUrl())
                     .build();
@@ -69,7 +69,7 @@ public class ModeController {
         for(SongDTO songDTO : songDTOS) {
             BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
                     .name(songDTO.getSongName() + " - " + songDTO.getArtistName())
-                    .comparableValue(songDTO.getTotalStreams())
+                    .comparableValue(Float.parseFloat(songDTO.getTotalStreams().replace(",","")))
                     .comparableValueLabel("streams")
                     .imageUrl(songDTO.getImageUrl())
                     .build();

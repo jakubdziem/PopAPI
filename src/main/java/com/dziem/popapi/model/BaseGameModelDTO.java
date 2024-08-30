@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class BaseGameModelDTO {
     private String name;
-    private String comparableValue;
+    private Float comparableValue;
     private String comparableValueLabel;
     private String imageUrl;
 }
