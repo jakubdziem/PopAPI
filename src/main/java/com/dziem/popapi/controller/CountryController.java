@@ -19,7 +19,7 @@ public class CountryController {
         return countryService.findCountriesByDistinctYear(year, false);
     }
     @GetMapping("/api/v1/pop/chaos/{chaos}")
-    public List<CountryDTO> getPopInDistinctYearChaos(@PathVariable("chaos") boolean chaos) {
+    public List<CountryDTO> getPopChaos(@PathVariable("chaos") boolean chaos) {
             List<CountryDTO> chaosList = new ArrayList<>();
             chaosList.addAll(countryService.findCountriesByDistinctYear("1900", chaos));
             chaosList.addAll(countryService.findCountriesByDistinctYear("1939", chaos));
@@ -29,4 +29,5 @@ public class CountryController {
             chaosList.addAll(countryService.findCountriesByDistinctYear(String.valueOf(currentYear + 100), chaos));
         return chaosList;
     }
+
 }
