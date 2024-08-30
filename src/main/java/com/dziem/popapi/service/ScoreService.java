@@ -10,6 +10,7 @@ public interface ScoreService {
     Score initializeScore(String mode, User user);
 
     boolean updateBestScore(String uuid, String mode, String newScore);
+    @Deprecated
 
     ScoreDTO getScoreByUserIdAndMode(String anonimUserId, String mode);
 

@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class CountryYearAndPopulationReducer {
     private static Integer populationGaza = 0;
-    private static ArrayList<String> res = new ArrayList<>();
+    private static final ArrayList<String> res = new ArrayList<>();
     public static void main(String[] args) {
         HashSet<String> countries = getCountries();
         try (Stream<String> stream = Files.lines(Paths.get("src/2024-2100 data old data.txt"))) {

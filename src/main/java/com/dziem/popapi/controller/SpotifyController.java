@@ -16,14 +16,17 @@ import java.util.List;
 public class SpotifyController {
     private final ArtistService artistService;
     private final SongService songService;
+    @Deprecated
     @GetMapping("/api/v1/spotify")
     public List<ArtistDTO> getTop200Artists() {
         return artistService.getTop200Artists();
     }
+    @Deprecated
     @GetMapping("api/v1/spotify/songs")
     public List<SongDTO> getTop200Songs() {
         return songService.getTop200Songs();
     }
+    @Deprecated
     @GetMapping("api/v1/spotify/songs/{genre}")
     public List<SongDTO> getTop200SongsGenre(@PathVariable String genre) {
         return songService.getTop200SongsGenre(genre);

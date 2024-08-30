@@ -58,12 +58,13 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
-    @PutMapping("/api/v1/{anonimUserId}/{stats}")
-    public ResponseEntity<Void> updateStatistics(@PathVariable String anonimUserId, @PathVariable String stats) {
-        if(!statsService.updateStatistics(anonimUserId, stats)) {
+    @Deprecated
+    @PutMapping("/api/v1/{userId}/{stats}")
+    public ResponseEntity<Void> updateStatistics(@PathVariable String userId, @PathVariable String stats) {
+        if(!statsService.updateStatistics(userId, stats)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            modeStatsService.updateStatistics(anonimUserId, stats);
+            modeStatsService.updateStatistics(userId, stats);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
@@ -76,23 +77,24 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
-    @PutMapping("/api/v1/{anonimUserId}/{mode}/{newScore}")
-    public ResponseEntity<String> updateBestScore(@PathVariable String anonimUserId, @PathVariable String mode, @PathVariable String newScore) {
+    @Deprecated
+    @PutMapping("/api/v1/{userId}/{mode}/{newScore}")
+    public ResponseEntity<String> updateBestScore(@PathVariable String userId, @PathVariable String mode, @PathVariable String newScore) {
         if(!scoreService.checkIsMode(mode)) {
             return new ResponseEntity<>("Mode not found, list of modes:" + Arrays.toString(Mode.values()),HttpStatus.NOT_FOUND);
         }
-        if(!scoreService.updateBestScore(anonimUserId, mode, newScore)) {
+        if(!scoreService.updateBestScore(userId, mode, newScore)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
-    @GetMapping("/api/v1/bestscore/{anonimUserId}")
-    public ResponseEntity<List<ScoreDTO>> getBestScoreForUser(@PathVariable String anonimUserId) {
-        if(!userService.userExists(anonimUserId)) {
+    @GetMapping("/api/v1/bestscore/{userId}")
+    public ResponseEntity<List<ScoreDTO>> getBestScoreForUser(@PathVariable String userId) {
+        if(!userService.userExists(userId)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            List<ScoreDTO> bestScoreList = scoreService.getScoreById(anonimUserId);
+            List<ScoreDTO> bestScoreList = scoreService.getScoreById(userId);
             return new ResponseEntity<>(bestScoreList,HttpStatus.ACCEPTED);
         }
     }

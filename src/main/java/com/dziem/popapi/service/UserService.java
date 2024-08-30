@@ -9,7 +9,7 @@ public interface UserService {
 
     User createUser(String uuid, boolean guest);
 
-    boolean userExists(String anonimUserId);
+    boolean userExists(String userId);
 
     Optional<String> migrateProfileToGoogle(String anonimUserId, String googleId);
 

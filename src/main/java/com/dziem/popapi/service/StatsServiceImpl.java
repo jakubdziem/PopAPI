@@ -58,8 +58,8 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    public StatsDTO getStatsByUserId(String anonimUserId) {
-        return statsMapper.statsToStatsDTO(statsRepository.findById(anonimUserId).get());
+    public StatsDTO getStatsByUserId(String userId) {
+        return statsMapper.statsToStatsDTO(statsRepository.findById(userId).get());
         //it is checked if its present in controller
     }
 
@@ -75,9 +75,7 @@ public class StatsServiceImpl implements StatsService {
                 updateStatistics(userId, stats);
             }
             result.set(true);
-        }, () -> {
-            result.set(false);
-        });
+        }, () -> result.set(false));
         return result.get();
     }
 

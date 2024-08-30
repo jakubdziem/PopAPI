@@ -6,6 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ArtistMapper {
-    Artist artistDtoToArtist(ArtistDTO dto);
     ArtistDTO artistToArtistDTO(Artist artist);
 }

@@ -14,10 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CountryController {
     private final CountryService countryService;
+    @Deprecated
     @GetMapping("/api/v1/pop/{year}")
     public List<CountryDTO> getPopInDistinctYear(@PathVariable("year") String year) {
         return countryService.findCountriesByDistinctYear(year, false);
     }
+    @Deprecated
     @GetMapping("/api/v1/pop/chaos/{chaos}")
     public List<CountryDTO> getPopChaos(@PathVariable("chaos") boolean chaos) {
             List<CountryDTO> chaosList = new ArrayList<>();

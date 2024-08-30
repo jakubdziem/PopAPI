@@ -53,8 +53,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean userExists(String anonimUserId) {
-        return userRepository.existsById(anonimUserId);
+    public boolean userExists(String userId) {
+        return userRepository.existsById(userId);
     }
     @Override
     public Optional<String> migrateProfileToGoogle(String anonimUserId, String googleId) {

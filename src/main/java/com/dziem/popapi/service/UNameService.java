@@ -5,7 +5,7 @@ import com.dziem.popapi.model.UName;
 
 public interface UNameService {
     String generateRandomUserName();
-
+    @Deprecated
     UName initializeUserName(User user);
     boolean validateUserName(String name);
 

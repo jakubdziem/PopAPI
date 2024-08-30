@@ -11,7 +11,7 @@ import java.util.List;
 public interface StatsService {
     Stats initializeStats(User user);
     boolean updateStatistics(String uuid, String stats);
-    StatsDTO getStatsByUserId(String anonimUserId);
+    StatsDTO getStatsByUserId(String userId);
 
     boolean updateStatisticsMultipleInput(String userId, List<GameStatsDTO> gameStatsDTOS);
 }
