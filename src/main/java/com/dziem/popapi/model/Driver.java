@@ -5,8 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-import org.checkerframework.checker.i18nformatter.qual.I18nFormat;
-
 @Data
 @Entity
 public class Driver {
