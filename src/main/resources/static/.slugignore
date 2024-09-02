@@ -1,0 +1,11 @@
+# Ignore unnecessary files
+*.md
+*.txt
+*.log
+*.properties
+.git/
+.idea/
+node_modules/
+target/
+build/
+src/main/resources/images/
