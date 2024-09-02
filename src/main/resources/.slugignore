@@ -8,4 +8,4 @@
 node_modules/
 target/
 build/
-src/main/resources/images/
+src/main/resources/static/images/
