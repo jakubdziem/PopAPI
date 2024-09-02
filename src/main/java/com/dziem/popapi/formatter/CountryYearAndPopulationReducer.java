@@ -12,7 +12,7 @@ public class CountryYearAndPopulationReducer {
     private static final ArrayList<String> res = new ArrayList<>();
     public static void main(String[] args) {
         HashSet<String> countries = getCountries();
-        try (Stream<String> stream = Files.lines(Paths.get("src/2024-2100 data old data.txt"))) {
+        try (Stream<String> stream = Files.lines(Paths.get("src/resources/data/2024-2100 data old data.txt"))) {
             stream.skip(1).forEach(line -> {
                 String[] split = line.split(",");
                 if(split[0].replace("\"", "").equals("Gaza Strip")) {

@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class SpotifyTopArtistDataFormatter {
     public static void main(String[] args) {
-        System.out.println(formatSpotifyFile("src/main/resources/spotifyTopArtistData.txt"));
+        System.out.println(formatSpotifyFile("src/main/resources/data/spotifyTopArtistData.txt"));
     }
     public static String formatSpotifyFile(String path) {
         AtomicReference<String> res = new AtomicReference<>("");
