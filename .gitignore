@@ -30,4 +30,4 @@ build/
 !**/src/test/**/build/
 ### VS Code ###
 .vscode/
-src/resources/sources.txt
+**/private
