@@ -27,6 +27,9 @@ public class ModeController {
             case Mode.SPOTIFY_TOP_SONGS_POP -> modeStatsService.convertSongDTOStoBaseGameModelDTO("Pop");
             case Mode.SPOTIFY_TOP_SONGS_HIP_HOP -> modeStatsService.convertSongDTOStoBaseGameModelDTO("HipHop");
             case Mode.SPOTIFY_TOP_SONGS_ROCK -> modeStatsService.convertSongDTOStoBaseGameModelDTO("Rock");
+            case Mode.FORMULA_TOP_SCORE -> modeStatsService.convertFormulaToBaseGameModelDTO();
+            case Mode.APARTMENTS_WORLD -> modeStatsService.convertApartmentToBaseGameModelDTO("World", "$");
+            case Mode.APARTMENTS_POLAND -> modeStatsService.convertApartmentToBaseGameModelDTO("Poland", "zł");
         };
     }
 }

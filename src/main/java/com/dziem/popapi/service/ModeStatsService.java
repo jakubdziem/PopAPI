@@ -12,4 +12,8 @@ public interface ModeStatsService {
     List<BaseGameModelDTO> convertCountryDTOtoBaseGameModelDTO(String year, boolean chaos);
     List<BaseGameModelDTO> convertArtistDTOStoBaseGameModelDTO();
     List<BaseGameModelDTO> convertSongDTOStoBaseGameModelDTO(String genre);
+
+    List<BaseGameModelDTO> convertFormulaToBaseGameModelDTO();
+
+    List<BaseGameModelDTO> convertApartmentToBaseGameModelDTO(String country, String sign);
 }

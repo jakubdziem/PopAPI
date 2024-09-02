@@ -22,6 +22,8 @@ public class ModeStatsServiceImpl implements ModeStatsService {
     private final SongService songService;
     private final ModeStatsMapper modeStatsMapper;
     private final UserRepository userRepository;
+    private final DriverService driverService;
+    private final ApartmentService apartmentService;
     @Override
     public ModeStats initializeModeStats(User user, String mode) {
         ModeStats modeStats = new ModeStats();
@@ -133,6 +135,38 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValue(Float.parseFloat(songDTO.getTotalStreams().replace(",","")))
                     .comparableValueLabel("streams")
                     .imageUrl(songDTO.getImageUrl())
+                    .build();
+            baseGameModelDTOS.add(baseGameModelDTO);
+        }
+        return baseGameModelDTOS;
+    }
+
+    @Override
+    public List<BaseGameModelDTO> convertFormulaToBaseGameModelDTO() {
+        List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
+        List<Driver> topScoreDrivers = driverService.getTopScoreDrivers();
+        for(Driver driver : topScoreDrivers) {
+            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+                    .name(driver.getName())
+                    .comparableValue(driver.getScore())
+                    .comparableValueLabel("points")
+                    .imageUrl(driver.getImageUrl())
+                    .build();
+            baseGameModelDTOS.add(baseGameModelDTO);
+        }
+        return baseGameModelDTOS;
+    }
+
+    @Override
+    public List<BaseGameModelDTO> convertApartmentToBaseGameModelDTO(String country, String sign) {
+        List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
+        List<Apartment> topPricesApartments = apartmentService.getApartments(country);
+        for(Apartment apartment : topPricesApartments) {
+            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+                    .name(apartment.getCountryOrCityName())
+                    .comparableValue(apartment.getPrice())
+                    .comparableValueLabel(sign)
+                    .imageUrl(apartment.getImageUrl())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }

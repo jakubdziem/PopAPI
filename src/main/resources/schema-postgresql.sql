@@ -100,4 +100,17 @@ CREATE TABLE IF NOT EXISTS mode_stats
     user_id VARCHAR(255),
     CONSTRAINT fk_user
         FOREIGN KEY (user_id) REFERENCES "user" (user_id) ON DELETE CASCADE
+);
+CREATE TABLE driver (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255),
+        score INTEGER,
+        image_url VARCHAR(255)
+);
+CREATE TABLE APARTMENT (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255),
+        score double precision,
+        category VARCHAR(255),
+        image_url VARCHAR(255)
 )

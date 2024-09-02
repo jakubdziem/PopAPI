@@ -1,0 +1,96 @@
+Hong Kong (China);28,339.11 $
+Singapore;21,063.82 $
+Switzerland;18,044.86 $
+South Korea;11,636.80 $
+Luxembourg;11,203.21 $
+Israel;8,386.84 $
+Taiwan;8,308.95 $
+Australia;7,306.50 $
+China;7,183.90 $
+Canada;7,134.28 $
+Austria;6,991.48 $
+Japan;6,589.51 $
+France;6,541.85 $
+United Kingdom;6,518.39 $
+Norway;6,476.31 $
+Germany;6,222.85 $
+Netherlands;6,203.55 $
+New Zealand;6,026.85 $
+Finland;5,949.96 $
+Denmark;5,784.45 $
+Sweden;5,483.91 $
+Kuwait;5,308.74 $
+Ireland;4,949.83 $
+Czech Republic;4,949.72 $
+Slovenia;4,667.33 $
+Qatar;4,623.48 $
+United Arab Emirates;4,483.87 $
+Italy;4,260.19 $
+Estonia;4,230.35 $
+Slovakia;4,186.43 $
+Belgium;4,073.41 $
+Lithuania;4,047.11 $
+Malta;4,036.41 $
+Poland;3,927.34 $
+Thailand;3,907.95 $
+Spain;3,905.60 $
+Croatia;3,846.50 $
+Portugal;3,800.63 $
+United States;3,546.67 $
+Armenia;3,406.86 $
+Cyprus;3,287.27 $
+Serbia;3,176.06 $
+Hungary;3,110.31 $
+Greece;2,951.70 $
+Vietnam;2,773.27 $
+Latvia;2,613.59 $
+Montenegro;2,599.10 $
+Uruguay;2,524.09 $
+Albania;2,365.99 $
+Panama;2,312.50 $
+Bulgaria;2,301.38 $
+Philippines;2,292.13 $
+Chile;2,282.42 $
+Costa Rica;2,265.32 $
+Bosnia And Herzegovina;2,208.52 $
+Romania;2,164.06 $
+Argentina;2,129.30 $
+Russia;2,020.80 $
+Malaysia;2,010.16 $
+Sri Lanka;1,990.00 $
+Turkey;1,963.86 $
+North Macedonia;1,814.70 $
+India;1,764.14 $
+Moldova;1,760.70 $
+Mexico;1,751.75 $
+Azerbaijan;1,748.83 $
+Nepal;1,722.70 $
+Peru;1,681.69 $
+Saudi Arabia;1,669.24 $
+Belarus;1,602.35 $
+Brazil;1,566.22 $
+Georgia;1,550.34 $
+Oman;1,548.23 $
+Morocco;1,484.10 $
+Colombia;1,455.33 $
+Ukraine;1,452.30 $
+Iran;1,377.19 $
+Kazakhstan;1,369.57 $
+Uzbekistan;1,366.10 $
+Algeria;1,357.64 $
+Indonesia;1,353.36 $
+Kenya;1,294.11 $
+Ecuador;1,249.67 $
+Mauritius;1,172.87 $
+Bolivia;1,145.73 $
+Iraq;1,089.95 $
+Jordan;1,083.90 $
+South Africa;1,044.32 $
+Palestine;1,015.16 $
+Tunisia;1,002.92 $
+Bangladesh;767.91 $
+Libya;744.81 $
+Pakistan;585.41 $
+Egypt;574.46 $
+Venezuela;569.04 $
+Cuba;384.79 $
