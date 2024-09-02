@@ -3,6 +3,7 @@ package com.dziem.popapi.service;
 import com.dziem.popapi.mapper.LeaderboardMapper;
 import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.LeaderboardRepository;
+import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class LeaderboardServiceImpl implements LeaderboardService {
     private final LeaderboardRepository leaderboardRepository;
     private final LeaderboardMapper leaderboardMapper;
+    private final UserRepository userRepository;
     @Override
     public List<LeaderboardDTO> getLeaderboard(String mode) {
         List<Leaderboard> leaderboardList = leaderboardRepository.findAll().stream().filter(leaderboard -> leaderboard.getMode().equals(mode)).toList();
@@ -39,6 +41,24 @@ public class LeaderboardServiceImpl implements LeaderboardService {
             leaderboardRepository.save(leaderboard);
         }
         return leaderboardList;
+    }
+
+    @Override
+    public Integer getRankOfUserInMode(String userId, String mode) {
+        if(userRepository.existsById(userId)) {
+            Comparator<Leaderboard> comparator = (o1, o2) -> {
+                if (o1.getScore().equals(o2.getScore())) {
+                    return 0;
+                }
+                return o1.getScore().compareTo(o2.getScore());
+            };
+            List<Leaderboard> leaderboardSingle = leaderboardRepository.findAll().stream().filter(leaderboard -> leaderboard.getUser().getUserId().equals(userId) && leaderboard.getMode().equals(mode)).toList();
+            List<Leaderboard> leaderboardList = leaderboardRepository.findAll().stream()
+                    .filter(leaderboard -> leaderboard.getMode().equals(mode)).sorted(comparator).toList();
+            return leaderboardList.indexOf(leaderboardSingle.get(0));
+        } else {
+            return -1;
+        }
     }
 
 }

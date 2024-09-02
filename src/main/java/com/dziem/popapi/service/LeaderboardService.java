@@ -10,4 +10,6 @@ public interface LeaderboardService {
     List<LeaderboardDTO> getLeaderboard(String mode);
 
     List<Leaderboard> initializeLeaderboard(String userId, User user);
+
+    Integer getRankOfUserInMode(String userId, String mode);
 }
