@@ -22,7 +22,7 @@ public class WorldApartmentDataFormatter {
                 else {
                     Float price = Float.parseFloat(lines.get(i));
                     String format = String.format("%.2f", price);
-                    System.out.printf("INSERT INTO APARTMENT (NAME, PRICE, CATEGORY, IMAGE_URL) VALUES ('%s', %s, 'Poland','/images/city/poland/%s');\n", name, format.replace(",", "."), name);
+                    System.out.printf("INSERT INTO APARTMENT (NAME, PRICE, CATEGORY, IMAGE_URL) VALUES ('%s', %s, 'Poland','/images/city/poland/%s.png');\n", name, format.replace(",", "."), name);
                 }
 
             }
