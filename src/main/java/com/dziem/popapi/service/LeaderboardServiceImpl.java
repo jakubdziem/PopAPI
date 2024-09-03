@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 @RequiredArgsConstructor
@@ -45,20 +46,24 @@ public class LeaderboardServiceImpl implements LeaderboardService {
 
     @Override
     public Integer getRankOfUserInMode(String userId, String mode) {
-        if(userRepository.existsById(userId)) {
-            Comparator<Leaderboard> comparator = (o1, o2) -> {
-                if (o1.getScore().equals(o2.getScore())) {
-                    return 0;
-                }
-                return o1.getScore().compareTo(o2.getScore());
-            };
-            List<Leaderboard> leaderboardSingle = leaderboardRepository.findAll().stream().filter(leaderboard -> leaderboard.getUser().getUserId().equals(userId) && leaderboard.getMode().equals(mode)).toList();
-            List<Leaderboard> leaderboardList = leaderboardRepository.findAll().stream()
-                    .filter(leaderboard -> leaderboard.getMode().equals(mode)).sorted(comparator.reversed()).toList();
-            return leaderboardList.indexOf(leaderboardSingle.get(0)) + 1;
-        } else {
-            return -1;
-        }
+        AtomicReference<Integer> atomicReference = new AtomicReference<>();
+        userRepository.findById(userId).ifPresentOrElse( existing -> {
+            if(existing.isGuest()) {
+                atomicReference.set(-1);
+            } else {
+                Comparator<Leaderboard> comparator = (o1, o2) -> {
+                    if (o1.getScore().equals(o2.getScore())) {
+                        return 0;
+                    }
+                    return o1.getScore().compareTo(o2.getScore());
+                };
+                List<Leaderboard> leaderboardSingle = leaderboardRepository.findAll().stream().filter(leaderboard -> leaderboard.getUser().getUserId().equals(userId) && leaderboard.getMode().equals(mode)).toList();
+                List<Leaderboard> leaderboardList = leaderboardRepository.findAll().stream()
+                        .filter(leaderboard -> leaderboard.getMode().equals(mode)).sorted(comparator.reversed()).toList();
+                atomicReference.set(leaderboardList.indexOf(leaderboardSingle.get(0)) + 1);
+            }
+        }, () -> atomicReference.set(-1));
+        return atomicReference.get();
     }
 
 }
