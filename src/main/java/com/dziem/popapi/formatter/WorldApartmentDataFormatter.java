@@ -15,14 +15,26 @@ public class WorldApartmentDataFormatter {
         try (Stream<String> stream = Files.lines(Paths.get("src/main/resources/data/apartmentPricesPoland.txt"))) {
             List<String> lines = stream.toList();
             String name = "";
+            int bigLetter;
             for(int i = 0; i < lines.size(); i++) {
                 if(i%2==0) {
+                    bigLetter=0;
                     name = lines.get(i);
+                    for(int j = 0; j < name.length(); j++) {
+                        if(String.valueOf(name.charAt(j)).equals(String.valueOf(name.charAt(j)).toUpperCase())) {
+                            bigLetter++;
+                        }
+                        if(bigLetter>1) {
+                            bigLetter=0;
+                            name = name.substring(0,j) + " " + name.substring(j);
+                            j++;
+                        }
+                    }
                 }
                 else {
                     Float price = Float.parseFloat(lines.get(i));
                     String format = String.format("%.2f", price);
-                    System.out.printf("INSERT INTO APARTMENT (NAME, PRICE, CATEGORY, IMAGE_URL) VALUES ('%s', %s, 'Poland','/images/city/poland/%s.png');\n", name, format.replace(",", "."), name);
+                    System.out.printf("INSERT INTO APARTMENT (NAME, PRICE, CATEGORY, IMAGE_URL) VALUES ('%s', %s, 'Poland','/images/city/poland/%s.png');\n", name, format.replace(",", "."), name.replace(" ", ""));
                 }
 
             }
