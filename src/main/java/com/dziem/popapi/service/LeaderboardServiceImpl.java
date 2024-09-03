@@ -54,8 +54,8 @@ public class LeaderboardServiceImpl implements LeaderboardService {
             };
             List<Leaderboard> leaderboardSingle = leaderboardRepository.findAll().stream().filter(leaderboard -> leaderboard.getUser().getUserId().equals(userId) && leaderboard.getMode().equals(mode)).toList();
             List<Leaderboard> leaderboardList = leaderboardRepository.findAll().stream()
-                    .filter(leaderboard -> leaderboard.getMode().equals(mode)).sorted(comparator).toList();
-            return leaderboardList.indexOf(leaderboardSingle.get(0));
+                    .filter(leaderboard -> leaderboard.getMode().equals(mode)).sorted(comparator.reversed()).toList();
+            return leaderboardList.indexOf(leaderboardSingle.get(0)) + 1;
         } else {
             return -1;
         }

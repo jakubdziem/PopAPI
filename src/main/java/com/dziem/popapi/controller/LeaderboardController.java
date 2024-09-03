@@ -22,10 +22,10 @@ public class LeaderboardController {
     @GetMapping("api/v1/rank/{userId}/{mode}")
     public ResponseEntity<Integer> getRankOfUserInMode(@PathVariable String userId, @PathVariable String mode) {
         Integer rankOfUserInMode = leaderboardService.getRankOfUserInMode(userId, mode);
-        if(rankOfUserInMode >0L) {
+        if(rankOfUserInMode > 0L) {
             return new ResponseEntity<>(rankOfUserInMode, HttpStatus.ACCEPTED);
         } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }
