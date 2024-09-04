@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -52,10 +53,22 @@ public class UserController {
         if(!uNameService.validateUserName(name)) {
             return new ResponseEntity<>("Contained restricted word.",HttpStatus.BAD_REQUEST); //400
         }
-        if(!uNameService.setUserName(googleId, name)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        String result = uNameService.setUserName(googleId, name);
+        switch (result) {
+            case "Not yet" -> {
+                return new ResponseEntity<>("Name can't be changed yet try again in " +
+                        uNameService.howLongToChangingName(googleId).format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")) + "."
+                        ,HttpStatus.CONFLICT);
+            }
+            case "Success" -> {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            case "Guest" -> {
+                return new ResponseEntity<>("Passed id belongs to guest.",HttpStatus.NOT_FOUND);
+            }
+            default -> {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }
     }
     @Deprecated

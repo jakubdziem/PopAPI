@@ -51,20 +51,34 @@ public class UNameServiceImpl implements UNameService {
         return exampleNames[random.nextInt(max - min + 1) + min] + count;
     }
     @Override
-    public boolean setUserName(String userId, String name) {
-        AtomicReference<Boolean> atomicReference = new AtomicReference<>();
+    public String setUserName(String userId, String name) {
+        AtomicReference<String> atomicReference = new AtomicReference<>();
         uNameRepository.findById(userId).ifPresentOrElse(
                 uName -> {
-                    atomicReference.set(true);
-                    uName.setName(name);
-                    uName.setLastUpdate(LocalDateTime.now());
-                    uNameRepository.save(uName);
+                    if(uName.getUser().isGuest()) {
+                        atomicReference.set("Guest");
+                    }
+                    if(LocalDateTime.now().isAfter(uName.getLastUpdate().plusMonths(1))) {
+                        atomicReference.set("Success");
+                        uName.setName(name);
+                        uName.setLastUpdate(LocalDateTime.now());
+                        uNameRepository.save(uName);
+                    } else {
+                        atomicReference.set("Not yet");
+                    }
                 },
-                () -> atomicReference.set(false)
+                () -> atomicReference.set("Not found")
         );
 
         return atomicReference.get();
     }
+
+    @Override
+    public LocalDateTime howLongToChangingName(String userId) {
+        UName uName = uNameRepository.findById(userId).get();
+        return uName.getLastUpdate().plusMonths(1);
+    }
+
     @Override
     public boolean validateUserName(String name) {
         if(name.length() < 3 || name.length() > 20) {
@@ -90,7 +104,7 @@ public class UNameServiceImpl implements UNameService {
     public UName initializeUserName(User user) {
         return uNameRepository.save(UName.builder()
                 .user(user)
-                .lastUpdate(LocalDateTime.now())
+                .lastUpdate(LocalDateTime.MIN)
                 .name("Not assigned")
                 .build());
 

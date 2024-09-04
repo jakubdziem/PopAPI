@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
         user.setGuest(guest);
         user.setUName(UName.builder()
                 .name(uNameService.generateRandomUserName())
-                .lastUpdate(LocalDateTime.now())
+                .lastUpdate(LocalDateTime.of(2000,1,1,0,0,0,0))
                 .user(user)
                 .build());
         return userRepository.save(user);
