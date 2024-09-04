@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicReference;
@@ -58,7 +59,7 @@ public class UNameServiceImpl implements UNameService {
                     if(uName.getUser().isGuest()) {
                         atomicReference.set("Guest");
                     }
-                    if(LocalDateTime.now().isAfter(uName.getLastUpdate().plusMonths(1))) {
+                    if(LocalDateTime.now().isAfter(LocalDateTime.of(uName.getLastUpdate().toLocalDate().plusMonths(1), LocalTime.of(0,0,0,0)))) {
                         atomicReference.set("Success");
                         uName.setName(name);
                         uName.setLastUpdate(LocalDateTime.now());
@@ -76,7 +77,7 @@ public class UNameServiceImpl implements UNameService {
     @Override
     public LocalDateTime howLongToChangingName(String userId) {
         UName uName = uNameRepository.findById(userId).get();
-        return uName.getLastUpdate().plusMonths(1);
+        return LocalDateTime.of(uName.getLastUpdate().toLocalDate().plusMonths(1), LocalTime.of(0,0,0,0));
     }
 
     @Override

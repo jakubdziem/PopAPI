@@ -55,7 +55,7 @@ public class UserController {
         String result = uNameService.setUserName(googleId, name);
         switch (result) {
             case "Not yet" -> {
-                return new ResponseEntity<>(uNameService.howLongToChangingName(googleId).toString(),HttpStatus.CONFLICT);
+                return new ResponseEntity<>(uNameService.howLongToChangingName(googleId).toLocalDate().toString(),HttpStatus.CONFLICT);
             }
             case "Success" -> {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
