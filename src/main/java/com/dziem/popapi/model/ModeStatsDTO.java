@@ -17,4 +17,5 @@ public class ModeStatsDTO {
     private Long totalScoredPoints;
     private Integer numberOfWonGames;
     private String mode;
+    private Integer bestScore;
 }
