@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,20 +50,18 @@ public class UserController {
     @PutMapping("api/v1/set_name/{googleId}/{name}")
     public ResponseEntity<String> setUserNameForGoogleUser(@PathVariable String googleId, @PathVariable String name) {
         if(!uNameService.validateUserName(name)) {
-            return new ResponseEntity<>("Contained restricted word.",HttpStatus.BAD_REQUEST); //400
+            return new ResponseEntity<>("Contained restricted word.", HttpStatus.BAD_REQUEST); //400
         }
         String result = uNameService.setUserName(googleId, name);
         switch (result) {
             case "Not yet" -> {
-                return new ResponseEntity<>("Name can't be changed yet try again in " +
-                        uNameService.howLongToChangingName(googleId).format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")) + "."
-                        ,HttpStatus.CONFLICT);
+                return new ResponseEntity<>(uNameService.howLongToChangingName(googleId).toString(),HttpStatus.CONFLICT);
             }
             case "Success" -> {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
             case "Guest" -> {
-                return new ResponseEntity<>("Passed id belongs to guest.",HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("Passed id belongs to guest.", HttpStatus.NOT_FOUND);
             }
             default -> {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
