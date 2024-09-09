@@ -120,6 +120,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValue(Float.parseFloat(artistDTO.getLeadStreams().replace(",","")))
                     .comparableValueLabel("streams")
                     .imageUrl(artistDTO.getImageUrl())
+                    .tier(1)
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
@@ -136,6 +137,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValue(Float.parseFloat(songDTO.getTotalStreams().replace(",","")))
                     .comparableValueLabel("streams")
                     .imageUrl(songDTO.getImageUrl())
+                    .tier(1)
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
@@ -152,6 +154,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValue(driver.getScore())
                     .comparableValueLabel("points")
                     .imageUrl(driver.getImageUrl())
+                    .tier(1)
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
@@ -168,6 +171,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValue(apartment.getPrice())
                     .comparableValueLabel(sign)
                     .imageUrl(apartment.getImageUrl())
+                    .tier(1)
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
