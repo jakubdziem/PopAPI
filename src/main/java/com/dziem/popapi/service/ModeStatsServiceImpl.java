@@ -98,13 +98,14 @@ public class ModeStatsServiceImpl implements ModeStatsService {
             countryDTOS = countryService.findCountriesByDistinctYear(year, false);
         }
         for(CountryDTO countryDTO : countryDTOS) {
-            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+            BaseGameModelDTO baseGameModelDTOCountry = BaseGameModelDTO.builder()
                     .name(countryDTO.getCountryName())
                     .comparableValue(Float.parseFloat(countryDTO.getYearAndPopulations().getFirst().getPopulation()))
                     .comparableValueLabel("population")
                     .imageUrl(countryDTO.getFlagUrl())
+                    .tier(countryDTO.getYearAndPopulations().getFirst().getTier())
                     .build();
-            baseGameModelDTOS.add(baseGameModelDTO);
+            baseGameModelDTOS.add(baseGameModelDTOCountry);
         }
         return baseGameModelDTOS;
     }

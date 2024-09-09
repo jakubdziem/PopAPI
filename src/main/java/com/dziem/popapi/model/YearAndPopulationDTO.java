@@ -9,4 +9,5 @@ public class YearAndPopulationDTO {
     private String population;
     private String annualGrowth;
     private Country country;
+    private Integer tier;
 }

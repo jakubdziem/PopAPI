@@ -17,4 +17,5 @@ public class YearAndPopulation {
     @JoinColumn(name = "country_name", referencedColumnName = "countryName")
     @JsonBackReference
     private Country country;
+    private Integer tier;
 }
