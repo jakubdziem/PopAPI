@@ -103,7 +103,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValue(Float.parseFloat(countryDTO.getYearAndPopulations().getFirst().getPopulation()))
                     .comparableValueLabel("population")
                     .imageUrl(countryDTO.getFlagUrl())
-                    .tier(countryDTO.getYearAndPopulations().getFirst().getTier())
+                    .tier(countryDTO.getYearAndPopulations().getFirst().getTier() == null ? 1 : countryDTO.getYearAndPopulations().getFirst().getTier())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTOCountry);
         }
