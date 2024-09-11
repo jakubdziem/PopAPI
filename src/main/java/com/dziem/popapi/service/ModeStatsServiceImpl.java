@@ -49,7 +49,6 @@ public class ModeStatsServiceImpl implements ModeStatsService {
             modeStatsExisting.setTotalScoredPoints(modeStatsExisting.getTotalScoredPoints()+ scoredPoints);
             if(split[2].equals("y")) {
                 modeStatsExisting.setNumberOfWonGames(modeStatsExisting.getNumberOfWonGames() + 1);
-                //tez w wonGames table zaaktualizowac jak juz sie pojawi ta tablea
             }
             modeStatsExisting.setAvgScore(StatsServiceImpl.calculateAvgScore(modeStatsExisting.getTotalScoredPoints(), modeStatsExisting.getTotalGamePlayed()));
             modeStatsRepository.save(modeStatsExisting);
@@ -103,15 +102,10 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValue(Float.parseFloat(countryDTO.getYearAndPopulations().getFirst().getPopulation()))
                     .comparableValueLabel("population")
                     .imageUrl(countryDTO.getFlagUrl())
-                    // to do
-                    .tier(countryDTO.getYearAndPopulations().getFirst().getTier() == null ? 1 : countryDTO.getYearAndPopulations().getFirst().getTier())
+                    .tier(countryDTO.getYearAndPopulations().getFirst().getTier())
+                    //countryDTO.getYearAndPopulations().getFirst().getTier() == null ? 1 : countryDTO.getYearAndPopulations().getFirst().getTier()
                     .build();
             baseGameModelDTOS.add(baseGameModelDTOCountry);
-            System.out.println(countryDTO.getCountryName());
-            for(YearAndPopulation yearAndPopulation : countryDTO.getYearAndPopulations()) {
-                System.out.println(yearAndPopulation.getCountry().getCountryName());
-            }
-            System.out.println(countryDTO.getYearAndPopulations().getFirst().getTier());
         }
         return baseGameModelDTOS;
     }

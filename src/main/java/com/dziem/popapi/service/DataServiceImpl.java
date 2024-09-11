@@ -2,10 +2,7 @@ package com.dziem.popapi.service;
 
 import com.dziem.popapi.formatter.FirstLineOfFormatSongsFiles;
 import com.dziem.popapi.formatter.SpotifyTopArtistDataFormatter;
-import com.dziem.popapi.model.Artist;
-import com.dziem.popapi.model.Country;
-import com.dziem.popapi.model.Song;
-import com.dziem.popapi.model.YearAndPopulation;
+import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.ArtistRepository;
 import com.dziem.popapi.repository.CountryRepository;
 import com.dziem.popapi.repository.SongRepository;
@@ -22,6 +19,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -32,13 +30,20 @@ public class DataServiceImpl implements DataService {
     private final YearAndPopulationRepository yearAndPopulationRepository;
     private final ArtistRepository artistRepository;
     private final SongRepository songRepository;
+    private final CountryService countryService;
     @Override
     @Transactional
     public void getData2024_2100() {
-        try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/2024-2100 data.txt"))) {
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/data/2024-2100 data.txt"))) {
+            HashMap<String, Integer> countryNameAndTier = new HashMap<>();
+            for(CountryDTO countryDTO : countryService.findCountriesByDistinctYear("2023", false)) {
+                String countryName = countryDTO.getYearAndPopulations().getFirst().getCountry().getCountryName();
+                Integer tier = countryDTO.getYearAndPopulations().getFirst().getTier();
+                countryNameAndTier.put(countryName, tier);
+            }
             List<Country> countries = new ArrayList<>();
             reader.lines().skip(1).forEach(line -> {
-                Country country = getCountry(line);
+                Country country = getCountry(line, countryNameAndTier);
                 countries.add(country);
             });
             countryRepository.saveAll(countries); // Batch save
@@ -48,17 +53,22 @@ public class DataServiceImpl implements DataService {
     }
 
 
-    private Country getCountry(String line) {
+    private Country getCountry(String line, HashMap<String, Integer> countryNameAndTier) {
         String[] values = line.split(",");
+        YearAndPopulation yearAndPopulation = new YearAndPopulation();
+        yearAndPopulation.setYearOfMeasurement(values[values.length - 4].replace("\"", ""));
         Country country = new Country();
-        country.setCountryName(values[0].replace("\"", ""));
+        String countryName = values[0].replace("\"", "");
+        country.setCountryName(countryName);
+
+        Integer tier = countryNameAndTier.get(countryName);
+        yearAndPopulation.setTier(tier);
+
         if(country.getCountryName().equals("Korea")) {
             country.setCountryName(values[1].substring(1,6) + " Korea");
         }
         country.setGENC(values[values.length - 5].replace("\"", ""));
         country.setFlagUrl("/images/" + country.getGENC().toLowerCase() + ".png");
-        YearAndPopulation yearAndPopulation = new YearAndPopulation();
-        yearAndPopulation.setYearOfMeasurement(values[values.length - 4].replace("\"", ""));
         yearAndPopulationDefaultSet(country, values, yearAndPopulation);
         return country;
     }
@@ -84,6 +94,7 @@ public class DataServiceImpl implements DataService {
                 newEntry.setAnnualGrowth(y.getAnnualGrowth());
                 newEntry.setYearOfMeasurement(currentYear);
                 newEntry.setCountry(y.getCountry());
+                newEntry.setTier(y.getTier());
 
                 double annualGrowth = y.getAnnualGrowth().startsWith("-") ?
                         -Double.parseDouble(y.getAnnualGrowth().substring(1).replace(',','.')) :
@@ -91,7 +102,7 @@ public class DataServiceImpl implements DataService {
 
                 BigDecimal population = new BigDecimal(y.getPopulation());
                 BigDecimal populationCalculated = population.add(population.multiply(BigDecimal.valueOf(annualGrowth / 100)));
-
+                newEntry.setTier(y.getTier());
                 newEntry.setPopulation(populationCalculated.toString());
                 toSave.add(newEntry);
             }

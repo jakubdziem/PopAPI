@@ -87,12 +87,15 @@ public class CountryServiceImpl implements CountryService{
                 break;
             }
             default: {
-                if(yearNum >= 2024 && yearNum <= 2150) {
+                if(yearNum >= 2023 && yearNum <= 2150) {
                     yearAndPopulationList = allYearsAndPopulations.stream().filter(yearAndPopulation ->
                             (!yearAndPopulation.getCountry().getCountryName().endsWith("1989") &&
                                     !yearAndPopulation.getCountry().getCountryName().endsWith("1900") &&
                                     !yearAndPopulation.getCountry().getCountryName().endsWith("1939"))
                                     && yearAndPopulation.getYearOfMeasurement().equals(String.valueOf(yearNum))).toList();
+//                    for(YearAndPopulation yearAndPopulation : yearAndPopulationList) {
+//                        System.out.println(yearAndPopulation);
+//                    }
                 } else {
                     return new ArrayList<>();
                 }
@@ -118,7 +121,7 @@ public class CountryServiceImpl implements CountryService{
                 break;
             }
             default: {
-                if(yearNum >= 2024 && yearNum <= 2150) {
+                if(yearNum >= 2023 && yearNum <= 2150) {
                     countries = allCountries.stream().filter(c ->
                             (!c.getCountryName().endsWith("1989") &&
                                     !c.getCountryName().endsWith("1900") &&
