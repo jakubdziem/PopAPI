@@ -106,6 +106,11 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .tier(countryDTO.getYearAndPopulations().getFirst().getTier() == null ? 1 : countryDTO.getYearAndPopulations().getFirst().getTier())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTOCountry);
+            System.out.println(countryDTO.getCountryName());
+            for(YearAndPopulation yearAndPopulation : countryDTO.getYearAndPopulations()) {
+                System.out.println(yearAndPopulation.getCountry().getCountryName());
+            }
+            System.out.println(countryDTO.getYearAndPopulations().getFirst().getTier());
         }
         return baseGameModelDTOS;
     }

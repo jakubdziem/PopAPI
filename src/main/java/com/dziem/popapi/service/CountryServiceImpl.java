@@ -46,7 +46,8 @@ public class CountryServiceImpl implements CountryService{
         List<CountryDTO> countryDTOS = new ArrayList<>();
         for (int i = 0; i < countries.size(); i++) {
             List<YearAndPopulation> singleYearAndPopulation = new ArrayList<>();
-            singleYearAndPopulation.add(yearAndPopulationList.get(i));
+            int index = i;
+            singleYearAndPopulation.add(yearAndPopulationList.stream().filter(c -> c.getCountry().getCountryName().equals(countries.get(index).getCountryName())).toList().get(0));
 
             countries.get(i).setYearAndPopulations(singleYearAndPopulation);
 
