@@ -18,4 +18,6 @@ public class Artist {
     String leadStreams;
     String imageUrl;
     LocalDate lastUpdate;
+    private Integer tier;
+
 }

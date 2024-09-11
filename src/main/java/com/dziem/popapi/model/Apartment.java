@@ -14,4 +14,5 @@ public class Apartment {
     private Float price;
     private String category;
     private String imageUrl;
+    private Integer tier;
 }

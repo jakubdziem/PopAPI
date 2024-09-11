@@ -14,4 +14,6 @@ public class ArtistDTO {
     String imageUrl;
     @JsonIgnore
     LocalDate lastUpdate;
+    @JsonIgnore
+    private Integer tier;
 }

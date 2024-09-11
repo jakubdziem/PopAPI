@@ -20,4 +20,5 @@ public class Song {
     String imageUrl;
     String genre;
     LocalDate lastUpdate;
+    private Integer tier;
 }

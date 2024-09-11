@@ -17,4 +17,6 @@ public class SongDTO {
     String genre;
     @JsonIgnore
     LocalDate lastUpdate;
+    @JsonIgnore
+    private Integer tier;
 }

@@ -103,6 +103,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValue(Float.parseFloat(countryDTO.getYearAndPopulations().getFirst().getPopulation()))
                     .comparableValueLabel("population")
                     .imageUrl(countryDTO.getFlagUrl())
+                    // to do
                     .tier(countryDTO.getYearAndPopulations().getFirst().getTier() == null ? 1 : countryDTO.getYearAndPopulations().getFirst().getTier())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTOCountry);
@@ -126,6 +127,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel("streams")
                     .imageUrl(artistDTO.getImageUrl())
                     .tier(1)
+                    // to do
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
@@ -143,6 +145,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel("streams")
                     .imageUrl(songDTO.getImageUrl())
                     .tier(1)
+                    // to do
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
@@ -159,7 +162,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValue(driver.getScore())
                     .comparableValueLabel("points")
                     .imageUrl(driver.getImageUrl())
-                    .tier(1)
+                    .tier(driver.getTier())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
@@ -176,7 +179,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValue(apartment.getPrice())
                     .comparableValueLabel(sign)
                     .imageUrl(apartment.getImageUrl())
-                    .tier(1)
+                    .tier(apartment.getTier())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }

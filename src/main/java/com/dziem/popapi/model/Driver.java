@@ -14,4 +14,6 @@ public class Driver {
     private String name;
     private Float score;
     private String imageUrl;
+    private Integer tier;
+
 }
