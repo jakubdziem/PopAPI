@@ -120,14 +120,13 @@ public class ModeStatsServiceImpl implements ModeStatsService {
     public List<BaseGameModelDTO> convertArtistDTOStoBaseGameModelDTO() {
         List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
         List<ArtistDTO> artistDTOS = artistService.getTop200Artists();
-        for(ArtistDTO artistDTO : artistDTOS) {
+        for(int i = 0; i < artistDTOS.size(); i++) {
             BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
-                    .name(artistDTO.getArtistName())
-                    .comparableValue(Float.parseFloat(artistDTO.getLeadStreams().replace(",","")))
+                    .name(artistDTOS.get(i).getArtistName())
+                    .comparableValue(Float.parseFloat(artistDTOS.get(i).getLeadStreams().replace(",","")))
                     .comparableValueLabel("streams")
-                    .imageUrl(artistDTO.getImageUrl())
-                    .tier(1)
-                    // to do
+                    .imageUrl(artistDTOS.get(i).getImageUrl())
+                    .tier(i < 50 ? 1 : 2)
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
@@ -138,14 +137,13 @@ public class ModeStatsServiceImpl implements ModeStatsService {
     public List<BaseGameModelDTO> convertSongDTOStoBaseGameModelDTO(String genre) {
         List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
         List<SongDTO> songDTOS = songService.getTop200SongsGenre(genre);
-        for(SongDTO songDTO : songDTOS) {
+        for(int i = 0; i < songDTOS.size(); i++) {
             BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
-                    .name(songDTO.getSongName() + " - " + songDTO.getArtistName())
-                    .comparableValue(Float.parseFloat(songDTO.getTotalStreams().replace(",","")))
+                    .name(songDTOS.get(i).getSongName() + " - " + songDTOS.get(i).getArtistName())
+                    .comparableValue(Float.parseFloat(songDTOS.get(i).getTotalStreams().replace(",","")))
                     .comparableValueLabel("streams")
-                    .imageUrl(songDTO.getImageUrl())
-                    .tier(1)
-                    // to do
+                    .imageUrl(songDTOS.get(i).getImageUrl())
+                    .tier(i < 50 ? 1 : 2)
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
