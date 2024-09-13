@@ -16,4 +16,6 @@ public interface ModeStatsService {
     List<BaseGameModelDTO> convertFormulaToBaseGameModelDTO();
 
     List<BaseGameModelDTO> convertApartmentToBaseGameModelDTO(String country, String sign);
+
+    List<BaseGameModelDTO> convertHistoryToBaseGameModelDTO();
 }

@@ -30,6 +30,7 @@ public class ModeController {
             case Mode.FORMULA_TOP_SCORE -> modeStatsService.convertFormulaToBaseGameModelDTO();
             case Mode.APARTMENTS_WORLD -> modeStatsService.convertApartmentToBaseGameModelDTO("World", "$ per m²");
             case Mode.APARTMENTS_POLAND -> modeStatsService.convertApartmentToBaseGameModelDTO("Poland", "zł per m²");
+            case Mode.HISTORY -> modeStatsService.convertHistoryToBaseGameModelDTO();
         };
     }
 }

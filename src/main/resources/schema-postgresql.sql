@@ -113,4 +113,13 @@ CREATE TABLE APARTMENT (
         score double precision,
         category VARCHAR(255),
         image_url VARCHAR(255)
-)
+);
+
+CREATE TABLE history(
+                        id SERIAL PRIMARY KEY,
+                        name varchar(255),
+                        year varchar(255),
+                        image_url varchar(255),
+                        tier integer,
+                        era varchar(2)
+);

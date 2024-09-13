@@ -2,6 +2,7 @@ package com.dziem.popapi.service;
 
 import com.dziem.popapi.mapper.ModeStatsMapper;
 import com.dziem.popapi.model.*;
+import com.dziem.popapi.repository.HistoryRepository;
 import com.dziem.popapi.repository.ModeStatsRepository;
 import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
     private final UserRepository userRepository;
     private final DriverService driverService;
     private final ApartmentService apartmentService;
+    private final HistoryRepository historyRepository;
     @Override
     public ModeStats initializeModeStats(User user, String mode) {
         ModeStats modeStats = new ModeStats();
@@ -172,6 +174,23 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel(sign)
                     .imageUrl(apartment.getImageUrl())
                     .tier(apartment.getTier())
+                    .build();
+            baseGameModelDTOS.add(baseGameModelDTO);
+        }
+        return baseGameModelDTOS;
+    }
+
+    @Override
+    public List<BaseGameModelDTO> convertHistoryToBaseGameModelDTO() {
+        List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
+        List<History> historyEvents = historyRepository.findAll();
+        for(History historyEvent : historyEvents) {
+            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+                    .name(historyEvent.getName())
+                    .comparableValue(Float.parseFloat(historyEvent.getYear()))
+                    .comparableValueLabel(historyEvent.getEra())
+                    .imageUrl(historyEvent.getImageUrl())
+                    .tier(historyEvent.getTier())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
