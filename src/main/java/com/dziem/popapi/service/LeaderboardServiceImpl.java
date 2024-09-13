@@ -26,7 +26,8 @@ public class LeaderboardServiceImpl implements LeaderboardService {
             LeaderboardDTO leaderboardDTO = leaderboardMapper.leaderboardtoLeaderboardDTO(leaderboard);
             leaderboardDTOList.add(leaderboardDTO);
         }
-        return leaderboardDTOList.stream().sorted(Comparator.comparingInt(LeaderboardDTO::getScore).reversed()).toList();
+        return leaderboardDTOList.stream().sorted((o1, o2) -> (o1.compareTo(o2) == 0 ? (o1.getId() < o2.getId() ? -1 : 1) : o1.compareTo(o2))).toList();
+        //it's reversed, because I couldn't find using reversed() in lambda
     }
 
     @Override
