@@ -1180,7 +1180,6 @@
 -- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('An Lushan Rebellion in China', '755', '/images/history/an_lushan_rebellion.png', 2,'AD');
 -- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Council of Clermont', '1095', '/images/history/council_of_clermont.png', 2,'AD');
 -- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Foundation of the Order of Saint Benedict', '529', '/images/history/order_of_saint_benedict.png', 2,'AD');
--- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Battle of Tours', '732', '/images/history/battle_of_tours.png', 2,'AD');
 -- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Otto the Great crowned Emperor of the Holy Roman Empire', '962', '/images/history/otto_the_great.png', 2,'AD');
 -- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Khmer Empire begins rise to power', '802', '/images/history/khmer_empire_rise.png', 2,'AD');
 -- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Clovis I converts to Christianity', '496', '/images/history/clovis_converts.png', 2,'AD');
@@ -1267,6 +1266,5 @@
 -- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Destruction of Jerusalem by Rome', '70', '/images/history/destruction_of_jerusalem.png', 1, 'AD');
 -- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Edict of Milan (Christianity legalized)', '313', '/images/history/edict_of_milan.png', 1, 'AD');
 -- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Council of Nicaea', '325', '/images/history/council_of_nicaea.png', 1, 'AD');
--- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Fall of the Western Roman Empire', '476', '/images/history/fall_of_western_roman_empire.png', 1, 'AD');
 -- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Clovis I unites the Franks', '481', '/images/history/clovis_unites_franks.png', 2, 'AD');
 -- INSERT INTO HISTORY (NAME, YEAR, IMAGE_URL, TIER, ERA) VALUES ('Battle of Chalons (Romans defeat Attila the Hun)', '451', '/images/history/battle_of_chalons.png', 2, 'AD');
