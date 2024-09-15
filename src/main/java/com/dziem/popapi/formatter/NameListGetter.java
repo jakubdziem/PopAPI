@@ -22,9 +22,9 @@ public class NameListGetter {
         for(Artist artist : artists) {
             artistsNames.add(artist.getArtistName());
         }
-        try (FileWriter myWriter = new FileWriter("src/main/resources/spotifyArtistsInFormatSuitableToExtractImages.txt", false)){
-            for(int i = 0; i < artistsNames.size(); i++) {
-                myWriter.write(artistsNames.get(i)+"\n");
+        try (FileWriter myWriter = new FileWriter("src/main/resources/data/spotifyArtistsInFormatSuitableToExtractImages.txt", false)){
+            for (String artistsName : artistsNames) {
+                myWriter.write(artistsName + "\n");
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -40,8 +40,8 @@ public class NameListGetter {
             songNames.add(song.getSongName() + ";" + song.getArtistName());
         }
         try (FileWriter myWriter = new FileWriter("src/main/resources/data/spotifySongsInFormatSuitableToExtractImages.txt", false)){
-            for(int i = 0; i < songNames.size(); i++) {
-                myWriter.write(songNames.get(i)+"\n");
+            for (String songName : songNames) {
+                myWriter.write(songName + "\n");
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");

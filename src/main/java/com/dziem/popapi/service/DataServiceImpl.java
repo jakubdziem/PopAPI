@@ -180,18 +180,48 @@ public class DataServiceImpl implements DataService {
     public void getDataSpotifyTopArtists() {
         LocalDate date = LocalDate.MIN;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/spotifyTopArtistData.txt");
+//        String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/data/spotifyTopArtistData.txt");
+        String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFileNew("src/main/resources/data/artist.txt");
         String[] split = dateAndAllSongs.split("\n");
         for(int i = 0; i < split.length; i++) {
             if(i==0) {
                 date = LocalDate.parse(split[i], formatter);
-            } else {
-                Artist artist = getArtist(split[i], date);
+            } else if(!split[i].isEmpty()){
+                Artist artist = getArtistNew(split[i], date);
                 artistRepository.save(artist);
             }
         }
     }
 
+    private Artist getArtistNew(String line, LocalDate lastUpdate) {
+        Artist artist = new Artist();
+        artist.setLastUpdate(lastUpdate);
+        String[] split = line.split(" ");
+        String artistName = "";
+        //skip rank
+        int i = 1;
+        List<String> numbers = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
+        while(!split[i].contains(",") || !numbers.contains(split[i].substring(0,1))) {
+            artistName = artistName.concat(split[i]).concat(" ");
+            i++;
+        }
+        artistName = artistName.substring(0,artistName.length()-1);
+        artist.setArtistName(artistName);
+        artist.setLeadStreams(split[i]);
+        artist.setImageUrl("/images/spotify/" + artist.getArtistName()
+                .replace('/', ' ')
+                .replace('?', ' ')
+                .replace('*', ' ')
+                .replace(':', ' ')
+                .replace('\"', ' ')
+                .replace('\\', ' ')
+                .replace('<', ' ')
+                .replace('>', ' ')
+                .replace('|', ' ') + ".jpg");
+        return artist;
+    }
+
+    @Deprecated
     private Artist getArtist(String line, LocalDate lastUpdate) {
         Artist artist = new Artist();
         artist.setLastUpdate(lastUpdate);
