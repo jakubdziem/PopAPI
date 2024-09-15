@@ -32,5 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 **/private
+**/src/main/java/com/dziem/popapi/scrapping/
 
 
