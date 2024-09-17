@@ -12,5 +12,5 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
     @Query(value = "SELECT DISTINCT(LAST_UPDATE) FROM ARTIST", nativeQuery = true)
     List<Date> findAllDates();
     @Query(value = "SELECT * FROM ARTIST WHERE LAST_UPDATE = ?1", nativeQuery = true)
-    List<Artist> findAllArtistFromCertainUpdate(LocalDate localDate);
+    List<Artist> findAllArtistsFromCertainUpdate(LocalDate localDate);
 }
