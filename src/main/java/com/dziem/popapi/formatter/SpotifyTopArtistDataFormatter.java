@@ -9,33 +9,9 @@ import java.util.stream.Stream;
 public class SpotifyTopArtistDataFormatter {
     public static void main(String[] args) {
 //        System.out.println(formatSpotifyFile("src/main/resources/data/artist.txt"));
-        System.out.println(formatSpotifyFileNew("src/main/resources/data/artist.txt"));
+        System.out.println(formatSpotifyFile("src/main/resources/data/artist.txt"));
     }
-
     public static String formatSpotifyFile(String path) {
-        AtomicReference<String> res = new AtomicReference<>("");
-        try (Stream<String> stream = Files.lines(Paths.get(path))) {
-            stream.forEach(line -> res.set(res.get().concat(line).concat("\n")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String[] strip = res.get().split("\n");
-        String formattedString = "";
-        for(int i = 0; i < strip.length; i++) {
-            if(i==0) {
-                formattedString = formattedString.concat(strip[i]).concat("\n");
-            } else {
-                String[] split = strip[i].split(" ");
-                String artistName = "";
-                for(int j = 1; j <= split.length/2; j++) {
-                    artistName = artistName.concat(split[j]).concat(i == split.length/2 ? "" : " ");
-                }
-                formattedString = formattedString.concat(strip[i]).concat(i % 2 == 1 ? ";" : "\n");
-            }
-        }
-        return formattedString;
-    }
-    public static String formatSpotifyFileNew(String path) {
         AtomicReference<String> res = new AtomicReference<>("");
         try (Stream<String> stream = Files.lines(Paths.get(path))) {
             stream.forEach(line -> res.set(res.get().concat(line).concat("\n")));

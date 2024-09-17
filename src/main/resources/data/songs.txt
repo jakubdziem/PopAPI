@@ -1,0 +1,801 @@
+17.09.2024
+1;The Weeknd;Blinding Lights;4,450,462,626;Pop
+2;Ed Sheeran;Shape of You;4,010,583,736;Pop
+3;Lewis Capaldi;Someone You Loved;3,578,372,382;Pop
+4;Harry Styles;As It Was;3,534,115,343;Pop
+5;Post Malone & Swae Lee;Sunflower;3,507,814,397;Pop
+6;The Kid Laroi & Justin Bieber;Stay;3,257,410,725;Pop
+7;Tones And I;Dance Monkey;3,136,386,675;Pop
+8;Ed Sheeran;Perfect;3,081,761,603;Pop
+9;James Arthur;Say You Won't Let Go;2,977,565,531;Pop
+10;Billie Eilish & Khalid;Lovely;2,967,946,144;Pop
+11;Harry Styles;Watermelon Sugar;2,829,159,564;Pop
+12;Shawn Mendes & Camila Cabello;Señorita;2,816,285,807;Pop
+13;Dua Lipa;Don't Start Now;2,715,897,787;Pop
+14;Ed Sheeran;Photograph;2,610,980,568;Pop
+15;OneRepublic;Counting Stars;2,606,815,036;Pop
+16;Post Malone;Circles;2,582,234,156;Pop
+17;Ed Sheeran;Thinking Out Loud;2,567,157,283;Pop
+18;Justin Bieber;Love Yourself;2,513,727,921;Pop
+19;John Legend;All Of Me;2,468,061,707;Pop
+20;Taylor Swift;Cruel Summer;2,464,378,813;Pop
+21;The Weeknd;Die For You;2,411,595,318;Pop
+22;Olivia Rodrigo;Drivers License;2,268,665,342;Pop
+23;Bruno Mars;When I Was Your Man;2,258,796,214;Pop
+24;Shawn Mendes;Treat You Better;2,256,233,714;Pop
+25;Bruno Mars;Just The Way You Are;2,245,322,061;Pop
+26;Miley Cyrus;Flowers;2,196,289,393;Pop
+27;Justin Bieber;Sorry;2,175,217,860;Pop
+28;Dua Lipa;New Rules;2,168,645,100;Pop
+29;Dua Lipa ft. DaBaby;Levitating (Remix);2,149,085,305;Pop
+30;Shawn Mendes;There's Nothing Holdin' Me Back;2,144,710,563;Pop
+31;Sam Smith;Too Good At Goodbyes;2,136,425,138;Pop
+32;Elton John & Dua Lipa ft. Pnau;Cold Heart (Pnau Remix);2,128,368,566;Pop
+33;Camila Cabello ft. Young Thug;Havana;2,124,437,541;Pop
+34;Halsey;Without Me;2,098,331,353;Pop
+35;The Weeknd;Save Your Tears;2,098,206,745;Pop
+36;Maroon 5;Memories;2,075,214,719;Pop
+37;a-ha;Take On Me;2,057,582,946;Pop
+38;Adele;Someone Like You;2,033,490,450;Pop
+39;Lukas Graham;7 Years;1,999,746,780;Pop
+40;Lewis Capaldi;Before You Go;1,999,563,863;Pop
+41;Post Malone;Better Now;1,997,192,907;Pop
+42;Shawn Mendes;Stitches;1,983,280,057;Pop
+43;Charlie Puth ft. Selena Gomez;We Don't Talk Anymore;1,955,600,661;Pop
+44;Lil Nas X;Montero (Call Me By Your Name);1,952,673,010;Pop
+45;Jason Mraz;I'm Yours;1,944,254,834;Pop
+46;Maroon 5 ft. Wiz Khalifa;Payphone;1,933,524,501;Pop
+47;BTS;Dynamite;1,926,340,826;Pop
+48;Billie Eilish;When The Party's Over;1,921,184,156;Pop
+49;Ariana Grande;Thank U, Next;1,919,541,141;Pop
+50;Doja Cat ft. SZA;Kiss Me More;1,909,856,612;Pop
+51;Taylor Swift;Blank Space;1,903,703,361;Pop
+52;Jung Kook ft. Latto;Seven;1,901,680,419;Pop
+53;Maroon 5;Sugar;1,900,363,010;Pop
+54;Toto;Africa;1,878,407,237;Pop
+55;Charlie Puth;Attention;1,862,269,899;Pop
+56;Ed Sheeran & Justin Bieber;I Don't Care;1,856,214,683;Pop
+57;Danny Ocean;Me Rehúso;1,852,783,628;Pop
+58;Adele;Easy On Me;1,845,744,094;Pop
+59;Lauv;I Like Me Better;1,832,847,932;Pop
+60;Sia;Cheap Thrills;1,814,554,035;Pop
+61;The Weeknd ft. Daft Punk;I Feel It Coming;1,807,423,812;Pop
+62;Sia;Chandelier;1,807,158,739;Pop
+63;The Weeknd;Can't Feel My Face;1,806,517,379;Pop
+64;Dean Lewis;Be Alright;1,805,966,720;Pop
+65;Ed Sheeran;Bad Habits;1,804,530,770;Pop
+66;Maroon 5;Maps;1,789,632,813;Pop
+67;Benny Blanco, Halsey & Khalid;Eastside;1,789,500,442;Pop
+68;Justin Timberlake;Can't Stop the Feeling!;1,782,307,310;Pop
+69;Alec Benjamin;Let Me Down Slowly;1,782,252,440;Pop
+70;Tears For Fears;Everybody Wants To Rule The World;1,777,357,856;Pop
+71;Shakira ft. Wyclef Jean;Hips Don't Lie;1,771,927,349;Pop
+72;Conan Gray;Heather;1,768,557,248;Pop
+73;Zayn ft. Sia;Dusk Till Dawn;1,763,603,548;Pop
+74;Harry Styles;Adore You;1,739,387,518;Pop
+75;OneRepublic;I Ain't Worried;1,738,759,424;Pop
+76;Christina Perri;A Thousand Years;1,733,641,633;Pop
+77;Ava Max;Sweet But Psycho;1,723,697,934;Pop
+78;Zayn & Taylor Swift;I Don’t Wanna Live Forever;1,718,462,625;Pop
+79;Adele;Set Fire To The Rain;1,714,706,463;Pop
+80;Justin Bieber;Ghost;1,693,227,902;Pop
+81;Miley Cyrus;Party In The U.S.A.;1,689,035,012;Pop
+82;Drake;Passionfruit;1,685,911,811;Pop
+83;Doja Cat;Woman;1,685,760,477;Pop
+84;DNCE;Cake By The Ocean;1,681,217,835;Pop
+85;Maroon 5 ft. Cardi B;Girls Like You (Remix);1,675,886,940;Pop
+86;Ruth B.;Dandelions;1,674,436,792;Pop
+87;Olivia Rodrigo;Traitor;1,660,008,913;Pop
+88;Taylor Swift;Anti-Hero;1,657,391,529;Pop
+89;Panic! At The Disco;High Hopes;1,654,838,586;Pop
+90;Justin Bieber;What Do You Mean?;1,651,466,537;Pop
+91;Ed Sheeran;Shivers;1,636,306,540;Pop
+92;The Weeknd & Ariana Grande;Save Your Tears (Remix);1,635,056,497;Pop
+93;Rihanna ft. Jay-Z;Umbrella;1,629,727,741;Pop
+94;Dua Lipa;IDGAF;1,627,433,802;Pop
+95;Sam Smith ft. Kim Petras;Unholy;1,626,763,780;Pop
+96;Train;Hey, Soul Sister;1,623,516,767;Pop
+97;Beyoncé;Halo;1,612,288,105;Pop
+98;Clean Bandit ft. Sean Paul & Anne-Marie;Rockabye;1,581,072,326;Pop
+99;Anne-Marie;2002;1,571,301,329;Pop
+100;Ellie Goulding;Love Me Like You Do;1,564,280,342;Pop
+101;Maroon 5;Moves Like Jagger;1,557,680,835;Pop
+102;Backstreet Boys;I Want It That Way;1,537,478,543;Pop
+103;The Script;Hall Of Fame;1,534,835,191;Pop
+104;Taylor Swift;Lover;1,531,824,270;Pop
+105;Clean Bandit ft. Zara Larsson;Symphony;1,515,767,929;Pop
+106;Katy Perry ft. Juicy J;Dark Horse;1,515,120,872;Pop
+107;Tate McRae;You Broke Me First;1,513,987,202;Pop
+108;Black Eyed Peas;I Gotta Feeling;1,513,535,538;Pop
+109;Zara Larsson;Lush Life;1,512,788,661;Pop
+110;Arizona Zervas;Roxanne;1,497,122,425;Pop
+111;Rihanna;Diamonds;1,490,249,498;Pop
+112;Coldplay ft. Beyoncé;Hymn For The Weekend;1,488,754,990;Pop
+113;Carly Rae Jepsen;Call Me Maybe;1,482,475,832;Pop
+114;Ariana Grande;Positions;1,480,132,432;Pop
+115;Taylor Swift;Shake It Off;1,475,043,845;Pop
+116;Alessia Cara;Scars To Your Beautiful;1,463,081,925;Pop
+117;Marshmello & Anne-Marie;Friends;1,462,689,120;Pop
+118;Fifth Harmony ft. Ty Dolla Sign;Work From Home;1,457,798,301;Pop
+119;Bruno Mars;Talking To The Moon;1,451,632,967;Pop
+120;Maroon 5;Animals;1,434,889,097;Pop
+121;Tate McRae;Greedy;1,434,433,049;Pop
+122;Gnash ft. Olivia O'Brien;I Hate U, I Love U;1,429,368,018;Pop
+123;Ariana Grande;Into You;1,428,166,192;Pop
+124;Rauw Alejandro;Todo De Ti;1,421,179,627;Pop
+125;Ed Sheeran ft. Khalid;Beautiful People;1,418,795,139;Pop
+126;ABBA;Dancing Queen;1,416,913,641;Pop
+127;P!nk ft. Nate Ruess;Just Give Me a Reason;1,410,858,069;Pop
+128;Shawn Mendes;Mercy;1,394,504,607;Pop
+129;Sam Smith & Normani;Dancing With A Stranger;1,393,550,401;Pop
+130;Sia;Unstoppable;1,388,432,039;Pop
+131;Bruno Mars;Grenade;1,383,056,116;Pop
+132;Lady Gaga;Poker Face;1,382,805,631;Pop
+133;Rihanna ft. Mikky Ekko;Stay;1,382,463,128;Pop
+134;Pitbull ft. Ne-Yo;Time Of Our Lives;1,381,666,583;Pop
+135;Jessie J, Ariana Grande & Nicki Minaj;Bang Bang;1,379,870,002;Pop
+136;Britney Spears;Toxic;1,372,870,348;Pop
+137;Coldplay;Paradise;1,369,474,475;Pop
+138;Drake;Hotline Bling;1,364,757,299;Pop
+139;One Direction;What Makes You Beautiful;1,357,373,538;Pop
+140;Ariana Grande;No Tears Left To Cry;1,357,215,108;Pop
+141;Ed Sheeran;Happier;1,346,551,827;Pop
+142;Joji;Glimpse Of Us;1,332,326,183;Pop
+143;Coldplay;My Universe;1,323,119,335;Pop
+144;Lady Gaga;Bad Romance;1,305,159,924;Pop
+145;Pitbull ft. Ne-Yo, Afrojack & Nayer;Give Me Everything;1,295,471,128;Pop
+146;Kesha;Tik Tok;1,288,744,414;Pop
+147;BTS;Butter;1,287,621,870;Pop
+148;Whitney Houston;I Wanna Dance with Somebody (Who Loves Me);1,283,960,430;Pop
+149;Karol G;Provenza;1,278,305,154;Pop
+150;Nelly Furtado;Promiscuous;1,276,573,537;Pop
+151;Sabrina Carpenter;Espresso;1,272,892,145;Pop
+152;Taylor Swift;Style;1,272,130,342;Pop
+153;Harry Styles;Falling;1,272,097,007;Pop
+154;Calum Scott;Dancing On My Own;1,271,655,906;Pop
+155;Selena Gomez;Lose You To Love Me;1,254,331,674;Pop
+156;Cyndi Lauper;Girls Just Want To Have Fun;1,249,854,657;Pop
+157;Maroon 5 ft. SZA;What Lovers Do;1,238,219,502;Pop
+158;Dua Lipa;Break My Heart;1,237,444,965;Pop
+159;Duncan Laurence;Arcade;1,237,353,299;Pop
+160;Julia Michaels;Issues;1,236,249,564;Pop
+161;Katy Perry;Last Friday Night (T.G.I.F.);1,232,618,105;Pop
+162;Doja Cat;Say So;1,225,294,338;Pop
+163;Taylor Swift;Don’t Blame Me;1,210,312,998;Pop
+164;DJ Khaled ft. Rihanna & Bryson Tiller;Wild Thoughts;1,207,521,530;Pop
+165;Olivia Rodrigo;Happier;1,207,477,467;Pop
+166;Katy Perry;Roar;1,207,071,599;Pop
+167;Taylor Swift;Look What You Made Me Do;1,204,060,022;Pop
+168;Jvke;Golden Hour;1,199,493,570;Pop
+169;Nicki Minaj;Starships;1,194,643,952;Pop
+170;Ariana Grande;Dangerous Woman;1,186,147,116;Pop
+171;Rihanna;Only Girl (In The World);1,183,917,283;Pop
+172;JP Saxe ft. Julia Michaels;If the World Was Ending;1,183,217,958;Pop
+173;Lewis Capaldi;Bruises;1,177,622,634;Pop
+174;One Direction;Drag Me Down;1,175,774,975;Pop
+175;Pedro Capó & Farruko;Calma (Remix);1,175,297,116;Pop
+176;Demi Lovato;Sorry Not Sorry;1,172,955,711;Pop
+177;Elton John;I'm Still Standing;1,172,523,386;Pop
+178;Rihanna, Kanye West & Paul McCartney;FourFiveSeconds;1,168,611,011;Pop
+179;Elley Duhé;Middle Of The Night;1,168,267,554;Pop
+180;Elton John;Rocket Man (I Think It's Going To Be A Long, Long Time);1,160,139,292;Pop
+181;Ariana Grande & Justin Bieber;Stuck With U;1,158,072,516;Pop
+182;Ali Gatie;It's You;1,155,502,123;Pop
+183;Rudimental ft. Jess Glynne, Macklemore, & Dan Caplen;These Days;1,153,925,368;Pop
+184;Calvin Harris ft. Pharrell Williams, Katy Perry & Big Sean;Feels;1,152,829,103;Pop
+185;Spice Girls;Wannabe;1,148,352,244;Pop
+186;Olivia Rodrigo;Favorite Crime;1,138,135,146;Pop
+187;Lady Gaga;Just Dance;1,137,631,193;Pop
+188;Jason Derulo ft. Nicki Minaj & Ty Dolla Sign;Swalla;1,135,864,349;Pop
+189;Katy Perry;Firework;1,130,633,852;Pop
+190;Billie Eilish;Idontwannabeyouanymore;1,127,172,662;Pop
+191;Taio Cruz;Dynamite;1,120,814,300;Pop
+192;Rihanna;S&M;1,118,813,720;Pop
+193;Rosa Linn;Snap;1,117,391,866;Pop
+194;Olivia Rodrigo;Vampire;1,110,678,155;Pop
+195;Natasha Bedingfield;Unwritten;1,109,996,151;Pop
+196;George Michael;Careless Whisper;1,105,365,119;Pop
+197;Flo Rida;My House;1,104,786,254;Pop
+198;Imagine Dragons;Bad Liar;1,098,991,561;Pop
+199;Stephen Sanchez;Until I Found You;1,096,117,884;Pop
+200;Adele;Send My Love (To Your New Lover);1,096,063,414;Pop
+1;Post Malone ft. 21 Savage;Rockstar;3,024,984,948;HipHop
+2;Juice WRLD;Lucid Dreams;2,622,906,405;HipHop
+3;Drake;God's Plan;2,594,589,838;HipHop
+4;Macklemore & Ryan Lewis ft. Ray Dalton;Can't Hold Us;2,535,635,679;HipHop
+5;Travis Scott ft. Kendrick Lamar;Goosebumps;2,518,410,330;HipHop
+6;J. Cole;No Role Modelz;2,338,271,801;HipHop
+7;Kendrick Lamar;Humble;2,332,199,628;HipHop
+8;Eminem;Lose Yourself;2,295,597,441;HipHop
+9;Eminem;Without Me;2,289,910,843;HipHop
+10;XXXTentacion;Sad!;2,263,525,950;HipHop
+11;XXXTentacion;Jocelyn Flores;2,242,608,775;HipHop
+12;Travis Scott ft. Drake;Sicko Mode;2,200,879,527;HipHop
+13;Lil Uzi Vert;XO Tour Llif3;2,197,583,088;HipHop
+14;Lil Nas X ft. Jack Harlow;Industry Baby;2,060,116,955;HipHop
+15;Post Malone ft. Quavo;Congratulations;2,038,577,270;HipHop
+16;Eminem ft. Nate Dogg;'Till I Collapse;2,038,008,014;HipHop
+17;Roddy Ricch;The Box;1,992,306,944;HipHop
+18;Wiz Khalifa ft. Charlie Puth;See You Again;1,959,300,538;HipHop
+19;XXXTentacion;Moonlight;1,950,749,629;HipHop
+20;24kGoldn ft. Iann Dior;Mood;1,930,787,573;HipHop
+21;Eminem;The Real Slim Shady;1,903,237,334;HipHop
+22;Coolio ft. L.V.;Gangsta's Paradise;1,803,952,853;HipHop
+23;Eminem;Mockingbird;1,799,158,754;HipHop
+24;Kendrick Lamar & SZA;All The Stars;1,766,398,662;HipHop
+25;Travis Scott;Highest In The Room;1,736,800,286;HipHop
+26;Post Malone;Wow.;1,728,701,462;HipHop
+27;XXXTentacion & Trippie Redd;Fuck Love;1,710,084,192;HipHop
+28;Powfu ft. Beabadoobee;Death Bed (Coffee For Your Head);1,706,231,552;HipHop
+29;Juice WRLD;All Girls Are The Same;1,684,339,630;HipHop
+30;Future;Mask Off;1,672,247,364;HipHop
+31;Post Malone;I Fall Apart;1,666,286,116;HipHop
+32;DaBaby ft. Roddy Ricch;Rockstar;1,662,657,604;HipHop
+33;Cardi B, Bad Bunny, & J Balvin;I Like It;1,658,972,744;HipHop
+34;XXXTentacion;Everybody Dies In Their Nightmares;1,656,161,685;HipHop
+35;Eminem ft. Rihanna;Love The Way You Lie;1,623,166,405;HipHop
+36;Offset & Metro Boomin;Ric Flair Drip;1,618,064,587;HipHop
+37;50 Cent;In Da Club;1,591,385,690;HipHop
+38;Kendrick Lamar ft. Jay Rock;Money Trees;1,582,638,304;HipHop
+39;Lil Nas X ft. Billy Ray Cyrus;Old Town Road (Remix);1,548,009,963;HipHop
+40;Post Malone ft. Ty Dolla Sign;Psycho;1,541,516,670;HipHop
+41;Lil Baby & Gunna;Drip Too Hard;1,541,409,141;HipHop
+42;Eminem ft. Juice WRLD;Godzilla;1,524,844,990;HipHop
+43;XXXTentacion;Hope;1,520,830,181;HipHop
+44;NF;Let You Down;1,507,683,152;HipHop
+45;Jay-Z & Kanye West;Ni**as In Paris;1,493,302,159;HipHop
+46;Travis Scott;Butterfly Effect;1,492,613,781;HipHop
+47;Dr. Dre ft. Snoop Dogg;Still D.R.E.;1,490,683,190;HipHop
+48;Snoop Dogg & Wiz Khalifa ft. Bruno Mars;Young, Wild & Free;1,485,973,120;HipHop
+49;XXXTentacion;Look At Me!;1,485,574,423;HipHop
+50;Kanye West;Stronger;1,451,580,066;HipHop
+51;Lil Tecca;Ransom;1,433,186,131;HipHop
+52;Kendrick Lamar ft. Zacari;Love;1,415,319,917;HipHop
+53;Kanye West;Heartless;1,414,911,265;HipHop
+54;Drake;In My Feelings;1,407,045,141;HipHop
+55;Tyga ft. Offset;Taste;1,390,486,967;HipHop
+56;Gym Class Heroes ft. Adam Levine;Stereo Hearts;1,375,771,257;HipHop
+57;Cardi B ft. Megan Thee Stallion;WAP;1,360,431,457;HipHop
+58;Internet Money ft. Gunna, Don Toliver & Nav;Lemonade;1,358,716,407;HipHop
+59;Logic ft. Alessia Cara & Khalid;1-800-273-8255;1,351,581,388;HipHop
+60;G-Eazy & Bebe Rexha;Me, Myself & I;1,340,434,002;HipHop
+61;Juice WRLD;Robbery;1,340,273,369;HipHop
+62;Lil Mosey;Blueberry Faygo;1,327,800,047;HipHop
+63;J. Cole;Middle Child;1,325,248,324;HipHop
+64;ASAP Rocky ft. Skepta;Praise The Lord (Da Shine);1,312,215,738;HipHop
+65;Drake;Nice For What;1,304,421,543;HipHop
+66;J. Cole;Wet Dreamz;1,295,615,227;HipHop
+67;Post Malone ft. Young Thug;Goodbyes;1,295,500,179;HipHop
+68;Macklemore & Ryan Lewis ft. Wanz;Thrift Shop;1,287,572,903;HipHop
+69;DJ Khaled ft. Justin Bieber, Quavo, Chance The Rapper & Lil Wayne;I'm the One;1,277,784,005;HipHop
+70;Masked Wolf;Astronaut In The Ocean;1,277,528,372;HipHop
+71;Lil Peep;Star Shopping;1,263,099,260;HipHop
+72;Future ft. Drake;Life Is Good;1,262,525,833;HipHop
+73;Lisa;Money;1,233,990,310;HipHop
+74;Meek Mill ft. Drake;Going Bad;1,221,727,882;HipHop
+75;Fetty Wap;Trap Queen;1,218,359,495;HipHop
+76;Kendrick Lamar;DNA;1,208,311,303;HipHop
+77;Kanye West ft. Jamie Foxx;Gold Digger;1,204,582,197;HipHop
+78;The Notorious B.I.G.;Hypnotize;1,202,949,069;HipHop
+79;Desiigner;Panda;1,195,619,817;HipHop
+80;Ice Cube;It Was A Good Day;1,189,666,055;HipHop
+81;Kanye West;Father Stretch My Hands Pt. 1;1,187,344,198;HipHop
+82;Doja Cat;Paint The Town Red;1,173,048,328;HipHop
+83;Eminem ft. Dido;Stan;1,172,337,136;HipHop
+84;21 Savage;Bank Account;1,171,945,308;HipHop
+85;Post Malone;White Iverson;1,162,214,336;HipHop
+86;Lil Wayne, Wiz Khalifa, Imagine Dragons, Logic & Ty Dolla Sign ft. X Ambassadors;Sucker For Pain;1,159,785,970;HipHop
+87;Kanye West;Flashing Lights;1,151,702,385;HipHop
+88;Lil Baby & Drake;Yes Indeed;1,146,399,598;HipHop
+89;Drake;Nonstop;1,143,162,609;HipHop
+90;Outkast;Ms. Jackson;1,143,052,924;HipHop
+91;Pop Smoke ft. Lil Baby & DaBaby;For The Night;1,142,616,502;HipHop
+92;Flo Rida ft. T-Pain;Low;1,120,639,238;HipHop
+93;Pop Smoke;Dior;1,106,348,108;HipHop
+94;Eminem;Rap God;1,104,071,248;HipHop
+95;Kodak Black ft. Travis Scott & Offset;Zeze;1,099,751,384;HipHop
+96;YNW Melly;Murder On My Mind;1,085,387,025;HipHop
+97;Jay-Z ft. Alicia Keys;Empire State Of Mind;1,085,151,482;HipHop
+98;Sheck Wes;Mo Bamba;1,084,004,068;HipHop
+99;Drake;Toosie Slide;1,076,615,666;HipHop
+100;Lil Uzi Vert;20 Min;1,076,309,216;HipHop
+101;The Notorious B.I.G.;Big Poppa;1,074,944,730;HipHop
+102;Eminem ft. Rihanna;The Monster;1,071,831,774;HipHop
+103;Post Malone;Go Flex;1,056,366,285;HipHop
+104;Black Eyed Peas;Where Is The Love?;1,055,383,588;HipHop
+105;Eminem;Not Afraid;1,054,921,972;HipHop
+106;Post Malone;Candy Paint;1,053,209,018;HipHop
+107;Jay-Z & Linkin Park;Numb / Encore;1,048,569,488;HipHop
+108;Gucci Mane, Bruno Mars & Kodak Black;Wake Up In The Sky;1,048,310,979;HipHop
+109;Dr. Dre ft. Snoop Dogg;The Next Episode;1,048,277,555;HipHop
+110;Drake ft. 21 Savage;Jimmy Cooks;1,034,012,635;HipHop
+111;Lil Nas X;Old Town Road;1,028,294,262;HipHop
+112;Lil Uzi Vert ft. Oh Wonder;The Way Life Goes;1,023,357,931;HipHop
+113;J. Cole;Work Out;1,012,320,756;HipHop
+114;Lizzo;Truth Hurts;1,004,872,392;HipHop
+115;50 Cent ft. Olivia;Candy Shop;1,003,919,650;HipHop
+116;Kanye West;Bound 2;1,002,924,968;HipHop
+117;Ty Dolla Sign ft. The Weeknd, Wiz Khalifa & Mustard;Or Nah (Remix);993,821,365;HipHop
+118;Rae Sremmurd ft. Gucci Mane;Black Beatles;993,641,892;HipHop
+119;BlocBoy JB ft. Drake;Look Alive;992,515,014;HipHop
+120;Drake ft. Rick Ross;Money In The Grave;992,101,252;HipHop
+121;G-Eazy & Halsey;Him & I;985,956,422;HipHop
+122;Juice WRLD & Marshmello;Come & Go;985,846,182;HipHop
+123;Drake ft. Lil Durk;Laugh Now Cry Later;985,564,039;HipHop
+124;21 Savage ft. J. Cole;A Lot;984,245,591;HipHop
+125;Y2K & bbno$;Lalala;983,360,221;HipHop
+126;XXXTentacion;The Remedy For A Broken Heart (Why Am I So In Love);981,343,215;HipHop
+127;Don Toliver;No Idea;981,314,404;HipHop
+128;Eminem ft. Dina Rae;Superman;977,721,813;HipHop
+129;Kyle ft. Lil Yachty;iSpy;975,295,319;HipHop
+130;Kanye West;Power;962,779,969;HipHop
+131;Metro Boomin ft. Gunna;Space Cadet;960,076,770;HipHop
+132;The Weeknd & Kendrick Lamar;Pray For Me;958,720,765;HipHop
+133;A Boogie Wit Da Hoodie ft. Kodak Black;Drowning;955,697,570;HipHop
+134;Polo G;Rapstar;954,296,726;HipHop
+135;Migos ft. Lil Uzi Vert;Bad And Boujee;950,624,510;HipHop
+136;Paulo Londra;Adan Y Eva;950,068,963;HipHop
+137;The Kid Laroi;Without You;949,647,764;HipHop
+138;Juice WRLD & YoungBoy Never Broke Again;Bandit;948,446,102;HipHop
+139;Polo G;Martin & Gina;933,731,910;HipHop
+140;Juice WRLD;Wishing Well;931,140,301;HipHop
+141;Mustard ft. Roddy Ricch;Ballin';929,819,204;HipHop
+142;Macklemore ft. Skylar Grey;Glorious;925,604,963;HipHop
+143;Future ft. The Weeknd;Low Life;922,403,784;HipHop
+144;Juice WRLD;Lean Wit Me;914,980,338;HipHop
+145;Cardi B;Bodak Yellow;909,015,577;HipHop
+146;Gunna;Fukumean;896,686,668;HipHop
+147;Bad Bunny, Ozuna & Farruko ft. Arcángel, Ñengo Flow, DJ Luian & Mambo Kingz;Diles;896,313,757;HipHop
+148;Sleepy Hallow;2055;883,979,976;HipHop
+149;Polo G ft. Lil Tjay;Pop Out;880,276,388;HipHop
+150;PartyNextDoor;Break From Toronto;880,255,061;HipHop
+151;Travis Scott ft. Playboi Carti;Fe!n;872,106,534;HipHop
+152;Playboi Carti;Magnolia;872,101,686;HipHop
+153;Rihanna;Bitch Better Have My Money;870,003,961;HipHop
+154;Kid Cudi;Day 'N' Nite;869,247,853;HipHop
+155;Rob Stone ft. J. Davis & Spooks;Chill Bill;867,448,880;HipHop
+156;Childish Gambino;3005;862,099,475;HipHop
+157;Drake ft. Travis Scott;Fair Trade;861,563,268;HipHop
+158;DRAM ft. Lil Yachty;Broccoli;860,608,500;HipHop
+159;Dr. Dre ft. Eminem;Forgot About Dre;853,542,614;HipHop
+160;Baby Keem & Kendrick Lamar;Family Ties;848,746,479;HipHop
+161;Jack Harlow;First Class;847,379,271;HipHop
+162;Eminem ft. Ed Sheeran;River;847,036,664;HipHop
+163;Drake & 21 Savage;Rich Flex;842,818,170;HipHop
+164;Jack Harlow;Whats Poppin;837,285,488;HipHop
+165;DaBaby;Bop;837,126,296;HipHop
+166;Lil Wayne ft. Drake & Future;Love Me;836,684,825;HipHop
+167;ASAP Rocky ft. Drake, 2 Chainz & Kendrick Lamar;F**kin' Problems;831,821,958;HipHop
+168;Drake & Future;Jumpman;830,399,408;HipHop
+169;A Boogie Wit Da Hoodie ft. 6ix9ine;Swervin;827,236,423;HipHop
+170;Fetty Wap ft. Remy Boyz;679;826,921,460;HipHop
+171;Kid Cudi;Pursuit Of Happiness;818,989,289;HipHop
+172;Drake ft. Lil Baby;Wants And Needs;818,434,851;HipHop
+173;B.o.B ft. Hayley Williams;Airplanes;818,014,699;HipHop
+174;Eminem;Venom;815,326,644;HipHop
+175;Juice WRLD;Armed And Dangerous;808,679,726;HipHop
+176;Travis Scott & Kid Cudi;The Scotts;808,551,776;HipHop
+177;50 Cent;P.I.M.P.;804,867,756;HipHop
+178;Lil Tjay & 6lack;Calling My Phone;803,027,266;HipHop
+179;A Boogie Wit Da Hoodie;Look Back at It;801,446,711;HipHop
+180;The Game ft. 50 Cent;Hate It Or Love It;801,094,581;HipHop
+181;Big Sean ft. E-40;I Don't Fuck With You;800,011,841;HipHop
+182;Chief Keef;Love Sosa;795,584,546;HipHop
+183;2Pac ft. Dr. Dre & Roger Troutman;California Love;793,487,937;HipHop
+184;Migos ft. Drake;Walk It Talk It;792,805,844;HipHop
+185;Drake & Giveon;Chicago Freestyle;792,216,785;HipHop
+186;6ix9ine ft. Nicki Minaj & Murda Beatz;Fefe;791,047,384;HipHop
+187;CJ;Whoopty;788,610,670;HipHop
+188;Lil Peep;Save That Shit;787,744,007;HipHop
+189;Kendrick Lamar;Swimming Pools (Drank);782,477,741;HipHop
+190;Kendrick Lamar;Pride;780,151,438;HipHop
+191;Mac Miller & Empire Of The Sun;The Spins;779,668,523;HipHop
+192;Metro Boomin, Future & Chris Brown;Superhero (Heroes & Villains);773,960,518;HipHop
+193;M.I.A.;Paper Planes;771,955,892;HipHop
+194;Kanye West ft. Pusha T;Runaway;771,059,976;HipHop
+195;The Notorious B.I.G.;Juicy;770,940,152;HipHop
+196;Aminé;Caroline;770,648,882;HipHop
+197;2Pac;Ambitionz Az A Ridah;769,997,246;HipHop
+198;Kendrick Lamar;Not Like Us;769,205,185;HipHop
+199;Metro Boomin ft. Don Toliver & with Future;Too Many Nights;768,916,858;HipHop
+200;Kanye West;I Wonder;768,401,684;HipHop
+1;The Neighbourhood;Sweater Weather;3,169,270,058;Rock
+2;Imagine Dragons;Believer;3,130,136,572;Rock
+3;Hozier;Take Me To Church;2,682,472,004;Rock
+4;Queen;Bohemian Rhapsody;2,577,678,082;Rock
+5;Lady Gaga & Bradley Cooper;Shallow;2,533,981,389;Rock
+6;The Killers;Mr. Brightside;2,307,082,977;Rock
+7;Arctic Monkeys;Do I Wanna Know?;2,295,184,428;Rock
+8;Olivia Rodrigo;Good 4 U;2,248,592,787;Rock
+9;The Police;Every Breath You Take;2,192,439,940;Rock
+10;Linkin Park;In The End;2,183,027,484;Rock
+11;Bruno Mars;Locked Out Of Heaven;2,166,554,999;Rock
+12;Nirvana;Smells Like Teen Spirit;2,125,294,648;Rock
+13;Oasis;Wonderwall;2,096,262,151;Rock
+14;Queen;Don't Stop Me Now;2,083,006,875;Rock
+15;Journey;Don't Stop Believin';2,070,967,687;Rock
+16;Coldplay;The Scientist;2,017,696,030;Rock
+17;Guns N' Roses;Sweet Child O' Mine;1,986,147,433;Rock
+18;Queen;Another One Bites The Dust;1,960,069,081;Rock
+19;The Goo Goo Dolls;Iris;1,868,224,775;Rock
+20;Linkin Park;Numb;1,841,931,709;Rock
+21;5 Seconds Of Summer;Youngblood;1,841,547,226;Rock
+22;Walk The Moon;Shut Up and Dance;1,811,294,725;Rock
+23;Arctic Monkeys;505;1,797,835,264;Rock
+24;Arctic Monkeys;Why'd You Only Call Me When You're High?;1,795,370,076;Rock
+25;Radiohead;Creep;1,784,905,937;Rock
+26;Fleetwood Mac;Dreams;1,778,124,501;Rock
+27;The White Stripes;Seven Nation Army;1,749,784,661;Rock
+28;Creedence Clearwater Revival;Have You Ever Seen The Rain;1,730,833,581;Rock
+29;AC/DC;Highway To Hell;1,695,567,904;Rock
+30;Queen & David Bowie;Under Pressure;1,693,148,207;Rock
+31;Bon Jovi;Livin' On A Prayer;1,691,244,149;Rock
+32;Måneskin;Beggin';1,691,133,176;Rock
+33;Eagles;Hotel California;1,684,815,514;Rock
+34;AC/DC;Back In Black;1,645,199,345;Rock
+35;AC/DC;Thunderstruck;1,602,378,973;Rock
+36;Harry Styles;Sign Of The Times;1,592,476,579;Rock
+37;Coldplay;Fix You;1,546,101,344;Rock
+38;Kings Of Leon;Sex On Fire;1,542,666,814;Rock
+39;Maroon 5;She Will Be Loved;1,504,172,160;Rock
+40;Red Hot Chili Peppers;Californication;1,490,795,168;Rock
+41;Metallica;Enter Sandman;1,478,374,722;Rock
+42;Creedence Clearwater Revival;Fortunate Son;1,474,985,771;Rock
+43;Red Hot Chili Peppers;Under The Bridge;1,464,686,805;Rock
+44;Jonas Brothers;Sucker;1,447,283,762;Rock
+45;System Of A Down;Chop Suey!;1,442,945,842;Rock
+46;The Beatles;Here Comes The Sun;1,410,297,711;Rock
+47;Billie Eilish;Happier Than Ever;1,388,829,688;Rock
+48;Snow Patrol;Chasing Cars;1,377,529,110;Rock
+49;Ed Sheeran;Castle On The Hill;1,376,739,329;Rock
+50;Nirvana;Come As You Are;1,369,258,868;Rock
+51;Queen;We Will Rock You;1,363,051,841;Rock
+52;Survivor;Eye Of The Tiger;1,358,275,152;Rock
+53;Lynyrd Skynyrd;Sweet Home Alabama;1,357,890,837;Rock
+54;Lady Gaga;Always Remember Us This Way;1,351,235,573;Rock
+55;Benson Boone;Beautiful Things;1,335,082,871;Rock
+56;Imagine Dragons;Whatever It Takes;1,324,917,325;Rock
+57;Red Hot Chili Peppers;Can't Stop;1,295,522,434;Rock
+58;The Rolling Stones;Paint It Black;1,282,679,170;Rock
+59;The Cranberries;Zombie;1,279,565,216;Rock
+60;Bryan Adams;Summer Of '69;1,279,236,817;Rock
+61;AC/DC;You Shook Me All Night Long;1,271,348,232;Rock
+62;Dire Straits;Sultans Of Swing;1,264,125,064;Rock
+63;Foo Fighters;Everlong;1,256,432,262;Rock
+64;The Fray;How To Save A Life;1,252,911,978;Rock
+65;Guns N' Roses;Welcome To The Jungle;1,245,297,873;Rock
+66;Fall Out Boy;Centuries;1,233,375,167;Rock
+67;James Bay;Let It Go;1,224,050,772;Rock
+68;Metallica;Nothing Else Matters;1,220,551,750;Rock
+69;Evanescence ft. Paul McCoy;Bring Me To Life;1,217,809,701;Rock
+70;Michael Jackson;Beat It;1,198,659,853;Rock
+71;Aerosmith;Dream On;1,197,286,921;Rock
+72;fun. ft. Janelle Monáe;We Are Young;1,196,271,304;Rock
+73;Papa Roach;Last Resort;1,194,443,417;Rock
+74;Kaleo;Way Down We Go;1,187,057,645;Rock
+75;Blink-182;All The Small Things;1,186,160,902;Rock
+76;Bon Jovi;You Give Love A Bad Name;1,180,597,227;Rock
+77;Kodaline;All I Want;1,177,523,443;Rock
+78;Maroon 5;This Love;1,173,636,219;Rock
+79;Surf Curse;Freaks;1,172,658,762;Rock
+80;Fleetwood Mac;The Chain;1,172,246,922;Rock
+81;Van Morrison;Brown Eyed Girl;1,170,637,176;Rock
+82;Black Sabbath;Paranoid;1,158,931,837;Rock
+83;Gayle;ABCDEFU;1,154,382,869;Rock
+84;Nickelback;How You Remind Me;1,145,296,338;Rock
+85;Smash Mouth;All Star;1,143,929,729;Rock
+86;Green Day;Basket Case;1,142,764,566;Rock
+87;Børns;Electric Love;1,130,286,290;Rock
+88;Måneskin;I Wanna Be Your Slave;1,124,127,909;Rock
+89;The Clash;Should I Stay Or Should I Go;1,122,088,699;Rock
+90;Guns N' Roses;Paradise City;1,121,599,475;Rock
+91;Red Hot Chili Peppers;Snow (Hey Oh);1,111,155,834;Rock
+92;U2;With Or Without You;1,090,647,152;Rock
+93;Arctic Monkeys;R U Mine?;1,086,536,494;Rock
+94;Hoobastank;The Reason;1,068,466,711;Rock
+95;Red Hot Chili Peppers;Otherside;1,060,707,834;Rock
+96;Aerosmith;I Don't Want To Miss A Thing;1,055,724,317;Rock
+97;Kiss;I Was Made For Lovin' You;1,050,500,515;Rock
+98;Fleetwood Mac;Go Your Own Way;1,035,683,363;Rock
+99;The Offspring;You're Gonna Go Far, Kid;1,032,365,279;Rock
+100;Led Zeppelin;Stairway To Heaven;1,014,335,557;Rock
+101;The Animals;House Of The Rising Sun;1,011,579,118;Rock
+102;Green Day;American Idiot;1,009,235,078;Rock
+103;Jimmy Eat World;The Middle;1,007,620,682;Rock
+104;Miley Cyrus;Angels Like You;998,958,061;Rock
+105;System Of A Down;Toxicity;996,148,635;Rock
+106;My Chemical Romance;Teenagers;995,572,221;Rock
+107;Red Hot Chili Peppers;Scar Tissue;994,965,834;Rock
+108;The Outfield;Your Love;994,689,317;Rock
+109;3 Doors Down;Kryptonite;983,319,250;Rock
+110;4 Non Blondes;What's Up?;978,650,483;Rock
+111;Guns N' Roses;November Rain;978,373,812;Rock
+112;The Offspring;The Kids Aren't Alright;958,740,602;Rock
+113;Queen;Crazy Little Thing Called Love;957,515,088;Rock
+114;Toto;Hold The Line;948,243,538;Rock
+115;Rage Against The Machine;Killing In The Name;948,122,739;Rock
+116;Katy Perry;I Kissed A Girl;945,321,571;Rock
+117;Blur;Song 2;944,603,771;Rock
+118;Creedence Clearwater Revival;Bad Moon Rising;937,495,495;Rock
+119;Toploader;Dancing In The Moonlight;934,689,241;Rock
+120;Hozier;Too Sweet;931,751,186;Rock
+121;Franz Ferdinand;Take Me Out;929,646,540;Rock
+122;Oasis;Don't Look Back In Anger;928,340,468;Rock
+123;Avril Lavigne;Complicated;926,006,365;Rock
+124;James Blunt;You're Beautiful;925,138,135;Rock
+125;Pink Floyd;Another Brick In The Wall, Pt. 2;923,665,076;Rock
+126;Linkin Park;What I've Done;922,778,877;Rock
+127;Train;Drops Of Jupiter (Tell Me);922,360,934;Rock
+128;Bon Jovi;It's My Life;921,423,251;Rock
+129;Queen;Somebody To Love;920,651,199;Rock
+130;Van Halen;Jump;920,511,869;Rock
+131;The Script;Breakeven;917,803,316;Rock
+132;Shawn Mendes;In My Blood;915,014,474;Rock
+133;Panic! At The Disco;I Write Sins Not Tragedies;911,531,141;Rock
+134;Kings of Leon;Use Somebody;905,566,447;Rock
+135;Metallica;Master Of Puppets;905,386,028;Rock
+136;Arctic Monkeys;Fluorescent Adolescent;904,423,614;Rock
+137;Kenny Loggins;Footloose;901,926,189;Rock
+138;Queen;Killer Queen;880,000,479;Rock
+139;Neon Trees;Everybody Talks;879,314,435;Rock
+140;Boston;More Than A Feeling;875,246,989;Rock
+141;Sixpence None The Richer;Kiss Me;873,379,235;Rock
+142;Two Door Cinema Club;What You Know;871,971,640;Rock
+143;The Killers;Somebody Told Me;860,180,444;Rock
+144;Green Day;Boulevard Of Broken Dreams;855,788,468;Rock
+145;Paramore;Misery Business;851,750,477;Rock
+146;Fall Out Boy;Sugar, We're Goin Down;829,850,182;Rock
+147;Miley Cyrus;Malibu;827,237,615;Rock
+148;Blink-182;I Miss You;826,969,325;Rock
+149;Paramore;Still Into You;823,717,185;Rock
+150;Weezer;Island In The Sun;818,828,410;Rock
+151;Foo Fighters;The Pretender;816,478,188;Rock
+152;Disturbed;The Sound Of Silence;812,446,280;Rock
+153;My Chemical Romance;Welcome To The Black Parade;807,229,183;Rock
+154;Three Days Grace;I Hate Everything About You;801,197,273;Rock
+155;The Proclaimers;I'm Gonna Be (500 Miles);798,651,410;Rock
+156;Slipknot;Duality;797,178,579;Rock
+157;The Cranberries;Linger;796,454,552;Rock
+158;Counting Crows;Mr. Jones;791,951,156;Rock
+159;Disturbed;Down With The Sickness;787,532,980;Rock
+160;Elton John;Tiny Dancer;785,103,797;Rock
+161;Kansas;Dust In The Wind;781,444,568;Rock
+162;Kelly Clarkson;Since U Been Gone;779,219,708;Rock
+163;Scorpions;Wind Of Change;778,551,369;Rock
+164;Led Zeppelin;Immigrant Song;778,183,541;Rock
+165;Green Day;Wake Me Up When September Ends;775,734,940;Rock
+166;Blink-182;What's My Age Again?;774,098,815;Rock
+167;Red Hot Chili Peppers;Dani California;769,911,444;Rock
+168;Nirvana;Heart-Shaped Box;769,822,461;Rock
+169;The Beatles;Come Together;768,037,286;Rock
+170;No Doubt;Don't Speak;765,423,130;Rock
+171;Fall Out Boy;Thnks Fr Th Mmrs;764,847,153;Rock
+172;Guns N' Roses;Knockin' On Heaven's Door;759,034,835;Rock
+173;The Rolling Stones;(I Can't Get No) Satisfaction;758,371,984;Rock
+174;U2;I Still Haven't Found What I'm Looking For;753,293,953;Rock
+175;Linkin Park;One Step Closer;753,049,249;Rock
+176;James Bay;Hold Back The River;750,416,340;Rock
+177;Train;Drive By;749,865,124;Rock
+178;Pink Floyd;Wish You Were Here;749,476,096;Rock
+179;Rise Against;Savior;747,475,877;Rock
+180;Imagine Dragons;It's Time;744,622,584;Rock
+181;Linkin Park;Faint;744,514,910;Rock
+182;Cage The Elephant;Ain't No Rest For The Wicked;743,569,409;Rock
+183;Green Day;Good Riddance (Time of Your Life);743,261,172;Rock
+184;AC/DC;T.N.T.;742,768,773;Rock
+185;Queen;We Are The Champions;742,156,660;Rock
+186;Skillet;Monster;742,119,184;Rock
+187;Tom Petty;Free Fallin';741,836,836;Rock
+188;Los Enanitos Verdes;Lamento Boliviano;734,973,351;Rock
+189;Jimi Hendrix;All Along The Watchtower;731,304,029;Rock
+190;Soundgarden;Black Hole Sun;727,847,907;Rock
+191;Imagine Dragons;Warriors;727,558,343;Rock
+192;The Script;The Man Who Can't Be Moved;725,018,453;Rock
+193;5 Seconds Of Summer;She Looks So Perfect;721,705,837;Rock
+194;Dire Straits;Walk of Life;721,170,946;Rock
+195;The Beatles;Let It Be;720,379,341;Rock
+196;John Mayer;New Light;719,436,277;Rock
+197;5 Seconds Of Summer;Teeth;718,905,923;Rock
+198;Stealers Wheel;Stuck In The Middle With You;716,534,059;Rock
+199;Audioslave;Like A Stone;711,638,974;Rock
+200;The Calling;Wherever You Will Go;711,214,931;Rock
+1;The Weeknd;Blinding Lights;4,450,462,626;General
+2;Ed Sheeran;Shape of You;4,010,583,736;General
+3;Lewis Capaldi;Someone You Loved;3,578,372,382;General
+4;Harry Styles;As It Was;3,534,115,343;General
+5;Post Malone & Swae Lee;Sunflower;3,507,814,397;General
+6;The Weeknd ft. Daft Punk;Starboy;3,466,977,552;General
+7;Drake ft. Wizkid & Kyla;One Dance;3,333,001,096;General
+8;The Kid Laroi & Justin Bieber;Stay;3,257,410,725;General
+9;The Neighbourhood;Sweater Weather;3,169,270,058;General
+10;Tones And I;Dance Monkey;3,136,386,675;General
+11;Imagine Dragons;Believer;3,130,136,572;General
+12;Glass Animals;Heat Waves;3,126,261,031;General
+13;Ed Sheeran;Perfect;3,081,761,603;General
+14;Post Malone ft. 21 Savage;Rockstar;3,024,984,948;General
+15;James Arthur;Say You Won't Let Go;2,977,565,531;General
+16;The Chainsmokers ft. Halsey;Closer;2,970,927,745;General
+17;Billie Eilish & Khalid;Lovely;2,967,946,144;General
+18;Harry Styles;Watermelon Sugar;2,829,159,564;General
+19;Shawn Mendes & Camila Cabello;Señorita;2,816,285,807;General
+20;The Chainsmokers & Coldplay;Something Just Like This;2,764,232,446;General
+21;Dua Lipa;Don't Start Now;2,715,897,787;General
+22;Vance Joy;Riptide;2,702,037,490;General
+23;Hozier;Take Me To Church;2,682,472,004;General
+24;Tom Odell;Another Love;2,627,762,134;General
+25;Juice WRLD;Lucid Dreams;2,622,906,405;General
+26;Ed Sheeran;Photograph;2,610,980,568;General
+27;OneRepublic;Counting Stars;2,606,815,036;General
+28;Drake;God's Plan;2,594,589,838;General
+29;Post Malone;Circles;2,582,234,156;General
+30;Queen;Bohemian Rhapsody;2,577,678,082;General
+31;Billie Eilish;Bad Guy;2,575,136,767;General
+32;Ed Sheeran;Thinking Out Loud;2,567,157,283;General
+33;Macklemore & Ryan Lewis ft. Ray Dalton;Can't Hold Us;2,535,635,679;General
+34;Lady Gaga & Bradley Cooper;Shallow;2,533,981,389;General
+35;Travis Scott ft. Kendrick Lamar;Goosebumps;2,518,410,330;General
+36;Justin Bieber;Love Yourself;2,513,727,921;General
+37;Coldplay;Yellow;2,495,027,874;General
+38;Imagine Dragons;Thunder;2,486,720,625;General
+39;John Legend;All Of Me;2,468,061,707;General
+40;Taylor Swift;Cruel Summer;2,464,378,813;General
+41;Avicii ft. Aloe Blacc;Wake Me Up;2,440,326,569;General
+42;Arctic Monkeys;I Wanna Be Yours;2,433,418,253;General
+43;The Weeknd;Die For You;2,411,595,318;General
+44;Twenty One Pilots;Stressed Out;2,404,669,525;General
+45;The Weeknd;The Hills;2,403,789,917;General
+46;Imagine Dragons;Demons;2,398,061,517;General
+47;Lord Huron;The Night We Met;2,361,375,497;General
+48;J. Cole;No Role Modelz;2,338,271,801;General
+49;Passenger;Let Her Go;2,336,319,376;General
+50;Ariana Grande;7 Rings;2,333,928,780;General
+51;Kendrick Lamar;Humble;2,332,199,628;General
+52;The Killers;Mr. Brightside;2,307,082,977;General
+53;Coldplay;Viva La Vida;2,303,624,308;General
+54;Eminem;Lose Yourself;2,295,597,441;General
+55;Arctic Monkeys;Do I Wanna Know?;2,295,184,428;General
+56;Eminem;Without Me;2,289,910,843;General
+57;Calvin Harris & Dua Lipa;One Kiss;2,268,861,573;General
+58;Olivia Rodrigo;Drivers License;2,268,665,342;General
+59;XXXTentacion;Sad!;2,263,525,950;General
+60;Bruno Mars;When I Was Your Man;2,258,796,214;General
+61;Shawn Mendes;Treat You Better;2,256,233,714;General
+62;Olivia Rodrigo;Good 4 U;2,248,592,787;General
+63;Bruno Mars;Just The Way You Are;2,245,322,061;General
+64;XXXTentacion;Jocelyn Flores;2,242,608,775;General
+65;DJ Snake ft. Justin Bieber;Let Me Love You;2,234,934,184;General
+66;Marshmello ft. Bastille;Happier;2,218,825,554;General
+67;French Montana ft. Swae Lee;Unforgettable;2,208,765,564;General
+68;Travis Scott ft. Drake;Sicko Mode;2,200,879,527;General
+69;Lil Uzi Vert;XO Tour Llif3;2,197,583,088;General
+70;Miley Cyrus;Flowers;2,196,289,393;General
+71;Bruno Mars;That's What I Like;2,195,989,968;General
+72;The Police;Every Breath You Take;2,192,439,940;General
+73;Linkin Park;In The End;2,183,027,484;General
+74;Justin Bieber;Sorry;2,175,217,860;General
+75;Major Lazer ft. MØ & DJ Snake;Lean On;2,172,355,688;General
+76;Dua Lipa;New Rules;2,168,645,100;General
+77;Bruno Mars;Locked Out Of Heaven;2,166,554,999;General
+78;Dua Lipa ft. DaBaby;Levitating (Remix);2,149,085,305;General
+79;Shawn Mendes;There's Nothing Holdin' Me Back;2,144,710,563;General
+80;Sam Smith;Too Good At Goodbyes;2,136,425,138;General
+81;Sam Smith;Stay With Me;2,129,016,197;General
+82;Elton John & Dua Lipa ft. Pnau;Cold Heart (Pnau Remix);2,128,368,566;General
+83;Nirvana;Smells Like Teen Spirit;2,125,294,648;General
+84;Camila Cabello ft. Young Thug;Havana;2,124,437,541;General
+85;Halsey;Without Me;2,098,331,353;General
+86;The Weeknd;Save Your Tears;2,098,206,745;General
+87;Oasis;Wonderwall;2,096,262,151;General
+88;Queen;Don't Stop Me Now;2,083,006,875;General
+89;Maroon 5;Memories;2,075,214,719;General
+90;Journey;Don't Stop Believin';2,070,967,687;General
+91;Mark Ronson ft. Bruno Mars;Uptown Funk;2,065,153,731;General
+92;SZA;Kill Bill;2,064,999,466;General
+93;Lil Nas X ft. Jack Harlow;Industry Baby;2,060,116,955;General
+94;a-ha;Take On Me;2,057,582,946;General
+95;Bad Bunny & Jhayco;Dákiti;2,045,308,290;General
+96;Post Malone ft. Quavo;Congratulations;2,038,577,270;General
+97;Eminem ft. Nate Dogg;'Till I Collapse;2,038,008,014;General
+98;Adele;Someone Like You;2,033,490,450;General
+99;Mike Posner ft. Seeb;I Took A Pill In Ibiza;2,018,573,964;General
+100;Coldplay;The Scientist;2,017,696,030;General
+101;Alan Walker ft. Iselin Solheim;Faded;2,013,248,980;General
+102;Lukas Graham;7 Years;1,999,746,780;General
+103;Lewis Capaldi;Before You Go;1,999,563,863;General
+104;Post Malone;Better Now;1,997,192,907;General
+105;Roddy Ricch;The Box;1,992,306,944;General
+106;Guns N' Roses;Sweet Child O' Mine;1,986,147,433;General
+107;Shawn Mendes;Stitches;1,983,280,057;General
+108;Saint Jhn ft. Imanbek;Roses (Remix);1,971,760,207;General
+109;Queen;Another One Bites The Dust;1,960,069,081;General
+110;Wiz Khalifa ft. Charlie Puth;See You Again;1,959,300,538;General
+111;Sam Smith;I'm Not The Only One;1,959,012,749;General
+112;Charlie Puth ft. Selena Gomez;We Don't Talk Anymore;1,955,600,661;General
+113;Lil Nas X;Montero (Call Me By Your Name);1,952,673,010;General
+114;XXXTentacion;Moonlight;1,950,749,629;General
+115;The Chainsmokers ft. Daya;Don't Let Me Down;1,950,087,046;General
+116;Jason Mraz;I'm Yours;1,944,254,834;General
+117;Maroon 5 ft. Wiz Khalifa;Payphone;1,933,524,501;General
+118;24kGoldn ft. Iann Dior;Mood;1,930,787,573;General
+119;BTS;Dynamite;1,926,340,826;General
+120;Billie Eilish;When The Party's Over;1,921,184,156;General
+121;Ariana Grande;Thank U, Next;1,919,541,141;General
+122;Imagine Dragons;Radioactive;1,915,729,513;General
+123;Doja Cat ft. SZA;Kiss Me More;1,909,856,612;General
+124;Foster The People;Pumped Up Kicks;1,906,296,739;General
+125;Taylor Swift;Blank Space;1,903,703,361;General
+126;Eminem;The Real Slim Shady;1,903,237,334;General
+127;Jung Kook ft. Latto;Seven;1,901,680,419;General
+128;Adele;Rolling In The Deep;1,900,669,451;General
+129;Maroon 5;Sugar;1,900,363,010;General
+130;Manuel Turizo;La Bachata;1,900,010,758;General
+131;Bad Bunny & Chencho Corleone;Me Porto Bonito;1,898,956,046;General
+132;Avicii ft. Nicholas Furlong;The Nights;1,878,779,687;General
+133;Toto;Africa;1,878,407,237;General
+134;The Weeknd;Call Out My Name;1,873,776,643;General
+135;Michael Jackson;Billie Jean;1,869,232,411;General
+136;The Goo Goo Dolls;Iris;1,868,224,775;General
+137;Charlie Puth;Attention;1,862,269,899;General
+138;Ed Sheeran & Justin Bieber;I Don't Care;1,856,214,683;General
+139;Danny Ocean;Me Rehúso;1,852,783,628;General
+140;Calvin Harris ft. Rihanna;This Is What You Came For;1,847,692,505;General
+141;Twenty One Pilots;Heathens;1,847,480,831;General
+142;Adele;Easy On Me;1,845,744,094;General
+143;Linkin Park;Numb;1,841,931,709;General
+144;5 Seconds Of Summer;Youngblood;1,841,547,226;General
+145;Gotye ft. Kimbra;Somebody That I Used To Know;1,841,069,284;General
+146;Lauv;I Like Me Better;1,832,847,932;General
+147;Mariah Carey;All I Want for Christmas Is You;1,818,101,592;General
+148;Twenty One Pilots;Ride;1,817,440,761;General
+149;Sia;Cheap Thrills;1,814,554,035;General
+150;Walk The Moon;Shut Up and Dance;1,811,294,725;General
+151;Tyler, The Creator ft. Kali Uchis;See You Again;1,809,582,190;General
+152;David Guetta ft. Bebe Rexha;I'm Good (Blue);1,808,551,779;General
+153;The Weeknd ft. Daft Punk;I Feel It Coming;1,807,423,812;General
+154;Sia;Chandelier;1,807,158,739;General
+155;The Weeknd;Can't Feel My Face;1,806,517,379;General
+156;Dean Lewis;Be Alright;1,805,966,720;General
+157;Ed Sheeran;Bad Habits;1,804,530,770;General
+158;Coolio ft. L.V.;Gangsta's Paradise;1,803,952,853;General
+159;J Balvin & Bad Bunny;La Canción;1,803,080,672;General
+160;Eminem;Mockingbird;1,799,158,754;General
+161;Arctic Monkeys;505;1,797,835,264;General
+162;Luis Fonsi ft. Daddy Yankee;Despacito;1,797,577,789;General
+163;Arctic Monkeys;Why'd You Only Call Me When You're High?;1,795,370,076;General
+164;Maroon 5;Maps;1,789,632,813;General
+165;Benny Blanco, Halsey & Khalid;Eastside;1,789,500,442;General
+166;Radiohead;Creep;1,784,905,937;General
+167;Rihanna ft. Calvin Harris;We Found Love;1,783,669,552;General
+168;Justin Timberlake;Can't Stop the Feeling!;1,782,307,310;General
+169;Alec Benjamin;Let Me Down Slowly;1,782,252,440;General
+170;Fleetwood Mac;Dreams;1,778,124,501;General
+171;Tears For Fears;Everybody Wants To Rule The World;1,777,357,856;General
+172;Shakira ft. Wyclef Jean;Hips Don't Lie;1,771,927,349;General
+173;Conan Gray;Heather;1,768,557,248;General
+174;Kendrick Lamar & SZA;All The Stars;1,766,398,662;General
+175;Bizarrap & Quevedo;Bzrp Music Sessions, Vol. 52;1,765,423,196;General
+176;Zayn ft. Sia;Dusk Till Dawn;1,763,603,548;General
+177;Omi ft. Felix Jaehn;Cheerleader (Remix);1,750,429,816;General
+178;The White Stripes;Seven Nation Army;1,749,784,661;General
+179;Tame Impala;The Less I Know The Better;1,743,322,431;General
+180;Harry Styles;Adore You;1,739,387,518;General
+181;OneRepublic;I Ain't Worried;1,738,759,424;General
+182;Luis Fonsi ft. Daddy Yankee & Justin Bieber;Despacito (Remix);1,737,851,385;General
+183;Travis Scott;Highest In The Room;1,736,800,286;General
+184;Christina Perri;A Thousand Years;1,733,641,633;General
+185;Creedence Clearwater Revival;Have You Ever Seen The Rain;1,730,833,581;General
+186;The Weeknd;Earned It;1,729,038,186;General
+187;Post Malone;Wow.;1,728,701,462;General
+188;Earth, Wind & Fire;September;1,726,568,721;General
+189;Ava Max;Sweet But Psycho;1,723,697,934;General
+190;Don Omar & Lucenzo;Danza Kuduro;1,720,185,041;General
+191;Zayn & Taylor Swift;I Don’t Wanna Live Forever;1,718,462,625;General
+192;Adele;Set Fire To The Rain;1,714,706,463;General
+193;David Guetta ft. Sia;Titanium;1,713,205,299;General
+194;XXXTentacion & Trippie Redd;Fuck Love;1,710,084,192;General
+195;Powfu ft. Beabadoobee;Death Bed (Coffee For Your Head);1,706,231,552;General
+196;One Direction;Night Changes;1,700,009,208;General
+197;Olivia Rodrigo;Deja Vu;1,697,563,816;General
+198;AC/DC;Highway To Hell;1,695,567,904;General
+199;Justin Bieber;Ghost;1,693,227,902;General
+200;Queen & David Bowie;Under Pressure;1,693,148,207;General

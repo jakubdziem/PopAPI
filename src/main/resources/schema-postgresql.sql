@@ -123,3 +123,7 @@ CREATE TABLE history(
                         tier integer,
                         era varchar(2)
 );
+
+alter table song drop column last_update;
+alter table song add column last_update date;
+update song set last_update = '2024-08-16';

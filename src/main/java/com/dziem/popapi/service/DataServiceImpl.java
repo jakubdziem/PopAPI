@@ -1,6 +1,5 @@
 package com.dziem.popapi.service;
 
-import com.dziem.popapi.formatter.FirstLineOfFormatSongsFiles;
 import com.dziem.popapi.formatter.SpotifyTopArtistDataFormatter;
 import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.ArtistRepository;
@@ -116,51 +115,27 @@ public class DataServiceImpl implements DataService {
     @Transactional
     public void getDataSpotifyTopSongs(String genre) {
         LocalDate date = LocalDate.MIN;
-        String path = "src/main/resources/spotifyTopSongsData" + genre + ".txt";
-        FirstLineOfFormatSongsFiles.formatSpotifyFile(path);
-        String dateAndAllArtists = SpotifyTopArtistDataFormatter.formatSpotifyFile(path);
-        String[] split = dateAndAllArtists.split("\n");
-        for(int i = 0; i < split.length; i++) {
+        String path = "src/main/resources/data/songs.txt";
+        String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFile(path);
+        String[] line = dateAndAllSongs.split("\n");
+        for(int i = 0; i < line.length; i++) {
+            String[] split = line[i].split(";");
             if(i==0) {
-                date = LocalDate.parse(split[i], FORMATTER);
-            } else {
-                Song song = getSong(split[i], date, genre);
+                date = LocalDate.parse(line[i], FORMATTER);
+            } else if (split[4].equals(genre)) {
+                Song song = getSong(split, date, genre);
                 songRepository.save(song);
             }
         }
     }
 
-    private Song getSong(String line, LocalDate lastUpdate, String genre) {
+    private Song getSong(String[] split, LocalDate lastUpdate, String genre) {
         Song song = new Song();
         song.setLastUpdate(lastUpdate);
-        String[] split = line.split(";");
-        String[] name = split[0].split(" ");
-        String[] streams = split[1].split(" ");
-        String songName = "";
-        for(int i = 2; i < name.length; i++) {
-            songName = songName.concat(name[i]).concat(i == name.length-1 ? "" : " ");
-        }
-        song.setSongName(songName);
-        String artistName = "";
-        int i = 0;
-        boolean canRun = true;
-        while(canRun) {
-            try {
-                int compared = new BigDecimal(streams[i].replace(",","")).compareTo(new BigDecimal("100000"));
-                if(compared > 0) {
-                    canRun = false;
-                } else {
-                    artistName = artistName.concat(streams[i]).concat(" ");
-                }
-                i++;
-            }
-            catch(NumberFormatException e) {
-                artistName = artistName.concat(streams[i]).concat(" ");
-                i++;
-            }
-        }
-        song.setTotalStreams(streams[i-1]);
-        song.setArtistName(artistName.substring(0,artistName.length()-1));
+        //1 The Weeknd Blinding Lights 4,450,462,626 Pop
+        song.setArtistName(split[1]);
+        song.setSongName(split[2]);
+        song.setTotalStreams(split[3]);
         song.setImageUrl("/images/spotify/songs/" + song.getSongName()
                 .replace('/', ' ')
                 .replace('?', ' ')
@@ -181,19 +156,19 @@ public class DataServiceImpl implements DataService {
         LocalDate date = LocalDate.MIN;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 //        String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/data/spotifyTopArtistData.txt");
-        String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFileNew("src/main/resources/data/artist.txt");
+        String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/data/artist.txt");
         String[] split = dateAndAllSongs.split("\n");
         for(int i = 0; i < split.length; i++) {
             if(i==0) {
                 date = LocalDate.parse(split[i], formatter);
             } else if(!split[i].isEmpty()){
-                Artist artist = getArtistNew(split[i], date);
+                Artist artist = getArtist(split[i], date);
                 artistRepository.save(artist);
             }
         }
     }
 
-    private Artist getArtistNew(String line, LocalDate lastUpdate) {
+    private Artist getArtist(String line, LocalDate lastUpdate) {
         Artist artist = new Artist();
         artist.setLastUpdate(lastUpdate);
         String[] split = line.split(" ");
@@ -220,29 +195,4 @@ public class DataServiceImpl implements DataService {
                 .replace('|', ' ') + ".jpg");
         return artist;
     }
-
-    @Deprecated
-    private Artist getArtist(String line, LocalDate lastUpdate) {
-        Artist artist = new Artist();
-        artist.setLastUpdate(lastUpdate);
-        String[] split = line.split(";");
-        String[] name = split[0].split(" ");
-        String[] streams = split[1].split(" ");
-        String artistName = "";
-        for(int i = 1; i <= name.length/2; i++) {
-            artistName = artistName.concat(name[i]).concat(i == name.length/2 ? "" : " ");
-        }
-        artist.setArtistName(artistName);
-        artist.setLeadStreams(streams[0]);
-        if(artist.getArtistName().contains("/")) {
-            artist.setImageUrl("/images/spotify/" + artistName.replace('/', ' ') + ".jpg");
-        } else {
-            artist.setImageUrl("/images/spotify/" + artistName + ".jpg");
-        }
-
-
-        return artist;
-    }
-
-
 }
