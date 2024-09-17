@@ -33,12 +33,14 @@ public class DataLoader implements CommandLineRunner {
 //        System.out.println("Data spotify is running...");
 //        dataService.getDataSpotifyTopArtists();
 //        System.out.println("Data spotify completed.");
-//        nameListGetter.getList();
+        System.out.println("Start");
+        nameListGetter.getList();
+        System.out.println("End");
 //        System.out.println("DataLoader finished execution.");
-        dataService.getDataSpotifyTopSongs("General");
-        dataService.getDataSpotifyTopSongs("HipHop");
-        dataService.getDataSpotifyTopSongs("Rock");
-        dataService.getDataSpotifyTopSongs("Pop");
+//        dataService.getDataSpotifyTopSongs("General");
+//        dataService.getDataSpotifyTopSongs("HipHop");
+//        dataService.getDataSpotifyTopSongs("Rock");
+//        dataService.getDataSpotifyTopSongs("Pop");
 //        nameListGetter.getListSongs();
     }
 }
