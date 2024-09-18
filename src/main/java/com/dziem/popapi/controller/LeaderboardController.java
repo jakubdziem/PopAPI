@@ -16,7 +16,7 @@ import java.util.List;
 public class LeaderboardController {
     private final LeaderboardService leaderboardService;
     @GetMapping("/api/v1/leaderboard/{mode}")
-    public List<LeaderboardDTO> getLeaderboard(@PathVariable String mode) {
+    public ResponseEntity<List<LeaderboardDTO>> getLeaderboard(@PathVariable String mode) {
         return leaderboardService.getLeaderboard(mode);
     }
     @GetMapping("api/v1/rank/{userId}/{mode}")

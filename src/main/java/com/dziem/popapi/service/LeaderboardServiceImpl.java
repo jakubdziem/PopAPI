@@ -5,10 +5,11 @@ import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.LeaderboardRepository;
 import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -19,14 +20,18 @@ public class LeaderboardServiceImpl implements LeaderboardService {
     private final LeaderboardMapper leaderboardMapper;
     private final UserRepository userRepository;
     @Override
-    public List<LeaderboardDTO> getLeaderboard(String mode) {
+    public ResponseEntity<List<LeaderboardDTO>> getLeaderboard(String mode) {
+        boolean modeExisting = isModeExisting(mode);
+        if(!modeExisting) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         List<Leaderboard> leaderboardList = leaderboardRepository.findAll().stream().filter(leaderboard -> leaderboard.getMode().equals(mode)).toList();
         List<LeaderboardDTO> leaderboardDTOList = new ArrayList<>();
         for(Leaderboard leaderboard : leaderboardList) {
             LeaderboardDTO leaderboardDTO = leaderboardMapper.leaderboardtoLeaderboardDTO(leaderboard);
             leaderboardDTOList.add(leaderboardDTO);
         }
-        return leaderboardDTOList.stream().sorted((o1, o2) -> (o1.compareTo(o2) == 0 ? (o1.getId() < o2.getId() ? -1 : 1) : o1.compareTo(o2))).toList();
+        return new ResponseEntity<>(leaderboardDTOList.stream().sorted((o1, o2) -> (o1.compareTo(o2) == 0 ? (o1.getId() < o2.getId() ? -1 : 1) : o1.compareTo(o2))).toList(), HttpStatus.ACCEPTED);
         //it's reversed, because I couldn't find using reversed() in lambda
     }
 
@@ -48,23 +53,39 @@ public class LeaderboardServiceImpl implements LeaderboardService {
     @Override
     public Integer getRankOfUserInMode(String userId, String mode) {
         AtomicReference<Integer> atomicReference = new AtomicReference<>();
-        userRepository.findById(userId).ifPresentOrElse( existing -> {
-            if(existing.isGuest()) {
-                atomicReference.set(-1);
-            } else {
-                Comparator<Leaderboard> comparator = (o1, o2) -> {
-                    if (o1.getScore().equals(o2.getScore())) {
-                        return 0;
+        boolean modeExisting = isModeExisting(mode);
+        if(modeExisting) {
+            userRepository.findById(userId).ifPresentOrElse(existing -> {
+                if (existing.isGuest()) {
+                    atomicReference.set(-1);
+                } else {
+                    List<LeaderboardDTO> leaderboard = getLeaderboard(mode).getBody();
+                    int rank = 0;
+                    for (int i = 0; i < leaderboard.size(); i++) {
+                        if (leaderboard.get(i).getUserId().equals(userId)) {
+                            rank = i + 1;
+                            break;
+                        }
                     }
-                    return o1.getScore().compareTo(o2.getScore());
-                };
-                List<Leaderboard> leaderboardSingle = leaderboardRepository.findAll().stream().filter(leaderboard -> leaderboard.getUser().getUserId().equals(userId) && leaderboard.getMode().equals(mode)).toList();
-                List<Leaderboard> leaderboardList = leaderboardRepository.findAll().stream()
-                        .filter(leaderboard -> leaderboard.getMode().equals(mode)).sorted(comparator.reversed()).toList();
-                atomicReference.set(leaderboardList.indexOf(leaderboardSingle.get(0)) + 1);
+                    atomicReference.set(rank);
+                }
+            }, () -> atomicReference.set(-1));
+            return atomicReference.get();
+        }
+        else {
+            return -1;
+        }
+    }
+
+    private static boolean isModeExisting(String mode) {
+        boolean modeExisting = false;
+        for(Mode defaultMode : Mode.values()) {
+            if(defaultMode.toString().equals(mode)) {
+                modeExisting = true;
+                break;
             }
-        }, () -> atomicReference.set(-1));
-        return atomicReference.get();
+        }
+        return modeExisting;
     }
 
 }
