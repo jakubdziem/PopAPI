@@ -116,7 +116,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
     public List<BaseGameModelDTO> convertArtistDTOStoBaseGameModelDTO() {
         List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
         List<ArtistDTO> artistDTOS = artistService.getTop200Artists();
-        for(int i = 0; i < artistDTOS.size(); i++) {
+        for(int i = 0; i < 200; i++) {
             BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
                     .name(artistDTOS.get(i).getArtistName())
                     .comparableValue(Float.parseFloat(artistDTOS.get(i).getLeadStreams().replace(",","")))
@@ -133,7 +133,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
     public List<BaseGameModelDTO> convertSongDTOStoBaseGameModelDTO(String genre) {
         List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
         List<SongDTO> songDTOS = songService.getTop200SongsGenre(genre);
-        for(int i = 0; i < songDTOS.size(); i++) {
+        for(int i = 0; i < 200; i++) {
             BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
                     .name(songDTOS.get(i).getSongName() + " - " + songDTOS.get(i).getArtistName())
                     .comparableValue(Float.parseFloat(songDTOS.get(i).getTotalStreams().replace(",","")))
