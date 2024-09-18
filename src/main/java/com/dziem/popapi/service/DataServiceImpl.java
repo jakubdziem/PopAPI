@@ -30,6 +30,7 @@ public class DataServiceImpl implements DataService {
     private final SongRepository songRepository;
     private final CountryService countryService;
     private final DriverRepository driverRepository;
+    private final ApartmentRepository apartmentRepository;
     @Override
     @Transactional
     public void getData2024_2100() {
@@ -237,6 +238,14 @@ public class DataServiceImpl implements DataService {
             System.out.println(howManyInserts + " Updates generated");
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void addSourceApartmentsPoland() {
+        List<String> polishCityNames = apartmentRepository.getPolishCityNames();
+        for(String cityName : polishCityNames) {
+            System.out.printf("UPDATE APARTMENT SET IMAGE_SOURCE = '' WHERE NAME = '%s';\n", cityName);
         }
     }
 }

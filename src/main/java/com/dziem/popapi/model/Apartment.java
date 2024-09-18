@@ -15,4 +15,5 @@ public class Apartment {
     private String category;
     private String imageUrl;
     private Integer tier;
+    private String imageSource;
 }

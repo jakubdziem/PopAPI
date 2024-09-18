@@ -7,4 +7,5 @@ public interface DataService {
      void getDataSpotifyTopArtists();
      void getDataSpotifyTopSongs(String genre);
      void addSourceToDriver();
+    void addSourceApartmentsPoland();
 }
