@@ -105,7 +105,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel("population")
                     .imageUrl(countryDTO.getFlagUrl())
                     .tier(countryDTO.getYearAndPopulations().getFirst().getTier())
-                    //countryDTO.getYearAndPopulations().getFirst().getTier() == null ? 1 : countryDTO.getYearAndPopulations().getFirst().getTier()
+                    .imageSource("Country API idk")
                     .build();
             baseGameModelDTOS.add(baseGameModelDTOCountry);
         }
@@ -195,6 +195,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel(historyEvent.getEra())
                     .imageUrl(historyEvent.getImageUrl())
                     .tier(historyEvent.getTier())
+                    .imageSource(historyEvent.getImageSource())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }

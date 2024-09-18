@@ -45,6 +45,7 @@ public class DataLoader implements CommandLineRunner {
 //        nameListGetter.getListSongs();
 //        System.out.println("End");
 //        dataService.addSourceToDriver();
-        dataService.addSourceApartmentsPoland();
+//        dataService.addSourceApartmentsPoland();
+        dataService.addSourceHistory();
     }
 }

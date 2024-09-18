@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -31,12 +32,13 @@ public class DataServiceImpl implements DataService {
     private final CountryService countryService;
     private final DriverRepository driverRepository;
     private final ApartmentRepository apartmentRepository;
+
     @Override
     @Transactional
     public void getData2024_2100() {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/data/2024-2100 data.txt"))) {
             HashMap<String, Integer> countryNameAndTier = new HashMap<>();
-            for(CountryDTO countryDTO : countryService.findCountriesByDistinctYear("2023", false)) {
+            for (CountryDTO countryDTO : countryService.findCountriesByDistinctYear("2023", false)) {
                 String countryName = countryDTO.getYearAndPopulations().getFirst().getCountry().getCountryName();
                 Integer tier = countryDTO.getYearAndPopulations().getFirst().getTier();
                 countryNameAndTier.put(countryName, tier);
@@ -64,18 +66,19 @@ public class DataServiceImpl implements DataService {
         Integer tier = countryNameAndTier.get(countryName);
         yearAndPopulation.setTier(tier);
 
-        if(country.getCountryName().equals("Korea")) {
-            country.setCountryName(values[1].substring(1,6) + " Korea");
+        if (country.getCountryName().equals("Korea")) {
+            country.setCountryName(values[1].substring(1, 6) + " Korea");
         }
         country.setGENC(values[values.length - 5].replace("\"", ""));
         country.setFlagUrl("/images/" + country.getGENC().toLowerCase() + ".png");
         yearAndPopulationDefaultSet(country, values, yearAndPopulation);
         return country;
     }
+
     private void yearAndPopulationDefaultSet(Country country, String[] values, YearAndPopulation yearAndPopulation) {
-        yearAndPopulation.setPopulation(values[values.length-3].replace("\"", ""));
-        yearAndPopulation.setAnnualGrowth(values[values.length-2].replace("\"", "")
-                .concat(","+values[values.length-1].replace("\"", "")));
+        yearAndPopulation.setPopulation(values[values.length - 3].replace("\"", ""));
+        yearAndPopulation.setAnnualGrowth(values[values.length - 2].replace("\"", "")
+                .concat("," + values[values.length - 1].replace("\"", "")));
         yearAndPopulation.setCountry(country);
         country.getYearAndPopulations().add(yearAndPopulation);
     }
@@ -97,7 +100,7 @@ public class DataServiceImpl implements DataService {
                 newEntry.setTier(y.getTier());
 
                 double annualGrowth = y.getAnnualGrowth().startsWith("-") ?
-                        -Double.parseDouble(y.getAnnualGrowth().substring(1).replace(',','.')) :
+                        -Double.parseDouble(y.getAnnualGrowth().substring(1).replace(',', '.')) :
                         Double.parseDouble(y.getAnnualGrowth().replace(',', '.'));
 
                 BigDecimal population = new BigDecimal(y.getPopulation());
@@ -111,7 +114,6 @@ public class DataServiceImpl implements DataService {
     }
 
 
-
     @Override
     @Transactional
     public void getDataSpotifyTopSongs(String genre) {
@@ -119,9 +121,9 @@ public class DataServiceImpl implements DataService {
         String path = "src/main/resources/data/songs.txt";
         String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFile(path);
         String[] line = dateAndAllSongs.split("\n");
-        for(int i = 0; i < line.length; i++) {
+        for (int i = 0; i < line.length; i++) {
             String[] split = line[i].split(";");
-            if(i==0) {
+            if (i == 0) {
                 date = LocalDate.parse(line[i], FORMATTER);
             } else if (split[4].equals(genre)) {
                 Song song = getSong(split, date, genre);
@@ -159,10 +161,10 @@ public class DataServiceImpl implements DataService {
 //        String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/data/spotifyTopArtistData.txt");
         String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/data/artist.txt");
         String[] split = dateAndAllSongs.split("\n");
-        for(int i = 0; i < split.length; i++) {
-            if(i==0) {
+        for (int i = 0; i < split.length; i++) {
+            if (i == 0) {
                 date = LocalDate.parse(split[i], formatter);
-            } else if(!split[i].isEmpty()){
+            } else if (!split[i].isEmpty()) {
                 Artist artist = getArtist(split[i], date);
                 artistRepository.save(artist);
             }
@@ -177,11 +179,11 @@ public class DataServiceImpl implements DataService {
         //skip rank
         int i = 1;
         List<String> numbers = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
-        while(!split[i].contains(",") || !numbers.contains(split[i].substring(0,1))) {
+        while (!split[i].contains(",") || !numbers.contains(split[i].substring(0, 1))) {
             artistName = artistName.concat(split[i]).concat(" ");
             i++;
         }
-        artistName = artistName.substring(0,artistName.length()-1);
+        artistName = artistName.substring(0, artistName.length() - 1);
         artist.setArtistName(artistName);
         artist.setLeadStreams(split[i]);
         artist.setImageUrl("/images/spotify/" + artist.getArtistName()
@@ -196,6 +198,7 @@ public class DataServiceImpl implements DataService {
                 .replace('|', ' ') + ".jpg");
         return artist;
     }
+
     @Override
     public void addSourceToDriver() {
         List<Driver> drivers = driverRepository.findAll().stream().sorted(Comparator.reverseOrder()).toList();
@@ -209,18 +212,18 @@ public class DataServiceImpl implements DataService {
             int index = 0;
             int howManyInserts = 0;
             boolean missedDriver = false;
-            for(int i = 0; i < lines.size(); i++) {
+            for (int i = 0; i < lines.size(); i++) {
                 String line = lines.get(i);
                 Driver driver = drivers.get(index);
-                if(i%3==0) {
+                if (i % 3 == 0) {
                     driverName = line.substring(line.indexOf(" ") + 1, line.indexOf("."));
-                    if(!driver.getName().equals(driverName)) {
+                    if (!driver.getName().equals(driverName)) {
                         missedDriver = true;
                     }
                 }
-                if(i%3==2) {
-                    String imageUrl = line.substring(line.indexOf(":")+2);
-                    if(missedDriver) {
+                if (i % 3 == 2) {
+                    String imageUrl = line.substring(line.indexOf(":") + 2);
+                    if (missedDriver) {
                         missedDrivers.put(driverName, imageUrl);
                         missedDriver = false;
                     } else {
@@ -232,8 +235,8 @@ public class DataServiceImpl implements DataService {
                 }
             }
             System.out.println("MISSED DRIVERS");
-            for(String missedDriverName : missedDrivers.keySet()) {
-                System.out.println(missedDriverName + " ; " +  missedDrivers.get(missedDriverName));
+            for (String missedDriverName : missedDrivers.keySet()) {
+                System.out.println(missedDriverName + " ; " + missedDrivers.get(missedDriverName));
             }
             System.out.println(howManyInserts + " Updates generated");
         } catch (IOException e) {
@@ -244,8 +247,22 @@ public class DataServiceImpl implements DataService {
     @Override
     public void addSourceApartmentsPoland() {
         List<String> polishCityNames = apartmentRepository.getPolishCityNames();
-        for(String cityName : polishCityNames) {
+        for (String cityName : polishCityNames) {
             System.out.printf("UPDATE APARTMENT SET IMAGE_SOURCE = '' WHERE NAME = '%s';\n", cityName);
+        }
+    }
+
+    @Override
+    public void addSourceHistory() {
+        try (Stream<String> reader = Files.lines(Paths.get("src/main/resources/imageSource/historySourceOfPhotos.txt"), Charset.forName("Cp1250"))) {
+            List<String> lines = reader.toList();
+            for(String line : lines) {
+                String nameFromSource = line.substring(0, line.indexOf(':'));
+                String imageSource = line.substring(line.indexOf(':')+2);
+                System.out.printf("UPDATE HISTORY SET IMAGE_SOURCE = '%s' WHERE NAME = '%s';\n", imageSource, nameFromSource);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

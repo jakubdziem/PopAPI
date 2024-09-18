@@ -133,3 +133,4 @@ select * from driver where name = 'Fangio Juan Manuel';
 
 alter table driver add column image_source varchar(500);
 alter table apartment add column image_source varchar(700);
+alter table history add column image_source varchar(700);
