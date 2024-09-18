@@ -13,7 +13,6 @@ manager
 superuser
 god
 null
-master
 slave
 test
 guest
