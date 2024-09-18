@@ -130,3 +130,5 @@ update song set last_update = '2024-08-16';
 
 update driver set name = 'Fangio Juan Manuel', image_url = '/images/f1/Fangio_Juan_Manuel.png' where name = 'FANGIO Juan Manuel';
 select * from driver where name = 'Fangio Juan Manuel';
+
+alter table driver add column image_source varchar(500)

@@ -10,5 +10,6 @@ public class BaseGameModelDTO {
     private Float comparableValue;
     private String comparableValueLabel;
     private String imageUrl;
+    private String imageSource;
     private Integer tier;
 }

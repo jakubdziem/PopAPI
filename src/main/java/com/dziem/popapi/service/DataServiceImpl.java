@@ -2,10 +2,7 @@ package com.dziem.popapi.service;
 
 import com.dziem.popapi.formatter.SpotifyTopArtistDataFormatter;
 import com.dziem.popapi.model.*;
-import com.dziem.popapi.repository.ArtistRepository;
-import com.dziem.popapi.repository.CountryRepository;
-import com.dziem.popapi.repository.SongRepository;
-import com.dziem.popapi.repository.YearAndPopulationRepository;
+import com.dziem.popapi.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +15,10 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +29,7 @@ public class DataServiceImpl implements DataService {
     private final ArtistRepository artistRepository;
     private final SongRepository songRepository;
     private final CountryService countryService;
+    private final DriverRepository driverRepository;
     @Override
     @Transactional
     public void getData2024_2100() {
@@ -194,5 +194,49 @@ public class DataServiceImpl implements DataService {
                 .replace('>', ' ')
                 .replace('|', ' ') + ".jpg");
         return artist;
+    }
+    @Override
+    public void addSourceToDriver() {
+        List<Driver> drivers = driverRepository.findAll().stream().sorted(Comparator.reverseOrder()).toList();
+//        for(Driver driver : drivers) {
+//            System.out.println(driver);
+//        }
+        HashMap<String, String> missedDrivers = new HashMap<>();
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/imageSource/f1SourceOfPhotos.txt"))) {
+            List<String> lines = reader.lines().toList();
+            String driverName = "";
+            int index = 0;
+            int howManyInserts = 0;
+            boolean missedDriver = false;
+            for(int i = 0; i < lines.size(); i++) {
+                String line = lines.get(i);
+                Driver driver = drivers.get(index);
+                if(i%3==0) {
+                    driverName = line.substring(line.indexOf(" ") + 1, line.indexOf("."));
+                    if(!driver.getName().equals(driverName)) {
+                        missedDriver = true;
+                    }
+                }
+                if(i%3==2) {
+                    String imageUrl = line.substring(line.indexOf(":")+2);
+                    if(missedDriver) {
+                        missedDrivers.put(driverName, imageUrl);
+                        missedDriver = false;
+                    } else {
+                        driver.setImageSource(imageUrl);
+                        System.out.printf("UPDATE DRIVER SET IMAGE_SOURCE = '%s' WHERE NAME = '%s'; \n", imageUrl, driverName);
+                        howManyInserts++;
+                    }
+                    index++;
+                }
+            }
+            System.out.println("MISSED DRIVERS");
+            for(String missedDriverName : missedDrivers.keySet()) {
+                System.out.println(missedDriverName + " ; " +  missedDrivers.get(missedDriverName));
+            }
+            System.out.println(howManyInserts + " Updates generated");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

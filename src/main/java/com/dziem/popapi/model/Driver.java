@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 @Data
 @Entity
-public class Driver {
+public class Driver implements Comparable<Driver>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,5 +15,10 @@ public class Driver {
     private Float score;
     private String imageUrl;
     private Integer tier;
+    private String imageSource;
 
+    @Override
+    public int compareTo(Driver o) {
+        return this.getScore().compareTo(o.getScore());
+    }
 }
