@@ -22,4 +22,5 @@ public class Country {
         yearAndPopulations = new ArrayList<>();
     }
     private String flagUrl;
+    private String imageSource;
 }

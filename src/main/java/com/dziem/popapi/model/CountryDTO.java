@@ -12,4 +12,5 @@ public class CountryDTO {
     private List<YearAndPopulation> yearAndPopulations;
     private String GENC;
     private String flagUrl;
+    private String imageSource;
 }

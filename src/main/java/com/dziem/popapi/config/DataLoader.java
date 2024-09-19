@@ -47,5 +47,6 @@ public class DataLoader implements CommandLineRunner {
 //        dataService.addSourceToDriver();
 //        dataService.addSourceApartmentsPoland();
 //        dataService.addSourceHistory();
+        dataService.addSourceCountriesAndApartmentsWorld();
     }
 }

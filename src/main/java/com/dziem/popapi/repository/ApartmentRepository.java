@@ -9,4 +9,6 @@ import java.util.List;
 public interface ApartmentRepository extends JpaRepository<Apartment, Long> {
     @Query(value = "select name from apartment where category = 'Poland'" , nativeQuery = true)
     List<String> getPolishCityNames();
+    @Query(value = "select * from apartment where category = 'Poland'" , nativeQuery = true)
+    List<Apartment> findAllWorld();
 }

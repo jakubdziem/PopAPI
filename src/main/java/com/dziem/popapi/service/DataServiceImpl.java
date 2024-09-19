@@ -265,4 +265,36 @@ public class DataServiceImpl implements DataService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void addSourceCountriesAndApartmentsWorld() {
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/imageSource/countrySourceOfPhotos.txt"))) {
+            List<String> lines = reader.lines().toList();
+            HashMap<String, String> imageUrls = new HashMap<>();
+            for(String line : lines) {
+                String[] split = line.split(" ");
+                String imageUrl = split[0].substring(split[0].indexOf("imageSourcesGetter\" + 1"));
+                        String imageSource = split[1];
+                imageUrls.put(imageUrl, imageSource);
+                System.out.printf("UPDATE COUNTRY SET IMAGE_SOURCE = '%s' WHERE IMAGE_URL = '%s'\n", imageSource, imageUrl);
+            }
+            System.out.println("\nFind\n");
+            List<Apartment> apartments =  apartmentRepository.findAllWorld();
+            List<Apartment> missingApartments = new ArrayList<>();
+            for(Apartment apartment : apartments) {
+                if(imageUrls.containsKey(apartment.getImageUrl())) {
+                    String imageSource = imageUrls.get(apartment.getImageUrl());
+                    System.out.printf("UPDATE APARTMENT SET IMAGE_SOURCE = '%s' WHERE IMAGE_URL = '%s'\n", imageSource, apartment.getImageUrl());
+                } else {
+                    missingApartments.add(apartment);
+                }
+            }
+            for(Apartment apartment : missingApartments) {
+                System.out.println(apartment);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+

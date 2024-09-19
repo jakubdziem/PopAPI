@@ -9,4 +9,6 @@ public interface DataService {
      void addSourceToDriver();
      void addSourceApartmentsPoland();
      void addSourceHistory();
+
+    void addSourceCountriesAndApartmentsWorld();
 }
