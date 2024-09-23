@@ -273,18 +273,22 @@ public class DataServiceImpl implements DataService {
             HashMap<String, String> imageUrls = new HashMap<>();
             for(String line : lines) {
                 String[] split = line.split(" ");
-                String imageUrl = split[0].substring(split[0].indexOf("imageSourcesGetter\" + 1"));
-                        String imageSource = split[1];
+                String imageUrl = split[0].substring("C:\\Users\\jakub\\OneDrive\\Pulpit\\imageSourcesGetter".length());
+                String imageSource = split[1];
                 imageUrls.put(imageUrl, imageSource);
-                System.out.printf("UPDATE COUNTRY SET IMAGE_SOURCE = '%s' WHERE IMAGE_URL = '%s'\n", imageSource, imageUrl);
+                imageUrl = imageUrl.replace("\\", "/");
+                if(imageUrl.substring(8, imageUrl.indexOf(".")).length() > 2) {
+                    imageUrl = imageUrl.substring(0,8) + imageUrl.substring(8, 10).toUpperCase() + imageUrl.substring(10);
+                }
+                System.out.printf("UPDATE COUNTRY SET IMAGE_SOURCE = '%s' WHERE FLAG_URL = '%s';\n", imageSource, imageUrl);
             }
             System.out.println("\nFind\n");
             List<Apartment> apartments =  apartmentRepository.findAllWorld();
             List<Apartment> missingApartments = new ArrayList<>();
             for(Apartment apartment : apartments) {
-                if(imageUrls.containsKey(apartment.getImageUrl())) {
-                    String imageSource = imageUrls.get(apartment.getImageUrl());
-                    System.out.printf("UPDATE APARTMENT SET IMAGE_SOURCE = '%s' WHERE IMAGE_URL = '%s'\n", imageSource, apartment.getImageUrl());
+                if(imageUrls.containsKey(apartment.getImageUrl().toLowerCase().replace("/", "\\"))) {
+                    String imageSource = imageUrls.get(apartment.getImageUrl().toLowerCase().replace("/", "\\"));
+                    System.out.printf("UPDATE APARTMENT SET IMAGE_SOURCE = '%s' WHERE IMAGE_URL = '%s';\n", imageSource, apartment.getImageUrl());
                 } else {
                     missingApartments.add(apartment);
                 }
