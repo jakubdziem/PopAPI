@@ -196,5 +196,5 @@ KL BRO Biju Rithvik - Image: social_media\KL BRO Biju Rithvik.jfif - URL: https:
 @Oprah - Image: social_media\@Oprah.png - URL: https://pbs.twimg.com/profile_images/1123359369570148353/Mh-Rf4Sk_400x400.jpg
 @BBCWorld - Image: social_media\@BBCWorld.png - URL: https://pbs.twimg.com/profile_images/1529107170448523264/q3VwEx38_400x400.jpg
 @sachin_rt - Image: social_media\@sachin_rt.png - URL: https://cricfit.com/wp-content/uploads/2023/07/IMG_5883.jpeg
-@NiallOfficial  - Image: social_media\@NiallOfficial .png - URL: https://pbs.twimg.com/profile_images/1618293589888405515/qk2Dg9_M_400x400.jpg
-@vilmeijuga - Image : social_media\@vilmeijuga .png https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/f0d3abbf7b74d4b5b27681d56e59679c~c5_720x720.jpeg?lk3s=a5d48078&nonce=4965&refresh_token=fa7c5ee377bf78dbe29f826606085882&x-expires=1727272800&x-signature=VDDh9Fh39MO7f0sZ3HzmzM3UTXI%3D&shp=a5d48078&shcp=81f88b70
+@NiallOfficial  - Image: social_media\@NiallOfficial.png - URL: https://pbs.twimg.com/profile_images/1618293589888405515/qk2Dg9_M_400x400.jpg
+@vilmeijuga - Image: social_media\@vilmeijuga.png - URL: https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/f0d3abbf7b74d4b5b27681d56e59679c~c5_720x720.jpeg?lk3s=a5d48078&nonce=4965&refresh_token=fa7c5ee377bf78dbe29f826606085882&x-expires=1727272800&x-signature=VDDh9Fh39MO7f0sZ3HzmzM3UTXI%3D&shp=a5d48078&shcp=81f88b70

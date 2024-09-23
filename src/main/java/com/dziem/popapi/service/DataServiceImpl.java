@@ -318,5 +318,19 @@ public class DataServiceImpl implements DataService {
             socialMediaRepository.save(socialMedia);
         }
     }
+
+    @Override
+    public void addSourcesToSocialMedia() {
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/imageSource/socialMediaSourceOfPhotos.txt"))) {
+            List<String> lines = reader.lines().toList();
+            for(String line : lines) {
+                String name = line.substring(0,line.indexOf("-")-1);
+                String imageSource = line.substring(line.indexOf(":", line.indexOf(":")+1)+2);
+                System.out.printf("UPDATE SOCIAL_MEDIA SET IMAGE_SOURCE = '%s' WHERE NAME = '%s';\n", imageSource, name);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
