@@ -106,7 +106,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .imageUrl(countryDTO.getFlagUrl())
                     .tier(countryDTO.getYearAndPopulations().getFirst().getTier())
 //                    .imageSource("Country API")
-                    .imageSource(countryDTO.getCountryName())
+                    .imageSource(countryDTO.getImageSource())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTOCountry);
         }
