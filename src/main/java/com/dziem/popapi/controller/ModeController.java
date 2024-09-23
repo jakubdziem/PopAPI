@@ -31,7 +31,7 @@ public class ModeController {
             case Mode.APARTMENTS_WORLD -> modeStatsService.convertApartmentToBaseGameModelDTO("World", "$ per m²");
             case Mode.APARTMENTS_POLAND -> modeStatsService.convertApartmentToBaseGameModelDTO("Poland", "zł per m²");
             case Mode.HISTORY -> modeStatsService.convertHistoryToBaseGameModelDTO();
-            case Mode.SOCIAL_MEDIA_FACEBOOK -> modeStatsService.convertSocialMediaToBaseGameModelDTO("Facebook");
+            case Mode.SOCIAL_MEDIA_TWITTER -> modeStatsService.convertSocialMediaToBaseGameModelDTO("Twitter");
             case Mode.SOCIAL_MEDIA_INSTAGRAM -> modeStatsService.convertSocialMediaToBaseGameModelDTO("Instagram");
             case Mode.SOCIAL_MEDIA_TIK_TOK -> modeStatsService.convertSocialMediaToBaseGameModelDTO("Tik tok");
             case Mode.SOCIAL_MEDIA_YOUTUBE -> modeStatsService.convertSocialMediaToBaseGameModelDTO("Youtube");
