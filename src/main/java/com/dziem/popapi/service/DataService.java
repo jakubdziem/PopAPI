@@ -11,4 +11,6 @@ public interface DataService {
      void addSourceHistory();
 
     void addSourceCountriesAndApartmentsWorld();
+
+    void getDataSocialMedia();
 }

@@ -3,6 +3,7 @@ package com.dziem.popapi.service;
 import com.dziem.popapi.formatter.SpotifyTopArtistDataFormatter;
 import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.*;
+import com.dziem.popapi.scrapping.SocialMediaScrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,7 @@ public class DataServiceImpl implements DataService {
     private final CountryService countryService;
     private final DriverRepository driverRepository;
     private final ApartmentRepository apartmentRepository;
+    private final SocialMediaRepository socialMediaRepository;
 
     @Override
     @Transactional
@@ -298,6 +300,22 @@ public class DataServiceImpl implements DataService {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void getDataSocialMedia() {
+        SocialMediaScrapper socialMediaScrapper = new SocialMediaScrapper();
+        List<String> socialMediaData = socialMediaScrapper.getSocialMediaData();
+        for(String line : socialMediaData) {
+            String[] split = line.split(";");
+            SocialMedia socialMedia = new SocialMedia();
+            socialMedia.setName((split[0]));
+            socialMedia.setFollowers(split[1]);
+            socialMedia.setTier(Integer.valueOf(split[2]));
+            socialMedia.setImageUrl(split[3]);
+            socialMedia.setType(split[4]);
+            socialMediaRepository.save(socialMedia);
         }
     }
 }
