@@ -136,3 +136,15 @@ alter table apartment add column image_source varchar(700);
 alter table history add column image_source varchar(700);
 
 alter table country add column image_source varchar(700);
+
+CREATE TABLE social_media(
+                        id SERIAL PRIMARY KEY,
+                        name varchar(255),
+                        type varchar(30),
+                        followers varchar(255),
+                        image_url varchar(255),
+                        image_source integer
+);
+alter table social_media add column tier integer;
+alter table social_media drop column image_source;
+alter table social_media add column image_source varchar(700);
