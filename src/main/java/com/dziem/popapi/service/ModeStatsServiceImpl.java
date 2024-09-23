@@ -4,6 +4,7 @@ import com.dziem.popapi.mapper.ModeStatsMapper;
 import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.HistoryRepository;
 import com.dziem.popapi.repository.ModeStatsRepository;
+import com.dziem.popapi.repository.SocialMediaRepository;
 import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
     private final DriverService driverService;
     private final ApartmentService apartmentService;
     private final HistoryRepository historyRepository;
+    private final SocialMediaRepository socialMediaRepository;
     @Override
     public ModeStats initializeModeStats(User user, String mode) {
         ModeStats modeStats = new ModeStats();
@@ -198,6 +200,24 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .imageUrl(historyEvent.getImageUrl())
                     .tier(historyEvent.getTier())
                     .imageSource(historyEvent.getImageSource())
+                    .build();
+            baseGameModelDTOS.add(baseGameModelDTO);
+        }
+        return baseGameModelDTOS;
+    }
+
+    @Override
+    public List<BaseGameModelDTO> convertSocialMediaToBaseGameModelDTO(String type) {
+        List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
+        List<SocialMedia> socialMediaByType = socialMediaRepository.findAllByType(type);
+        for(SocialMedia socialMedia : socialMediaByType) {
+            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+                    .name(socialMedia.getName())
+                    .comparableValue(Float.parseFloat(socialMedia.getFollowers()))
+                    .comparableValueLabel(type.equals("Youtube") ? "million subscribers" : "million followers")
+                    .imageUrl(socialMedia.getImageUrl())
+                    .tier(socialMedia.getTier())
+                    .imageSource(socialMedia.getImageSource())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
