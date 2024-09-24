@@ -1,0 +1,30 @@
+Countries:
+    Year 1900 -> https://en.wikipedia.org/wiki/List_of_countries_by_population_in_1900
+    Year 1939 -> https://en.wikipedia.org/wiki/List_of_countries_by_population_in_1939
+    Year 1989 -> https://en.wikipedia.org/wiki/List_of_countries_by_population_in_1939
+    Normal -> https://www.census.gov/data-tools/demo/idb/#/table?COUNTRY_YEAR=2024&COUNTRY_YR_ANIM=2024&menu=tableViz&TABLE_RANGE=2024,2100&TABLE_YEARS=2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060,2061,2062,2063,2064,2065,2066,2067,2068,2069,2070,2071,2072,2073,2074,2075,2076,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100&TABLE_USE_RANGE=Y&TABLE_USE_YEARS=N&TABLE_STEP=1&quickReports=CUSTOM&CUSTOM_COLS=POP,GR,TFR,CBR
+    100 Years Ahead -> calculated from Normal source by Annual Growth Rate
+Spotify:
+    Top Artists -> first 200 from https://chartmasters.org/most-streamed-artists-ever-on-spotify/
+    Top Songs - General -> first 200 from https://chartmasters.org/most-streamed-tracks-on-spotify/
+    Top Songs - Pop -> first 200 from Genre Pop: https://chartmasters.org/most-streamed-tracks-on-spotify/
+    Top Songs - Hip Hop -> first 200 from Genre Hip-Hop: https://chartmasters.org/most-streamed-artists-ever-on-spotify/
+    Top Songs - Rock -> first 200 from Hard Rock / Metal, Rock: https://chartmasters.org/most-streamed-artists-ever-on-spotify/
+Formula 1:
+    Top Drivers - Points -> https://www.statsf1.com/en/statistiques/pilote/point/nombre.aspx
+Apartments:
+    Price per m2 - World -> https://www.numbeo.com/cost-of-living/country_price_rankings?itemId=100
+    Price per m2 - Poland -> https://sonarhome.pl/ceny-mieszkan?page=1&sort=most_expensive
+Historical Dates -> ChatGpt used this:
+    Encyclopædia Britannica – for general historical events and timelines.
+    World History Encyclopedia – for ancient civilizations and significant historical milestones.
+    History.com – for detailed descriptions of key events from antiquity to the modern era.
+    A History of the Ancient Near East by Marc Van De Mieroop – for insights on early empires like Mesopotamia and Egypt.
+    The Histories by Herodotus – for primary source information on Greek and Persian history.
+    Guns, Germs, and Steel by Jared Diamond – for understanding the broader context of global historical developments.
+    Primary Historical Texts – such as the Epic of Gilgamesh, ancient Egyptian inscriptions, and Roman historical accounts like those of Thucydides and Polybius.
+Social Media:
+    Instagram -> https://en.wikipedia.org/wiki/List_of_most-followed_Instagram_accounts
+    Tik Tok -> https://en.wikipedia.org/wiki/List_of_most-followed_TikTok_accounts
+    Twitter -> https://en.wikipedia.org/wiki/List_of_most-followed_Twitter_accounts
+    Youtube -> https://en.wikipedia.org/wiki/List_of_most-subscribed_YouTube_channels
