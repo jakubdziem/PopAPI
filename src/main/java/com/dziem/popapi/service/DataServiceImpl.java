@@ -361,14 +361,72 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public void getTVShowsData() {
-
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/data/topTVShowsData.txt"))) {
+            List<String> lines = reader.lines().toList();
+            int ranking = 1;
+            for (String line : lines) {
+                if (line.startsWith(String.format("%d. ", ranking))) {
+                    String name = line.substring(line.indexOf(".") + 2);
+                    Cinema show = Cinema.builder()
+                            .name(name)
+                            .type("TV Shows")
+                            .ranking(ranking)
+                            .imageUrl(String.format("/images/tv_shows/%s.png", name
+                                    .replace(" ", "_")
+                                    .replace('/', ' ')
+                                    .replace('?', ' ')
+                                    .replace('*', ' ')
+                                    .replace(':', ' ')
+                                    .replace('\"', ' ')
+                                    .replace('\\', ' ')
+                                    .replace('<', ' ')
+                                    .replace('>', ' ')
+                                    .replace('|', ' ')))
+                            .imageSource(null)
+                            .tier(ranking < 30 ? 1 : 2)
+                            .build();
+                    ranking++;
+                    cinemaRepository.save(show);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void getMovieData() {
-
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/data/topMoviesData.txt"))) {
+            List<String> lines = reader.lines().toList();
+            int ranking = 1;
+            for (String line : lines) {
+                if (line.startsWith(String.format("%d. ", ranking))) {
+                    String name = line.substring(line.indexOf(".") + 2);
+                    Cinema movie = Cinema.builder()
+                            .name(name)
+                            .type("Movies")
+                            .ranking(ranking)
+                            .imageUrl(String.format("/images/movies/%s.png", name
+                                    .replace(" ", "_")
+                                    .replace('/', ' ')
+                                    .replace('?', ' ')
+                                    .replace('*', ' ')
+                                    .replace(':', ' ')
+                                    .replace('\"', ' ')
+                                    .replace('\\', ' ')
+                                    .replace('<', ' ')
+                                    .replace('>', ' ')
+                                    .replace('|', ' ')))
+                            .imageSource(null)
+                            .tier(ranking < 30 ? 1 : 2)
+                            .build();
+                    ranking++;
+                    cinemaRepository.save(movie);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
-
-
 }
 

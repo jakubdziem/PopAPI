@@ -50,10 +50,10 @@ public class DataLoader implements CommandLineRunner {
 //        dataService.addSourceCountriesAndApartmentsWorld();
 //        dataService.getDataSocialMedia();
 //        dataService.addSourcesToSocialMedia();
-        System.out.println("Loading");
+//        System.out.println("Loading");
 //        dataService.getCelebsData();
-        dataService.getTVShowsData();
+//        dataService.getTVShowsData();
 //        dataService.getMovieData();
-        System.out.println("Loaded");
+//        System.out.println("Loaded");
     }
 }
