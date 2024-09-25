@@ -1,0 +1,150 @@
+Breaking Bad - Image: tv_shows\Breaking_Bad.png - URL: https://m.media-amazon.com/images/M/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_.jpg
+Planet Earth II - Image: tv_shows\Planet_Earth_II.png - URL: https://m.media-amazon.com/images/M/MV5BMzY4NDBkMWYtYzdkYy00YzBjLWJmODctMWM4YjYzZTdjNWE5XkEyXkFqcGc@._V1_.jpg
+Planet Earth - Image: tv_shows\Planet_Earth.png - URL: https://m.media-amazon.com/images/M/MV5BY2NjNDUzOTgtMDFmNC00ZGQ4LWE5MDctMzczNGVlOGU1N2MyXkEyXkFqcGc@._V1_.jpg
+Band of Brothers - Image: tv_shows\Band_of_Brothers.png - URL: https://m.media-amazon.com/images/M/MV5BMzFhMDQ5MTItMjllMy00YmM2LTk3NmYtY2I3MTIxMzAyNDFlXkEyXkFqcGdeQW1pYnJ5YW50._V1_.jpg
+Chernobyl - Image: tv_shows\Chernobyl.png - URL: https://upload.wikimedia.org/wikipedia/en/a/a7/Chernobyl_2019_Miniseries.jpg
+The Wire - Image: tv_shows\The_Wire.png - URL: https://m.media-amazon.com/images/M/MV5BZmY5ZDMxODEtNWIwOS00NjdkLTkyMjktNWRjMDhmYjJjN2RmXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_FMjpg_UX1000_.jpg
+Avatar: The Last Airbender - Image: tv_shows\Avatar:_The_Last_Airbender.png - URL: https://m.media-amazon.com/images/M/MV5BZjQ1YTZmMjItZmZkMC00MGVmLTk1OTUtNzQzZTJjZGM1NjVlXkEyXkFqcGc@._V1_.jpg
+Blue Planet II - Image: tv_shows\Blue_Planet_II.png - URL: https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/10/30/13/blue-planet-2.jpg
+The Sopranos - Image: tv_shows\The_Sopranos.png - URL: https://m.media-amazon.com/images/M/MV5BMjRmMTNiMTQtMDg1ZS00MGM1LWE1MGUtYjEzMGFjNWUzOWRkXkEyXkFqcGc@._V1_.jpg
+Cosmos: A Spacetime Odyssey - Image: tv_shows\Cosmos:_A_Spacetime_Odyssey.png - URL: https://m.media-amazon.com/images/M/MV5BYTRlMzk0NzctNTI3Ni00N2E2LWJiNGMtMDdlNjk1YWNmMzkyXkEyXkFqcGc@._V1_.jpg
+Cosmos - Image: tv_shows\Cosmos.png - URL: https://upload.wikimedia.org/wikipedia/en/8/8e/Cosmos_spacetime_odyssey_titlecard.jpg
+Our Planet - Image: tv_shows\Our_Planet.png - URL: https://m.media-amazon.com/images/M/MV5BZDE1NzlkNWMtNzFiMC00ZTgxLTgyMmItOTU5OGI2NWQ4MDMxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+Game of Thrones - Image: tv_shows\Game_of_Thrones.png - URL: https://upload.wikimedia.org/wikipedia/en/d/d8/Game_of_Thrones_title_card.jpg
+Bluey - Image: tv_shows\Bluey.png - URL: https://upload.wikimedia.org/wikipedia/en/4/48/Bluey_%282018_TV_series%29_title_card.jpg
+The World at War - Image: tv_shows\The_World_at_War.png - URL: https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Worldatwar.jpg/220px-Worldatwar.jpg
+Fullmetal Alchemist: Brotherhood - Image: tv_shows\Fullmetal_Alchemist:_Brotherhood.png - URL: https://m.media-amazon.com/images/M/MV5BMzNiODA5NjYtYWExZS00OTc4LTg3N2ItYWYwYTUyYmM5MWViXkEyXkFqcGc@._V1_.jpg
+Rick and Morty - Image: tv_shows\Rick_and_Morty.png - URL: https://m.media-amazon.com/images/M/MV5BZGQyZjk2MzMtMTcyNC00NGU3LTlmNjItNDExMWM4ZDFhYmQ2XkEyXkFqcGc@._V1_.jpg
+Life - Image: tv_shows\Life.png - URL: https://m.media-amazon.com/images/M/MV5BNzRlY2VmYWQtNGZhMC00ZWIwLThlZDMtYjY1Mzc5OGE2NThlXkEyXkFqcGc@._V1_.jpg
+The Last Dance - Image: tv_shows\The_Last_Dance.png - URL: https://m.media-amazon.com/images/M/MV5BOTQyYmQ1N2UtYjFkNS00NzgyLTk5YTUtYjExMDdjOTA3MGU2XkEyXkFqcGc@._V1_.jpg
+The Twilight Zone - Image: tv_shows\The_Twilight_Zone.png - URL: https://m.media-amazon.com/images/M/MV5BZWMzMTA5YjItM2MwZC00YTg1LWFjOTAtYWZlMDBjNmVmNGFiXkEyXkFqcGdeQWFsZWxvZw@@._V1_.jpg
+The Vietnam War - Image: tv_shows\The_Vietnam_War.png - URL: https://upload.wikimedia.org/wikipedia/en/d/d9/The_Vietnam_War_%28TV_series%29_title_card.jpg
+Sherlock - Image: tv_shows\Sherlock.png - URL: https://m.media-amazon.com/images/M/MV5BNTQzNGZjNDEtOTMwYi00MzFjLWE2ZTYtYzYxYzMwMjZkZDc5XkEyXkFqcGc@._V1_.jpg
+Attack on Titan - Image: tv_shows\Attack_on_Titan.png - URL: https://static.wikia.nocookie.net/shingekinokyojin/images/d/d8/Attack_on_Titan_Season_1.jpg/revision/latest?cb=20211005182832
+Batman: The Animated Series - Image: tv_shows\Batman:_The_Animated_Series.png - URL: https://static.wikia.nocookie.net/marvel_dc/images/6/6f/Batman_TAS_poster.jpg/revision/latest?cb=20230421095409
+The Office - Image: tv_shows\The_Office.png - URL: https://m.media-amazon.com/images/M/MV5BZjQwYzBlYzUtZjhhOS00ZDQ0LWE0NzAtYTk4MjgzZTNkZWEzXkEyXkFqcGc@._V1_.jpg
+Better Call Saul - Image: tv_shows\Better_Call_Saul.png - URL: https://m.media-amazon.com/images/M/MV5BMGY4MWIyMzAtMTA1OS00NDc3LWE2ZTktMTQ4NTZmZjIxZjgxXkEyXkFqcGc@._V1_.jpg
+The Blue Planet - Image: tv_shows\The_Blue_Planet.png - URL: https://cms.bbcearth.com/sites/default/files/2021-03/bp1.png
+Arcane - Image: tv_shows\Arcane.png - URL: https://resizing.flixster.com/SFfLVmXdiFhntYdVoYo2hyBJn9U=/ems.cHJkLWVtcy1hc3NldHMvdHZzZXJpZXMvMzRiYTc0NzUtZjJhNS00ZTlhLWI4ODMtY2MxNWNjMWU1ZjJmLmpwZw==
+Scam 1992: The Harshad Mehta Story - Image: tv_shows\Scam_1992:_The_Harshad_Mehta_Story.png - URL: https://m.media-amazon.com/images/M/MV5BNGRkOTVjODgtNTBmZS00MDQ3LWE3ZjQtM2ZiNDQ3OWJkMjM2XkEyXkFqcGc@._V1_.jpg
+Clarkson's Farm - Image: tv_shows\Clarkson's_Farm.png - URL: https://m.media-amazon.com/images/M/MV5BNTNlZGFjOTgtN2QyYS00ZjY3LThjOTEtOTQ3ZDdhM2Y4ZjQ3XkEyXkFqcGc@._V1_.jpg
+Human Planet - Image: tv_shows\Human_Planet.png - URL: https://i.ytimg.com/vi/GmfvOEjXWe4/hqdefault.jpg
+Frozen Planet - Image: tv_shows\Frozen_Planet.png - URL: https://m.media-amazon.com/images/M/MV5BMDE0ZTZlZDItOTgzNS00Zjg4LWEwOWEtYjc1YzY2MjliZTM5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+Firefly - Image: tv_shows\Firefly.png - URL: https://m.media-amazon.com/images/M/MV5BYzYyZWYzNzUtOWQ4Yi00Y2Q4LWJjZjgtZTllNjg2ZGM0MTcyXkEyXkFqcGc@._V1_.jpg
+Hunter x Hunter - Image: tv_shows\Hunter_x_Hunter.png - URL: https://m.media-amazon.com/images/M/MV5BYzYxOTlkYzctNGY2MC00MjNjLWIxOWMtY2QwYjcxZWIwMmEwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+Only Fools and Horses - Image: tv_shows\Only_Fools_and_Horses.png - URL: https://m.media-amazon.com/images/M/MV5BMWM4YjFhOWMtYzg1Yi00NTA2LTlmNzMtNDk3M2M1MTRiN2QyXkEyXkFqcGc@._V1_.jpg
+Death Note - Image: tv_shows\Death_Note.png - URL: https://m.media-amazon.com/images/M/MV5BNDJhNTU3ZmYtNTg3ZS00YmIyLWFlYjYtNjNiYWIwMDA2ZjQ0XkEyXkFqcGc@._V1_.jpg
+The Civil War - Image: tv_shows\The_Civil_War.png - URL: https://m.media-amazon.com/images/M/MV5BYTUwNTM2YTAtODA3Yi00YjU0LTliNzktM2YzMzk5NzU5ZTcyXkEyXkFqcGc@._V1_.jpg
+Seinfeld - Image: tv_shows\Seinfeld.png - URL: https://m.media-amazon.com/images/M/MV5BMmRjNjZjN2ItN2FkYi00ZDg0LWExN2EtMTU2ODUwNWU1M2NhXkEyXkFqcGc@._V1_.jpg
+Gravity Falls - Image: tv_shows\Gravity_Falls.png - URL: https://static.wikia.nocookie.net/best-tv-shows/images/3/3f/P10851882_b_v8_aa.jpg/revision/latest?cb=20190719010158
+Dekalog - Image: tv_shows\Dekalog.png - URL: https://m.media-amazon.com/images/M/MV5BZmUzZjk0NjEtOTFjMC00NDI2LTkwZmEtZWIxYjVjNDEwNWZiXkEyXkFqcGc@._V1_.jpg
+The Beatles: Get Back - Image: tv_shows\The_Beatles:_Get_Back.png - URL: https://m.media-amazon.com/images/M/MV5BNjMxMjE5ZTEtMjgyOC00ODM4LWJjZDAtMjcwZDBlNzZhZTkyXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UX1000_.jpg
+Cowboy Bebop - Image: tv_shows\Cowboy_Bebop.png - URL: https://m.media-amazon.com/images/M/MV5BNjY4Yjk5MmEtYmNjYy00MjI1LWJlZjktMWRkYmU0YThlZWVjXkEyXkFqcGc@._V1_.jpg
+True Detective - Image: tv_shows\True_Detective.png - URL: https://static.hbo.com/2023-11/true-detective-night-country-s4-ka-1920.jpg
+Fargo - Image: tv_shows\Fargo.png - URL: https://upload.wikimedia.org/wikipedia/en/2/2d/Fargoseason1promo.jpg
+Persona - Image: tv_shows\Persona.png - URL: https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Persona_2019.jpg/250px-Persona_2019.jpg
+Nathan for You - Image: tv_shows\Nathan_for_You.png - URL: https://m.media-amazon.com/images/M/MV5BMjE0NzkzMTA1NF5BMl5BanBnXkFtZTgwMzE5ODExNzE@._V1_.jpg
+As If - Image: tv_shows\As_If.png - URL: https://m.media-amazon.com/images/M/MV5BOTRhYjg4NjQtZjQxOS00MzFkLTg3NzYtNTM1Y2UxNzhhN2Y1XkEyXkFqcGc@._V1_.jpg
+Taskmaster - Image: tv_shows\Taskmaster.png - URL: https://m.media-amazon.com/images/M/MV5BY2RmNmM1YzAtOWJlMi00NTdiLWEwN2MtNDliNGI3NmUxMTk3XkEyXkFqcGc@._V1_.jpg
+Apocalypse: The Second World War - Image: tv_shows\Apocalypse:_The_Second_World_War.png - URL: https://m.media-amazon.com/images/M/MV5BZDQwMjdmZTctODU5MS00NDFmLWFmODYtZTUzMzAzOTFlNTMwXkEyXkFqcGc@._V1_.jpg
+When They See Us - Image: tv_shows\When_They_See_Us.png - URL: https://m.media-amazon.com/images/M/MV5BMGU0MDIzZTAtYjBjZi00ZDQ1LThlYzctNWJkOWU4NTI5OWNkXkEyXkFqcGc@._V1_.jpg
+Last Week Tonight with John Oliver - Image: tv_shows\Last_Week_Tonight_with_John_Oliver.png - URL: https://m.media-amazon.com/images/M/MV5BNjRhYTgyZGEtOGU2YS00ZGM1LWIzODctZDhkNDBiYTFhZTYxXkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_FMjpg_UX1000_.jpg
+Africa - Image: tv_shows\Africa.png - URL: https://m.media-amazon.com/images/M/MV5BNWIxM2MyYzItMzZkMC00YTI4LWI4M2UtNWNlYjk5MzU5YjY2XkEyXkFqcGc@._V1_.jpg
+Friends - Image: tv_shows\Friends.png - URL: https://m.media-amazon.com/images/M/MV5BOTU2YmM5ZjctOGVlMC00YTczLTljM2MtYjhlNGI5YWMyZjFkXkEyXkFqcGc@._V1_.jpg
+Succession - Image: tv_shows\Succession.png - URL: https://m.media-amazon.com/images/M/MV5BNTEwNTFkZTktMzI1OC00YmRjLWE5NTUtYmZhMmJlNGUxMWU1XkEyXkFqcGc@._V1_.jpg
+It's Always Sunny in Philadelphia - Image: tv_shows\It's_Always_Sunny_in_Philadelphia.png - URL: https://m.media-amazon.com/images/I/71Qv1c1zFXL._AC_UF894,1000_QL80_.jpg
+TVF Pitchers - Image: tv_shows\TVF_Pitchers.png - URL: https://m.media-amazon.com/images/M/MV5BMjQwNTQ5MjAxNF5BMl5BanBnXkFtZTgwNTU0MDA3NjE@._V1_.jpg
+The West Wing - Image: tv_shows\The_West_Wing.png - URL: https://m.media-amazon.com/images/M/MV5BY2I2Mzc0YjItN2I3MS00NjNjLWE5OWUtYmQzMjkxZjIwOGY5XkEyXkFqcGc@._V1_.jpg
+Monty Python's Flying Circus - Image: tv_shows\Monty_Python's_Flying_Circus.png - URL: https://m.media-amazon.com/images/M/MV5BOTFmYTc3ZWEtNTYxNi00OTA4LTk2NjEtNTI2MTJlNzkyMDdlXkEyXkFqcGdeQWpybA@@._V1_.jpg
+Curb Your Enthusiasm - Image: tv_shows\Curb_Your_Enthusiasm.png - URL: https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg
+One Piece - Image: tv_shows\One_Piece.png - URL: https://m.media-amazon.com/images/M/MV5BMTNjNGU4NTUtYmVjMy00YjRiLTkxMWUtNzZkMDNiYjZhNmViXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+Das Boot - Image: tv_shows\Das_Boot.png - URL: https://m.media-amazon.com/images/M/MV5BZmNlODJlMmQtZTBmYy00ZmQwLTk5YzItN2RhOWU5NWQ2NjdhXkEyXkFqcGc@._V1_.jpg
+Frieren: Beyond Journey's End - Image: tv_shows\Frieren:_Beyond_Journey's_End.png - URL: https://m.media-amazon.com/images/M/MV5BOWIxMzVkYTQtNWNkYy00NjkxLTlmMjYtNjQ2ZGMxZGMxZjRhXkEyXkFqcGdeQXNvbG5vbXM@._V1_QL75_UX500_CR0,0,500,281_.jpg
+BoJack Horseman - Image: tv_shows\BoJack_Horseman.png - URL: https://m.media-amazon.com/images/M/MV5BZmMwMDlkNTEtMmQzZS00ODQ0LWJlZmItOTgwYWMwZGM4MzFiXkEyXkFqcGc@._V1_.jpg
+Fawlty Towers - Image: tv_shows\Fawlty_Towers.png - URL: https://m.media-amazon.com/images/M/MV5BODM5YWE5NDAtZTU4MC00YWI0LThjMjItNTlhMTQ5Y2Y5NWJiXkEyXkFqcGc@._V1_.jpg
+Leyla and Mecnun - Image: tv_shows\Leyla_and_Mecnun.png - URL: https://m.media-amazon.com/images/M/MV5BNzQ4ZTMxM2UtYTY2MS00NjlmLTlmNmYtYWFmMjMyMzZmZjZkXkEyXkFqcGc@._V1_.jpg
+Pride and Prejudice - Image: tv_shows\Pride_and_Prejudice.png - URL: https://m.media-amazon.com/images/M/MV5BYzNkMjRmZGMtODg1Ni00MjIxLWI4MTYtOGEwM2YyMmZiMjUzXkEyXkFqcGc@._V1_.jpg
+Freaks and Geeks - Image: tv_shows\Freaks_and_Geeks.png - URL: https://m.media-amazon.com/images/M/MV5BNDk4MTRlZjMtYTMxYi00ZjdkLWEyYjYtZjg1NjBlMzY2MDIzXkEyXkFqcGc@._V1_.jpg
+Blackadder Goes Forth - Image: tv_shows\Blackadder_Goes_Forth.png - URL: https://m.media-amazon.com/images/M/MV5BMTg3MTg1MTMyMl5BMl5BanBnXkFtZTgwODI0NTkwMzE@._V1_.jpg
+Dragon Ball Z - Image: tv_shows\Dragon_Ball_Z.png - URL: https://m.media-amazon.com/images/M/MV5BN2VlNTdlMzQtYzE5OC00YmYwLTgyZTItYjEzMWY0ZDNjMTJhXkEyXkFqcGc@._V1_.jpg
+Twin Peaks - Image: tv_shows\Twin_Peaks.png - URL: https://upload.wikimedia.org/wikipedia/en/e/ea/TwinPeaks_openingshotcredits.jpg
+Panchayat - Image: tv_shows\Panchayat.png - URL: https://upload.wikimedia.org/wikipedia/en/1/1a/Panchayat_logo.jpg
+Dragon Ball Z - Image: tv_shows\Dragon_Ball_Z.png - URL: https://m.media-amazon.com/images/M/MV5BN2VlNTdlMzQtYzE5OC00YmYwLTgyZTItYjEzMWY0ZDNjMTJhXkEyXkFqcGc@._V1_.jpg
+Chappelle's Show - Image: tv_shows\Chappelle's_Show.png - URL: https://m.media-amazon.com/images/M/MV5BNzgxYTFlMjYtMWM0MC00ZjQzLWJjMjUtNDZhNGE0Yzg2YmRjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+Narcos - Image: tv_shows\Narcos.png - URL: https://upload.wikimedia.org/wikipedia/en/b/b9/Narcos_season_1.png
+X-Men '97 - Image: tv_shows\X-Men_'97.png - URL: https://m.media-amazon.com/images/M/MV5BMmQzMWQ0YWMtZTM3OS00NDFkLWJjYjItYmQ4ZGMyZTFiNjBhXkEyXkFqcGc@._V1_.jpg
+Gullak - Image: tv_shows\Gullak.png - URL: https://upload.wikimedia.org/wikipedia/en/d/d2/Gullak.jpg
+I, Claudius - Image: tv_shows\I,_Claudius.png - URL: https://m.media-amazon.com/images/M/MV5BZmIwMjNkMzMtZDM0Ny00YjVkLTkzNDQtYWFiNmQxOTc3MDZmXkEyXkFqcGc@._V1_.jpg
+Vinland Saga - Image: tv_shows\Vinland_Saga.png - URL: https://upload.wikimedia.org/wikipedia/en/8/8c/Vinland_Saga_key_visual.png
+Kota Factory - Image: tv_shows\Kota_Factory.png - URL: https://m.media-amazon.com/images/M/MV5BNDhhOGM1ZGEtYTYxYi00OTRjLTg5MDgtMTdmNTYzYzdjMjUxXkEyXkFqcGc@._V1_.jpg
+Black Mirror - Image: tv_shows\Black_Mirror.png - URL: https://m.media-amazon.com/images/M/MV5BMWY3ZjgwMTctZTZmMS00ZTMwLTkwYWEtNTVkMDgwNjA5ODBiXkEyXkFqcGc@._V1_.jpg
+South Park - Image: tv_shows\South_Park.png - URL: https://m.media-amazon.com/images/M/MV5BNTBlMzA3ZTUtODZjNi00NTM0LWExMjMtNjJhYzA3YTkwMWYwXkEyXkFqcGc@._V1_.jpg
+Over the Garden Wall - Image: tv_shows\Over_the_Garden_Wall.png - URL: https://m.media-amazon.com/images/M/MV5BOTA2MTdhZmItODM3NS00ZmFlLWE4YWYtOWYxODBmNGU5YjRjXkEyXkFqcGc@._V1_.jpg
+Ted Lasso - Image: tv_shows\Ted_Lasso.png - URL: https://m.media-amazon.com/images/M/MV5BMDE5OTkxM2EtMDM1ZC00MDRlLWI5MTgtNjNkMzdlYzY0NzQ2XkEyXkFqcGc@._V1_.jpg
+Bleach: Thousand-Year Blood War - Image: tv_shows\Bleach:_Thousand-Year_Blood_War.png - URL: https://m.media-amazon.com/images/M/MV5BMDYyZDEzNzktNDVhNS00MjJiLWJlZjgtY2IzZDY0OTNjMDU3XkEyXkFqcGc@._V1_.jpg
+Reply 1988 - Image: tv_shows\Reply_1988.png - URL: https://m.media-amazon.com/images/M/MV5BYjhjYjg1MTYtYjNhYy00YjU2LTliZmEtMWRmZDhjODdkOTE0XkEyXkFqcGc@._V1_.jpg
+Peaky Blinders - Image: tv_shows\Peaky_Blinders.png - URL: https://m.media-amazon.com/images/M/MV5BMThlOWE3MWEtZjM4Ny00M2FiLTkyMmYtZGY3ZTcyMzM5YmNlXkEyXkFqcGdeQWpnYW1i._V1_.jpg
+Six Feet Under - Image: tv_shows\Six_Feet_Under.png - URL: https://m.media-amazon.com/images/M/MV5BZjAzZjE1ZDgtNWY0My00Y2FjLWE4ZmItNmEzNjNmOGI5YzMyXkEyXkFqcGdeQW1pYnJ5YW50._V1_.jpg
+Rome - Image: tv_shows\Rome.png - URL: https://m.media-amazon.com/images/M/MV5BMGQ0M2YxMGEtMDQ2MC00NGEwLTliMTQtODVkYWZkNDFkM2Y3XkEyXkFqcGc@._V1_.jpg
+Oz - Image: tv_shows\Oz.png - URL: https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/Ozposter.jpg/225px-Ozposter.jpg
+Steins;Gate - Image: tv_shows\Steins;Gate.png - URL: https://m.media-amazon.com/images/M/MV5BZjI1YjZiMDUtZTI3MC00YTA5LWIzMmMtZmQ0NTZiYWM4NTYwXkEyXkFqcGc@._V1_.jpg
+Dark - Image: tv_shows\Dark.png - URL: https://upload.wikimedia.org/wikipedia/en/d/da/DarkNetflixPosterEnglish.jpg
+The Last of Us - Image: tv_shows\The_Last_of_Us.png - URL: https://m.media-amazon.com/images/M/MV5BODNlZDg3YmItZTA2Mi00ZWEzLWJkNjUtMTk5NjQwZDdjNWU2XkEyXkFqcGdeQWRvb2xpbmhk._V1_.jpg
+Berserk - Image: tv_shows\Berserk.png - URL: https://m.media-amazon.com/images/M/MV5BOTY0ZGMwZmEtNDVmMy00OWJmLWFlNjEtMGZkNTdlN2EzOWVmXkEyXkFqcGc@._V1_.jpg
+Fleabag - Image: tv_shows\Fleabag.png - URL: https://m.media-amazon.com/images/M/MV5BMjA4MzU5NzQxNV5BMl5BanBnXkFtZTgwOTg3MDA5NzM@._V1_.jpg
+The Shield - Image: tv_shows\The_Shield.png - URL: https://m.media-amazon.com/images/M/MV5BMTcwNzQwODI5NV5BMl5BanBnXkFtZTcwNzQxMjI5MQ@@._V1_.jpg
+Downton Abbey - Image: tv_shows\Downton_Abbey.png - URL: https://m.media-amazon.com/images/M/MV5BYzgzNDVjNjgtNzQxZS00N2E2LTkxNjgtNjIzMGZiM2UwYWQ2XkEyXkFqcGc@._V1_.jpg
+Battlestar Galactica - Image: tv_shows\Battlestar_Galactica.png - URL: https://m.media-amazon.com/images/M/MV5BNmMzYzdmNWMtM2ZmMi00Y2E2LWI5ZTMtYWJlNmJiMDgyYWRiXkEyXkFqcGc@._V1_.jpg
+Blue Eye Samurai - Image: tv_shows\Blue_Eye_Samurai.png - URL: https://m.media-amazon.com/images/M/MV5BY2E4ZGIwZWYtMGRiMS00NGI2LTgwYzAtZGY5NGVhNzY3Yjk0XkEyXkFqcGc@._V1_.jpg
+Severance - Image: tv_shows\Severance.png - URL: https://m.media-amazon.com/images/M/MV5BZWY3NjJjMWMtZjFiOC00MmNjLWE0NjAtODdlNzk1ZGQ0Yjg2XkEyXkFqcGc@._V1_.jpg
+The Simpsons - Image: tv_shows\The_Simpsons.png - URL: https://m.media-amazon.com/images/M/MV5BNTU2OWE0YWYtMjRlMS00NTUwLWJmZWUtODFhNzJiMGJlMzI3XkEyXkFqcGc@._V1_.jpg
+Mad Men - Image: tv_shows\Mad_Men.png - URL: https://m.media-amazon.com/images/M/MV5BYTNjNjc5OWQtYjMxNC00MzEwLWIxM2UtNjU3NzhkNjZmNGI3XkEyXkFqcGc@._V1_.jpg
+The Grand Tour - Image: tv_shows\The_Grand_Tour.png - URL: https://m.media-amazon.com/images/M/MV5BOGQ1M2Y4ZjMtNWRiNS00YTUzLTkxMzEtZjgzYmZjMGVlMzY5XkEyXkFqcGc@._V1_.jpg
+Peep Show - Image: tv_shows\Peep_Show.png - URL: https://m.media-amazon.com/images/M/MV5BNmQ0MGMwNjMtNmEyMC00OTA2LTg4YTEtNjBhNjNkYTgzMmZlXkEyXkFqcGc@._V1_.jpg
+House - Image: tv_shows\House.png - URL: https://upload.wikimedia.org/wikipedia/en/5/55/Our_House_cast_1986.jpg
+Arrested Development - Image: tv_shows\Arrested_Development.png - URL: https://m.media-amazon.com/images/M/MV5BOTk3N2M0MjktMDhkNi00ZGVhLTk4YTUtYjI5MDJmMWUzNTgwXkEyXkFqcGc@._V1_.jpg
+The Boys - Image: tv_shows\The_Boys.png - URL: https://variety.com/wp-content/uploads/2023/05/The-Boys-TV-Show-Amazon.jpg?w=1000&h=562&crop=1
+Star Trek: The Next Generation - Image: tv_shows\Star_Trek:_The_Next_Generation.png - URL: https://m.media-amazon.com/images/M/MV5BMmNiNTQ2YzYtODBjYy00ZWMwLTlmNWMtYWE1NTQ2ZTYyZmMwXkEyXkFqcGc@._V1_.jpg
+One Punch Man - Image: tv_shows\One_Punch_Man.png - URL: https://m.media-amazon.com/images/M/MV5BNzMwOGQ5MWItNzE3My00ZDYyLTk4NzAtZWIyYWI0NTZhYzY0XkEyXkFqcGc@._V1_.jpg
+Invincible - Image: tv_shows\Invincible.png - URL: https://m.media-amazon.com/images/M/MV5BZmE4MWJjZGYtZWI1ZS00OWE5LTk2OTQtZWM1ZjA1OGViZDgyXkEyXkFqcGc@._V1_.jpg
+The Adventures of Sherlock Holmes - Image: tv_shows\The_Adventures_of_Sherlock_Holmes.png - URL: https://m.media-amazon.com/images/M/MV5BNjg3NjY5NGUtZTlkNS00NGE2LWJhMTAtZTlkZDgzZDBhOWY1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+Justice League Unlimited - Image: tv_shows\Justice_League_Unlimited.png - URL: https://static.wikia.nocookie.net/marvel_dc/images/6/66/Justice_League_Unlimited_TV_Series.jpg/revision/latest?cb=20211111195615
+Naruto: Shippuden - Image: tv_shows\Naruto:_Shippuden.png - URL: https://m.media-amazon.com/images/M/MV5BNTk3MDA1ZjAtNTRhYS00YzNiLTgwOGEtYWRmYTQ3NjA0NTAwXkEyXkFqcGc@._V1_.jpg
+Mahabharat - Image: tv_shows\Mahabharat.png - URL: https://upload.wikimedia.org/wikipedia/en/d/da/Mahabharat_2013_title.jpg
+Stranger Things - Image: tv_shows\Stranger_Things.png - URL: https://m.media-amazon.com/images/M/MV5BMjE2N2MyMzEtNmU5NS00OTI0LTlkNTMtMWM1YWYyNmU4NmY0XkEyXkFqcGc@._V1_.jpg
+The Marvelous Mrs. Maisel - Image: tv_shows\The_Marvelous_Mrs._Maisel.png - URL: https://m.media-amazon.com/images/M/MV5BOWFjODRhMDktMTE3My00ODQzLThmODctYmM2ZmU5YmY0ZGVkXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_FMjpg_UX1000_.jpg
+Friday Night Lights - Image: tv_shows\Friday_Night_Lights.png - URL: https://m.media-amazon.com/images/M/MV5BNzMxNzQwODItNDFiYy00YjFhLWJjMzUtYjc0Nzk5ZTI4ODA1XkEyXkFqcGc@._V1_.jpg
+Monster - Image: tv_shows\Monster.png - URL: https://i.ytimg.com/vi/Rl2e0W3nHro/maxresdefault.jpg
+Line of Duty - Image: tv_shows\Line_of_Duty.png - URL: https://m.media-amazon.com/images/M/MV5BMzRlZjUyZjItZmY2Ni00YjQzLWE4ZTktMGFjMmZkMGQ4ZTcxXkEyXkFqcGc@._V1_.jpg
+Top Gear - Image: tv_shows\Top_Gear.png - URL: https://m.media-amazon.com/images/M/MV5BNTJlYmZjNDAtYjA2YS00YjAyLWI4NmYtYjFhNmM5MDEyMWJmXkEyXkFqcGc@._V1_.jpg
+1883 - Image: tv_shows\1883.png - URL: https://m.media-amazon.com/images/M/MV5BNDY5Y2E1ZWItODU1YS00ZTgzLThkODEtMGE4NmM0ZmRiZGEyXkEyXkFqcGdeQWxiaWFtb250._V1_.jpg
+Behzat Ç: An Ankara Detective Story - Image: tv_shows\Behzat_Ç:_An_Ankara_Detective_Story.png - URL: https://m.media-amazon.com/images/M/MV5BNTIyOTBlZDEtNTkzOC00MTcwLWE4YjktOGRlNGEzYTNmN2Y2XkEyXkFqcGc@._V1_.jpg
+Sarabhai V/S Sarabhai - Image: tv_shows\Sarabhai_V_S_Sarabhai.png - URL: https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/old_images/SHOW/523/523/523-h
+The Thick of It - Image: tv_shows\The_Thick_of_It.png - URL: https://m.media-amazon.com/images/M/MV5BODkyZjk1YzgtODZlNi00NWQ4LThmMjMtZDYxMGE2NGFiYzMyXkEyXkFqcGc@._V1_.jpg
+How to with John Wilson - Image: tv_shows\How_to_with_John_Wilson.png - URL: https://static.hbo.com/2023-07/htwjw-s3-ka-1920.jpg
+Aspirants - Image: tv_shows\Aspirants.png - URL: https://upload.wikimedia.org/wikipedia/en/f/fe/TVF_Aspirants_Poster.jpeg
+The Mandalorian - Image: tv_shows\The_Mandalorian.png - URL: https://upload.wikimedia.org/wikipedia/en/0/04/The_Mandalorian_season_1_poster.jpg
+This Is Us - Image: tv_shows\This_Is_Us.png - URL: https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQbpO4QEbO4YLU6ucWlaW83MAPhyeQZNS4hNcbTnvsqw8DHZG7FaPemGVvpiCRHE0QYuLDRn9Ld2kMQ0azgkBOIvozqZl8MCrsfA9Gb0DHVEm624QNoH28rOI-qhUWmL1914f7wYo_dTU3ZIAa2Lph0SMmNM.jpg?r=30c
+Father Ted - Image: tv_shows\Father_Ted.png - URL: https://m.media-amazon.com/images/M/MV5BN2NmMzNkZDAtYzEyMy00NzY2LTlhMmMtNzc2M2M5ZTk2MmY2XkEyXkFqcGc@._V1_.jpg
+Shōgun - Image: tv_shows\Shōgun.png - URL: https://m.media-amazon.com/images/M/MV5BZmJkMDRjYzEtMWI3Ny00OWE3LWJlNTItMGQ1MTQzMzc3NDY5XkEyXkFqcGc@._V1_.jpg
+House of Cards - Image: tv_shows\House_of_Cards.png - URL: https://m.media-amazon.com/images/M/MV5BZWRmYjczYjQtMzBkNC00OTEzLThkYTAtZDJkZjM2OWRmOWU4XkEyXkFqcGc@._V1_.jpg
+Code Geass - Image: tv_shows\Code_Geass.png - URL: https://m.media-amazon.com/images/M/MV5BNTk4MWYwNmUtODFjNC00NWJhLWExNGYtMGU4YmRlNzEwOTY1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+Atlanta - Image: tv_shows\Atlanta.png - URL: https://m.media-amazon.com/images/M/MV5BMDAzMDdkZmEtN2QxMi00NGQ2LTg3MTEtYTBlMmNmYmJjOTc1XkEyXkFqcGc@._V1_.jpg
+Parks and Recreation - Image: tv_shows\Parks_and_Recreation.png - URL: https://m.media-amazon.com/images/M/MV5BNDlhMzAwNTAtNTk2NS00MTdkLWE3ZWYtMDU0MTFiYmU2ZTc0XkEyXkFqcGc@._V1_.jpg
+Deadwood - Image: tv_shows\Deadwood.png - URL: https://m.media-amazon.com/images/M/MV5BODFiMjBkNDMtN2I1NS00YWM3LTliNWEtMTg0NjVlN2I5YTNlXkEyXkFqcGc@._V1_.jpg
+The X-Files - Image: tv_shows\The_X-Files.png - URL: https://m.media-amazon.com/images/M/MV5BZDA0MmM4YzUtMzYwZC00OGI2LWE0ODctNzNhNTkwN2FmNTVhXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_FMjpg_UX1000_.jpg
+The Crown - Image: tv_shows\The_Crown.png - URL: https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8aec3564-ad37-439e-9b9c-4b11ed041ecd_1080x1350.jpeg
+Dexter - Image: tv_shows\Dexter.png - URL: https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p7892396_b_v8_ab.jpg
+Adventure Time - Image: tv_shows\Adventure_Time.png - URL: https://m.media-amazon.com/images/M/MV5BMjkxMzIwNmQtMzM5Ni00YWJiLTg4YjQtNjBiN2IxMjZhMGQ2XkEyXkFqcGc@._V1_.jpg
+The Penguin - Image: tv_shows\The_Penguin.png - URL: https://m.media-amazon.com/images/M/MV5BYmU3MzYzOWEtOTdkZi00YzA1LTliMzQtNDdiZDBjY2FiNmFlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+Ramayan - Image: tv_shows\Ramayan.png - URL: https://upload.wikimedia.org/wikipedia/en/a/ac/Ramayan_poster.jpg
+It's a Sin - Image: tv_shows\It's_a_Sin.png - URL: https://m.media-amazon.com/images/M/MV5BMzI4NThmYTQtY2E2Ni00NjI0LThmYzQtNmZlMmI1NzY2OWQ0XkEyXkFqcGc@._V1_.jpg
+Primal - Image: tv_shows\Primal.png - URL: https://m.media-amazon.com/images/M/MV5BOTc0NTUyYmItOTY4Yi00ZjY5LWI1NjMtNDgyODJhYWRiY2UxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+The Bridge - Image: tv_shows\The_Bridge.png - URL: https://upload.wikimedia.org/wikipedia/en/1/1f/The_Bridge_season_one.png
+Daredevil - Image: tv_shows\Daredevil.png - URL: https://m.media-amazon.com/images/M/MV5BODcwOTg2MDE3NF5BMl5BanBnXkFtZTgwNTUyNTY1NjM@._V1_.jpg
+Lonesome Dove - Image: tv_shows\Lonesome_Dove.png - URL: https://upload.wikimedia.org/wikipedia/en/1/18/Lonesome_Dove.jpg
+Blackadder II - Image: tv_shows\Blackadder_II.png - URL: https://m.media-amazon.com/images/M/MV5BOWY2OGZjZDYtYjQwNC00NjEzLTg2YzEtMGJiOTdlYjAyZmMwXkEyXkFqcGc@._V1_.jpg
+Mindhunter - Image: tv_shows\Mindhunter.png - URL: https://m.media-amazon.com/images/M/MV5BYTk4NDA4MGMtNjliOC00MjExLWI1YzctOTc4NWIxM2I1YjM5XkEyXkFqcGc@._V1_.jpg
+Haikyu!! - Image: tv_shows\Haikyu!!.png - URL: https://images.justwatch.com/poster/199385886/s332/season-1
+The Jinx: The Life and Deaths of Robert Durst - Image: tv_shows\The_Jinx:_The_Life_and_Deaths_of_Robert_Durst.png - URL: https://static.hbo.com/2024-04/the-jinx-part-two-ka-1920_0.jpg
+Poirot - Image: tv_shows\Poirot.png - URL: https://m.media-amazon.com/images/M/MV5BMTQyMTA3ZWEtYTUwMy00MzI0LWFmM2YtMzhjMWEwMDAwYTc3XkEyXkFqcGc@._V1_.jpg

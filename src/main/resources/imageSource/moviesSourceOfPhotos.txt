@@ -1,0 +1,150 @@
+The Shawshank Redemption - Image: movies\The_Shawshank_Redemption.png - URL: https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_.jpg
+The Godfather - Image: movies\The_Godfather.png - URL: https://m.media-amazon.com/images/M/MV5BYTJkNGQyZDgtZDQ0NC00MDM0LWEzZWQtYzUzZDEwMDljZWNjXkEyXkFqcGc@._V1_.jpg
+The Dark Knight - Image: movies\The_Dark_Knight.png - URL: https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg
+The Godfather Part II - Image: movies\The_Godfather_Part_II.png - URL: https://m.media-amazon.com/images/M/MV5BNzc1OWY5MjktZDllMi00ZDEzLWEwMGItYjk1YmRhYjBjNTVlXkEyXkFqcGc@._V1_.jpg
+12 Angry Men - Image: movies\12_Angry_Men.png - URL: https://upload.wikimedia.org/wikipedia/commons/b/b5/12_Angry_Men_%281957_film_poster%29.jpg
+Schindler's List - Image: movies\Schindler's_List.png - URL: https://m.media-amazon.com/images/M/MV5BNjM1ZDQxYWUtMzQyZS00MTE1LWJmZGYtNGUyNTdlYjM3ZmVmXkEyXkFqcGc@._V1_.jpg
+The Lord of the Rings: The Return of the King - Image: movies\The_Lord_of_the_Rings _The_Return_of_the_King.png - URL: https://m.media-amazon.com/images/M/MV5BMTZkMjBjNWMtZGI5OC00MGU0LTk4ZTItODg2NWM3NTVmNWQ4XkEyXkFqcGc@._V1_.jpg
+Pulp Fiction - Image: movies\Pulp_Fiction.png - URL: https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_.jpg
+The Lord of the Rings: The Fellowship of the Ring - Image: movies\The_Lord_of_the_Rings _The_Fellowship_of_the_Ring.png - URL: https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_.jpg
+The Good, the Bad and the Ugly - Image: movies\The_Good,_the_Bad_and_the_Ugly.png - URL: https://upload.wikimedia.org/wikipedia/en/4/45/Good_the_bad_and_the_ugly_poster.jpg
+Forrest Gump - Image: movies\Forrest_Gump.png - URL: https://m.media-amazon.com/images/M/MV5BNDYwNzVjMTItZmU5YS00YjQ5LTljYjgtMjY2NDVmYWMyNWFmXkEyXkFqcGc@._V1_.jpg
+The Lord of the Rings: The Two Towers - Image: movies\The_Lord_of_the_Rings _The_Two_Towers.png - URL: https://m.media-amazon.com/images/M/MV5BMGQxMDdiOWUtYjc1Ni00YzM1LWE2NjMtZTg3Y2JkMjEzMTJjXkEyXkFqcGc@._V1_.jpg
+Fight Club - Image: movies\Fight_Club.png - URL: https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3Ny00MjU3LTg2YWEtNmEyYjBiMjI1Y2M5XkEyXkFqcGc@._V1_.jpg
+Inception - Image: movies\Inception.png - URL: https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg
+Star Wars: Episode V - The Empire Strikes Back - Image: movies\Star_Wars _Episode_V_-_The_Empire_Strikes_Back.png - URL: https://m.media-amazon.com/images/M/MV5BMTkxNGFlNDktZmJkNC00MDdhLTg0MTEtZjZiYWI3MGE5NWIwXkEyXkFqcGc@._V1_.jpg
+The Matrix - Image: movies\The_Matrix.png - URL: https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_.jpg
+Goodfellas - Image: movies\Goodfellas.png - URL: https://m.media-amazon.com/images/M/MV5BN2E5NzI2ZGMtY2VjNi00YTRjLWI1MDUtZGY5OWU1MWJjZjRjXkEyXkFqcGc@._V1_.jpg
+One Flew Over the Cuckoo's Nest - Image: movies\One_Flew_Over_the_Cuckoo's_Nest.png - URL: https://upload.wikimedia.org/wikipedia/en/2/26/One_Flew_Over_the_Cuckoo%27s_Nest_poster.jpg
+Interstellar - Image: movies\Interstellar.png - URL: https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_.jpg
+Se7en - Image: movies\Se7en.png - URL: https://m.media-amazon.com/images/M/MV5BY2IzNzMxZjctZjUxZi00YzAxLTk3ZjMtODFjODdhMDU5NDM1XkEyXkFqcGc@._V1_.jpg
+It's a Wonderful Life - Image: movies\It's_a_Wonderful_Life.png - URL: https://upload.wikimedia.org/wikipedia/commons/2/25/It%27s_a_Wonderful_Life_%281946_poster%29.jpeg
+Seven Samurai - Image: movies\Seven_Samurai.png - URL: https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Seven_Samurai_poster.jpg/1200px-Seven_Samurai_poster.jpg
+The Silence of the Lambs - Image: movies\The_Silence_of_the_Lambs.png - URL: https://m.media-amazon.com/images/M/MV5BNDdhOGJhYzctYzYwZC00YmI2LWI0MjctYjg4ODdlMDExYjBlXkEyXkFqcGc@._V1_.jpg
+Saving Private Ryan - Image: movies\Saving_Private_Ryan.png - URL: https://m.media-amazon.com/images/M/MV5BZGZhZGQ1ZWUtZTZjYS00MDJhLWFkYjctN2ZlYjE5NWYwZDM2XkEyXkFqcGc@._V1_.jpg
+City of God - Image: movies\City_of_God.png - URL: https://static.wixstatic.com/media/c46b9d_dbe762aec6de46a69e4d7c776d0c2653~mv2.gif
+Life Is Beautiful - Image: movies\Life_Is_Beautiful.png - URL: https://m.media-amazon.com/images/M/MV5BZTBhOGYzZjQtYzE0Mi00MGIwLWE0MWYtNzMxNTM2OTFkM2NjXkEyXkFqcGc@._V1_.jpg
+The Green Mile - Image: movies\The_Green_Mile.png - URL: https://upload.wikimedia.org/wikipedia/en/e/e2/The_Green_Mile_%28movie_poster%29.jpg
+Terminator 2: Judgment Day - Image: movies\Terminator_2 _Judgment_Day.png - URL: https://m.media-amazon.com/images/M/MV5BNGMyMGNkMDUtMjc2Ni00NWFlLTgyODEtZTY2MzBiZTg0OWZiXkEyXkFqcGc@._V1_.jpg
+Star Wars: Episode IV - A New Hope - Image: movies\Star_Wars _Episode_IV_-_A_New_Hope.png - URL: https://m.media-amazon.com/images/M/MV5BOGUwMDk0Y2MtNjBlNi00NmRiLTk2MWYtMGMyMDlhYmI4ZDBjXkEyXkFqcGc@._V1_.jpg
+Back to the Future - Image: movies\Back_to_the_Future.png - URL: https://m.media-amazon.com/images/M/MV5BZmM3ZjE0NzctNjBiOC00MDZmLTgzMTUtNGVlOWFlOTNiZDJiXkEyXkFqcGc@._V1_.jpg
+Spirited Away - Image: movies\Spirited_Away.png - URL: https://m.media-amazon.com/images/M/MV5BNTEyNmEwOWUtYzkyOC00ZTQ4LTllZmUtMjk0Y2YwOGUzYjRiXkEyXkFqcGc@._V1_.jpg
+The Pianist - Image: movies\The_Pianist.png - URL: https://m.media-amazon.com/images/M/MV5BMjEwNmEwYjgtNTk3ZC00NjljLTg5ZDctZTY3ZGQwZjRkZmQxXkEyXkFqcGc@._V1_.jpg
+Parasite - Image: movies\Parasite.png - URL: https://m.media-amazon.com/images/M/MV5BYjk1Y2U4MjQtY2ZiNS00OWQyLWI3MmYtZWUwNmRjYWRiNWNhXkEyXkFqcGc@._V1_.jpg
+Psycho - Image: movies\Psycho.png - URL: https://upload.wikimedia.org/wikipedia/commons/7/76/Psycho_%281960%29_theatrical_poster_%28retouched%29.jpg
+Gladiator - Image: movies\Gladiator.png - URL: https://m.media-amazon.com/images/M/MV5BYWQ4YmNjYjEtOWE1Zi00Y2U4LWI4NTAtMTU0MjkxNWQ1ZmJiXkEyXkFqcGc@._V1_.jpg
+The Lion King - Image: movies\The_Lion_King.png - URL: https://i.ytimg.com/vi/7TavVZMewpY/maxresdefault.jpg
+Spider-Man: Across the Spider-Verse - Image: movies\Spider-Man _Across_the_Spider-Verse.png - URL: https://m.media-amazon.com/images/M/MV5BNThiZjA3MjItZGY5Ni00ZmJhLWEwN2EtOTBlYTA4Y2E0M2ZmXkEyXkFqcGc@._V1_.jpg
+The Departed - Image: movies\The_Departed.png - URL: https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p162564_p_v8_ag.jpg
+Whiplash - Image: movies\Whiplash.png - URL: https://miro.medium.com/v2/resize:fit:1400/1*HygtAUSg3MqQjimu0MQy3Q.jpeg
+American History X - Image: movies\American_History_X.png - URL: https://upload.wikimedia.org/wikipedia/en/3/39/American_History_X_poster.png
+Léon: The Professional - Image: movies\Léon _The_Professional.png - URL: https://m.media-amazon.com/images/M/MV5BNGRkYTNhOWQtYmI0Ni00MjZhLWJmMzAtMTA2Mjg4NGNiNDU0XkEyXkFqcGc@._V1_.jpg
+Grave of the Fireflies - Image: movies\Grave_of_the_Fireflies.png - URL: https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p158931_p_v8_aa.jpg
+The Prestige - Image: movies\The_Prestige.png - URL: https://m.media-amazon.com/images/M/MV5BMjA4NDI0MTIxNF5BMl5BanBnXkFtZTYwNTM0MzY2._V1_.jpg
+Harakiri - Image: movies\Harakiri.png - URL: https://upload.wikimedia.org/wikipedia/en/f/fd/Harakiri_Poster.jpg
+Dune: Part Two - Image: movies\Dune _Part_Two.png - URL: https://www.deepfocusreview.com/wp-content/uploads/2024/07/Dune-Part-Two-2024.jpg
+The Usual Suspects - Image: movies\The_Usual_Suspects.png - URL: https://m.media-amazon.com/images/M/MV5BOTE5MDUxZDUtZWZmZC00NDVmLWFhOGQtNWI2YTc4NzY3MGQ0XkEyXkFqcGc@._V1_.jpg
+Casablanca - Image: movies\Casablanca.png - URL: https://upload.wikimedia.org/wikipedia/commons/b/b3/CasablancaPoster-Gold.jpg
+The Intouchables - Image: movies\The_Intouchables.png - URL: https://m.media-amazon.com/images/M/MV5BODY0MDM1MDE2OV5BMl5BanBnXkFtZTcwMzEyMjkyNw@@._V1_.jpg
+Cinema Paradiso - Image: movies\Cinema_Paradiso.png - URL: https://m.media-amazon.com/images/M/MV5BMTljNzc4YWEtYTZlMS00ODMyLWIwMTAtNWQxY2VkMDEwYTk5XkEyXkFqcGc@._V1_.jpg
+Modern Times - Image: movies\Modern_Times.png - URL: https://upload.wikimedia.org/wikipedia/commons/3/36/Modern_Times_poster.jpg
+Alien - Image: movies\Alien.png - URL: https://hips.hearstapps.com/hmg-prod/images/xenomorph-2-66be5f460bd63.jpg?crop=0.5xw:1xh;center,top&resize=640:*
+Rear Window - Image: movies\Rear_Window.png - URL: https://m.media-amazon.com/images/M/MV5BODZhOWI1ODgtMzdiOS00YjNkLTgwOGUtYmIyZDg5ZmQwMzQ1XkEyXkFqcGc@._V1_.jpg
+Once Upon a Time in the West - Image: movies\Once_Upon_a_Time_in_the_West.png - URL: https://m.media-amazon.com/images/M/MV5BZjYyNGY1MDEtN2I1MC00MGVhLTljZTYtODQ1NzQ0ODc2NzZlXkEyXkFqcGc@._V1_.jpg
+City Lights - Image: movies\City_Lights.png - URL: https://upload.wikimedia.org/wikipedia/en/2/2c/CityLights.jpg
+Django Unchained - Image: movies\Django_Unchained.png - URL: https://m.media-amazon.com/images/M/MV5BMjIyNTQ5NjQ1OV5BMl5BanBnXkFtZTcwODg1MDU4OA@@._V1_.jpg
+Apocalypse Now - Image: movies\Apocalypse_Now.png - URL: https://upload.wikimedia.org/wikipedia/en/c/c2/Apocalypse_Now_poster.jpg
+Memento - Image: movies\Memento.png - URL: https://m.media-amazon.com/images/M/MV5BYmQ3MjliNjAtNWFiZS00YWI1LTlmZTktMzBiNDE1NjRhZjU0XkEyXkFqcGc@._V1_.jpg
+WALL·E - Image: movies\WALL·E.png - URL: https://m.media-amazon.com/images/M/MV5BMjExMTg5OTU0NF5BMl5BanBnXkFtZTcwMjMxMzMzMw@@._V1_.jpg
+Raiders of the Lost Ark - Image: movies\Raiders_of_the_Lost_Ark.png - URL: https://nz.originalfilmart.com/cdn/shop/products/raiders_of_the_lost_ark_1981_original_film_art_82ee2470-b3f7-48d8-8cbd-2d6f062b769e_2000x.webp?v=1680131151
+12th Fail - Image: movies\12th_Fail.png - URL: https://m.media-amazon.com/images/M/MV5BNTE3OTIxZDYtNjA0NC00N2YxLTg1NGQtOTYxNmZkMDkwOWNjXkEyXkFqcGc@._V1_.jpg
+The Lives of Others - Image: movies\The_Lives_of_Others.png - URL: https://m.media-amazon.com/images/M/MV5BYjM1N2Q0YWEtN2E5MC00NDM3LTk2NTEtMTc1NTk5OTA5ZGIzXkEyXkFqcGc@._V1_.jpg
+Sunset Boulevard - Image: movies\Sunset_Boulevard.png - URL: https://upload.wikimedia.org/wikipedia/commons/1/14/Sunset_Boulevard_%281950_poster%29.jpg
+Avengers: Infinity War - Image: movies\Avengers _Infinity_War.png - URL: https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_.jpg
+Paths of Glory - Image: movies\Paths_of_Glory.png - URL: https://upload.wikimedia.org/wikipedia/commons/f/fa/Paths_of_Glory_%281957_poster%29.jpg
+Spider-Man: Into the Spider-Verse - Image: movies\Spider-Man _Into_the_Spider-Verse.png - URL: https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_.jpg
+Witness for the Prosecution - Image: movies\Witness_for_the_Prosecution.png - URL: https://upload.wikimedia.org/wikipedia/en/a/ad/Movie_poster_for_%22Witness_for_the_Prosecution%22.jpg
+The Shining - Image: movies\The_Shining.png - URL: https://m.media-amazon.com/images/M/MV5BNmM5ZThhY2ItOGRjOS00NzZiLWEwYTItNDgyMjFkOTgxMmRiXkEyXkFqcGc@._V1_.jpg
+The Great Dictator - Image: movies\The_Great_Dictator.png - URL: https://upload.wikimedia.org/wikipedia/commons/9/9d/The_Great_Dictator_%281940%29_poster.jpg
+Aliens - Image: movies\Aliens.png - URL: https://m.media-amazon.com/images/M/MV5BZjIyNGJhYzYtN2I1My00OTVhLWEyMzItZTVjNDMzOTVkYWViXkEyXkFqcGc@._V1_.jpg
+Inglourious Basterds - Image: movies\Inglourious_Basterds.png - URL: https://m.media-amazon.com/images/M/MV5BODZhMWJlNjYtNDExNC00MTIzLTllM2ItOGQ2NGVjNDQ3MzkzXkEyXkFqcGc@._V1_.jpg
+The Dark Knight Rises - Image: movies\The_Dark_Knight_Rises.png - URL: https://m.media-amazon.com/images/M/MV5BMTk4ODQzNDY3Ml5BMl5BanBnXkFtZTcwODA0NTM4Nw@@._V1_.jpg
+Coco - Image: movies\Coco.png - URL: https://m.media-amazon.com/images/M/MV5BMDIyM2E2NTAtMzlhNy00ZGUxLWI1NjgtZDY5MzhiMDc5NGU3XkEyXkFqcGc@._V1_.jpg
+Amadeus - Image: movies\Amadeus.png - URL: https://m.media-amazon.com/images/M/MV5BMzc2MjM0NTMtOGY4NC00NzY1LWE2ODUtZjMzY2RhNGNkZDAyXkEyXkFqcGc@._V1_.jpg
+Toy Story - Image: movies\Toy_Story.png - URL: https://m.media-amazon.com/images/M/MV5BZTA3OWVjOWItNjE1NS00NzZiLWE1MjgtZDZhMWI1ZTlkNzYwXkEyXkFqcGc@._V1_.jpg
+Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb - Image: movies\Dr._Strangelove_or _How_I_Learned_to_Stop_Worrying_and_Love_the_Bomb.png - URL: https://m.media-amazon.com/images/M/MV5BMjFjYzBlOTktMTI2OS00ZWVhLTgxMDUtNzAwODY2NmI3YTAzXkEyXkFqcGc@._V1_.jpg
+Oldboy - Image: movies\Oldboy.png - URL: https://m.media-amazon.com/images/M/MV5BMTI3NTQyMzU5M15BMl5BanBnXkFtZTcwMTM2MjgyMQ@@._V1_.jpg
+American Beauty - Image: movies\American_Beauty.png - URL: https://resizing.flixster.com/5sOOWkgXyKfxn5zq73bjF59_5cI=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzY4NTUxOGZjLWNkMjAtNDE3YS1hOGVkLWU3NTZkZjFhMGMxOS53ZWJw
+Avengers: Endgame - Image: movies\Avengers _Endgame.png - URL: https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg
+Das Boot - Image: movies\Das_Boot.png - URL: https://m.media-amazon.com/images/M/MV5BNGU0MWZlMTUtM2Y3Ny00NGNmLWE5NmEtN2YxOWQzMGM3ZWYzXkEyXkFqcGc@._V1_.jpg
+Braveheart - Image: movies\Braveheart.png - URL: https://m.media-amazon.com/images/M/MV5BNGMxZDBhNGQtYTZlNi00N2UzLWI4NDEtNmUzNWM2NTdmZDA0XkEyXkFqcGc@._V1_.jpg
+Good Will Hunting - Image: movies\Good_Will_Hunting.png - URL: https://m.media-amazon.com/images/M/MV5BNDdjZGQ5YzEtNTc2My00Mjc0LWFlMTctYzkwMzZlNzdiZWYzXkEyXkFqcGc@._V1_.jpg
+Princess Mononoke - Image: movies\Princess_Mononoke.png - URL: https://upload.wikimedia.org/wikipedia/en/8/8c/Princess_Mononoke_Japanese_poster.png
+Joker - Image: movies\Joker.png - URL: https://m.media-amazon.com/images/M/MV5BNzY3OWQ5NDktNWQ2OC00ZjdlLThkMmItMDhhNDk3NTFiZGU4XkEyXkFqcGc@._V1_.jpg
+Your Name. - Image: movies\Your_Name..png - URL: https://m.media-amazon.com/images/M/MV5BNmEyZjI0M2MtNGFkOC00YTRlLWI0MGQtYTgyODY2MGRhMjc4XkEyXkFqcGc@._V1_.jpg
+High and Low - Image: movies\High_and_Low.png - URL: https://m.media-amazon.com/images/M/MV5BNDFkY2IwZjgtZmIyMi00MTc5LTgzYzktZDFjNmJkNjFmMTkwXkEyXkFqcGc@._V1_.jpg
+3 Idiots - Image: movies\3_Idiots.png - URL: https://m.media-amazon.com/images/M/MV5BNzc4ZWQ3NmYtODE0Ny00YTQ4LTlkZWItNTBkMGQ0MmUwMmJlXkEyXkFqcGc@._V1_.jpg
+Once Upon a Time in America - Image: movies\Once_Upon_a_Time_in_America.png - URL: https://m.media-amazon.com/images/M/MV5BMDQ0ZTg2OGUtZjMyOC00M2M5LThkMmItZmM2MmUzMmIxMWJhXkEyXkFqcGc@._V1_.jpg
+Singin' in the Rain - Image: movies\Singin'_in_the_Rain.png - URL: https://upload.wikimedia.org/wikipedia/commons/5/5d/Singin%27_in_the_Rain_%281952_poster%29.jpg
+Capernaum - Image: movies\Capernaum.png - URL: https://m.media-amazon.com/images/M/MV5BYzEyMzQ1OTktZTljZi00OWQzLWE2ZmUtZjQyNzBjYjE1NTc0XkEyXkFqcGc@._V1_.jpg
+Come and See - Image: movies\Come_and_See.png - URL: https://m.media-amazon.com/images/M/MV5BNDlkZmVkZDAtZGFmMS00OWIzLWJkY2YtNWE5NjNhNjhiZGE3XkEyXkFqcGc@._V1_.jpg
+Requiem for a Dream - Image: movies\Requiem_for_a_Dream.png - URL: https://m.media-amazon.com/images/M/MV5BN2ZlMjIzZjctYzA2My00ZWYyLWI4ZjctMGI2NWYyNzFiZjAwXkEyXkFqcGc@._V1_.jpg
+Toy Story 3 - Image: movies\Toy_Story_3.png - URL: https://upload.wikimedia.org/wikipedia/en/6/69/Toy_Story_3_poster.jpg
+Star Wars: Episode VI - Return of the Jedi - Image: movies\Star_Wars _Episode_VI_-_Return_of_the_Jedi.png - URL: https://m.media-amazon.com/images/M/MV5BNWEwOTI0MmUtMGNmNy00ODViLTlkZDQtZTg1YmQ3MDgyNTUzXkEyXkFqcGc@._V1_.jpg
+Eternal Sunshine of the Spotless Mind - Image: movies\Eternal_Sunshine_of_the_Spotless_Mind.png - URL: https://m.media-amazon.com/images/M/MV5BMTY4NzcwODg3Nl5BMl5BanBnXkFtZTcwNTEwOTMyMw@@._V1_.jpg
+The Hunt - Image: movies\The_Hunt.png - URL: https://m.media-amazon.com/images/M/MV5BMTg2NDg3ODg4NF5BMl5BanBnXkFtZTcwNzk3NTc3Nw@@._V1_.jpg
+2001: A Space Odyssey - Image: movies\2001 _A_Space_Odyssey.png - URL: https://m.media-amazon.com/images/M/MV5BNjU0NDFkMTQtZWY5OS00MmZhLTg3Y2QtZmJhMzMzMWYyYjc2XkEyXkFqcGc@._V1_.jpg
+Ikiru - Image: movies\Ikiru.png - URL: https://m.media-amazon.com/images/M/MV5BZTk4OGEwNDQtOGI2MC00MTU2LTk0YTEtNmU5NTIxMWNkNDhlXkEyXkFqcGc@._V1_.jpg
+Reservoir Dogs - Image: movies\Reservoir_Dogs.png - URL: https://m.media-amazon.com/images/M/MV5BMmMzYjg4NDctYWY0Mi00OGViLWIzMTMtYWNlZGY5ZDJmYjk3XkEyXkFqcGc@._V1_.jpg
+Lawrence of Arabia - Image: movies\Lawrence_of_Arabia.png - URL: https://upload.wikimedia.org/wikipedia/commons/c/c5/Lawrence_of_arabia_ver3_xxlg.jpg
+The Apartment - Image: movies\The_Apartment.png - URL: https://upload.wikimedia.org/wikipedia/commons/8/8b/The_Apartment_%281960_poster%29.jpg
+Incendies - Image: movies\Incendies.png - URL: https://m.media-amazon.com/images/M/MV5BYWFmMjdmNjctNzhhOC00ZmMzLTkwOGItMmVmZDU4MjE2MTYwXkEyXkFqcGc@._V1_.jpg
+North by Northwest - Image: movies\North_by_Northwest.png - URL: https://cdn.britannica.com/99/176699-050-797B541E/Cary-Grant-North-Northwest-Alfred-Hitchcock.jpg
+Scarface - Image: movies\Scarface.png - URL: https://m.media-amazon.com/images/M/MV5BNDUzYjY0NmUtMDM4OS00Y2Q5LWJiODYtNTk0ZTk0YjZhMTg1XkEyXkFqcGc@._V1_.jpg
+Oppenheimer - Image: movies\Oppenheimer.png - URL: https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg
+Double Indemnity - Image: movies\Double_Indemnity.png - URL: https://upload.wikimedia.org/wikipedia/commons/c/ce/Double_Indemnity_%281944_poster%29.jpg
+Citizen Kane - Image: movies\Citizen_Kane.png - URL: https://m.media-amazon.com/images/M/MV5BYjk1ZDJlMmUtOWQ0Zi00MDM5LTk1OGYtODczNjFmMGYwZGVkXkEyXkFqcGc@._V1_.jpg
+M - Image: movies\M.png - URL: https://upload.wikimedia.org/wikipedia/en/a/ab/M_poster.jpg
+Vertigo - Image: movies\Vertigo.png - URL: https://upload.wikimedia.org/wikipedia/commons/7/75/Vertigomovie_restoration.jpg
+Full Metal Jacket - Image: movies\Full_Metal_Jacket.png - URL: https://m.media-amazon.com/images/M/MV5BYWUzNzZkNzUtNDdiYy00Nzk5LTgxMmItNTk0MjRjNjdjNDA0XkEyXkFqcGc@._V1_.jpg
+Heat - Image: movies\Heat.png - URL: https://upload.wikimedia.org/wikipedia/en/6/6c/Heatposter.jpg
+Amélie - Image: movies\Amélie.png - URL: https://m.media-amazon.com/images/M/MV5BOTNmYzY0MWQtZGZmNy00Y2Y4LWFmMDQtMTZjYTdiYzEwZGQ2XkEyXkFqcGc@._V1_.jpg
+Up - Image: movies\Up.png - URL: https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p190662_p_v12_ay.jpg
+A Clockwork Orange - Image: movies\A_Clockwork_Orange.png - URL: https://upload.wikimedia.org/wikipedia/en/7/73/A_Clockwork_Orange_%281971%29.png
+To Kill a Mockingbird - Image: movies\To_Kill_a_Mockingbird.png - URL: https://upload.wikimedia.org/wikipedia/commons/2/2f/To_Kill_a_Mockingbird_%281963_US_theatrical_poster%29.jpg
+A Separation - Image: movies\A_Separation.png - URL: https://m.media-amazon.com/images/M/MV5BMDM0ZWRmMzctM2M5ZS00ZjU0LWIxN2MtNWNlNGY1ZDhjMDVhXkEyXkFqcGc@._V1_.jpg
+The Sting - Image: movies\The_Sting.png - URL: https://m.media-amazon.com/images/M/MV5BZGI4OTk4MDMtYmQ1Ni00YTUzLTkyYTktZGUwMjMyN2M4NjQ5XkEyXkFqcGc@._V1_.jpg
+Die Hard - Image: movies\Die_Hard.png - URL: https://m.media-amazon.com/images/M/MV5BMGNlYmM1NmQtYWExMS00NmRjLTg5ZmEtMmYyYzJkMzljYWMxXkEyXkFqcGc@._V1_.jpg
+Indiana Jones and the Last Crusade - Image: movies\Indiana_Jones_and_the_Last_Crusade.png - URL: https://upload.wikimedia.org/wikipedia/en/8/8c/Indiana_Jones_and_the_Last_Crusade.png
+Like Stars on Earth - Image: movies\Like_Stars_on_Earth.png - URL: https://m.media-amazon.com/images/M/MV5BZTI0ZGRiMDEtNGNjMS00MGU4LWI3OTktNzcxMDZmZTk3MTljXkEyXkFqcGc@._V1_.jpg
+Metropolis - Image: movies\Metropolis.png - URL: https://upload.wikimedia.org/wikipedia/en/thumb/9/97/Metropolis_%28German_three-sheet_poster%29.jpg/640px-Metropolis_%28German_three-sheet_poster%29.jpg
+Snatch - Image: movies\Snatch.png - URL: https://m.media-amazon.com/images/M/MV5BYzk5NjJkMTQtN2IyNC00YWM5LTlhZmMtNGI3MWNhMTU1YTc4XkEyXkFqcGc@._V1_.jpg
+1917 - Image: movies\1917.png - URL: https://m.media-amazon.com/images/I/81CmHhtOM+L._AC_UF894,1000_QL80_.jpg
+L.A. Confidential - Image: movies\L.A._Confidential.png - URL: https://m.media-amazon.com/images/M/MV5BODdiMjY1OGYtNDk0NC00NGQ1LWI4MDItOTJhMTM0YjE1YTAzXkEyXkFqcGc@._V1_.jpg
+Bicycle Thieves - Image: movies\Bicycle_Thieves.png - URL: https://m.media-amazon.com/images/M/MV5BMjIzMzAyMzg1Nl5BMl5BanBnXkFtZTgwMzMyNzk0MTE@._V1_.jpg
+Hamilton - Image: movies\Hamilton.png - URL: https://m.media-amazon.com/images/M/MV5BYzBhOWY4ZTktMjE2NS00ZGIyLWJkOGMtNDQyN2JjZWFiODdiXkEyXkFqcGc@._V1_.jpg
+Downfall - Image: movies\Downfall.png - URL: https://musicart.xboxlive.com/7/84925000-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080
+Taxi Driver - Image: movies\Taxi_Driver.png - URL: https://m.media-amazon.com/images/M/MV5BZDNhMGYwM2UtMTdlZS00MGQ1LWI2YzAtODY5YWI1MjYyNzRmXkEyXkFqcGc@._V1_.jpg
+Dangal - Image: movies\Dangal.png - URL: https://upload.wikimedia.org/wikipedia/en/thumb/9/99/Dangal_Poster.jpg/220px-Dangal_Poster.jpg
+Batman Begins - Image: movies\Batman_Begins.png - URL: https://m.media-amazon.com/images/M/MV5BODIyMDdhNTgtNDlmOC00MjUxLWE2NDItODA5MTdkNzY3ZTdhXkEyXkFqcGc@._V1_.jpg
+For a Few Dollars More - Image: movies\For_a_Few_Dollars_More.png - URL: https://upload.wikimedia.org/wikipedia/en/0/09/For_a_Few_Dollars_More-ita-poster.jpg
+The Wolf of Wall Street - Image: movies\The_Wolf_of_Wall_Street.png - URL: https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_.jpg
+Green Book - Image: movies\Green_Book.png - URL: https://m.media-amazon.com/images/M/MV5BNDU5YTNmMmItN2QxNy00OGQ0LTg5MTctNzFmYjEzZjcwN2UwXkEyXkFqcGc@._V1_.jpg
+Some Like It Hot - Image: movies\Some_Like_It_Hot.png - URL: https://upload.wikimedia.org/wikipedia/commons/b/b8/Some_Like_It_Hot_%281959_poster%29.png
+The Kid - Image: movies\The_Kid.png - URL: https://m.media-amazon.com/images/M/MV5BNTI0NzQxOTMwOF5BMl5BanBnXkFtZTgwMjAxMzg0NzM@._V1_.jpg
+The Truman Show - Image: movies\The_Truman_Show.png - URL: https://m.media-amazon.com/images/M/MV5BNzA3ZjZlNzYtMTdjMy00NjMzLTk5ZGYtMTkyYzNiOGM1YmM3XkEyXkFqcGc@._V1_.jpg
+Judgment at Nuremberg - Image: movies\Judgment_at_Nuremberg.png - URL: https://upload.wikimedia.org/wikipedia/commons/6/63/Judgment_at_Nuremberg_%281961_film_poster%29.jpg
+The Father - Image: movies\The_Father.png - URL: https://m.media-amazon.com/images/M/MV5BYzUxMDAyMDAtNzIyZi00OGQ1LTllMjEtYzRjOThkZTUxNTliXkEyXkFqcGc@._V1_.jpg
+All About Eve - Image: movies\All_About_Eve.png - URL: https://m.media-amazon.com/images/M/MV5BOTM4ZjUzOGUtYzdlZi00ZmM5LTk5NTEtMjQxNDVmOTc5NWNlXkEyXkFqcGc@._V1_.jpg
+Shutter Island - Image: movies\Shutter_Island.png - URL: https://m.media-amazon.com/images/M/MV5BN2FjNWExYzEtY2YzOC00YjNlLTllMTQtNmIwM2Q1YzBhOWM1XkEyXkFqcGc@._V1_.jpg
+There Will Be Blood - Image: movies\There_Will_Be_Blood.png - URL: https://upload.wikimedia.org/wikipedia/en/d/da/There_Will_Be_Blood_Poster.jpg
+Jurassic Park - Image: movies\Jurassic_Park.png - URL: https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_.jpg
+Top Gun: Maverick - Image: movies\Top_Gun _Maverick.png - URL: https://m.media-amazon.com/images/M/MV5BMDBkZDNjMWEtOTdmMi00NmExLTg5MmMtNTFlYTJlNWY5YTdmXkEyXkFqcGc@._V1_.jpg
+Casino - Image: movies\Casino.png - URL: https://m.media-amazon.com/images/M/MV5BMDRlZWZjZjYtYzY2NS00ZWVjLTkwYzAtZTA2ZDAzMGRiYmYwXkEyXkFqcGc@._V1_.jpg
+Ran - Image: movies\Ran.png - URL: https://m.media-amazon.com/images/M/MV5BZDk2NDY5YjktMjEyMC00OTJhLTkzM2EtY2Q4Y2RjYzc2Yjk4XkEyXkFqcGc@._V1_.jpg
+The Sixth Sense - Image: movies\The_Sixth_Sense.png - URL: https://upload.wikimedia.org/wikipedia/en/a/a4/The_Sixth_Sense_poster.png
+Pan's Labyrinth - Image: movies\Pan's_Labyrinth.png - URL: https://m.media-amazon.com/images/M/MV5BOTc1NTAxMWItMWFlNy00MmU2LTkwMTMtNzMwOTg5OTQ5YTFiXkEyXkFqcGc@._V1_.jpg
+Unforgiven - Image: movies\Unforgiven.png - URL: https://m.media-amazon.com/images/M/MV5BNmZmMzM3YWMtZjg5Yi00M2MxLTg3ZGItNGU4YjQxNDAxM2Q4XkEyXkFqcGc@._V1_.jpg
+No Country for Old Men - Image: movies\No_Country_for_Old_Men.png - URL: https://m.media-amazon.com/images/M/MV5BMjA5Njk3MjM4OV5BMl5BanBnXkFtZTcwMTc5MTE1MQ@@._V1_FMjpg_UX1000_.jpg
+The Thing - Image: movies\The_Thing.png - URL: https://m.media-amazon.com/images/M/MV5BYTA3NDU5MWEtNTk4Yy00ZDNkLThmZTQtMjU3ZGVhYzAyMzU4XkEyXkFqcGc@._V1_.jpg
+A Beautiful Mind - Image: movies\A_Beautiful_Mind.png - URL: https://m.media-amazon.com/images/M/MV5BNzljZTk5ZDgtZTQ1Zi00NTM4LThlOGUtZDk2MGM4NDQ4NWQyXkEyXkFqcGc@._V1_.jpg
