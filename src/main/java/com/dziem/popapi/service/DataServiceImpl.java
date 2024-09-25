@@ -34,6 +34,7 @@ public class DataServiceImpl implements DataService {
     private final DriverRepository driverRepository;
     private final ApartmentRepository apartmentRepository;
     private final SocialMediaRepository socialMediaRepository;
+    private final CinemaRepository cinemaRepository;
 
     @Override
     @Transactional
@@ -332,5 +333,42 @@ public class DataServiceImpl implements DataService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void getCelebsData() {
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/data/topCelebsData.txt"))) {
+            List<String> lines = reader.lines().toList();
+            int ranking = 1;
+            for (String line : lines) {
+                if (line.startsWith(String.format("%d.", ranking))) {
+                    String name = line.substring(line.indexOf(".") + 2);
+                    Cinema celeb = Cinema.builder()
+                            .name(name)
+                            .type("Celebs")
+                            .ranking(ranking)
+                            .imageUrl(String.format("/images/celebs/%s.png", name.replace(" ", "_")))
+                            .imageSource(null)
+                            .tier(ranking < 30 ? 1 : 2)
+                            .build();
+                    ranking++;
+                    cinemaRepository.save(celeb);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void getTVShowsData() {
+
+    }
+
+    @Override
+    public void getMovieData() {
+
+    }
+
+
 }
 

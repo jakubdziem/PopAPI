@@ -15,4 +15,7 @@ public interface DataService {
     void getDataSocialMedia();
 
     void addSourcesToSocialMedia();
+    void getCelebsData();
+    void getTVShowsData();
+    void getMovieData();
 }

@@ -148,3 +148,15 @@ CREATE TABLE social_media(
 alter table social_media add column tier integer;
 alter table social_media drop column image_source;
 alter table social_media add column image_source varchar(700);
+
+
+CREATE TABLE cinema(
+                       id SERIAL PRIMARY KEY,
+                       name varchar(255),
+                       type varchar(30),
+                       ranking integer,
+                       image_url varchar(255),
+                       image_source varchar(700),
+                       tier integer
+);
+
