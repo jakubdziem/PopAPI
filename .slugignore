@@ -4,3 +4,6 @@
 target/
 build/
 # src/main/resources/static/images/f1
+src/main/resources/static/images/celebs
+src/main/resources/static/images/movies
+src/main/resources/static/images/tv_shows
