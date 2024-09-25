@@ -230,7 +230,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
             BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
                     .name(cinema.getName())
                     .comparableValue((float)(cinema.getRanking()))
-                    .comparableValueLabel("")
+                    .comparableValueLabel("rank")
                     .imageUrl(cinema.getImageUrl())
                     .tier(cinema.getTier())
                     .imageSource(cinema.getImageSource())
