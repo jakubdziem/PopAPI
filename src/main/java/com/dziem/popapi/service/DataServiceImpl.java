@@ -3,6 +3,7 @@ package com.dziem.popapi.service;
 import com.dziem.popapi.formatter.SpotifyTopArtistDataFormatter;
 import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.*;
+import com.dziem.popapi.scrapping.ArtistScrapper;
 import com.dziem.popapi.scrapping.SocialMediaScrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -161,7 +162,7 @@ public class DataServiceImpl implements DataService {
     public void getDataSpotifyTopArtists() {
         LocalDate date = LocalDate.MIN;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-//        String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/data/spotifyTopArtistData.txt");
+        ArtistScrapper.getAndSaveArtistDataToFile();
         String dateAndAllSongs = SpotifyTopArtistDataFormatter.formatSpotifyFile("src/main/resources/data/artist.txt");
         String[] split = dateAndAllSongs.split("\n");
         for (int i = 0; i < split.length; i++) {
@@ -205,9 +206,6 @@ public class DataServiceImpl implements DataService {
     @Override
     public void addSourceToDriver() {
         List<Driver> drivers = driverRepository.findAll().stream().sorted(Comparator.reverseOrder()).toList();
-//        for(Driver driver : drivers) {
-//            System.out.println(driver);
-//        }
         HashMap<String, String> missedDrivers = new HashMap<>();
         try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/imageSource/f1SourceOfPhotos.txt"))) {
             List<String> lines = reader.lines().toList();

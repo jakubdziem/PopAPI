@@ -21,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ArtistScrapper {
 
-    public static void main(String[] args) {
+    public static void getAndSaveArtistDataToFile() {
         // Set up WebDriver (assuming ChromeDriver is used)
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
