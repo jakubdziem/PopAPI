@@ -28,3 +28,7 @@ Social Media:
     Tik Tok -> https://en.wikipedia.org/wiki/List_of_most-followed_TikTok_accounts
     Twitter -> https://en.wikipedia.org/wiki/List_of_most-followed_Twitter_accounts
     Youtube -> https://en.wikipedia.org/wiki/List_of_most-subscribed_YouTube_channels
+Cinema:
+    Movies -> first 150 from https://www.imdb.com/chart/top/?sort=rank%2Casc
+    TV Shows -> first 150 from https://www.imdb.com/chart/toptv/?ref_=chttvm_ql_6
+    Celebs -> https://www.imdb.com/list/ls052283250/?sort=list_order%2Casc
