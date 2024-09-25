@@ -35,6 +35,9 @@ public class ModeController {
             case Mode.SOCIAL_MEDIA_INSTAGRAM -> modeStatsService.convertSocialMediaToBaseGameModelDTO("Instagram");
             case Mode.SOCIAL_MEDIA_TIK_TOK -> modeStatsService.convertSocialMediaToBaseGameModelDTO("Tik tok");
             case Mode.SOCIAL_MEDIA_YOUTUBE -> modeStatsService.convertSocialMediaToBaseGameModelDTO("Youtube");
+            case Mode.MOVIES -> modeStatsService.convertCinemaToBaseGameModelDTO("Movies");
+            case Mode.TV_SHOWS -> modeStatsService.convertCinemaToBaseGameModelDTO("TV Shows");
+            case Mode.CELEBS -> modeStatsService.convertCinemaToBaseGameModelDTO("Celebs");
 
         };
     }

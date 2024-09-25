@@ -2,10 +2,7 @@ package com.dziem.popapi.service;
 
 import com.dziem.popapi.mapper.ModeStatsMapper;
 import com.dziem.popapi.model.*;
-import com.dziem.popapi.repository.HistoryRepository;
-import com.dziem.popapi.repository.ModeStatsRepository;
-import com.dziem.popapi.repository.SocialMediaRepository;
-import com.dziem.popapi.repository.UserRepository;
+import com.dziem.popapi.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +10,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +24,8 @@ public class ModeStatsServiceImpl implements ModeStatsService {
     private final ApartmentService apartmentService;
     private final HistoryRepository historyRepository;
     private final SocialMediaRepository socialMediaRepository;
+    private final CinemaRepository cinemaRepository;
+
     @Override
     public ModeStats initializeModeStats(User user, String mode) {
         ModeStats modeStats = new ModeStats();
@@ -222,5 +220,24 @@ public class ModeStatsServiceImpl implements ModeStatsService {
             baseGameModelDTOS.add(baseGameModelDTO);
         }
         return baseGameModelDTOS;
+    }
+
+    @Override
+    public List<BaseGameModelDTO> convertCinemaToBaseGameModelDTO(String type) {
+        List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
+        List<Cinema> cinemaByType = cinemaRepository.findAllByType(type);
+        for(Cinema cinema : cinemaByType) {
+            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+                    .name(cinema.getName())
+                    .comparableValue((float)(cinema.getRanking()))
+                    .comparableValueLabel("")
+                    .imageUrl(cinema.getImageUrl())
+                    .tier(cinema.getTier())
+                    .imageSource(cinema.getImageSource())
+                    .build();
+            baseGameModelDTOS.add(baseGameModelDTO);
+        }
+        return baseGameModelDTOS;
+
     }
 }

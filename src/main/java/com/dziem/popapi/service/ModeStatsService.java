@@ -20,4 +20,7 @@ public interface ModeStatsService {
     List<BaseGameModelDTO> convertHistoryToBaseGameModelDTO();
 
     List<BaseGameModelDTO> convertSocialMediaToBaseGameModelDTO(String type);
+
+    List<BaseGameModelDTO> convertCinemaToBaseGameModelDTO(String type);
+
 }
