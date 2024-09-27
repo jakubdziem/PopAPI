@@ -115,8 +115,8 @@ public class ModeStatsServiceImpl implements ModeStatsService {
     @Override
     public List<BaseGameModelDTO> convertArtistDTOStoBaseGameModelDTO() {
         List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
-        List<ArtistDTO> artistDTOS = artistService.getTop200Artists();
-        for(int i = 0; i < 200; i++) {
+        List<ArtistDTO> artistDTOS = artistService.getTop200LatestArtists();
+        for(int i = 0; i < artistDTOS.size(); i++) {
             BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
                     .name(artistDTOS.get(i).getArtistName())
                     .comparableValue(Float.parseFloat(artistDTOS.get(i).getLeadStreams().replace(",","")))

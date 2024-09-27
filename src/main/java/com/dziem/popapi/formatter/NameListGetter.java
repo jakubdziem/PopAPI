@@ -9,6 +9,12 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.FileTime;
+import java.time.Clock;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.*;
 import java.sql.Date;
@@ -18,7 +24,7 @@ import java.sql.Date;
 public class NameListGetter {
     private final ArtistRepository artistRepository;
     private final SongRepository songRepository;
-    public void getList() {
+    public void getArtistList() {
         List<Date> lastUpdatesDate = artistRepository.findAllDates();
         TwoMostRecentUpdates twoMostRecentUpdates = getResult(lastUpdatesDate);
         List<Artist> mostRecentArtists = artistRepository.findAllArtistsFromCertainUpdate(twoMostRecentUpdates.mostRecentUpdate());
@@ -43,7 +49,7 @@ public class NameListGetter {
                 notLongerUsedArtistsImagesUrls.add(artistsHashMapPrevious.get(artistsNamesPrevious.get(i)));
             }
         }
-        try (FileWriter myWriter = new FileWriter("src/main/resources/data/spotifyArtistsInFormatSuitableToExtractImages.txt", false)){
+        try (FileWriter myWriter = new FileWriter("src/main/resources/updatingImages/spotifyArtistsInFormatSuitableToExtractImages.txt", false)){
             for (String missingArtistName : missingArtistNames) {
                 myWriter.write(missingArtistName + "\n");
             }
@@ -51,16 +57,23 @@ public class NameListGetter {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        try (FileWriter myWriter = new FileWriter("src/main/resources/data/spotifyArtistsNoLongerUsedImages.txt", false)){
+        try (FileWriter myWriter = new FileWriter("src/main/resources/updatingImages/spotifyArtistsNoLongerUsedImages.txt", false)){
             for (String notLongerNeededArtistImageUrl : notLongerUsedArtistsImagesUrls) {
-                myWriter.write(notLongerNeededArtistImageUrl + "\n");
+                Path path = Path.of("src/main/resources/static/" + notLongerNeededArtistImageUrl);
+                FileTime creationTime = (FileTime) Files.getAttribute(path, "creationTime");
+                Clock clock = Clock.systemDefaultZone();
+                Instant fileInstant = creationTime.toInstant();
+                Instant now = clock.instant(); // Where clock is a java.time.Clock, for testability
+                Duration difference = Duration.between(fileInstant, now);
+                long days = difference.toDays();
+                if(days>30) {
+                    myWriter.write(path + "\n");
+                }
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-//        src/main/resources/spotifyArtistsInFormatSuitableToExtractImages.txt
-
     }
 
     public void getListSongs() {
@@ -90,7 +103,7 @@ public class NameListGetter {
                 notLongerUsedSongsImagesUrls.add(songsHashMapPrevious.get(andArtistsNamesPrevious));
             }
         }
-        try (FileWriter myWriter = new FileWriter("src/main/resources/data/spotifySongsInFormatSuitableToExtractImages.txt", false)){
+        try (FileWriter myWriter = new FileWriter("src/main/resources/updatingImages/spotifySongsInFormatSuitableToExtractImages.txt", false)){
             for (String songAndArtistName : missingSongAndArtistsNames) {
                 myWriter.write(songAndArtistName + "\n");
             }
@@ -98,7 +111,7 @@ public class NameListGetter {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        try (FileWriter myWriter = new FileWriter("src/main/resources/data/spotifySongsNoLongerUsedImages.txt", false)){
+        try (FileWriter myWriter = new FileWriter("src/main/resources/updatingImages/spotifySongsNoLongerUsedImages.txt", false)){
             for (String notLongerNeededSongImageUrl : notLongerUsedSongsImagesUrls) {
                 myWriter.write(notLongerNeededSongImageUrl + "\n");
             }

@@ -2845,3 +2845,7 @@
 -- UPDATE CINEMA SET IMAGE_SOURCE = 'https://m.media-amazon.com/images/M/MV5BMjA5Njk3MjM4OV5BMl5BanBnXkFtZTcwMTc5MTE1MQ@@._V1_FMjpg_UX1000_.jpg' WHERE NAME = 'No Country for Old Men' AND TYPE = 'Movies';
 -- UPDATE CINEMA SET IMAGE_SOURCE = 'https://m.media-amazon.com/images/M/MV5BYTA3NDU5MWEtNTk4Yy00ZDNkLThmZTQtMjU3ZGVhYzAyMzU4XkEyXkFqcGc@._V1_.jpg' WHERE NAME = 'The Thing' AND TYPE = 'Movies';
 -- UPDATE CINEMA SET IMAGE_SOURCE = 'https://m.media-amazon.com/images/M/MV5BNzljZTk5ZDgtZTQ1Zi00NTM4LThlOGUtZDk2MGM4NDQ4NWQyXkEyXkFqcGc@._V1_.jpg' WHERE NAME = 'A Beautiful Mind' AND TYPE = 'Movies';
+
+
+-- update artist set artist_name = 'Guns N'' Roses' where artist_name = 'Guns N'' Roses '
+-- UPDATE ARTIST SET IMAGE_URL = '/images/spotify/Guns N'' Roses.jpg' WHERE image_url = '/images/spotify/Guns N'' Roses .jpg';

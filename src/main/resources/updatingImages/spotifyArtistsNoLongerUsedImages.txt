@@ -1,0 +1,5 @@
+src\main\resources\static\images\spotify\Elvis Presley.jpg
+src\main\resources\static\images\spotify\ZAYN.jpg
+src\main\resources\static\images\spotify\Frank Sinatra.jpg
+src\main\resources\static\images\spotify\Disney.jpg
+src\main\resources\static\images\spotify\Zach Bryan.jpg

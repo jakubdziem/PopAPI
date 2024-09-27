@@ -1,6 +1,0 @@
-/images/spotify/Guns N' Roses .jpg
-/images/spotify/Elvis Presley.jpg
-/images/spotify/ZAYN.jpg
-/images/spotify/Frank Sinatra.jpg
-/images/spotify/Disney.jpg
-/images/spotify/Zach Bryan.jpg

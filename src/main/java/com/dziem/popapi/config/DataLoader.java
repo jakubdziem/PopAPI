@@ -34,7 +34,8 @@ public class DataLoader implements CommandLineRunner {
 //        dataService.getDataSpotifyTopArtists();
 //        System.out.println("Data spotify completed.");
 //        System.out.println("Start");
-//        nameListGetter.getList();
+//        nameListGetter.getArtistList();
+//        nameListGetter.getListSongs();
 //        System.out.println("End");
 //        System.out.println("DataLoader finished execution.");
 //        dataService.getDataSpotifyTopSongs("General");
@@ -42,7 +43,6 @@ public class DataLoader implements CommandLineRunner {
 //        dataService.getDataSpotifyTopSongs("Rock");
 //        dataService.getDataSpotifyTopSongs("Pop");
 //        System.out.println("Start");
-//        nameListGetter.getListSongs();
 //        System.out.println("End");
 //        dataService.addSourceToDriver();
 //        dataService.addSourceApartmentsPoland();
