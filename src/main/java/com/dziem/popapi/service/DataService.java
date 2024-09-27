@@ -18,4 +18,6 @@ public interface DataService {
     void getCelebsData();
     void getTVShowsData();
     void getMovieData();
+
+    void addSourcesToCinema(String type, String path);
 }

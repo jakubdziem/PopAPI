@@ -55,5 +55,8 @@ public class DataLoader implements CommandLineRunner {
 //        dataService.getTVShowsData();
 //        dataService.getMovieData();
 //        System.out.println("Loaded");
+//        dataService.addSourcesToCinema("Celebs", "src/main/resources/imageSource/celebsSourcesOfPhotos.txt");
+//        dataService.addSourcesToCinema("TV Shows", "src/main/resources/imageSource/tvShowsSourcesOfPhotos.txt");
+//        dataService.addSourcesToCinema("Movies", "src/main/resources/imageSource/moviesSourcesOfPhotos.txt");
     }
 }

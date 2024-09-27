@@ -426,5 +426,18 @@ public class DataServiceImpl implements DataService {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public void addSourcesToCinema(String type, String path) {
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(path))) {
+            List<String> lines = reader.lines().toList();
+            for(String line : lines) {
+                String name = line.substring(0,line.indexOf("- Image")-1);
+                String imageSource = line.substring(line.indexOf("URL:")+5);
+                System.out.printf("UPDATE CINEMA SET IMAGE_SOURCE = '%s' WHERE NAME = '%s' AND TYPE = '%s';\n", imageSource, name, type);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
