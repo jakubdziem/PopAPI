@@ -1,0 +1,4 @@
+services:
+  webapp:
+    image: com.dziem/popapi
+    env_file: "src/main/resources/private/webapp.env"
