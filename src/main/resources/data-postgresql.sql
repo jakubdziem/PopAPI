@@ -2431,3 +2431,15 @@
 -- UPDATE SOCIAL_MEDIA SET IMAGE_SOURCE = 'https://pbs.twimg.com/profile_images/1618293589888405515/qk2Dg9_M_400x400.jpg' WHERE NAME = '@NiallOfficial';
 -- UPDATE SOCIAL_MEDIA SET IMAGE_SOURCE = 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/f0d3abbf7b74d4b5b27681d56e59679c~c5_720x720.jpeg?lk3s=a5d48078&nonce=4965&refresh_token=fa7c5ee377bf78dbe29f826606085882&x-expires=1727272800&x-signature=VDDh9Fh39MO7f0sZ3HzmzM3UTXI%3D&shp=a5d48078&shcp=81f88b70' WHERE NAME = '@vilmeijuga';
 
+
+
+-- update social_media set image_url = '/images/social_media/@nasa.png' where name = '@NASA';
+-- update social_media set image_url = '/images/social_media/@cristiano.png' where name = '@Cristiano';
+-- update social_media set image_url = '/images/social_media/@kimkardashian.png' where name = '@KimKardashian';
+-- update social_media set image_url = '/images/social_media/@ellendegeneres.png' where name = '@EllenDeGeneres';
+-- update social_media set image_url = '/images/social_media/@kingjames.png' where name = '@KingJames';
+-- update social_media set image_url = '/images/social_media/@championsleague.png', image_source = 'https://pbs.twimg.com/profile_images/1417052605776375813/Jc9RL5o7_400x400.jpg' where name = '@ChampionsLeague';
+-- update social_media set image_url = '/images/social_media/@fcbarcelona.png' where name = '@FCBarcelona';
+-- update social_media set image_url = '/images/social_media/@nba.png' where name = '@NBA';
+-- update social_media set image_url = '/images/social_media/@mileycyrus.png' where name = '@MileyCyrus';
+-- update social_media set image_url = '/images/social_media/@jlo.png' where name = '@JLo';
