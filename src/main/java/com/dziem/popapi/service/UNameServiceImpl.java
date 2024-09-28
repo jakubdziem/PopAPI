@@ -52,7 +52,7 @@ public class UNameServiceImpl implements UNameService {
         String userName;
         do {
             userName = exampleNames[random.nextInt(max - min + 1) + min] + count;
-        } while(userName.length() > 20);
+        } while(userName.length() < 3 || userName.length() > 20);
         return userName;
     }
     @Override
