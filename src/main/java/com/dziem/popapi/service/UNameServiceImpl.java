@@ -49,7 +49,11 @@ public class UNameServiceImpl implements UNameService {
         Random random = new Random();
         int min = 0;
         int max = exampleNames.length-1;
-        return exampleNames[random.nextInt(max - min + 1) + min] + count;
+        String userName;
+        do {
+            userName = exampleNames[random.nextInt(max - min + 1) + min] + count;
+        } while(userName.length() > 20);
+        return userName;
     }
     @Override
     public String setUserName(String userId, String name) {
