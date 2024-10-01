@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
 
             googleUser.setUName(UName.builder()
                     .name(anonimUser.getUName().getName())
-                    .lastUpdate(LocalDateTime.MIN)
+                    .lastUpdate(LocalDateTime.of(2000,1, 1, 0, 0, 0))
                     .user(googleUser)
                     .build());
             List<Leaderboard> leaderboardList = new ArrayList<>();

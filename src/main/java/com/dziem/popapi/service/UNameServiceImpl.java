@@ -109,7 +109,7 @@ public class UNameServiceImpl implements UNameService {
     public UName initializeUserName(User user) {
         return uNameRepository.save(UName.builder()
                 .user(user)
-                .lastUpdate(LocalDateTime.MIN)
+                .lastUpdate(LocalDateTime.of(2000,1, 1, 0, 0, 0))
                 .name("Not assigned")
                 .build());
 

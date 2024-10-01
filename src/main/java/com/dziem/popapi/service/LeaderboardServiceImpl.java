@@ -44,6 +44,7 @@ public class LeaderboardServiceImpl implements LeaderboardService {
                     .user(user)
                     .mode(mode.toString())
                     .score(0)
+                    .name(user.getUName().getName())
                     .build();
             leaderboardList.add(leaderboard);
             leaderboardRepository.save(leaderboard);
