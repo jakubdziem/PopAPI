@@ -1,6 +1,7 @@
 package com.dziem.popapi.controller;
 
 import com.dziem.popapi.model.LeaderboardDTO;
+import com.dziem.popapi.model.RankScoreDTO;
 import com.dziem.popapi.service.LeaderboardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,12 +22,8 @@ public class LeaderboardController {
         return leaderboardService.getLeaderboard(mode);
     }
     @GetMapping("api/v1/rank/{userId}/{mode}")
-    public ResponseEntity<Integer> getRankOfUserInMode(@PathVariable String userId, @PathVariable String mode) {
-        Integer rankOfUserInMode = leaderboardService.getRankOfUserInMode(userId, mode);
-        if(rankOfUserInMode > 0L) {
-            return new ResponseEntity<>(rankOfUserInMode, HttpStatus.ACCEPTED);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<RankScoreDTO> getRankOfUserInMode(@PathVariable String userId, @PathVariable String mode) {
+        Optional<RankScoreDTO> rankScoreDTO = leaderboardService.getRankOfUserInMode(userId, mode);
+        return rankScoreDTO.map(scoreDTO -> new ResponseEntity<>(scoreDTO, HttpStatus.ACCEPTED)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Service
@@ -51,29 +52,34 @@ public class LeaderboardServiceImpl implements LeaderboardService {
     }
 
     @Override
-    public Integer getRankOfUserInMode(String userId, String mode) {
-        AtomicReference<Integer> atomicReference = new AtomicReference<>();
+    public Optional<RankScoreDTO> getRankOfUserInMode(String userId, String mode) {
+        AtomicReference<Optional<RankScoreDTO>> atomicReference = new AtomicReference<>();
         boolean modeExisting = isModeExisting(mode);
         if(modeExisting) {
             userRepository.findById(userId).ifPresentOrElse(existing -> {
                 if (existing.isGuest()) {
-                    atomicReference.set(-1);
+                    atomicReference.set(Optional.empty());
                 } else {
                     List<LeaderboardDTO> leaderboard = getLeaderboard(mode).getBody();
                     int rank = 0;
-                    for (int i = 0; i < leaderboard.size(); i++) {
+                    int score = 0;
+                    for (int i = 0; i < (leaderboard != null ? leaderboard.size() : 0); i++) {
                         if (leaderboard.get(i).getUserId().equals(userId)) {
                             rank = i + 1;
+                            score = leaderboard.get(i).getScore();
                             break;
                         }
                     }
-                    atomicReference.set(rank);
+                    RankScoreDTO rankScoreDTO = new RankScoreDTO();
+                    rankScoreDTO.setRank(rank);
+                    rankScoreDTO.setScore(score);
+                    atomicReference.set(Optional.of(rankScoreDTO));
                 }
-            }, () -> atomicReference.set(-1));
+            }, () -> atomicReference.set(Optional.empty()));
             return atomicReference.get();
         }
         else {
-            return -1;
+            return Optional.empty();
         }
     }
 
