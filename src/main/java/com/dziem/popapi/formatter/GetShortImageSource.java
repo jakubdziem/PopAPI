@@ -1,7 +1,7 @@
 package com.dziem.popapi.formatter;
 
-import com.dziem.popapi.model.Driver;
-import com.dziem.popapi.repository.DriverRepository;
+import com.dziem.popapi.model.History;
+import com.dziem.popapi.repository.HistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetShortImageSource {
-    private final DriverRepository driverRepository;
+    private final HistoryRepository historyRepository;
 
     public void printShortSource() {
         List<ShortSource> apartamentSource = getApartamentSource();
@@ -19,15 +19,15 @@ public class GetShortImageSource {
         for (ShortSource source : apartamentSource) {
             if (source.shortSource.isEmpty()) {
                 emptySourceIds.add(source.name);
-            } else if (source.shortSource.contains(".")) {
+            } else if (!source.worked) {
                   toDo.add(source);
             } else {
-                System.out.printf("UPDATE DRIVER SET IMAGE_SOURCE_SHORT = '%s' WHERE NAME = '%s';\n", source.shortSource, source.name);
+                System.out.printf("UPDATE HISTORY SET IMAGE_SOURCE_SHORT = '%s' WHERE NAME = '%s';\n", source.shortSource, source.name);
             }
         }
         System.out.println("\n\n TO DO \n \n");
         for(ShortSource shortSource : toDo) {
-            System.out.printf("UPDATE DRIVER SET IMAGE_SOURCE_SHORT = '' WHERE NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
+            System.out.printf("UPDATE HISTORY SET IMAGE_SOURCE_SHORT = '' WHERE NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
         }
         System.out.println("\n\nEMPTY\n\n");
         for (String name : emptySourceIds) {
@@ -37,20 +37,21 @@ public class GetShortImageSource {
 
     public List<ShortSource> getApartamentSource() {
         List<ShortSource> shortSources = new ArrayList<>();
-        List<Driver> allSource = driverRepository.findAll();
-        for (Driver driver : allSource) {
+        List<History> allSource = historyRepository.findAll();
+        for (History driver : allSource) {
             String source = driver.getImageSource();
-            String shortSource = getShortSource(source);
-            shortSources.add(shortSource.isEmpty() ? new ShortSource(driver.getName(), "")
-                    : new ShortSource(driver.getName(), shortSource));
+            SBReturn sbReturn = getShortSource(source);
+            shortSources.add(sbReturn.name.isEmpty() ? new ShortSource(driver.getName(), "", sbReturn.worked)
+                    : new ShortSource(driver.getName(), sbReturn.name, sbReturn.worked));
 
         }
         return shortSources;
 
     }
 
-    private static String getShortSource(String source) {
+    private static SBReturn getShortSource(String source) {
         String shortSource;
+        boolean worked = true;
         if (source.contains("wiki")) {
             shortSource = "Wikipedia";
         } else if (source.contains("amazon")) {
@@ -115,11 +116,121 @@ public class GetShortImageSource {
         else if(source.contains("ctvnews")) {
             shortSource = "CTV News";
         }
+        else if(source.contains("metmuseum")) {
+            shortSource = "metmuseum.github.io";
+        }
+        else if(source.contains("egypttoursportal")) {
+            shortSource = "egypttoursportal.com";
+        }
+        else if(source.contains("humanoriginproject")) {
+            shortSource = "humanoriginproject.com";
+        }
+        else if(source.contains("natgeofe") || source.contains("nationalgeographic")) {
+            shortSource = "National Geographic";
+        }
+        else if(source.contains("creation")) {
+            shortSource = "creation.com";
+        }
+        else if(source.contains("worldhistory")) {
+            shortSource = "worldhistory.org";
+        }
+        else if(source.contains("thediplomat")) {
+            shortSource = "thediplomat.com";
+        }
+        else if(source.contains("arkeonews")) {
+            shortSource = "arkeonews.net";
+        }
+        else if(source.contains("arkeonews")) {
+            shortSource = "arkeonews.net";
+        }
+        else if(source.contains("armstronginstitute")) {
+            shortSource = "armstronginstitute.org";
+        }
+        else if(source.contains("meccacenter")) {
+            shortSource = "meccacenter.org";
+        }
+        else if(source.contains("aetnd")) {
+            shortSource = "aetnd.com";
+        }
+        else if(source.contains("silkqin")) {
+            shortSource = "silkqin.com";
+        }
+        else if(source.contains("romanempiretimes")) {
+            shortSource = "romanempiretimes.com";
+        }
+        else if(source.contains("latinitium")) {
+            shortSource = "latinitium.com";
+        }
+        else if(source.contains("thefederalist")) {
+            shortSource = "thefederalist.com";
+        }
+        else if(source.contains("historydefined")) {
+            shortSource = "historydefined.net";
+        }
+        else if(source.contains("warfarehistorynetwork")) {
+            shortSource = "warfarehistorynetwork.com";
+        }
+        else if(source.contains("miro.medium")) {
+            shortSource = "Medium";
+        }
+        else if(source.contains("hurstwic")) {
+            shortSource = "hurstwic.org";
+        }
+        else if(source.contains("worldhistory")) {
+            shortSource = "worldhistory.org";
+        }
+        else if(source.contains("historic-uk")) {
+            shortSource = "historic-uk.com";
+        }
+        else if(source.contains("ancient-origins")) {
+            shortSource = "ancient-origins.net";
+        }
+        else if(source.contains("bologna-experience")) {
+            shortSource = "bologna-experience.eu";
+        }
+        else if(source.contains("thoughtco")) {
+            shortSource = "thoughtco.com";
+        }
+        else if(source.contains("images.ohmyhosting")) {
+            shortSource = "historia.dorzeczy.pl";
+        }
+        else if(source.contains("thechinaproject")) {
+            shortSource = "thechinaproject.com";
+        }
+        else if(source.contains("ytimg")) {
+            shortSource = "i.ytimg.com";
+        }
+        else if(source.contains("nobility")) {
+            shortSource = "nobility.org";
+        }
+        else if(source.contains("thoughtco")) {
+            shortSource = "thoughtco.com";
+        }
+        else if(source.contains("historytoday")) {
+            shortSource = "historytoday.com";
+        }
+        else if(source.contains("cdc") && source.contains("gov")) {
+            shortSource = "cdc.gov";
+        }
+        else if(source.contains("aetnd")) {
+            shortSource = "aetnd.com";
+        }
+        else if(source.indexOf("media.iwm.org.uk") > 0) {
+            shortSource = "Imperial War Museum";
+        }
+        else if(source.contains("aetnd")) {
+            shortSource = "Facebook";
+        }
+        else if(source.indexOf("www.loc.gov") > 0) {
+            shortSource = "loc.gov";
+        }
         else {
             shortSource = source.substring(source.indexOf("://") + 3, source.indexOf("/", source.indexOf("://") + 3));
+            worked = false;
         }
-        return shortSource;
+        return new SBReturn(shortSource,worked);
     }
 
-    public record ShortSource(String name, String shortSource){}
+    public record ShortSource(String name, String shortSource, boolean worked){}
+    public record SBReturn(String name, boolean worked){}
 }

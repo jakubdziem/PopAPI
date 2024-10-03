@@ -159,7 +159,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel("points")
                     .imageUrl(driver.getImageUrl())
                     .tier(driver.getTier())
-                    .imageSource(driver.getImageSource())
+                    .imageSource(driver.getImageSourceShort())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
@@ -195,7 +195,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel(historyEvent.getEra())
                     .imageUrl(historyEvent.getImageUrl())
                     .tier(historyEvent.getTier())
-                    .imageSource(historyEvent.getImageSource())
+                    .imageSource(historyEvent.getImageSourceShort())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }

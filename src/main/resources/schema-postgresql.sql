@@ -164,3 +164,4 @@ CREATE TABLE cinema(
 
 alter table apartment add column  image_source_short varchar(50);
 alter table driver add column  image_source_short varchar(50);
+alter table history add column  image_source_short varchar(50);

@@ -18,4 +18,5 @@ public class History {
     private Integer tier;
     private String era;
     private String imageSource;
+    private String imageSourceShort;
 }
