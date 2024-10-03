@@ -16,6 +16,7 @@ public class Driver implements Comparable<Driver>{
     private String imageUrl;
     private Integer tier;
     private String imageSource;
+    private String imageSourceShort;
 
     @Override
     public int compareTo(Driver o) {

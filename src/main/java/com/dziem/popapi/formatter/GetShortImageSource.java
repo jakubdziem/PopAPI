@@ -1,7 +1,7 @@
 package com.dziem.popapi.formatter;
 
-import com.dziem.popapi.model.Apartment;
-import com.dziem.popapi.repository.ApartmentRepository;
+import com.dziem.popapi.model.Driver;
+import com.dziem.popapi.repository.DriverRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetShortImageSource {
-    private final ApartmentRepository apartmentRepository;
+    private final DriverRepository driverRepository;
 
     public void printShortSource() {
         List<ShortSource> apartamentSource = getApartamentSource();
@@ -22,12 +22,12 @@ public class GetShortImageSource {
             } else if (source.shortSource.contains(".")) {
                   toDo.add(source);
             } else {
-                System.out.printf("UPDATE APARTMENT SET IMAGE_SOURCE_SHORT = '%s' WHERE NAME = '%s';\n", source.shortSource, source.name);
+                System.out.printf("UPDATE DRIVER SET IMAGE_SOURCE_SHORT = '%s' WHERE NAME = '%s';\n", source.shortSource, source.name);
             }
         }
         System.out.println("\n\n TO DO \n \n");
         for(ShortSource shortSource : toDo) {
-            System.out.printf("UPDATE APARTMENT SET IMAGE_SOURCE_SHORT = '' WHERE NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
+            System.out.printf("UPDATE DRIVER SET IMAGE_SOURCE_SHORT = '' WHERE NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
         }
         System.out.println("\n\nEMPTY\n\n");
         for (String name : emptySourceIds) {
@@ -37,12 +37,12 @@ public class GetShortImageSource {
 
     public List<ShortSource> getApartamentSource() {
         List<ShortSource> shortSources = new ArrayList<>();
-        List<Apartment> allSource = apartmentRepository.findAll();
-        for (Apartment apartment : allSource) {
-            String source = apartment.getImageSource();
+        List<Driver> allSource = driverRepository.findAll();
+        for (Driver driver : allSource) {
+            String source = driver.getImageSource();
             String shortSource = getShortSource(source);
-            shortSources.add(shortSource.isEmpty() ? new ShortSource(apartment.getCountryOrCityName(), "")
-                    : new ShortSource(apartment.getCountryOrCityName(), shortSource));
+            shortSources.add(shortSource.isEmpty() ? new ShortSource(driver.getName(), "")
+                    : new ShortSource(driver.getName(), shortSource));
 
         }
         return shortSources;
@@ -77,8 +77,43 @@ public class GetShortImageSource {
             shortSource = "LastDodo";
         } else if(source.contains("iflagi")) {
             shortSource = "iFlagi";
-        } else if(source.contains("mobileworldlive")) {
-            shortSource = "MobileWorldLive";
+        } else if(source.contains("motorsport")) {
+            shortSource = "MotorSport";
+        } else if(source.contains("ferrari")) {
+            shortSource = "Ferrari";
+        }
+        else if(source.contains("racingnews365")) {
+            shortSource = "RacingNews365";
+        }
+        else if(source.contains("formula1.com")) {
+            shortSource = "Formula 1";
+        }
+        else if(source.contains("professionalmoron.com")) {
+            shortSource = "professionalmoron.com";
+        }
+        else if(source.contains("racefans")) {
+            shortSource = "Racefans";
+        }
+        else if(source.contains("independent")) {
+            shortSource = "The Independent";
+        }
+        else if(source.contains(" thinkingheads.com")) {
+            shortSource = "thinkingheads.com";
+        }
+        else if(source.contains("autosport")) {
+            shortSource = "Autosport";
+        }
+        else if(source.contains("f1-fansite.com")) {
+            shortSource = "f1-fansite.com";
+        }
+        else if(source.contains("topgear.com")) {
+            shortSource = "TopGear";
+        }
+        else if(source.contains("dealerinspire.com")) {
+            shortSource = "dealerinspire.com";
+        }
+        else if(source.contains("ctvnews")) {
+            shortSource = "CTV News";
         }
         else {
             shortSource = source.substring(source.indexOf("://") + 3, source.indexOf("/", source.indexOf("://") + 3));
