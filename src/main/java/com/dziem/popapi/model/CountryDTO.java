@@ -13,4 +13,5 @@ public class CountryDTO {
     private String GENC;
     private String flagUrl;
     private String imageSource;
+    private String imageSourceShort;
 }

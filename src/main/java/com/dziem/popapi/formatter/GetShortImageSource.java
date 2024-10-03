@@ -1,7 +1,7 @@
 package com.dziem.popapi.formatter;
 
-import com.dziem.popapi.model.Cinema;
-import com.dziem.popapi.repository.CinemaRepository;
+import com.dziem.popapi.model.Country;
+import com.dziem.popapi.repository.CountryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -10,24 +10,24 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetShortImageSource {
-    private final CinemaRepository cinemaRepository;
+    private final CountryRepository countryRepository;
 
     public void printShortSource() {
-        List<ShortSource> apartamentSource = getApartamentSource();
+        List<ShortSource> sources = getSource();
         List<String> emptySourceIds = new ArrayList<>();
         List<ShortSource> toDo = new ArrayList<>();
-        for (ShortSource source : apartamentSource) {
+        for (ShortSource source : sources) {
             if (source.shortSource.isEmpty()) {
                 emptySourceIds.add(source.name);
             } else if (!source.worked) {
                   toDo.add(source);
             } else {
-                System.out.printf("UPDATE CINEMA SET IMAGE_SOURCE_SHORT = '%s' WHERE NAME = '%s';\n", source.shortSource, source.name);
+                System.out.printf("UPDATE COUNTRY SET IMAGE_SOURCE_SHORT = '%s' WHERE NAME = '%s';\n", source.shortSource, source.name);
             }
         }
         System.out.println("\n\n TO DO \n \n");
         for(ShortSource shortSource : toDo) {
-            System.out.printf("UPDATE CINEMA SET IMAGE_SOURCE_SHORT = '' WHERE NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
+            System.out.printf("UPDATE COUNTRY SET IMAGE_SOURCE_SHORT = '' WHERE NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
         }
         System.out.println("\n\nEMPTY\n\n");
         for (String name : emptySourceIds) {
@@ -35,14 +35,14 @@ public class GetShortImageSource {
         }
     }
 
-    public List<ShortSource> getApartamentSource() {
+    public List<ShortSource> getSource() {
         List<ShortSource> shortSources = new ArrayList<>();
-        List<Cinema> allSource = cinemaRepository.findAll();
-        for (Cinema driver : allSource) {
-            String source = driver.getImageSource();
+        List<Country> allSource = countryRepository.findAll();
+        for (Country country : allSource) {
+            String source = country.getImageSource();
             SBReturn sbReturn = getShortSource(source);
-            shortSources.add(sbReturn.name.isEmpty() ? new ShortSource(driver.getName(), "", sbReturn.worked)
-                    : new ShortSource(driver.getName(), sbReturn.name, sbReturn.worked));
+            shortSources.add(sbReturn.name.isEmpty() ? new ShortSource(country.getCountryName(), "", sbReturn.worked)
+                    : new ShortSource(country.getCountryName(), sbReturn.name, sbReturn.worked));
 
         }
         return shortSources;
@@ -316,6 +316,134 @@ public class GetShortImageSource {
             shortSource = "hoststar.com";
         }else if(source.indexOf("xboxlive.com") > 0) {
             shortSource = "Amazon";
+        }else if(source.indexOf("bike-eu.com") > 0) {
+            shortSource = "bike-eu.com";
+        }else if(source.indexOf("termedia.pl") > 0) {
+            shortSource = "termedia.pl";
+        }else if(source.indexOf("ispoint.org") > 0) {
+            shortSource = "ispoint.org";
+        }else if(source.indexOf("5mglobal.com") > 0) {
+            shortSource = "5mglobal.com";
+        }else if(source.indexOf("mylomza.pl") > 0) {
+            shortSource = "mylomza.pl";
+        }else if(source.indexOf("flypak.pl") > 0) {
+            shortSource = "flypak.pl";
+        }else if(source.indexOf("allegro.pl") > 0) {
+            shortSource = "allegro.pl";
+        }else if(source.indexOf("itvnextra.pl") > 0) {
+            shortSource = "itvnextra.pl";
+        }else if(source.indexOf("skapiec") > 0) {
+            shortSource = "skapiec.pl";
+        }else if(source.indexOf("neutralzone.com") > 0) {
+            shortSource = "neutralzone.com";
+        }else if(source.indexOf("flaticon.com") > 0) {
+            shortSource = "neutralzone.com";
+        }else if(source.indexOf("yara.com") > 0) {
+            shortSource = "yara.com";
+        }else if(source.indexOf("sklepharcerski.pl") > 0) {
+            shortSource = "sklepharcerski.pl";
+        }else if(source.indexOf("empik") > 0) {
+            shortSource = "empik.com";
+        }else if(source.indexOf("psr.org.pl") > 0) {
+            shortSource = "psr.org.pl";
+        }else if(source.indexOf("empik.com") > 0) {
+            shortSource = "empik.com";
+        }else if(source.indexOf("doyouneedvisa.com") > 0) {
+            shortSource = "doyouneedvisa.com";
+        }else if(source.indexOf("commonwealth-community-heritage.net") > 0) {
+            shortSource = "commonwealth-community-heritage.net";
+        }else if(source.indexOf("legitimateinterests.com.ua") > 0) {
+            shortSource = "legitimateinterests.com.ua";
+        }else if(source.indexOf("boeckmann.com") > 0) {
+            shortSource = "boeckmann.com";
+        }else if(source.indexOf("youtube.com") > 0) {
+            shortSource = "Youtube";
+        }else if(source.indexOf("iicba.unesco.org") > 0) {
+            shortSource = "iicba.unesco.org";
+        }else if(source.indexOf("slaskie.naszemiasto.pl") > 0) {
+            shortSource = "slaskie.naszemiasto.pl";
+        }else if(source.indexOf("linkedin") > 0) {
+            shortSource = "Linkedin";
+        }else if(source.indexOf("eurowindykacjafonsuris.pl") > 0) {
+            shortSource = "eurowindykacjafonsuris.pl";
+        }else if(source.indexOf("jakieszczepionki.pl") > 0) {
+            shortSource = "jakieszczepionki.pl";
+        }else if(source.indexOf("123rf.com") > 0) {
+            shortSource = "123rf.com";
+        }else if(source.indexOf("sjw.uw.edu.pl") > 0) {
+            shortSource = "sjw.uw.edu.pl";
+        }else if(source.indexOf("123rf.com") > 0) {
+            shortSource = "123rf.com";
+        }else if(source.indexOf("pgcareers.com") > 0) {
+            shortSource = "P&G Careers";
+        }else if(source.indexOf("mobileworldlive.com") > 0) {
+            shortSource = "mobileworldlive.com";
+        }else if(source.indexOf("social.sbrick.com") > 0) {
+            shortSource = "social.sbrick.com";
+        }else if(source.indexOf("ministryofcreativity.pl") > 0) {
+            shortSource = "ministryofcreativity.pl";
+        }else if(source.indexOf("character.ai") > 0) {
+            shortSource = "character.ai";
+        }else if(source.indexOf("sacreee.org") > 0) {
+            shortSource = "sacreee.org";
+        }else if(source.indexOf("character.ai") > 0) {
+            shortSource = "character.ai";
+        }else if(source.indexOf("3dflagsplus.com") > 0) {
+            shortSource = "3dflagsplus.com";
+        }else if(source.indexOf("adwokat-wasowicz.pl") > 0) {
+            shortSource = "adwokat-wasowicz.pl";
+        }else if(source.indexOf("anhre.org") > 0) {
+            shortSource = "anhre.org";
+        }else if(source.indexOf("olx.pl") > 0) {
+            shortSource = "OLX";
+        }else if(source.indexOf("polandasia.com") > 0) {
+            shortSource = "polandasia.com";
+        }else if(source.indexOf("worldflags.net") > 0) {
+            shortSource = "worldflags.net";
+        }else if(source.indexOf("flagi-i-hymny.pl") > 0) {
+            shortSource = "flagi-i-hymny.pl";
+        }else if(source.indexOf("trans.info") > 0) {
+            shortSource = "trans.info";
+        }else if(source.indexOf("flaticon.com") > 0) {
+            shortSource = "flaticon.com";
+        }else if(source.indexOf("youremployerofrecord.com") > 0) {
+            shortSource = "youremployerofrecord.com";
+        }else if(source.indexOf("migrant-integration.ec.europa.eu") > 0) {
+            shortSource = "migrant-integration.ec.europa.eu";
+        }else if(source.indexOf("biuroakademia.pl") > 0) {
+            shortSource = "biuroakademia.pl";
+        }else if(source.indexOf("imei24.com") > 0) {
+            shortSource = "imei24.com";
+        }else if(source.indexOf("reddit") > 0) {
+            shortSource = "Reddit";
+        }else if(source.indexOf("rejestrowaniesamochodu.pl") > 0) {
+            shortSource = "rejestrowaniesamochodu.pl";
+        }else if(source.indexOf("neutralzone.com") > 0) {
+            shortSource = "neutralzone.com";
+        }else if(source.indexOf("ceneo.pl") > 0) {
+            shortSource = "ceneo.pl";
+        }else if(source.indexOf("doyouneedvisa.com") > 0) {
+            shortSource = "doyouneedvisa.com";
+        }else if(source.indexOf("interia") > 0) {
+            shortSource = "interia.pl";
+        }else if(source.indexOf("greenplantation.pl") > 0) {
+            shortSource = "greenplantation.pl";
+        }else if(source.indexOf("cost.eu") > 0) {
+            shortSource = "cost.eu";
+        }else if(source.indexOf("okumafishing.com") > 0) {
+            shortSource = "okumafishing.com";
+        }else if(source.indexOf("osculati.com") > 0) {
+            shortSource = "osculati.com";
+        }else if(source.indexOf("igfmining.org") > 0) {
+            shortSource = "igfmining.org";
+        }else if(source.indexOf("hcch.net") > 0) {
+            shortSource = "hcch.net";
+        }else if(source.indexOf("flagi-panstw.pl") > 0) {
+            shortSource = "flagi-panstw.pl";
+        }else if(source.indexOf("publicdomainvectors.org") > 0) {
+            shortSource = "publicdomainvectors.org";
+        }else if(source.indexOf("ego-plone.uni-trier.de") > 0) {
+            shortSource = "ego-plone.uni-trier.de";
         }else {
             shortSource = source.substring(source.indexOf("://") + 3, source.indexOf("/", source.indexOf("://") + 3));
             worked = false;

@@ -23,4 +23,5 @@ public class Country {
     }
     private String flagUrl;
     private String imageSource;
+    private String imageSourceShort;
 }
