@@ -1,7 +1,7 @@
 package com.dziem.popapi.formatter;
 
-import com.dziem.popapi.model.History;
-import com.dziem.popapi.repository.HistoryRepository;
+import com.dziem.popapi.model.SocialMedia;
+import com.dziem.popapi.repository.SocialMediaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetShortImageSource {
-    private final HistoryRepository historyRepository;
+    private final SocialMediaRepository socialMediaRepository;
 
     public void printShortSource() {
         List<ShortSource> apartamentSource = getApartamentSource();
@@ -22,12 +22,12 @@ public class GetShortImageSource {
             } else if (!source.worked) {
                   toDo.add(source);
             } else {
-                System.out.printf("UPDATE HISTORY SET IMAGE_SOURCE_SHORT = '%s' WHERE NAME = '%s';\n", source.shortSource, source.name);
+                System.out.printf("UPDATE SOCIAL_MEDIA SET IMAGE_SOURCE_SHORT = '%s' WHERE NAME = '%s';\n", source.shortSource, source.name);
             }
         }
         System.out.println("\n\n TO DO \n \n");
         for(ShortSource shortSource : toDo) {
-            System.out.printf("UPDATE HISTORY SET IMAGE_SOURCE_SHORT = '' WHERE NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
+            System.out.printf("UPDATE SOCIAL_MEDIA SET IMAGE_SOURCE_SHORT = '' WHERE NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
         }
         System.out.println("\n\nEMPTY\n\n");
         for (String name : emptySourceIds) {
@@ -37,8 +37,8 @@ public class GetShortImageSource {
 
     public List<ShortSource> getApartamentSource() {
         List<ShortSource> shortSources = new ArrayList<>();
-        List<History> allSource = historyRepository.findAll();
-        for (History driver : allSource) {
+        List<SocialMedia> allSource = socialMediaRepository.findAll();
+        for (SocialMedia driver : allSource) {
             String source = driver.getImageSource();
             SBReturn sbReturn = getShortSource(source);
             shortSources.add(sbReturn.name.isEmpty() ? new ShortSource(driver.getName(), "", sbReturn.worked)
@@ -223,6 +223,69 @@ public class GetShortImageSource {
         }
         else if(source.indexOf("www.loc.gov") > 0) {
             shortSource = "loc.gov";
+        }
+        else if(source.indexOf("nasa") > 0) {
+            shortSource = "nasa.gov";
+        }
+        else if(source.indexOf("www.loc.gov") > 0) {
+            shortSource = "loc.gov";
+        }
+        else if(source.indexOf("tiktok") > 0) {
+            shortSource = "TikTok";
+        }
+        else if(source.indexOf("yt3") > 0) {
+            shortSource = "Youtube";
+        }else if(source.indexOf("pbs.twimg.com") > 0) {
+            shortSource = "X.com";
+        }
+        else if(source.indexOf("wattpad") > 0) {
+            shortSource = "Wattpad";
+        }else if(source.indexOf("i.pinimg.com") > 0) {
+            shortSource = "TikTok";
+        }else if(source.indexOf("www.rollingstone.com") > 0) {
+            shortSource = "rollingstone.com";
+        }else if(source.indexOf("dailymail.co.uk") > 0) {
+            shortSource = "DailyMail";
+        }else if(source.indexOf("i.pinimg.com") > 0) {
+            shortSource = "TikTok";
+        }else if(source.indexOf("yimg.com") > 0) {
+            shortSource = "Yahoo";
+        }else if(source.indexOf("vogue") > 0) {
+            shortSource = "Vogue";
+        }else if(source.indexOf("nike") > 0) {
+            shortSource = "Nike";
+        }else if(source.indexOf("people.com") > 0) {
+            shortSource = "people.com";
+        }else if(source.indexOf("hollywoodreporter.com") > 0) {
+            shortSource = "hollywoodreporter.com";
+        }else if(source.indexOf("millmentor.com") > 0) {
+            shortSource = "millmentor.com";
+        }else if(source.indexOf("guim.co.uk") > 0) {
+            shortSource = "guim.co.uk";
+        }else if(source.indexOf("variety.com") > 0) {
+            shortSource = "variety.com";
+        }else if(source.indexOf("google") > 0) {
+            shortSource = "Google";
+        }else if(source.indexOf("hulu.com") > 0) {
+            shortSource = "Hulu";
+        }else if(source.indexOf("buffaloriverworks.com") > 0) {
+            shortSource = "buffaloriverworks.com";
+        }else if(source.indexOf("billboard.com") > 0) {
+            shortSource = "billboard.com";
+        }else if(source.indexOf("deadline.com") > 0) {
+            shortSource = "deadline.com";
+        }else if(source.indexOf("fortune.com") > 0) {
+            shortSource = "fortune.com";
+        }else if(source.indexOf("tumblr.com") > 0) {
+            shortSource = "tumblr.com";
+        }else if(source.indexOf("firstpost.com") > 0) {
+            shortSource = "firstpost.com";
+        }else if(source.indexOf("cricfit.com") > 0) {
+            shortSource = "cricfit.com";
+        }else if(source.indexOf("hearstapps.com") > 0) {
+            shortSource = "univision.com";
+        }else if(source.indexOf("s7d1.scene7.com") > 0) {
+            shortSource = "Instragram";
         }
         else {
             shortSource = source.substring(source.indexOf("://") + 3, source.indexOf("/", source.indexOf("://") + 3));

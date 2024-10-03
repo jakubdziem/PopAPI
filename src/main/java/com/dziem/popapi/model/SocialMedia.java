@@ -17,5 +17,6 @@ public class SocialMedia {
     private String followers;
     private String imageUrl;
     private String imageSource;
+    private String imageSourceShort;
     private Integer tier;
 }

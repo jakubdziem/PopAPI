@@ -126,7 +126,7 @@ CREATE TABLE history(
 
 alter table song drop column last_update;
 alter table song add column last_update date;
-update song set last_update = '2024-08-16';
+-- update song set last_update = '2024-08-16';
 
 update driver set name = 'Fangio Juan Manuel', image_url = '/images/f1/Fangio_Juan_Manuel.png' where name = 'FANGIO Juan Manuel';
 select * from driver where name = 'Fangio Juan Manuel';
@@ -165,3 +165,4 @@ CREATE TABLE cinema(
 alter table apartment add column  image_source_short varchar(50);
 alter table driver add column  image_source_short varchar(50);
 alter table history add column  image_source_short varchar(50);
+alter table social_media add column  image_source_short varchar(50);

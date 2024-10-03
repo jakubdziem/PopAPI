@@ -213,7 +213,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel(type.equals("Youtube") ? "million subscribers" : "million followers")
                     .imageUrl(socialMedia.getImageUrl())
                     .tier(socialMedia.getTier())
-                    .imageSource(socialMedia.getImageSource())
+                    .imageSource(socialMedia.getImageSourceShort())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
