@@ -166,3 +166,4 @@ alter table apartment add column  image_source_short varchar(50);
 alter table driver add column  image_source_short varchar(50);
 alter table history add column  image_source_short varchar(50);
 alter table social_media add column  image_source_short varchar(50);
+alter table cinema add column  image_source_short varchar(50);

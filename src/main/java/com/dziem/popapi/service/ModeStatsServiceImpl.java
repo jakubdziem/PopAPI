@@ -231,7 +231,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel("rank")
                     .imageUrl(cinema.getImageUrl())
                     .tier(cinema.getTier())
-                    .imageSource(cinema.getImageSource())
+                    .imageSource(cinema.getImageSourceShort())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }

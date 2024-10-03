@@ -1,7 +1,7 @@
 package com.dziem.popapi.formatter;
 
-import com.dziem.popapi.model.SocialMedia;
-import com.dziem.popapi.repository.SocialMediaRepository;
+import com.dziem.popapi.model.Cinema;
+import com.dziem.popapi.repository.CinemaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetShortImageSource {
-    private final SocialMediaRepository socialMediaRepository;
+    private final CinemaRepository cinemaRepository;
 
     public void printShortSource() {
         List<ShortSource> apartamentSource = getApartamentSource();
@@ -22,12 +22,12 @@ public class GetShortImageSource {
             } else if (!source.worked) {
                   toDo.add(source);
             } else {
-                System.out.printf("UPDATE SOCIAL_MEDIA SET IMAGE_SOURCE_SHORT = '%s' WHERE NAME = '%s';\n", source.shortSource, source.name);
+                System.out.printf("UPDATE CINEMA SET IMAGE_SOURCE_SHORT = '%s' WHERE NAME = '%s';\n", source.shortSource, source.name);
             }
         }
         System.out.println("\n\n TO DO \n \n");
         for(ShortSource shortSource : toDo) {
-            System.out.printf("UPDATE SOCIAL_MEDIA SET IMAGE_SOURCE_SHORT = '' WHERE NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
+            System.out.printf("UPDATE CINEMA SET IMAGE_SOURCE_SHORT = '' WHERE NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
         }
         System.out.println("\n\nEMPTY\n\n");
         for (String name : emptySourceIds) {
@@ -37,8 +37,8 @@ public class GetShortImageSource {
 
     public List<ShortSource> getApartamentSource() {
         List<ShortSource> shortSources = new ArrayList<>();
-        List<SocialMedia> allSource = socialMediaRepository.findAll();
-        for (SocialMedia driver : allSource) {
+        List<Cinema> allSource = cinemaRepository.findAll();
+        for (Cinema driver : allSource) {
             String source = driver.getImageSource();
             SBReturn sbReturn = getShortSource(source);
             shortSources.add(sbReturn.name.isEmpty() ? new ShortSource(driver.getName(), "", sbReturn.worked)
@@ -286,8 +286,37 @@ public class GetShortImageSource {
             shortSource = "univision.com";
         }else if(source.indexOf("s7d1.scene7.com") > 0) {
             shortSource = "Instragram";
-        }
-        else {
+        }else if(source.indexOf("originalfilmart.com") > 0) {
+            shortSource = "originalfilmart.com";
+        }else if(source.indexOf("deepfocusreview.com") > 0) {
+            shortSource = "deepfocusreview.com";
+        }else if(source.indexOf("s7d1.scene7.com") > 0) {
+            shortSource = "Instragram";
+        }else if(source.indexOf("hbo.com") > 0) {
+            shortSource = "HBO";
+        }else if(source.indexOf("justwatch.com") > 0) {
+            shortSource = "justwatch.com";
+        }else if(source.indexOf("resizing.flixster.com") > 0 || source.contains("imdb")) {
+            shortSource = "IMDb";
+        } else if(source.indexOf("justwatch.com") > 0) {
+            shortSource = "justwatch.com";
+        }else if(source.indexOf("hotstarext.com") > 0) {
+            shortSource = "hoststar.com";
+        }else if(source.indexOf("bbcearth.com") > 0) {
+            shortSource = "bbcearth.com";
+        }else if(source.indexOf("vanityfair.com") > 0) {
+            shortSource = "vanityfair.com";
+        }else if(source.indexOf("nbcnews") > 0) {
+            shortSource = "nbcnews.com";
+        }else if(source.indexOf("tcm.com") > 0) {
+            shortSource = "tcm.com";
+        }else if(source.indexOf("nflximg.net") > 0) {
+            shortSource = "Netflix";
+        }else if(source.indexOf("hotstarext.com") > 0) {
+            shortSource = "hoststar.com";
+        }else if(source.indexOf("xboxlive.com") > 0) {
+            shortSource = "Amazon";
+        }else {
             shortSource = source.substring(source.indexOf("://") + 3, source.indexOf("/", source.indexOf("://") + 3));
             worked = false;
         }

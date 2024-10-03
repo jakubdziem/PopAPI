@@ -20,5 +20,6 @@ public class Cinema {
     private Integer ranking;
     private String imageUrl;
     private String imageSource;
+    private String imageSourceShort;
     private Integer tier;
 }
