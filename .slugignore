@@ -3,12 +3,12 @@
 .idea/
 target/
 build/
-# src/main/resources/static/images/f1
-src/main/resources/static/images/celebs
-src/main/resources/static/images/movies
-src/main/resources/static/images/tv_shows
+# src/main/resources/static/images/celebs
+# src/main/resources/static/images/movies
+# src/main/resources/static/images/tv_shows
 src/main/resources/static/images/1939
 src/main/resources/static/images/1989
 src/main/resources/static/images/1989
 src/main/resources/static/images/spotify
 src/main/resources/static/images/f1_small
+src/main/resources/static/images/f1
