@@ -1,5 +1,6 @@
 package com.dziem.popapi.config;
 
+import com.dziem.popapi.formatter.GetShortImageSource;
 import com.dziem.popapi.formatter.NameListGetter;
 import com.dziem.popapi.service.DataService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.concurrent.CompletableFuture;
 public class DataLoader implements CommandLineRunner {
     private final DataService dataService;
     private final NameListGetter nameListGetter;
+    private final GetShortImageSource getShortImageSource;
     @Async
     public CompletableFuture<Void> asyncGetData2024_2100() {
         dataService.getData2024_2100();
@@ -58,5 +60,6 @@ public class DataLoader implements CommandLineRunner {
 //        dataService.addSourcesToCinema("Celebs", "src/main/resources/imageSource/celebsSourcesOfPhotos.txt");
 //        dataService.addSourcesToCinema("TV Shows", "src/main/resources/imageSource/tvShowsSourcesOfPhotos.txt");
 //        dataService.addSourcesToCinema("Movies", "src/main/resources/imageSource/moviesSourcesOfPhotos.txt");
+//        getShortImageSource.printShortSource();
     }
 }

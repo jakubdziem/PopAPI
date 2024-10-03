@@ -160,3 +160,6 @@ CREATE TABLE cinema(
                        tier integer
 );
 
+
+
+alter table apartment add column  image_source_short varchar(50);

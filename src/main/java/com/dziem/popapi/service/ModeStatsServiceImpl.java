@@ -177,7 +177,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel(sign)
                     .imageUrl(apartment.getImageUrl())
                     .tier(apartment.getTier())
-                    .imageSource(apartment.getImageSource())
+                    .imageSource(apartment.getImageSourceShort())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
