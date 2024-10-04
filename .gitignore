@@ -33,5 +33,6 @@ build/
 .vscode/
 **/private
 #**/src/main/java/com/dziem/popapi/scrapping/
+/src/main/resources/application-docker.properties
 
 
