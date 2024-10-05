@@ -3114,6 +3114,8 @@
 -- UPDATE DRIVER SET IMAGE_SOURCE_SHORT = 'thinkingheads.com' WHERE NAME = 'Montoya Juan-Pablo';
 -- UPDATE DRIVER SET IMAGE_SOURCE_SHORT = 'professionalmoron.com' WHERE NAME = 'Herbert Johnny';
 
+--     update driver set image_url = '/images/f1/Fangio_Juan.png' where name = 'Fangio Juan Manuel'
+
 
 -- UPDATE HISTORY SET IMAGE_SOURCE_SHORT = 'humanoriginproject.com' WHERE NAME = 'Founding of the first Sumerian cities';
 -- UPDATE HISTORY SET IMAGE_SOURCE_SHORT = 'metmuseum.github.io' WHERE NAME = 'Development of Cuneiform writing';

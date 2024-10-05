@@ -168,3 +168,8 @@ alter table history add column  image_source_short varchar(50);
 alter table social_media add column  image_source_short varchar(50);
 alter table cinema add column  image_source_short varchar(50);
 alter table country add column  image_source_short varchar(50);
+
+alter table artist add column  image_source_short varchar(50);
+alter table artist add column  image_source varchar(500);
+alter table song add column  image_source_short varchar(50);
+alter table song add column  image_source varchar(500);
