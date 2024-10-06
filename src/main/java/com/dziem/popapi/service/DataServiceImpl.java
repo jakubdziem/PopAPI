@@ -439,5 +439,18 @@ public class DataServiceImpl implements DataService {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public void addSourcesToArtist(String path) {
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(path))) {
+            List<String> lines = reader.lines().toList();
+            for(String line : lines) {
+                String name = line.substring(0,line.indexOf("- Image")-1);
+                String imageSource = line.substring(line.indexOf("URL:")+5);
+                System.out.printf("UPDATE ARTIST SET IMAGE_SOURCE = '%s' WHERE ARTIST_NAME = '%s';\n", imageSource, name);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 

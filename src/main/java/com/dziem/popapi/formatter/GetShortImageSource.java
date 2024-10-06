@@ -1,7 +1,7 @@
 package com.dziem.popapi.formatter;
 
-import com.dziem.popapi.model.Country;
-import com.dziem.popapi.repository.CountryRepository;
+import com.dziem.popapi.model.Artist;
+import com.dziem.popapi.repository.ArtistRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetShortImageSource {
-    private final CountryRepository countryRepository;
+    private final ArtistRepository artistRepository;
 
     public void printShortSource() {
         List<ShortSource> sources = getSource();
@@ -22,12 +22,12 @@ public class GetShortImageSource {
             } else if (!source.worked) {
                   toDo.add(source);
             } else {
-                System.out.printf("UPDATE COUNTRY SET IMAGE_SOURCE_SHORT = '%s' WHERE NAME = '%s';\n", source.shortSource, source.name);
+                System.out.printf("UPDATE ARTIST SET IMAGE_SOURCE_SHORT = '%s' WHERE ARTIST_NAME = '%s';\n", source.shortSource, source.name);
             }
         }
         System.out.println("\n\n TO DO \n \n");
         for(ShortSource shortSource : toDo) {
-            System.out.printf("UPDATE COUNTRY SET IMAGE_SOURCE_SHORT = '' WHERE NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
+            System.out.printf("UPDATE ARTIST SET IMAGE_SOURCE_SHORT = '' WHERE ARTIST_NAME = '%s';\n %s\n", shortSource.name, shortSource.shortSource);
         }
         System.out.println("\n\nEMPTY\n\n");
         for (String name : emptySourceIds) {
@@ -37,12 +37,12 @@ public class GetShortImageSource {
 
     public List<ShortSource> getSource() {
         List<ShortSource> shortSources = new ArrayList<>();
-        List<Country> allSource = countryRepository.findAll();
-        for (Country country : allSource) {
+        List<Artist> allSource = artistRepository.findAll();
+        for (Artist country : allSource) {
             String source = country.getImageSource();
             SBReturn sbReturn = getShortSource(source);
-            shortSources.add(sbReturn.name.isEmpty() ? new ShortSource(country.getCountryName(), "", sbReturn.worked)
-                    : new ShortSource(country.getCountryName(), sbReturn.name, sbReturn.worked));
+            shortSources.add(sbReturn.name.isEmpty() ? new ShortSource(country.getArtistName(), "", sbReturn.worked)
+                    : new ShortSource(country.getArtistName(), sbReturn.name, sbReturn.worked));
 
         }
         return shortSources;
@@ -54,8 +54,8 @@ public class GetShortImageSource {
         boolean worked = true;
         if (source.contains("wiki")) {
             shortSource = "Wikipedia";
-        } else if (source.contains("amazon")) {
-            shortSource = "Amazon";
+        } else if (source.contains("m.media-amazon.com")) {
+            shortSource = "IMDb";
         } else if (source.contains("britannica")) {
             shortSource = "Brittanica";
         } else if (source.contains("ebay")) {
@@ -198,7 +198,7 @@ public class GetShortImageSource {
             shortSource = "thechinaproject.com";
         }
         else if(source.contains("ytimg")) {
-            shortSource = "i.ytimg.com";
+            shortSource = "Youtube";
         }
         else if(source.contains("nobility")) {
             shortSource = "nobility.org";
@@ -444,6 +444,84 @@ public class GetShortImageSource {
             shortSource = "publicdomainvectors.org";
         }else if(source.indexOf("ego-plone.uni-trier.de") > 0) {
             shortSource = "ego-plone.uni-trier.de";
+        }else if(source.indexOf("redd.it") > 0) {
+            shortSource = "Reddit";
+        }else if(source.indexOf("shop.samsmithworld.com") > 0) {
+            shortSource = "shop.samsmithworld.com";
+        }else if(source.indexOf("scdn.co") > 0) {
+            shortSource = "Spotify";
+        }else if(source.indexOf("tidal") > 0) {
+            shortSource = "Tidal";
+        }else if(source.indexOf("sndcdn.com") > 0) {
+            shortSource = "Soundcloud";
+        }else if(source.indexOf("usatoday.com") > 0) {
+            shortSource = "usatoday.com";
+        }else if(source.indexOf("avicii.com") > 0) {
+            shortSource = "avicii.com";
+        }else if(source.indexOf("jazzsoul.pl") > 0) {
+            shortSource = "jazzsoul.pl";
+        }else if(source.indexOf("motownrecords.com") > 0) {
+            shortSource = "motownrecords.com";
+        }else if(source.indexOf("pyxis.nymag.com") > 0) {
+            shortSource = "Vulture";
+        }else if(source.indexOf("ca-times.brightspotcdn.com") > 0) {
+            shortSource = "moveconcerts.com";
+        }else if(source.indexOf("ebilet.pl") > 0) {
+            shortSource = "ebilet.pl";
+        }else if(source.indexOf("welcometomontero.com") > 0) {
+            shortSource = "welcometomontero.com";
+        }else if(source.indexOf("media.gq.com") > 0) {
+            shortSource = "gq.com";
+        }else if(source.indexOf("abcnewsfe.com") > 0) {
+            shortSource = "abcnews.go.com";
+        }else if(source.indexOf("t-mobilecenter.com") > 0) {
+            shortSource = "t-mobilecenter.com";
+        }else if(source.indexOf("nederlanderconcerts.com") > 0) {
+            shortSource = "nederlanderconcerts.com";
+        }else if(source.indexOf("rockhall.com") > 0) {
+            shortSource = "rockhall.com";
+        }else if(source.indexOf("sunsetmarquis.com") > 0) {
+            shortSource = "sunsetmarquis.com";
+        }else if(source.indexOf("acllive.com") > 0) {
+            shortSource = "acllive.com";
+        }else if(source.indexOf("spotifycdn.com") > 0) {
+            shortSource = "spotifycdn.com";
+        }else if(source.indexOf("meghan-trainor.com") > 0) {
+            shortSource = "meghan-trainor.com";
+        }else if(source.indexOf("www.nirvana.com") > 0) {
+            shortSource = "nirvana.com";
+        }else if(source.indexOf("slate.com") > 0) {
+            shortSource = "slate.com";
+        }else if(source.indexOf("slate.com") > 0) {
+            shortSource = "slate.com";
+        }else if(source.indexOf("wired.com") > 0) {
+            shortSource = "wired.com";
+        }else if(source.indexOf("cnn.com") > 0) {
+            shortSource = "cnn.com";
+        }else if(source.indexOf("espncdn.com") > 0) {
+            shortSource = "espn.com";
+        }else if(source.indexOf("2pac.com") > 0) {
+            shortSource = "2pac.com";
+        }else if(source.indexOf("bustle.com") > 0) {
+            shortSource = "bustle.com";
+        }else if(source.indexOf("npr.org") > 0) {
+            shortSource = "npr.org";
+        }else if(source.indexOf("cloudfront-us-east-2.images.arcpublishing.com") > 0) {
+            shortSource = "investing.com";
+        }else if(source.indexOf("dynamicmedia.livenationinternational.com") > 0) {
+            shortSource = "livenation.pl";
+        }else if(source.indexOf("d3vhc53cl8e8km.cloudfront.net") > 0) {
+            shortSource = "insomaniac.com";
+        }else if(source.indexOf("d3vhc53cl8e8km.cloudfront.net") > 0) {
+            shortSource = "insomaniac.com";
+        }else if(source.indexOf("cdn-p.smehost.net") > 0) {
+            shortSource = "sonymusic.co.uk";
+        }else if(source.indexOf("media.them.us") > 0) {
+            shortSource = "them.us";
+        }else if(source.indexOf("media.them.us") > 0) {
+            shortSource = "them.us";
+        }else if(source.indexOf("bunny-wp-pullzone-cjamrcljf0.b-cdn.net") > 0) {
+            shortSource = "georgiaencyclopedia.org";
         }else {
             shortSource = source.substring(source.indexOf("://") + 3, source.indexOf("/", source.indexOf("://") + 3));
             worked = false;

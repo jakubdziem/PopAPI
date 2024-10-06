@@ -20,4 +20,6 @@ public interface DataService {
     void getMovieData();
 
     void addSourcesToCinema(String type, String path);
+
+    void addSourcesToArtist(String path);
 }

@@ -20,4 +20,6 @@ public class Song {
     String imageUrl;
     String genre;
     LocalDate lastUpdate;
+    String imageSource;
+    String imageSourceShort;
 }
