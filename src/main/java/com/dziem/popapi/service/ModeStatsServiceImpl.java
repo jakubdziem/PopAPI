@@ -123,7 +123,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel("streams")
                     .imageUrl(artistDTOS.get(i).getImageUrl())
                     .tier(i < 50 ? 1 : 2)
-                    .imageSource("Spotify API")
+                    .imageSource(artistDTOS.get(i).getImageSourceShort())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
@@ -141,7 +141,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .comparableValueLabel("streams")
                     .imageUrl(songDTOS.get(i).getImageUrl())
                     .tier(i < 50 ? 1 : 2)
-                    .imageSource("Spotify API")
+                    .imageSource(songDTOS.get(i).getImageSourceShort())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }
