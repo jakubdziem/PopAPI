@@ -1,7 +1,7 @@
 package com.dziem.popapi.formatter;
 
-import com.dziem.popapi.model.Artist;
-import com.dziem.popapi.repository.ArtistRepository;
+import com.dziem.popapi.model.Song;
+import com.dziem.popapi.repository.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetShortImageSource {
-    private final ArtistRepository artistRepository;
+    private final SongRepository songRepository;
 
     public void printShortSource() {
         List<ShortSource> sources = getSource();
@@ -22,7 +22,7 @@ public class GetShortImageSource {
             } else if (!source.worked) {
                   toDo.add(source);
             } else {
-                System.out.printf("UPDATE ARTIST SET IMAGE_SOURCE_SHORT = '%s' WHERE ARTIST_NAME = '%s';\n", source.shortSource, source.name);
+                System.out.printf("UPDATE SONG SET IMAGE_SOURCE_SHORT = '%s' WHERE ARTIST_NAME = '%s' AND SONG_NAME = '%s' ;\n", source.shortSource, source.name.split(";")[0].replace("'", "''"), source.name.split(";")[1].replace("'", "''"));
             }
         }
         System.out.println("\n\n TO DO \n \n");
@@ -37,12 +37,12 @@ public class GetShortImageSource {
 
     public List<ShortSource> getSource() {
         List<ShortSource> shortSources = new ArrayList<>();
-        List<Artist> allSource = artistRepository.findAll();
-        for (Artist country : allSource) {
+        List<Song> allSource = songRepository.findAll();
+        for (Song country : allSource) {
             String source = country.getImageSource();
             SBReturn sbReturn = getShortSource(source);
-            shortSources.add(sbReturn.name.isEmpty() ? new ShortSource(country.getArtistName(), "", sbReturn.worked)
-                    : new ShortSource(country.getArtistName(), sbReturn.name, sbReturn.worked));
+            shortSources.add(sbReturn.name.isEmpty() ? new ShortSource(country.getArtistName()+";"+country.getSongName(), "", sbReturn.worked)
+                    : new ShortSource(country.getArtistName()+";"+country.getSongName(), sbReturn.name, sbReturn.worked));
 
         }
         return shortSources;
@@ -522,6 +522,14 @@ public class GetShortImageSource {
             shortSource = "them.us";
         }else if(source.indexOf("bunny-wp-pullzone-cjamrcljf0.b-cdn.net") > 0) {
             shortSource = "georgiaencyclopedia.org";
+        }else if(source.indexOf("pitchfork.com") > 0) {
+            shortSource = "pitchfork.com";
+        }else if(source.indexOf("pretavoir.co.uk") > 0) {
+            shortSource = "pretavoir.co.uk";
+        }else if(source.indexOf("realworldmusictheory.com") > 0) {
+            shortSource = "realworldmusictheory.com";
+        }else if(source.indexOf("desenio.com") > 0) {
+            shortSource = "desenio.com";
         }else {
             shortSource = source.substring(source.indexOf("://") + 3, source.indexOf("/", source.indexOf("://") + 3));
             worked = false;

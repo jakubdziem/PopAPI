@@ -22,4 +22,6 @@ public interface DataService {
     void addSourcesToCinema(String type, String path);
 
     void addSourcesToArtist(String path);
+
+    void addSourcesToSong(String path);
 }

@@ -452,5 +452,20 @@ public class DataServiceImpl implements DataService {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public void addSourcesToSong(String path) {
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(path))) {
+            List<String> lines = reader.lines().toList();
+            for(String line : lines) {
+                String[] name = line.substring(0,line.indexOf("- Image")-1).split(";");
+                String artistName = name[1];
+                String songName = name[0];
+                String imageSource = line.substring(line.indexOf("URL:")+5);
+                System.out.printf("UPDATE SONG SET IMAGE_SOURCE = '%s' WHERE song_name = '%s' AND artist_name = '%s'; \n", imageSource, songName.replace("'", "''"), artistName.replace("'", "''"));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 

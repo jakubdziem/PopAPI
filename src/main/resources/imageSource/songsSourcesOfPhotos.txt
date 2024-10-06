@@ -140,7 +140,7 @@ Dákiti;Bad Bunny & Jhayco - Image: songs2\Dákiti - Bad Bunny & Jhayco.jpg - UR
 Congratulations;Post Malone ft. Quavo - Image: songs2\Congratulations - Post Malone ft. Quavo.jpg - URL: https://i.ytimg.com/vi/SC4xMk98Pdc/maxresdefault.jpg
 Kill Bill;SZA - Image: songs2\Kill Bill - SZA.jpg - URL: https://i.ytimg.com/vi/MSRcC626prw/maxresdefault.jpg
 Take On Me;a-ha - Image: songs2\Take On Me - a-ha.jpg - URL: https://i.ytimg.com/vi/djV11Xbc914/maxresdefault.jpg
-Till I Collapse;Eminem ft. Nate Dogg - Image: songs2\Till I Collapse - Eminem ft. Nate Dogg.jpg - URL: https://i1.sndcdn.com/artworks-Bn6tGsMmwL0HVlAU-HKnA9g-t500x500.jpg
+'Till I Collapse;Eminem ft. Nate Dogg - Image: songs2\Till I Collapse - Eminem ft. Nate Dogg.jpg - URL: https://i1.sndcdn.com/artworks-Bn6tGsMmwL0HVlAU-HKnA9g-t500x500.jpg
 I Took A Pill In Ibiza;Mike Posner ft. Seeb - Image: songs2\I Took A Pill In Ibiza - Mike Posner ft. Seeb.jpg - URL: https://i.ytimg.com/vi/foE1mO2yM04/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBpTkVNjd72o43wNcxrCEABzN51bA
 Someone Like You;Adele - Image: songs2\Someone Like You - Adele.jpg - URL: https://i.ytimg.com/vi/hLQl3WQQoQ0/maxresdefault.jpg
 Faded;Alan Walker ft. Iselin Solheim - Image: songs2\Faded - Alan Walker ft. Iselin Solheim.jpg - URL: https://i1.sndcdn.com/artworks-000202345509-9rgrdm-t500x500.jpg
@@ -797,3 +797,4 @@ Careless Whisper;George Michael - Image: songs2\Careless Whisper - George Michae
 Send My Love (To Your New Lover);Adele - Image: songs2\Send My Love (To Your New Lover) - Adele.jpg - URL: https://upload.wikimedia.org/wikipedia/en/3/3f/Adele_-_Send_My_Love_%28To_Your_New_Lover%29_%28Official_Single_Cover%29.png
 Vampire;Olivia Rodrigo - Image: songs2\Vampire - Olivia Rodrigo.jpg - URL: https://granitebaytoday.org/wp-content/uploads/2023/10/Olivia_Rodrigo_-_Vampire.png
 Thats What I Want;Lil Nas X - Image: songs2\Thats What I Want - Lil Nas X.jpg - URL: https://i.ytimg.com/vi/QDYDRA5JPLE/maxresdefault.jpg
+Kryptonite;3 Doors Down - Image: songs2\Kryptonite - 3 Doors Down.jpg - URL: https://upload.wikimedia.org/wikipedia/en/c/c2/3-Doors-Down-Kryptonite-437099.jpg
