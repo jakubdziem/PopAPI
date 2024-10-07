@@ -55,3 +55,5 @@ EXPOSE 8080
 
 # Run the application
 CMD ["java", "-jar", "/app/PopAPI-0.0.1-SNAPSHOT.jar"]
+
+COPY src/main/resources/restricted_words.txt /app/src/main/resources/restricted_words.txt
