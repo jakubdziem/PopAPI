@@ -99,9 +99,11 @@ public class ModeStatsServiceImpl implements ModeStatsService {
             countryDTOS = countryService.findCountriesByDistinctYear(year, false);
         }
         for(CountryDTO countryDTO : countryDTOS) {
+            float population = Float.parseFloat(countryDTO.getYearAndPopulations().getFirst().getPopulation());
+            population = (float) Math.floor(population);
             BaseGameModelDTO baseGameModelDTOCountry = BaseGameModelDTO.builder()
                     .name(countryDTO.getCountryName())
-                    .comparableValue(Float.parseFloat(countryDTO.getYearAndPopulations().getFirst().getPopulation()))
+                    .comparableValue(population)
                     .comparableValueLabel("population")
                     .imageUrl(countryDTO.getFlagUrl())
                     .tier(countryDTO.getYearAndPopulations().getFirst().getTier())
@@ -171,9 +173,11 @@ public class ModeStatsServiceImpl implements ModeStatsService {
         List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
         List<Apartment> topPricesApartments = apartmentService.getApartments(country);
         for(Apartment apartment : topPricesApartments) {
+            float price = apartment.getPrice();
+            price = (float) Math.floor(price);
             BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
                     .name(apartment.getCountryOrCityName())
-                    .comparableValue(apartment.getPrice())
+                    .comparableValue(price)
                     .comparableValueLabel(sign)
                     .imageUrl(apartment.getImageUrl())
                     .tier(apartment.getTier())
@@ -207,9 +211,11 @@ public class ModeStatsServiceImpl implements ModeStatsService {
         List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
         List<SocialMedia> socialMediaByType = socialMediaRepository.findAllByType(type);
         for(SocialMedia socialMedia : socialMediaByType) {
+            float followers = Float.parseFloat(socialMedia.getFollowers());
+            followers = (float) Math.floor(followers);
             BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
                     .name(socialMedia.getName())
-                    .comparableValue(Float.parseFloat(socialMedia.getFollowers()))
+                    .comparableValue(followers)
                     .comparableValueLabel(type.equals("Youtube") ? "million subscribers" : "million followers")
                     .imageUrl(socialMedia.getImageUrl())
                     .tier(socialMedia.getTier())
