@@ -6419,3 +6419,23 @@
 -- UPDATE cinema SET IMAGE_SOURCE = 'https://media.wired.com/photos/5fb2a91a1a99b55d6ffd839c/master/pass/Culture_HTWJW_pressreleaseimage_John-Wilson.jpg', IMAGE_SOURCE_SHORT = 'wired.com' WHERE IMAGE_URL = '/images/tv_shows/How_to_with_John_Wilson.png';
 -- UPDATE cinema SET IMAGE_SOURCE = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgBW9sOnz01_Vz6hKj3LxDdD-ym5zYhF6ytQ&s', IMAGE_SOURCE_SHORT = 'Facebook' WHERE IMAGE_URL = '/images/tv_shows/Monster.png';
 -- UPDATE cinema SET IMAGE_SOURCE = 'https://m.media-amazon.com/images/S/pv-target-images/007f50bb5c29009f2d9f5106aa867ecb4ad105e3f579af8ce15eaf0a7b34a333.jpg', IMAGE_SOURCE_SHORT = 'primevideo.com' WHERE IMAGE_URL = '/images/tv_shows/House.png';
+
+-- update song set song_name = 'F**k Love' where song_name = 'Fuck Love' and artist_name = 'XXXTentacion & Trippie Redd';
+-- update song set song_name = 'B***h Better Have My Money' where song_name = 'Bitch Better Have My Money' and artist_name = 'Rihanna';
+-- update song set song_name = 'I Don''t F**k With You' where song_name = 'I Don''t Fuck With You' and artist_name = 'Big Sean ft. E-40';
+-- update song set song_name = 'Save That S**t' where song_name = 'Save That Shit' and artist_name = 'Lil Peep';
+-- update song set song_name = 'S*x On Fire' where song_name = 'Sex On Fire' and artist_name = 'Kings Of Leon';
+-- UPDATE HISTORY SET name = 'Madison''s War' where image_url = '/images/history/war_of_1812.png';
+
+-- SELECT *
+-- FROM song
+-- WHERE LOWER(song_name) LIKE '%fuck%'
+--    OR LOWER(song_name) LIKE '%bitch%'
+--    OR LOWER(song_name) LIKE '%shit%'
+--    OR LOWER(song_name) LIKE '%sex%'
+--    OR LOWER(song_name) LIKE '%ass%'
+--    OR LOWER(song_name) LIKE '%damn%'
+--    OR LOWER(song_name) LIKE '%bastard%'
+--    OR LOWER(song_name) LIKE '%hell%'
+--    OR LOWER(song_name) LIKE '%crap%'
+--    OR LOWER(song_name) LIKE '%piss%';
