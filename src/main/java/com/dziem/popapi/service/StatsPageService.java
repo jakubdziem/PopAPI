@@ -9,6 +9,6 @@ import java.util.Map;
 public interface StatsPageService {
     List<StatsWithUName> getStatsWithUNameOfAllUsers();
     List<StatsWithUName> getGameStatsWithUNameOfAllUsers();
-    List<String> getStatsOfAllUsersCombined();
-    Map<Mode, String> getGameStatsOffAllUsersCombined();
+    StatsWithUName getStatsOfAllUsersCombined();
+    Map<Mode, StatsWithUName> getGameStatsOffAllUsersCombined();
 }

@@ -21,4 +21,8 @@ public class StatsPageController {
     public List<StatsWithUName> getStatsWithUNameOfAllUsers() {
         return statsPageService.getStatsWithUNameOfAllUsers();
     }
+    @ModelAttribute("overallStatsOfUsersCombined")
+    public StatsWithUName getStatsOfAllUsersCombined() {
+        return statsPageService.getStatsOfAllUsersCombined();
+    }
 }

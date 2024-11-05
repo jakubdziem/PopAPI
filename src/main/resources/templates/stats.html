@@ -125,7 +125,11 @@
 
             <canvas class="my-4 w-100" id="myChart" width="900" height="380">Canvas not supported</canvas>
 
-            <h2>Section title</h2>
+            <h2 th:text="${overallStatsOfUsersCombined.totalGamePlayed}">Section title</h2>
+            <h2 th:text="${overallStatsOfUsersCombined.avgScore}">Section title</h2>
+            <h2 th:text="${overallStatsOfUsersCombined.timePlayed}">Section title</h2>
+            <h2 th:text="${overallStatsOfUsersCombined.totalScoredPoints}">Section title</h2>
+            <h2 th:text="${overallStatsOfUsersCombined.numberOfWonGames}">Section title</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
