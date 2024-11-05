@@ -1,6 +1,7 @@
 package com.dziem.popapi.service;
 
 import com.dziem.popapi.model.Mode;
+import com.dziem.popapi.model.ModeStats;
 import com.dziem.popapi.model.Stats;
 import com.dziem.popapi.model.UName;
 import com.dziem.popapi.model.webpage.StatsWithUName;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,31 +25,24 @@ public class StatsPageServiceImpl implements StatsPageService {
     private final ModeStatsRepository modeStatsRepository;
     @Override
     public List<StatsWithUName> getStatsWithUNameOfAllUsers() {
-        List<Stats> stats = statsRepository.findAll();
-        List<UName> usernames = uNameRepository.findAll();
-        List<StatsWithUName> statsWithUNameList = new ArrayList<>();
-        if(!(stats.size()==usernames.size())) {
-            return statsWithUNameList;
-        }
-        for(int i = 0; i < stats.size(); i++) {
-            Stats stat = stats.get(i);
-            UName uName = usernames.get(i);
-            StatsWithUName statsWithUName = StatsWithUName.builder()
-                    .userId(stat.getUserId())
-                    .totalGamePlayed(stat.getTotalGamePlayed())
-                    .avgScore(stat.getAvgScore())
-                    .timePlayed(TimeConverter.convertSecondsToTime(stat.getTimePlayed()))
-                    .totalScoredPoints(stat.getTotalScoredPoints())
-                    .numberOfWonGames(stat.getNumberOfWonGames())
-                    .name(uName.getName())
-                    .build();
-            statsWithUNameList.add(statsWithUName);
-        }
-        return statsWithUNameList;
+        return statsRepository.getStatsWithUName();
     }
 
     @Override
-    public List<StatsWithUName> getGameStatsWithUNameOfAllUsers() {
+    public List<StatsWithUName> getGameStatsWithUNameOfAllUsers(Mode mode) {
+        return null;
+    }
+
+    @Override
+    public Map<Mode, StatsWithUName> getAllGameStatsWithUNameOfAllUsers() {
+        List<ModeStats> modeStatsList = modeStatsRepository.findAll();
+        List<UName> nicknames = uNameRepository.findAll();
+        for(Mode mode : Mode.values()) {
+            List<ModeStats> modeStatsListSpecificMode = modeStatsList.stream().filter(modeStats -> modeStats.getMode().equals(mode.toString())).toList();
+            for(ModeStats modeStat : modeStatsListSpecificMode) {
+                //to do
+            }
+        }
         return null;
     }
 
