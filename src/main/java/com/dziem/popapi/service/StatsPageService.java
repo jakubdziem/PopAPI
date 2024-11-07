@@ -1,6 +1,5 @@
 package com.dziem.popapi.service;
 
-import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.webpage.StatsWithUName;
 
 import java.util.List;
@@ -10,5 +9,5 @@ public interface StatsPageService {
     List<StatsWithUName> getStatsWithUNameOfAllUsers();
     Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsers();
     StatsWithUName getStatsOfAllUsersCombined();
-    Map<Mode, StatsWithUName> getGameStatsOffAllUsersCombined();
+    Map<String, StatsWithUName> getGameStatsOffAllUsersCombined();
 }

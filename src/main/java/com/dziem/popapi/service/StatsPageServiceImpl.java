@@ -67,8 +67,8 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     @Override
-    public Map<Mode, StatsWithUName> getGameStatsOffAllUsersCombined() {
-        Map<Mode, StatsWithUName> modeStatsWithUNameHashMap = new HashMap<>();
+    public Map<String, StatsWithUName> getGameStatsOffAllUsersCombined() {
+        Map<String, StatsWithUName> modeStatsWithUNameHashMap = new HashMap<>();
         Map<String, List<ModeStats>> modeStatsGroupedByMode = modeStatsRepository.findAll().stream().collect(groupingBy(ModeStats::getMode));
 
         for(String mode : modeStatsGroupedByMode.keySet()) {
@@ -94,7 +94,7 @@ public class StatsPageServiceImpl implements StatsPageService {
                     .totalScoredPoints(totalScoredPoints)
                     .numberOfWonGames(numberOfWonGames)
                     .build();
-            modeStatsWithUNameHashMap.put(Mode.valueOf(mode), singleModeStat);
+            modeStatsWithUNameHashMap.put(mode, singleModeStat);
         }
         return modeStatsWithUNameHashMap;
     }
