@@ -10,9 +10,9 @@ public interface ModeStatsRepository extends JpaRepository<ModeStats, Long> {
     @Query("""
 
             SELECT s.user.userId, s.totalGamePlayed, s.avgScore, s.timePlayed, s.totalGamePlayed, s.numberOfWonGames, u.name
-FROM ModeStats as s
-LEFT JOIN UName u ON s.user.userId = u.user.userId
-WHERE s.mode = ?1
+            FROM ModeStats as s
+            LEFT JOIN UName u ON s.user.userId = u.user.userId
+            WHERE s.mode = ?1
 """)
     List<Object[]> getModeStatsWithUNameRaw(String mode);
     }
