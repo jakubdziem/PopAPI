@@ -29,7 +29,7 @@ public class StatsPageController {
         return statsPageService.getStatsWithUNameOfAllUsers();
     }
     @ModelAttribute("overallStatsOfUsersPerMode")
-    public Map<Mode, StatsWithUName> getGameStatsOffAllUsersCombined() {
+    public Map<String, StatsWithUName> getGameStatsOffAllUsersCombined() {
         return statsPageService.getGameStatsOffAllUsersCombined();
     }
 
