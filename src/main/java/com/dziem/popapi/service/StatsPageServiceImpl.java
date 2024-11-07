@@ -31,11 +31,11 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     @Override
-    public Map<Mode, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsers() {
-        Map<Mode, List<StatsWithUName>> modeStatsWithUNameHashMap = new HashMap<>();
+    public Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsers() {
+        Map<String, List<StatsWithUName>> modeStatsWithUNameHashMap = new HashMap<>();
         for(Mode mode : Mode.values()) {
             List<StatsWithUName> modeStatsWithUNameByCertainMode = getAllStatsWithUname(mode.toString());
-            modeStatsWithUNameHashMap.put(mode, modeStatsWithUNameByCertainMode);
+            modeStatsWithUNameHashMap.put(mode.toString(), modeStatsWithUNameByCertainMode);
         }
         return modeStatsWithUNameHashMap;
     }
@@ -70,6 +70,7 @@ public class StatsPageServiceImpl implements StatsPageService {
     public Map<Mode, StatsWithUName> getGameStatsOffAllUsersCombined() {
         Map<Mode, StatsWithUName> modeStatsWithUNameHashMap = new HashMap<>();
         Map<String, List<ModeStats>> modeStatsGroupedByMode = modeStatsRepository.findAll().stream().collect(groupingBy(ModeStats::getMode));
+
         for(String mode : modeStatsGroupedByMode.keySet()) {
             Long totalGamePlayed = 0L;
             BigDecimal avgScoreSummed = BigDecimal.ZERO;

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface StatsPageService {
     List<StatsWithUName> getStatsWithUNameOfAllUsers();
-    Map<Mode, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsers();
+    Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsers();
     StatsWithUName getStatsOfAllUsersCombined();
     Map<Mode, StatsWithUName> getGameStatsOffAllUsersCombined();
 }
