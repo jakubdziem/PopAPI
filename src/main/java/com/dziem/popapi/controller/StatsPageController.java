@@ -2,6 +2,7 @@ package com.dziem.popapi.controller;
 
 import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.webpage.StatsWithUName;
+import com.dziem.popapi.model.webpage.UsersSummed;
 import com.dziem.popapi.service.StatsPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -47,5 +48,8 @@ public class StatsPageController {
         return "stats";
     }
 
-
+    @ModelAttribute("users")
+    public UsersSummed getUsersSummed() {
+        return statsPageService.getUsersSummed();
+    }
 }

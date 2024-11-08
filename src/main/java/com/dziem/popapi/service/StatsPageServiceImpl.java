@@ -3,10 +3,13 @@ package com.dziem.popapi.service;
 import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.ModeStats;
 import com.dziem.popapi.model.Stats;
+import com.dziem.popapi.model.User;
 import com.dziem.popapi.model.webpage.StatsWithUName;
 import com.dziem.popapi.model.webpage.TimeConverter;
+import com.dziem.popapi.model.webpage.UsersSummed;
 import com.dziem.popapi.repository.ModeStatsRepository;
 import com.dziem.popapi.repository.StatsRepository;
+import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,7 @@ import static java.util.stream.Collectors.groupingBy;
 public class StatsPageServiceImpl implements StatsPageService {
     private final StatsRepository statsRepository;
     private final ModeStatsRepository modeStatsRepository;
+    private final UserRepository userRepository;
     private final String COMBINED_STATS = "COMBINEDSTATS";
     @Override
     public List<StatsWithUName> getStatsWithUNameOfAllUsers() {
@@ -97,6 +101,17 @@ public class StatsPageServiceImpl implements StatsPageService {
             modeStatsWithUNameHashMap.put(mode, singleModeStat);
         }
         return modeStatsWithUNameHashMap;
+    }
+
+    @Override
+    public UsersSummed getUsersSummed() {
+        Map<Boolean, List<User>> usersDistiguishedPerGuestBoolean = userRepository.findAll().stream().collect(groupingBy(User::isGuest));
+        List<User> guests = usersDistiguishedPerGuestBoolean.get(true);
+        List<User> googleOrEmailUsers = usersDistiguishedPerGuestBoolean.get(false);
+        UsersSummed usersSummed = new UsersSummed();
+        usersSummed.setGuestUsers(guests.size());
+        usersSummed.setGoogleOrEmailUsers(googleOrEmailUsers.size());
+        return usersSummed;
     }
 
     private List<StatsWithUName> getAllStatsWithUname(String mode) {
