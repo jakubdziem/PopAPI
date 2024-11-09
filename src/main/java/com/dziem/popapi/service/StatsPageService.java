@@ -23,5 +23,7 @@ public interface StatsPageService {
     UsersSummed getUsersSummedFromWeek(LocalDate week);
     void saveWeeklyStatsSnapshot();
     List<LocalDate> getWeeks();
-    UsersSummed getDifferenceUsersSummed(String week);
+    UsersSummed getDifferenceUsersSummed(String weekStr);
+    Map<String, StatsWithUName> getDifferenceGameStatsOffAllUsersCombined(String weekStr);
+    StatsWithUName getDifferenceStatsOfAllUsersCombined(String weekStr);
 }

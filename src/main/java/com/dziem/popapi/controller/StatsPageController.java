@@ -45,23 +45,28 @@ public class StatsPageController {
         String week = (String) model.getAttribute("selectedWeek");
         String mode = (String) model.getAttribute("selectedMode");
         model.addAttribute("differenceUsersSummed", statsPageService.getDifferenceUsersSummed(week));
+
         if("ALL_TIME".equals(week)) {
             model.addAttribute("users",statsPageService.getUsersSummedCurrent());
             if ("COMBINED_STATS".equals(mode)) {
                 model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersCurrent());
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getStatsOfAllUsersCombinedCurrent());
+                model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceStatsOfAllUsersCombined(week));
             } else {
                 model.addAttribute("overallStats", statsPageService.getAllGameStatsWithUNameOfAllUsersCurrent());
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getGameStatsOffAllUsersCombinedCurrent());
+//                model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceGameStatsOffAllUsersCombined(week));
             }
         } else {
             LocalDate weekDate = LocalDate.parse(week);
             if ("COMBINED_STATS".equals(mode)) {
                 model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersFromWeek(weekDate));
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getStatsOfAllUsersCombinedFromWeek(weekDate));
+                model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceStatsOfAllUsersCombined(week));
             } else {
                 model.addAttribute("overallStats", statsPageService.getAllGameStatsWithUNameOfAllUsersFromWeek(weekDate));
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getGameStatsOffAllUsersCombinedFromWeek(weekDate));
+//                model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceGameStatsOffAllUsersCombined(week));
             }
             model.addAttribute("users", statsPageService.getUsersSummedFromWeek(weekDate));
         }

@@ -192,6 +192,9 @@ public class StatsPageServiceImpl implements StatsPageService {
     @Override
     public StatsWithUName getStatsOfAllUsersCombinedFromWeek(LocalDate week) {
         WeeklyStats weeklyStats = weeklyStatsRepository.getStatsOfAllUsersCombinedFromWeek(week);
+        if(weeklyStats == null) {
+            return new StatsWithUName();
+        }
         return StatsWithUName.builder()
                 .totalGamePlayed(weeklyStats.getTotalGamePlayed())
                 .avgScore(weeklyStats.getAvgScore())
@@ -322,26 +325,16 @@ public class StatsPageServiceImpl implements StatsPageService {
     public UsersSummed getDifferenceUsersSummed(String weekStr) {
         boolean isAllTime = weekStr.equals("ALL_TIME");
         LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
-        LocalDate min = LocalDate.MAX;
-        LocalDate max = LocalDate.MIN;
-        List<LocalDate> weeks = getWeeks();
-        for (LocalDate localDate : weeks) {
-            if (localDate.isBefore(min)) {
-                    min = localDate;
-            }
-            if (localDate.isAfter(max)) {
-                    max = localDate;
-            }
-        }
-        if (week.minusDays(7).isAfter(min)) {
+        MindAndMaxWeek weekRange = getMindAndMaxWeek();
+        if (week.minusDays(7).isAfter(weekRange.min())) {
             if (isAllTime) {
                 UsersSummed usersSummedCurrent = getUsersSummedCurrent();
-                UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(max);
+                UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(weekRange.max());
                 UsersSummed usersSummedDifference = new UsersSummed();
                 usersSummedDifference.setGuestUsers(Math.max(usersSummedCurrent.getGuestUsers() - usersSummedFromWeek.getGuestUsers(), 0));
                 usersSummedDifference.setGoogleOrEmailUsers(Math.max(usersSummedCurrent.getGoogleOrEmailUsers() - usersSummedFromWeek.getGoogleOrEmailUsers(), 0));
                 return usersSummedDifference;
-            } else if (week.isAfter(min)) {
+            } else if (week.isAfter(weekRange.min())) {
                 UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(week);
                 UsersSummed usersSummedBefore = getUsersSummedFromWeek(week.minusDays(7));
                 if (usersSummedBefore == null) {
@@ -355,4 +348,115 @@ public class StatsPageServiceImpl implements StatsPageService {
         }
         return new UsersSummed();
     }
+
+
+
+
+    @Override
+    public Map<String, StatsWithUName> getDifferenceGameStatsOffAllUsersCombined(String weekStr) {
+        boolean isAllTime = weekStr.equals("ALL_TIME");
+        LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
+        Map<String, StatsWithUName> statsWithUNameMap = new HashMap<>();
+        MindAndMaxWeek weekRange = getMindAndMaxWeek();
+        if (week.minusDays(7).isAfter(weekRange.min())) {
+            if (isAllTime) {
+                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
+                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(week);
+                if(!gameStatsOffAllUsersCombinedCurrent.keySet().containsAll(gameStatsOffAllUsersCombinedFromWeek.keySet())) {
+                    for(Mode mode : Mode.values()) {
+                        statsWithUNameMap.put(mode.toString(), new StatsWithUName());
+                    }
+                }
+                for(String mode : gameStatsOffAllUsersCombinedCurrent.keySet()) {
+                    StatsWithUName statsWithUNameCurrent = gameStatsOffAllUsersCombinedCurrent.get(mode);
+                    StatsWithUName statsWithUNameBefore = gameStatsOffAllUsersCombinedFromWeek.get(mode);
+                    StatsWithUName statsDiff = getWithUNameWithUserIdAndName(statsWithUNameCurrent, statsWithUNameBefore);
+                    statsWithUNameMap.put(mode, statsDiff);
+                }
+                return statsWithUNameMap;
+            }
+            else if (week.isAfter(weekRange.min())) {
+                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
+                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(week.minusDays(7));
+                if (gameStatsOffAllUsersCombinedFromWeek.get(Mode.HISTORY.toString()) == null || !gameStatsOffAllUsersCombinedCurrent.keySet().containsAll(gameStatsOffAllUsersCombinedFromWeek.keySet())) {
+                    for(Mode mode : Mode.values()) {
+                        statsWithUNameMap.put(mode.toString(), new StatsWithUName());
+                    }
+                }
+                for(String mode : gameStatsOffAllUsersCombinedCurrent.keySet()) {
+                    StatsWithUName statsWithUNameCurrent = gameStatsOffAllUsersCombinedCurrent.get(mode);
+                    StatsWithUName statsWithUNameBefore = gameStatsOffAllUsersCombinedFromWeek.get(mode);
+                    StatsWithUName statsDiff = getWithUNameWithUserIdAndName(statsWithUNameCurrent, statsWithUNameBefore);
+                    statsWithUNameMap.put(mode, statsDiff);
+                }
+                return statsWithUNameMap;
+            }
+        } else {
+            for(Mode mode : Mode.values()) {
+                statsWithUNameMap.put(mode.toString(), new StatsWithUName());
+            }
+            return statsWithUNameMap;
+        }
+        return statsWithUNameMap;
+    }
+
+    private static StatsWithUName getWithUNameWithUserIdAndName(StatsWithUName statsWithUNameCurrent, StatsWithUName statsWithUNameBefore) {
+        return StatsWithUName.builder()
+                .userId(statsWithUNameCurrent.getUserId())
+                .totalGamePlayed(Math.max(statsWithUNameCurrent.getTotalGamePlayed()- statsWithUNameBefore.getTotalGamePlayed(), 0))
+                .avgScore(BigDecimal.ZERO.max(statsWithUNameCurrent.getAvgScore().subtract(statsWithUNameBefore.getAvgScore())))
+                .timePlayed(TimeConverter.differenceOfTime(statsWithUNameCurrent.getTimePlayed(), statsWithUNameBefore.getTimePlayed()))
+                .totalScoredPoints(Math.max(statsWithUNameCurrent.getTotalScoredPoints()- statsWithUNameBefore.getTotalScoredPoints(),0))
+                .numberOfWonGames(Math.max(statsWithUNameCurrent.getNumberOfWonGames()- statsWithUNameBefore.getNumberOfWonGames(),0))
+                .name(statsWithUNameCurrent.getName())
+                .build();
+    }
+
+    @Override
+    public StatsWithUName getDifferenceStatsOfAllUsersCombined(String weekStr) {
+        boolean isAllTime = weekStr.equals("ALL_TIME");
+        LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
+        MindAndMaxWeek weekRange = getMindAndMaxWeek();
+        if (week.minusDays(7).isAfter(weekRange.min())) {
+            if (isAllTime) {
+                StatsWithUName statsWithUNameCurrent = getStatsOfAllUsersCombinedCurrent();
+                StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
+                return getStatsWithUName(statsWithUNameCurrent, statsWithUNameFromWeek);
+            } else if (week.isAfter(weekRange.min())) {
+                StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedCurrent();
+                StatsWithUName statsWithUNameBefore = getStatsOfAllUsersCombinedFromWeek(week.minusDays(7));
+                if (statsWithUNameBefore.getTotalScoredPoints() == null) {
+                    return new StatsWithUName();
+                }
+                return getStatsWithUName(statsWithUNameFromWeek, statsWithUNameBefore);
+            }
+        }
+        return new StatsWithUName();
+    }
+
+    private StatsWithUName getStatsWithUName(StatsWithUName statsWithUNameCurrent, StatsWithUName statsWithUNameBefore) {
+        return StatsWithUName.builder()
+                .totalGamePlayed(Math.max(statsWithUNameCurrent.getTotalGamePlayed()-statsWithUNameBefore.getTotalGamePlayed(), 0))
+                .avgScore(BigDecimal.ZERO.max(statsWithUNameCurrent.getAvgScore().subtract(statsWithUNameBefore.getAvgScore())))
+                .timePlayed(TimeConverter.differenceOfTime(statsWithUNameCurrent.getTimePlayed(), statsWithUNameBefore.getTimePlayed()))
+                .totalScoredPoints(Math.max(statsWithUNameCurrent.getTotalScoredPoints()-statsWithUNameBefore.getTotalScoredPoints(),0))
+                .numberOfWonGames(Math.max(statsWithUNameCurrent.getNumberOfWonGames()-statsWithUNameBefore.getNumberOfWonGames(),0))
+                .build();
+    }
+
+    private MindAndMaxWeek getMindAndMaxWeek() {
+        LocalDate min = LocalDate.MAX;
+        LocalDate max = LocalDate.MIN;
+        List<LocalDate> weeks = getWeeks();
+        for (LocalDate localDate : weeks) {
+            if (localDate.isBefore(min)) {
+                min = localDate;
+            }
+            if (localDate.isAfter(max)) {
+                max = localDate;
+            }
+        }
+        return new MindAndMaxWeek(min, max);
+    }
+    private record MindAndMaxWeek(LocalDate min, LocalDate max) {}
 }
