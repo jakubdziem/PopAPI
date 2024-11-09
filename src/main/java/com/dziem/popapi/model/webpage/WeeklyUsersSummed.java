@@ -2,15 +2,14 @@ package com.dziem.popapi.model.webpage;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 @Data
 @Entity
 @Builder
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class WeeklyUsersSummed {
     @Id
     private LocalDate weekStartDate;

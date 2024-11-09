@@ -1,10 +1,10 @@
 package com.dziem.popapi.model.webpage;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -12,11 +12,13 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Builder
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class WeeklyStats {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private LocalDate weekStartDate;
-    @Id
     private String userId;
     private String mode;
     private Long totalGamePlayed;

@@ -13,10 +13,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -28,7 +26,8 @@ public class StatsPageServiceImpl implements StatsPageService {
     private final UserRepository userRepository;
     private final WeeklyStatsRepository weeklyStatsRepository;
     private final WeeklyUsersSummedRepository weeklyUsersSummedRepository;
-    private final String COMBINED_STATS = "COMBINEDSTATS";
+    private final String COMBINED_STATS = "COMBINED_STATS";
+    public final String STATS_OFF_ALL_USERS = "STATS_OFF_ALL_USERS";
     @Override
     public List<StatsWithUName> getStatsWithUNameOfAllUsersCurrent() {
         return getAllStatsWithUname(COMBINED_STATS);
@@ -158,17 +157,46 @@ public class StatsPageServiceImpl implements StatsPageService {
 
     @Override
     public StatsWithUName getStatsOfAllUsersCombinedFromWeek(LocalDate week) {
-        return null;
+        WeeklyStats weeklyStats = weeklyStatsRepository.getStatsOfAllUsersCombinedFromWeek(week);
+        return StatsWithUName.builder()
+                .totalGamePlayed(weeklyStats.getTotalGamePlayed())
+                .avgScore(weeklyStats.getAvgScore())
+                .timePlayed(weeklyStats.getTimePlayed())
+                .totalScoredPoints(weeklyStats.getTotalScoredPoints())
+                .numberOfWonGames(weeklyStats.getNumberOfWonGames())
+                .build();
     }
 
     @Override
     public Map<String, StatsWithUName> getGameStatsOffAllUsersCombinedFromWeek(LocalDate week) {
-        return null;
+        List<WeeklyStats> allGameStatsWithUNameOfAllUsersFromWeek = weeklyStatsRepository.getAllGameStatsWithUNameOfAllUsersFromWeek(week);
+        Map<String, StatsWithUName> statsWithUNameMap = new HashMap<>();
+        for(WeeklyStats weeklyStats : allGameStatsWithUNameOfAllUsersFromWeek) {
+            statsWithUNameMap.put(weeklyStats.getMode(), StatsWithUName.builder()
+                    .totalGamePlayed(weeklyStats.getTotalGamePlayed())
+                    .avgScore(weeklyStats.getAvgScore())
+                    .timePlayed(weeklyStats.getTimePlayed())
+                    .totalScoredPoints(weeklyStats.getTotalScoredPoints())
+                    .numberOfWonGames(weeklyStats.getNumberOfWonGames())
+                    .build());
+        }
+        return statsWithUNameMap;
     }
 
     @Override
     public UsersSummed getUsersSummedFromWeek(LocalDate week) {
-        return null;
+        AtomicReference<UsersSummed> atomicReference = new AtomicReference<>();
+        weeklyUsersSummedRepository.findById(week)
+                .ifPresentOrElse(
+                        weeklyUsersSummed -> {
+                            UsersSummed usersSummed = new UsersSummed();
+                            usersSummed.setGuestUsers(weeklyUsersSummed.getGuestUsers());
+                            usersSummed.setGoogleOrEmailUsers(weeklyUsersSummed.getGoogleOrEmailUsers());
+                            atomicReference.set(usersSummed);
+                        },
+                        () -> atomicReference.set(null)
+                );
+        return atomicReference.get() == null ? new UsersSummed() : atomicReference.get();
     }
     @Scheduled(cron = "0 0 0 * * SUN")
     @Override
@@ -211,7 +239,7 @@ public class StatsPageServiceImpl implements StatsPageService {
         StatsWithUName statsOfAllUsersCombinedCurrent = getStatsOfAllUsersCombinedCurrent();
         weeklyStats.add(WeeklyStats.builder()
                 .weekStartDate(week)
-                .userId("statsOfAllUsers")
+                .userId(STATS_OFF_ALL_USERS)
                 .mode(COMBINED_STATS)
                 .totalGamePlayed(statsOfAllUsersCombinedCurrent.getTotalGamePlayed())
                 .avgScore(statsOfAllUsersCombinedCurrent.getAvgScore())
@@ -226,7 +254,7 @@ public class StatsPageServiceImpl implements StatsPageService {
             StatsWithUName stat = gameStatsOffAllUsersCombinedCurrent.get(mode);
             weeklyStats.add(WeeklyStats.builder()
                     .weekStartDate(week)
-                    .userId("statsOfAllUsers" + mode)
+                    .userId(STATS_OFF_ALL_USERS + mode)
                     .mode(mode)
                     .totalGamePlayed(stat.getTotalGamePlayed())
                     .avgScore(stat.getAvgScore())

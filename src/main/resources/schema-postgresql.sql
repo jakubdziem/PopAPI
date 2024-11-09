@@ -175,6 +175,7 @@ alter table song add column  image_source_short varchar(50);
 alter table song add column  image_source varchar(500);
 
 CREATE TABLE weekly_stats (
+                            id SERIAL PRIMARY KEY,
                             week_start_date DATE,
                             user_id VARCHAR(50),
                             total_game_played BIGINT,
@@ -183,9 +184,8 @@ CREATE TABLE weekly_stats (
                             total_scored_points BIGINT,
                             number_of_won_games INT,
                             name VARCHAR(255),
-                            PRIMARY KEY (week_start_date, user_id)
+                            MODE varchar(255)
 );
-ALTER TABLE weekly_stats add column MODE varchar(255);
 CREATE TABLE weekly_users_summed (
                             week_start_date DATE,
                             guest_users INT,
