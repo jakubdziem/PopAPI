@@ -2,7 +2,6 @@ package com.dziem.popapi.controller;
 
 import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.webpage.StatsWithUName;
-import com.dziem.popapi.model.webpage.UsersSummed;
 import com.dziem.popapi.service.StatsPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,14 +30,6 @@ public class StatsPageController {
     public String initSelectedMode() {
         return "COMBINED_STATS";
     }
-    @ModelAttribute("overallStatsOfUsersCombined")
-    public StatsWithUName getStatsOfAllUsersCombined() {
-        return statsPageService.getStatsOfAllUsersCombinedCurrent();
-    }
-    @ModelAttribute("overallStatsOfUsersPerMode")
-    public Map<String, StatsWithUName> getGameStatsOffAllUsersCombined() {
-        return statsPageService.getGameStatsOffAllUsersCombinedCurrent();
-    }
 
     @GetMapping("/stats")
     public String showStats(@RequestParam(required = false) String selectedMode, @RequestParam(required = false) String selectedWeek, Model model) {
@@ -55,31 +45,25 @@ public class StatsPageController {
         String week = (String) model.getAttribute("selectedWeek");
         String mode = (String) model.getAttribute("selectedMode");
         if("ALL_TIME".equals(week)) {
+            model.addAttribute("users",statsPageService.getUsersSummedCurrent());
             if ("COMBINED_STATS".equals(mode)) {
                 model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersCurrent());
+                model.addAttribute("overallStatsOfUsersCombined", statsPageService.getStatsOfAllUsersCombinedCurrent());
             } else {
-                model.addAttribute("overallStatsPerMode", statsPageService.getAllGameStatsWithUNameOfAllUsersCurrent());
+                model.addAttribute("overallStats", statsPageService.getAllGameStatsWithUNameOfAllUsersCurrent());
+                model.addAttribute("overallStatsOfUsersCombined", statsPageService.getGameStatsOffAllUsersCombinedCurrent());
             }
         } else {
-            System.out.println("\n\n\n\n");
-            System.out.println(week);
-            System.out.println("\n\n\n\n");
             LocalDate weekDate = LocalDate.parse(week);
             if ("COMBINED_STATS".equals(mode)) {
                 model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersFromWeek(weekDate));
+                model.addAttribute("overallStatsOfUsersCombined", statsPageService.getStatsOfAllUsersCombinedFromWeek(weekDate));
             } else {
-                model.addAttribute("overallStatsPerMode", statsPageService.getAllGameStatsWithUNameOfAllUsersFromWeek(weekDate));
+                model.addAttribute("overallStats", statsPageService.getAllGameStatsWithUNameOfAllUsersFromWeek(weekDate));
+                model.addAttribute("overallStatsOfUsersCombined", statsPageService.getGameStatsOffAllUsersCombinedFromWeek(weekDate));
             }
+            model.addAttribute("users", statsPageService.getUsersSummedFromWeek(weekDate));
         }
         return "stats";
-    }
-
-    @ModelAttribute("users")
-    public UsersSummed getUsersSummed() {
-        return statsPageService.getUsersSummedCurrent();
-    }
-    @ModelAttribute("usersWeekly")
-    public UsersSummed getUsersSummedFromWeek() {
-        return statsPageService.getUsersSummedFromWeek(LocalDate.parse("2024-11-09"));
     }
 }

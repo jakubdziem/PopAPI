@@ -117,7 +117,7 @@
 
             <canvas class="my-4 w-100" id="myChart" width="900" height="380">Canvas not supported</canvas>
             <div class="table-responsive" id="generalStatsTable">
-                <table class="table table-striped table-sm" th:switch="${selectedMode}">
+                <table class="table table-striped table-sm">
                     <tr>
                         <th>Total games played</th>
                         <th>Average score</th>
@@ -125,20 +125,28 @@
                         <th>Total scored points</th>
                         <th>Number of won games</th>
                     </tr>
-                    <tr th:case="'COMBINED_STATS'">
+                    <tr th:if="${selectedMode == 'COMBINED_STATS'}">
                         <td th:text="${overallStatsOfUsersCombined.totalGamePlayed}">0</td>
                         <td th:text="${overallStatsOfUsersCombined.avgScore}">0</td>
                         <td th:text="${overallStatsOfUsersCombined.timePlayed}">0</td>
                         <td th:text="${overallStatsOfUsersCombined.totalScoredPoints}">0</td>
                         <td th:text="${overallStatsOfUsersCombined.numberOfWonGames}">0</td>
                     </tr>
-                    <tr th:case="*">
-                        <td th:text="${overallStatsOfUsersPerMode.get(selectedMode).totalGamePlayed}">0</td>
-                        <td th:text="${overallStatsOfUsersPerMode.get(selectedMode).avgScore}">0</td>
-                        <td th:text="${overallStatsOfUsersPerMode.get(selectedMode).timePlayed}">0</td>
-                        <td th:text="${overallStatsOfUsersPerMode.get(selectedMode).totalScoredPoints}">0</td>
-                        <td th:text="${overallStatsOfUsersPerMode.get(selectedMode).numberOfWonGames}">0</td>
+
+                    <tr th:if="${selectedMode != 'COMBINED_STATS'}">
+                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalGamePlayed}">0</td>
+                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).avgScore}">0</td>
+                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).timePlayed}">0</td>
+                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalScoredPoints}">0</td>
+                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).numberOfWonGames}">0</td>
                     </tr>
+<!--                    <tr th:case="*">-->
+<!--                        <td th:text="${overallStatsOfUsersPerMode.get(selectedMode).totalGamePlayed}">0</td>-->
+<!--                        <td th:text="${overallStatsOfUsersPerMode.get(selectedMode).avgScore}">0</td>-->
+<!--                        <td th:text="${overallStatsOfUsersPerMode.get(selectedMode).timePlayed}">0</td>-->
+<!--                        <td th:text="${overallStatsOfUsersPerMode.get(selectedMode).totalScoredPoints}">0</td>-->
+<!--                        <td th:text="${overallStatsOfUsersPerMode.get(selectedMode).numberOfWonGames}">0</td>-->
+<!--                    </tr>-->
                 </table>
             </div>
 
@@ -156,7 +164,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="stat : ${selectedMode != null && selectedMode != 'COMBINED_STATS' ? overallStatsPerMode.get(selectedMode) : overallStats}">
+                        <tr th:each="stat : ${selectedMode != null && selectedMode != 'COMBINED_STATS' ? overallStats.get(selectedMode) : overallStats}">
                             <td th:text="${stat.userId}">1</td>
                             <td th:text="${stat.name}">User</td>
                             <td th:text="${stat.totalGamePlayed}">0</td>
