@@ -16,16 +16,25 @@ import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
+@SessionAttributes({"selectedWeek", "selectedMode"})
 public class StatsPageController {
     private final StatsPageService statsPageService;
-    @ModelAttribute("overallStatsOfUsersCombined")
-    public StatsWithUName getStatsOfAllUsersCombined() {
-        return statsPageService.getStatsOfAllUsersCombinedCurrent();
-    }
     @GetMapping("/stats_for_chart")
     @ResponseBody
     public List<StatsWithUName> getStatsWithUNameOfAllUsersForChart() {
         return statsPageService.getStatsWithUNameOfAllUsersCurrent();
+    }
+    @ModelAttribute("selectedWeek")
+    public String initSelectedWeek() {
+        return "ALL_TIME";
+    }
+    @ModelAttribute("selectedMode")
+    public String initSelectedMode() {
+        return "COMBINED_STATS";
+    }
+    @ModelAttribute("overallStatsOfUsersCombined")
+    public StatsWithUName getStatsOfAllUsersCombined() {
+        return statsPageService.getStatsOfAllUsersCombinedCurrent();
     }
     @ModelAttribute("overallStatsOfUsersPerMode")
     public Map<String, StatsWithUName> getGameStatsOffAllUsersCombined() {
@@ -33,15 +42,34 @@ public class StatsPageController {
     }
 
     @GetMapping("/stats")
-    public String showStats(@RequestParam(defaultValue = "COMBINED_STATS") String selectedMode, Model model) {
-        model.addAttribute("selectedMode", selectedMode);
+    public String showStats(@RequestParam(required = false) String selectedMode, @RequestParam(required = false) String selectedWeek, Model model) {
+        if (selectedWeek != null) {
+            model.addAttribute("selectedWeek", selectedWeek);
+        }
+        if (selectedMode != null) {
+            model.addAttribute("selectedMode", selectedMode);
+        }
         List<String> modes = Arrays.stream(Mode.values()).map(Enum::toString).toList();
         model.addAttribute("modes", modes);
         model.addAttribute("weeks", statsPageService.getWeeks());
-        if ("COMBINED_STATS".equals(selectedMode)) {
-            model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersCurrent());
+        String week = (String) model.getAttribute("selectedWeek");
+        String mode = (String) model.getAttribute("selectedMode");
+        if("ALL_TIME".equals(week)) {
+            if ("COMBINED_STATS".equals(mode)) {
+                model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersCurrent());
+            } else {
+                model.addAttribute("overallStatsPerMode", statsPageService.getAllGameStatsWithUNameOfAllUsersCurrent());
+            }
         } else {
-            model.addAttribute("overallStatsPerMode", statsPageService.getAllGameStatsWithUNameOfAllUsersCurrent());
+            System.out.println("\n\n\n\n");
+            System.out.println(week);
+            System.out.println("\n\n\n\n");
+            LocalDate weekDate = LocalDate.parse(week);
+            if ("COMBINED_STATS".equals(mode)) {
+                model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersFromWeek(weekDate));
+            } else {
+                model.addAttribute("overallStatsPerMode", statsPageService.getAllGameStatsWithUNameOfAllUsersFromWeek(weekDate));
+            }
         }
         return "stats";
     }
@@ -50,25 +78,8 @@ public class StatsPageController {
     public UsersSummed getUsersSummed() {
         return statsPageService.getUsersSummedCurrent();
     }
-    @ModelAttribute("overallStatsOfUsersPerModeWeekly")
-    public Map<String, StatsWithUName> getSummedStatsPerModeFromWeek() {
-        return statsPageService.getGameStatsOffAllUsersCombinedFromWeek(LocalDate.parse("2024-11-09"));
-    }
-    @ModelAttribute("overallStatsOfUsersCombinedWeekly")
-    public StatsWithUName getSummedStatsFromWeek() {
-        System.out.println(statsPageService.getStatsOfAllUsersCombinedFromWeek(LocalDate.parse("2024-11-09")));
-        return statsPageService.getStatsOfAllUsersCombinedFromWeek(LocalDate.parse("2024-11-09"));
-    }
     @ModelAttribute("usersWeekly")
     public UsersSummed getUsersSummedFromWeek() {
         return statsPageService.getUsersSummedFromWeek(LocalDate.parse("2024-11-09"));
-    }
-    @ModelAttribute("overallStatsPerModeWeekly")
-    public Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsersFromWeek() {
-        return statsPageService.getAllGameStatsWithUNameOfAllUsersFromWeek(LocalDate.parse("2024-11-09"));
-    }
-    @ModelAttribute("overallStatsWeekly")
-    public List<StatsWithUName> getStatsWithUNameOfAllUsersFromWeek() {
-        return statsPageService.getStatsWithUNameOfAllUsersFromWeek(LocalDate.parse("2024-11-09"));
     }
 }

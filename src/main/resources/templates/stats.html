@@ -43,7 +43,7 @@
                     </li>
                     <li class="nav-item">
                         <form action="/stats" method="get">
-                            <label for="modeSelect">Select mode</label>
+                            <label for="modeSelect">Select Mode:</label>
                             <select id="modeSelect" name="selectedMode" class="form-select" onchange="this.form.submit()">
                                 <option value="COMBINED_STATS" th:selected="${selectedMode == 'COMBINED_STATS'}">General Stats</option>
 
@@ -52,6 +52,21 @@
                                         th:text="${mode.toString().replace('_', ' ')}"
                                         th:selected="${selectedMode == mode}">
                                     Mode
+                                </option>
+                            </select>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <form action="/stats" method="get">
+                            <label for="weekSelect">Select Week:</label>
+                            <select id="weekSelect" name="selectedWeek" class="form-select" onchange="this.form.submit()">
+                                <option value="ALL_TIME" th:selected="${selectedWeek == 'ALL_TIME'}">All time</option>
+
+                                <option th:each="week : ${weeks}"
+                                        th:value="${week}"
+                                        th:text="${week.toString()}"
+                                        th:selected="${selectedWeek == week.toString()}">
+                                    Week
                                 </option>
                             </select>
                         </form>
@@ -98,16 +113,6 @@
                 <h2 class="h2">Dashboard</h2>
                 <h2 class="h2" th:text="'Guests = ' + ${users.guestUsers}">Dashboard</h2>
                 <h2 class="h2" th:text="'Registered = ' + ${users.googleOrEmailUsers}">Dashboard</h2>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group me-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                        <span data-feather="calendar"></span>
-                        All time
-                    </button>
-                </div>
             </div>
 
             <canvas class="my-4 w-100" id="myChart" width="900" height="380">Canvas not supported</canvas>
