@@ -4,17 +4,15 @@ import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.ModeStats;
 import com.dziem.popapi.model.Stats;
 import com.dziem.popapi.model.User;
-import com.dziem.popapi.model.webpage.StatsWithUName;
-import com.dziem.popapi.model.webpage.TimeConverter;
-import com.dziem.popapi.model.webpage.UsersSummed;
-import com.dziem.popapi.repository.ModeStatsRepository;
-import com.dziem.popapi.repository.StatsRepository;
-import com.dziem.popapi.repository.UserRepository;
+import com.dziem.popapi.model.webpage.*;
+import com.dziem.popapi.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,14 +26,16 @@ public class StatsPageServiceImpl implements StatsPageService {
     private final StatsRepository statsRepository;
     private final ModeStatsRepository modeStatsRepository;
     private final UserRepository userRepository;
+    private final WeeklyStatsRepository weeklyStatsRepository;
+    private final WeeklyUsersSummedRepository weeklyUsersSummedRepository;
     private final String COMBINED_STATS = "COMBINEDSTATS";
     @Override
-    public List<StatsWithUName> getStatsWithUNameOfAllUsers() {
+    public List<StatsWithUName> getStatsWithUNameOfAllUsersCurrent() {
         return getAllStatsWithUname(COMBINED_STATS);
     }
 
     @Override
-    public Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsers() {
+    public Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsersCurrent() {
         Map<String, List<StatsWithUName>> modeStatsWithUNameHashMap = new HashMap<>();
         for(Mode mode : Mode.values()) {
             List<StatsWithUName> modeStatsWithUNameByCertainMode = getAllStatsWithUname(mode.toString());
@@ -45,7 +45,7 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     @Override
-    public StatsWithUName getStatsOfAllUsersCombined() {
+    public StatsWithUName getStatsOfAllUsersCombinedCurrent() {
         List<Stats> stats = statsRepository.findAll();
         Long totalGamePlayed = 0L;
         BigDecimal avgScoreSummed = BigDecimal.ZERO;
@@ -71,7 +71,7 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     @Override
-    public Map<String, StatsWithUName> getGameStatsOffAllUsersCombined() {
+    public Map<String, StatsWithUName> getGameStatsOffAllUsersCombinedCurrent() {
         Map<String, StatsWithUName> modeStatsWithUNameHashMap = new HashMap<>();
         Map<String, List<ModeStats>> modeStatsGroupedByMode = modeStatsRepository.findAll().stream().collect(groupingBy(ModeStats::getMode));
 
@@ -104,7 +104,7 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     @Override
-    public UsersSummed getUsersSummed() {
+    public UsersSummed getUsersSummedCurrent() {
         Map<Boolean, List<User>> usersDistiguishedPerGuestBoolean = userRepository.findAll().stream().collect(groupingBy(User::isGuest));
         List<User> guests = usersDistiguishedPerGuestBoolean.get(true);
         List<User> googleOrEmailUsers = usersDistiguishedPerGuestBoolean.get(false);
@@ -144,5 +144,108 @@ public class StatsPageServiceImpl implements StatsPageService {
             statsWithUNameList.add(statsWithUName);
         }
         return statsWithUNameList;
+    }
+
+    @Override
+    public List<StatsWithUName> getStatsWithUNameOfAllUsersFromWeek(LocalDate week) {
+        return null;
+    }
+
+    @Override
+    public Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsersFromWeek(LocalDate week) {
+        return null;
+    }
+
+    @Override
+    public StatsWithUName getStatsOfAllUsersCombinedFromWeek(LocalDate week) {
+        return null;
+    }
+
+    @Override
+    public Map<String, StatsWithUName> getGameStatsOffAllUsersCombinedFromWeek(LocalDate week) {
+        return null;
+    }
+
+    @Override
+    public UsersSummed getUsersSummedFromWeek(LocalDate week) {
+        return null;
+    }
+    @Scheduled(cron = "0 0 0 * * SUN")
+    @Override
+    public void saveWeeklyStatsSnapshot() {
+        LocalDate week = LocalDate.now();
+        List<WeeklyStats> weeklyStats = new ArrayList<>();
+
+        List<StatsWithUName> statsWithUNameOfAllUsersCurrent = getStatsWithUNameOfAllUsersCurrent();
+        for(StatsWithUName stat : statsWithUNameOfAllUsersCurrent) {
+            weeklyStats.add(WeeklyStats.builder()
+                    .weekStartDate(week)
+                    .userId(stat.getUserId())
+                    .mode(COMBINED_STATS)
+                    .totalGamePlayed(stat.getTotalGamePlayed())
+                    .avgScore(stat.getAvgScore())
+                    .timePlayed(stat.getTimePlayed())
+                    .totalScoredPoints(stat.getTotalScoredPoints())
+                    .numberOfWonGames(stat.getNumberOfWonGames())
+                    .name(stat.getName())
+                    .build());
+        }
+
+        Map<String, List<StatsWithUName>> allGameStatsWithUNameOfAllUsersCurrent = getAllGameStatsWithUNameOfAllUsersCurrent();
+        for(String mode : allGameStatsWithUNameOfAllUsersCurrent.keySet()) {
+            for(StatsWithUName stat : allGameStatsWithUNameOfAllUsersCurrent.get(mode)) {
+                weeklyStats.add(WeeklyStats.builder()
+                        .weekStartDate(week)
+                        .userId(stat.getUserId())
+                        .mode(mode)
+                        .totalGamePlayed(stat.getTotalGamePlayed())
+                        .avgScore(stat.getAvgScore())
+                        .timePlayed(stat.getTimePlayed())
+                        .totalScoredPoints(stat.getTotalScoredPoints())
+                        .numberOfWonGames(stat.getNumberOfWonGames())
+                        .name(stat.getName())
+                        .build());
+            }
+        }
+
+        StatsWithUName statsOfAllUsersCombinedCurrent = getStatsOfAllUsersCombinedCurrent();
+        weeklyStats.add(WeeklyStats.builder()
+                .weekStartDate(week)
+                .userId("statsOfAllUsers")
+                .mode(COMBINED_STATS)
+                .totalGamePlayed(statsOfAllUsersCombinedCurrent.getTotalGamePlayed())
+                .avgScore(statsOfAllUsersCombinedCurrent.getAvgScore())
+                .timePlayed(statsOfAllUsersCombinedCurrent.getTimePlayed())
+                .totalScoredPoints(statsOfAllUsersCombinedCurrent.getTotalScoredPoints())
+                .numberOfWonGames(statsOfAllUsersCombinedCurrent.getNumberOfWonGames())
+                .name(null)
+                .build());
+
+        Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
+        for(String mode : gameStatsOffAllUsersCombinedCurrent.keySet()) {
+            StatsWithUName stat = gameStatsOffAllUsersCombinedCurrent.get(mode);
+            weeklyStats.add(WeeklyStats.builder()
+                    .weekStartDate(week)
+                    .userId("statsOfAllUsers" + mode)
+                    .mode(mode)
+                    .totalGamePlayed(stat.getTotalGamePlayed())
+                    .avgScore(stat.getAvgScore())
+                    .timePlayed(stat.getTimePlayed())
+                    .totalScoredPoints(stat.getTotalScoredPoints())
+                    .numberOfWonGames(stat.getNumberOfWonGames())
+                    .name(null)
+                    .build());
+        }
+
+
+        weeklyStatsRepository.saveAll(weeklyStats);
+
+        UsersSummed usersSummedCurrent = getUsersSummedCurrent();
+        WeeklyUsersSummed weeklyUsersSummed = WeeklyUsersSummed.builder()
+                .weekStartDate(week)
+                .guestUsers(usersSummedCurrent.getGuestUsers())
+                .googleOrEmailUsers(usersSummedCurrent.getGoogleOrEmailUsers())
+                .build();
+        weeklyUsersSummedRepository.save(weeklyUsersSummed);
     }
 }

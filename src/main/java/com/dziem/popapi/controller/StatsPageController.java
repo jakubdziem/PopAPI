@@ -22,16 +22,16 @@ public class StatsPageController {
     private final StatsPageService statsPageService;
     @ModelAttribute("overallStatsOfUsersCombined")
     public StatsWithUName getStatsOfAllUsersCombined() {
-        return statsPageService.getStatsOfAllUsersCombined();
+        return statsPageService.getStatsOfAllUsersCombinedCurrent();
     }
     @GetMapping("/stats_for_chart")
     @ResponseBody
     public List<StatsWithUName> getStatsWithUNameOfAllUsersForChart() {
-        return statsPageService.getStatsWithUNameOfAllUsers();
+        return statsPageService.getStatsWithUNameOfAllUsersCurrent();
     }
     @ModelAttribute("overallStatsOfUsersPerMode")
     public Map<String, StatsWithUName> getGameStatsOffAllUsersCombined() {
-        return statsPageService.getGameStatsOffAllUsersCombined();
+        return statsPageService.getGameStatsOffAllUsersCombinedCurrent();
     }
 
     @GetMapping("/stats")
@@ -41,15 +41,15 @@ public class StatsPageController {
         model.addAttribute("modes", modes);
 
         if ("GENERAL".equals(selectedMode)) {
-            model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsers());
+            model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersCurrent());
         } else {
-            model.addAttribute("overallStatsPerMode", statsPageService.getAllGameStatsWithUNameOfAllUsers());
+            model.addAttribute("overallStatsPerMode", statsPageService.getAllGameStatsWithUNameOfAllUsersCurrent());
         }
         return "stats";
     }
 
     @ModelAttribute("users")
     public UsersSummed getUsersSummed() {
-        return statsPageService.getUsersSummed();
+        return statsPageService.getUsersSummedCurrent();
     }
 }

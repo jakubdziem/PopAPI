@@ -173,3 +173,22 @@ alter table artist add column  image_source_short varchar(50);
 alter table artist add column  image_source varchar(500);
 alter table song add column  image_source_short varchar(50);
 alter table song add column  image_source varchar(500);
+
+CREATE TABLE weekly_stats (
+                            week_start_date DATE,
+                            user_id VARCHAR(50),
+                            total_game_played BIGINT,
+                            avg_score DECIMAL(10, 2),
+                            time_played VARCHAR(255),
+                            total_scored_points BIGINT,
+                            number_of_won_games INT,
+                            name VARCHAR(255),
+                            PRIMARY KEY (week_start_date, user_id)
+);
+ALTER TABLE weekly_stats add column MODE varchar(255);
+CREATE TABLE weekly_users_summed (
+                            week_start_date DATE,
+                            guest_users INT,
+                            google_or_email_users INT,
+                            PRIMARY KEY (week_start_date)
+)
