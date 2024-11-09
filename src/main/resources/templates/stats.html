@@ -65,9 +65,15 @@
         </nav>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h2 class="h2" th:text="'Guests = ' + ${users.guestUsers}">Dashboard</h2>
-                <h2 class="h2" th:text="'Registered = ' + ${users.googleOrEmailUsers}">Dashboard</h2>
+            <div class="usersSummedDiv">
+                <div class="usersSummedSmallDiv">
+                    <h2 class="usersSummed" th:text="'Guests = ' + ${users.guestUsers}"></h2>
+                    <p class="guestDifference" th:text="${differenceUsersSummed.guestUsers > 0 ? '+' + differenceUsersSummed.guestUsers : ''}"></p>
+                </div>
+                <div class="usersSummedSmallDiv">
+                    <h2 class="usersSummed" th:text="'Registered = ' + ${users.googleOrEmailUsers}"></h2>
+                    <p class="guestDifference" th:text="${differenceUsersSummed.googleOrEmailUsers > 0 ? '+' + differenceUsersSummed.googleOrEmailUsers : ''}"></p>
+                </div>
             </div>
 
             <canvas class="my-4 w-100" id="myChart" width="900" height="380">Canvas not supported</canvas>

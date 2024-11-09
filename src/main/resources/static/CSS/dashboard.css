@@ -101,3 +101,26 @@ body {
 .sortable th {
     cursor: pointer;
 }
+
+h2.usersSummed {
+    font-size: 2em; /* Main heading font size */
+}
+
+p.guestDifference {
+    font-size: 1em; /* Smaller font size for the difference text */
+    color: lightgreen; /* Set the color to light green */
+    margin-top: 0; /* Remove the top margin to bring it closer to h2 */
+    margin-bottom: 0; /* Remove the bottom margin to keep it compact */
+    font-weight: bold; /* Make it bold for emphasis */
+}
+
+div.usersSummedDiv{
+    margin-top: 10px;
+    display: flex; /* Use flexbox to align elements in a row */
+    align-items: center; /* Align items in the center vertically */
+}
+div.usersSummedSmallDiv {
+    display: flex;
+    align-items: center;
+    width: 50%;
+}

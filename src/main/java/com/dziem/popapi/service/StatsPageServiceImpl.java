@@ -230,7 +230,7 @@ public class StatsPageServiceImpl implements StatsPageService {
                         },
                         () -> atomicReference.set(null)
                 );
-        return atomicReference.get() == null ? new UsersSummed() : atomicReference.get();
+        return atomicReference.get();
     }
     @Scheduled(cron = "0 0 0 * * SUN")
     @Override
@@ -316,5 +316,43 @@ public class StatsPageServiceImpl implements StatsPageService {
     @Override
     public List<LocalDate> getWeeks() {
         return weeklyStatsRepository.getWeeks();
+    }
+
+    @Override
+    public UsersSummed getDifferenceUsersSummed(String weekStr) {
+        boolean isAllTime = weekStr.equals("ALL_TIME");
+        LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
+        LocalDate min = LocalDate.MAX;
+        LocalDate max = LocalDate.MIN;
+        List<LocalDate> weeks = getWeeks();
+        for (LocalDate localDate : weeks) {
+            if (localDate.isBefore(min)) {
+                    min = localDate;
+            }
+            if (localDate.isAfter(max)) {
+                    max = localDate;
+            }
+        }
+        if (week.minusDays(7).isAfter(min)) {
+            if (isAllTime) {
+                UsersSummed usersSummedCurrent = getUsersSummedCurrent();
+                UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(max);
+                UsersSummed usersSummedDifference = new UsersSummed();
+                usersSummedDifference.setGuestUsers(Math.max(usersSummedCurrent.getGuestUsers() - usersSummedFromWeek.getGuestUsers(), 0));
+                usersSummedDifference.setGoogleOrEmailUsers(Math.max(usersSummedCurrent.getGoogleOrEmailUsers() - usersSummedFromWeek.getGoogleOrEmailUsers(), 0));
+                return usersSummedDifference;
+            } else if (week.isAfter(min)) {
+                UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(week);
+                UsersSummed usersSummedBefore = getUsersSummedFromWeek(week.minusDays(7));
+                if (usersSummedBefore == null) {
+                    return new UsersSummed();
+                }
+                UsersSummed usersSummedDifference = new UsersSummed();
+                usersSummedDifference.setGuestUsers(Math.max(usersSummedFromWeek.getGuestUsers() - usersSummedBefore.getGuestUsers(), 0));
+                usersSummedDifference.setGoogleOrEmailUsers(Math.max(usersSummedFromWeek.getGoogleOrEmailUsers() - usersSummedBefore.getGoogleOrEmailUsers(), 0));
+                return usersSummedDifference;
+            }
+        }
+        return new UsersSummed();
     }
 }

@@ -44,6 +44,7 @@ public class StatsPageController {
         model.addAttribute("weeks", statsPageService.getWeeks());
         String week = (String) model.getAttribute("selectedWeek");
         String mode = (String) model.getAttribute("selectedMode");
+        model.addAttribute("differenceUsersSummed", statsPageService.getDifferenceUsersSummed(week));
         if("ALL_TIME".equals(week)) {
             model.addAttribute("users",statsPageService.getUsersSummedCurrent());
             if ("COMBINED_STATS".equals(mode)) {
