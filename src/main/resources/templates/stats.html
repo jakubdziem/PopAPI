@@ -45,7 +45,7 @@
                         <form action="/stats" method="get">
                             <label for="modeSelect">Select mode</label>
                             <select id="modeSelect" name="selectedMode" class="form-select" onchange="this.form.submit()">
-                                <option value="GENERAL" th:selected="${selectedMode == 'GENERAL'}">General Stats</option>
+                                <option value="COMBINED_STATS" th:selected="${selectedMode == 'COMBINED_STATS'}">General Stats</option>
 
                                 <option th:each="mode : ${modes}"
                                         th:value="${mode}"
@@ -120,7 +120,7 @@
                         <th>Total scored points</th>
                         <th>Number of won games</th>
                     </tr>
-                    <tr th:case="'GENERAL'">
+                    <tr th:case="'COMBINED_STATS'">
                         <td th:text="${overallStatsOfUsersCombined.totalGamePlayed}">0</td>
                         <td th:text="${overallStatsOfUsersCombined.avgScore}">0</td>
                         <td th:text="${overallStatsOfUsersCombined.timePlayed}">0</td>
@@ -151,7 +151,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="stat : ${selectedMode != null && selectedMode != 'GENERAL' ? overallStatsPerMode.get(selectedMode) : overallStats}">
+                        <tr th:each="stat : ${selectedMode != null && selectedMode != 'COMBINED_STATS' ? overallStatsPerMode.get(selectedMode) : overallStats}">
                             <td th:text="${stat.userId}">1</td>
                             <td th:text="${stat.name}">User</td>
                             <td th:text="${stat.totalGamePlayed}">0</td>

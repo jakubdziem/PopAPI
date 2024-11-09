@@ -22,4 +22,5 @@ public interface StatsPageService {
 
     UsersSummed getUsersSummedFromWeek(LocalDate week);
     void saveWeeklyStatsSnapshot();
+    List<LocalDate> getWeeks();
 }

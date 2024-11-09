@@ -147,12 +147,43 @@ public class StatsPageServiceImpl implements StatsPageService {
 
     @Override
     public List<StatsWithUName> getStatsWithUNameOfAllUsersFromWeek(LocalDate week) {
-        return null;
+        List<WeeklyStats> weeklyStats = weeklyStatsRepository.getStatsWithUNameOfAllUsersFromWeek(week);
+        List<StatsWithUName> statsWithUNames = new ArrayList<>();
+        for(WeeklyStats stat : weeklyStats) {
+            statsWithUNames.add(StatsWithUName.builder()
+                    .userId(stat.getUserId())
+                    .totalGamePlayed(stat.getTotalGamePlayed())
+                    .avgScore(stat.getAvgScore())
+                    .timePlayed(stat.getTimePlayed())
+                    .totalScoredPoints(stat.getTotalScoredPoints())
+                    .numberOfWonGames(stat.getNumberOfWonGames())
+                    .name(stat.getName())
+                    .build());
+        }
+        return statsWithUNames;
     }
 
     @Override
     public Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsersFromWeek(LocalDate week) {
-        return null;
+        List<WeeklyStats> weeklyStats = weeklyStatsRepository.getAllGameStatsWithUNameOfAllUsersFromWeek(week);
+        Map<String, List<StatsWithUName>> gameStatsWithUnameMap = new HashMap<>();
+        for(Mode mode : Mode.values()) {
+            List<StatsWithUName> gameStatsWithUnames = new ArrayList<>();
+            List<WeeklyStats> filteredWeeklyStatsFromLoopedMode = weeklyStats.stream().filter(weeklyStat -> weeklyStat.getMode().equals(mode.toString())).toList();
+            for(WeeklyStats weeklyStat : filteredWeeklyStatsFromLoopedMode) {
+                gameStatsWithUnames.add(StatsWithUName.builder()
+                        .userId(weeklyStat.getUserId())
+                        .totalGamePlayed(weeklyStat.getTotalGamePlayed())
+                        .avgScore(weeklyStat.getAvgScore())
+                        .timePlayed(weeklyStat.getTimePlayed())
+                        .totalScoredPoints(weeklyStat.getTotalScoredPoints())
+                        .numberOfWonGames(weeklyStat.getNumberOfWonGames())
+                        .name(weeklyStat.getName())
+                        .build());
+            }
+            gameStatsWithUnameMap.put(mode.toString(), gameStatsWithUnames);
+        }
+        return gameStatsWithUnameMap;
     }
 
     @Override
@@ -169,7 +200,7 @@ public class StatsPageServiceImpl implements StatsPageService {
 
     @Override
     public Map<String, StatsWithUName> getGameStatsOffAllUsersCombinedFromWeek(LocalDate week) {
-        List<WeeklyStats> allGameStatsWithUNameOfAllUsersFromWeek = weeklyStatsRepository.getAllGameStatsWithUNameOfAllUsersFromWeek(week);
+        List<WeeklyStats> allGameStatsWithUNameOfAllUsersFromWeek = weeklyStatsRepository.getGameStatsOffAllUsersCombinedFromWeek(week);
         Map<String, StatsWithUName> statsWithUNameMap = new HashMap<>();
         for(WeeklyStats weeklyStats : allGameStatsWithUNameOfAllUsersFromWeek) {
             statsWithUNameMap.put(weeklyStats.getMode(), StatsWithUName.builder()
@@ -275,5 +306,10 @@ public class StatsPageServiceImpl implements StatsPageService {
                 .googleOrEmailUsers(usersSummedCurrent.getGoogleOrEmailUsers())
                 .build();
         weeklyUsersSummedRepository.save(weeklyUsersSummed);
+    }
+
+    @Override
+    public List<LocalDate> getWeeks() {
+        return weeklyStatsRepository.getWeeks();
     }
 }
