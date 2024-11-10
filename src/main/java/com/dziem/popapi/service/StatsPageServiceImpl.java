@@ -420,7 +420,7 @@ public class StatsPageServiceImpl implements StatsPageService {
         if (week.minusDays(7).isAfter(weekRange.min())) {
             if (isAllTime) {
                 StatsWithUName statsWithUNameCurrent = getStatsOfAllUsersCombinedCurrent();
-                StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
+                StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(getMindAndMaxWeek().max);
                 return getStatsWithUName(statsWithUNameCurrent, statsWithUNameFromWeek);
             } else if (week.isAfter(weekRange.min())) {
                 StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedCurrent();
