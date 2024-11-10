@@ -68,11 +68,11 @@
             <div class="usersSummedDiv">
                 <div class="usersSummedSmallDiv">
                     <h2 class="usersSummed" th:text="'Guests = ' + ${users.guestUsers}"></h2>
-                    <p class="guestDifference" th:text="${differenceUsersSummed.guestUsers > 0 ? '🢁' + differenceUsersSummed.guestUsers : ''}"></p>
+                    <p class="guestDifference" th:text="${differenceUsersSummed.guestUsers == 0 ? '' : (differenceUsersSummed.guestUsers < 0 ? '🢃️️' : '🢁️') + differenceUsersSummed.guestUsers }"></p>
                 </div>
                 <div class="usersSummedSmallDiv">
                     <h2 class="usersSummed" th:text="'Registered = ' + ${users.googleOrEmailUsers}"></h2>
-                    <p class="guestDifference" th:text="${differenceUsersSummed.googleOrEmailUsers > 0 ? '🢁️' + differenceUsersSummed.googleOrEmailUsers : ''}"></p>
+                    <p class="guestDifference" th:text="${differenceUsersSummed.googleOrEmailUsers == 0 ? '' : (differenceUsersSummed.googleOrEmailUsers < 0 ? '🢃️️' : '🢁️') + differenceUsersSummed.googleOrEmailUsers}"></p>
                 </div>
             </div>
 
@@ -91,7 +91,7 @@
                         + ${differenceOverallStatsOfUsersCombined.totalGamePlayed > 0 ? '🢁️' + differenceOverallStatsOfUsersCombined.totalGamePlayed : ''}">0</td>
                         <td th:text="${overallStatsOfUsersCombined.avgScore}
                         + ${differenceOverallStatsOfUsersCombined.avgScore != null && !differenceOverallStatsOfUsersCombined.avgScore.toString().equals('0') ?
-                         '🢁️' + differenceOverallStatsOfUsersCombined.avgScore : ''}">0</td>
+                         (differenceOverallStatsOfUsersCombined.avgScore.toString().contains('-') ? '🢃️️' : '🢁️') + differenceOverallStatsOfUsersCombined.avgScore : ''}">0</td>
                         <td th:text="${overallStatsOfUsersCombined.timePlayed}
                         + ${differenceOverallStatsOfUsersCombined.timePlayed != null && !differenceOverallStatsOfUsersCombined.timePlayed.equals('00:00:00') ?
                          '🢁️' + differenceOverallStatsOfUsersCombined.timePlayed : ''}">0</td>
@@ -100,12 +100,24 @@
                         <td th:text="${overallStatsOfUsersCombined.numberOfWonGames}
                         + ${differenceOverallStatsOfUsersCombined.numberOfWonGames > 0 ? '🢁️' + differenceOverallStatsOfUsersCombined.numberOfWonGames : ''}">0</td>
                     </tr>
-                    <tr th:if="${selectedMode != 'COMBINED_STATS'}">
-                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalGamePlayed}">0</td>
-                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).avgScore}">0</td>
-                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).timePlayed}">0</td>
-                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalScoredPoints}">0</td>
-                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).numberOfWonGames}">0</td>
+                    <tr th:if="${selectedMode != 'COMBINED_STATS' && selectedMode != null}">
+                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalGamePlayed}
+                        + ${differenceOverallStatsOfUsersCombined.get(selectedMode).totalGamePlayed > 0 ? '🢁️' + differenceOverallStatsOfUsersCombined.get(selectedMode).totalGamePlayed : ''}">0</td>
+                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).avgScore}
+                        + ${differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore != null && !differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore.toString().equals('0') ?
+                         (differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore.toString().contains('-') ? '🢃️️' : '🢁️') + differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore : ''}">0</td>
+                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).timePlayed}
+                        + ${differenceOverallStatsOfUsersCombined.get(selectedMode).timePlayed != null && !differenceOverallStatsOfUsersCombined.get(selectedMode).timePlayed.equals('00:00:00') ?
+                         '🢁️' + differenceOverallStatsOfUsersCombined.get(selectedMode).timePlayed : ''}">0</td>
+                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalScoredPoints}
+                        + ${differenceOverallStatsOfUsersCombined.get(selectedMode).totalScoredPoints > 0 ? '🢁️' + differenceOverallStatsOfUsersCombined.get(selectedMode).totalScoredPoints : ''}">0</td>
+                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).numberOfWonGames}
+                        + ${differenceOverallStatsOfUsersCombined.get(selectedMode).numberOfWonGames > 0 ? '🢁️' + differenceOverallStatsOfUsersCombined.get(selectedMode).numberOfWonGames : ''}">0</td>
+<!--                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalGamePlayed}">0</td>-->
+<!--                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).avgScore}">0</td>-->
+<!--                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).timePlayed}">0</td>-->
+<!--                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalScoredPoints}">0</td>-->
+<!--                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).numberOfWonGames}">0</td>-->
                     </tr>
                 </table>
             </div>

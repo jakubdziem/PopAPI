@@ -55,7 +55,7 @@ public class StatsPageController {
             } else {
                 model.addAttribute("overallStats", statsPageService.getAllGameStatsWithUNameOfAllUsersCurrent());
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getGameStatsOffAllUsersCombinedCurrent());
-//                model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceGameStatsOffAllUsersCombined(week));
+                model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceGameStatsOffAllUsersCombined(week));
             }
         } else {
             LocalDate weekDate = LocalDate.parse(week);
@@ -66,7 +66,7 @@ public class StatsPageController {
             } else {
                 model.addAttribute("overallStats", statsPageService.getAllGameStatsWithUNameOfAllUsersFromWeek(weekDate));
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getGameStatsOffAllUsersCombinedFromWeek(weekDate));
-//                model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceGameStatsOffAllUsersCombined(week));
+                model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceGameStatsOffAllUsersCombined(week));
             }
             model.addAttribute("users", statsPageService.getUsersSummedFromWeek(weekDate));
         }
