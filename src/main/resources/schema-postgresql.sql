@@ -191,4 +191,14 @@ CREATE TABLE weekly_users_summed (
                             guest_users INT,
                             google_or_email_users INT,
                             PRIMARY KEY (week_start_date)
-)
+);
+CREATE TABLE daily_stats_summed (
+                              id SERIAL PRIMARY KEY,
+                              day DATE,
+                              MODE varchar(255),
+                              total_game_played BIGINT,
+                              avg_score DECIMAL(10, 2),
+                              time_played VARCHAR(255),
+                              total_scored_points BIGINT,
+                              number_of_won_games INT
+);

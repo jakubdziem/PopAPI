@@ -16,7 +16,7 @@ public class TimeConverter {
         return time1Seconds - time2Seconds > 0 ? convertSecondsToTime(time1Seconds - time2Seconds) : "00:00:00";
     }
 
-    private static Long getSeconds(String[] split1) {
+    public static Long getSeconds(String[] split1) {
         long hours = split1[0].charAt(0) == 0 ? Integer.parseInt(String.valueOf(split1[0].charAt(1))) : Integer.parseInt(split1[0]) * 3600L;
         int minutes = split1[1].charAt(0) == 0 ? Integer.parseInt(String.valueOf(split1[1].charAt(1))) : Integer.parseInt(split1[1]) * 60;
         int seconds = split1[2].charAt(0) == 0 ? Integer.parseInt(String.valueOf(split1[2].charAt(1))) : Integer.parseInt(split1[2]);
