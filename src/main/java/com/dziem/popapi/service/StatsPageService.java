@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface StatsPageService {
+    String COMBINED_STATS = "COMBINED_STATS";
+    String STATS_OFF_ALL_USERS = "STATS_OFF_ALL_USERS";
     List<StatsWithUName> getStatsWithUNameOfAllUsersCurrent();
     Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsersCurrent();
     StatsWithUName getStatsOfAllUsersCombinedCurrent();

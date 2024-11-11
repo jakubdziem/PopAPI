@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static com.dziem.popapi.controller.StatsPageController.ALL_TIME;
 import static java.util.stream.Collectors.groupingBy;
 
 @Service
@@ -29,8 +30,7 @@ public class StatsPageServiceImpl implements StatsPageService {
     private final UserRepository userRepository;
     private final WeeklyStatsRepository weeklyStatsRepository;
     private final WeeklyUsersSummedRepository weeklyUsersSummedRepository;
-    private final String COMBINED_STATS = "COMBINED_STATS";
-    public final String STATS_OFF_ALL_USERS = "STATS_OFF_ALL_USERS";
+
     @Override
     public List<StatsWithUName> getStatsWithUNameOfAllUsersCurrent() {
         return getAllStatsWithUname(COMBINED_STATS);
@@ -323,7 +323,7 @@ public class StatsPageServiceImpl implements StatsPageService {
 
     @Override
     public Map<String, StatsWithUName> getDifferenceGameStatsOffAllUsersCombined(String weekStr) {
-        boolean isAllTime = weekStr.equals("ALL_TIME");
+        boolean isAllTime = weekStr.equals(ALL_TIME);
         LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
         Map<String, StatsWithUName> statsWithUNameMap = new HashMap<>();
         MindAndMaxWeek weekRange = getMindAndMaxWeek();
@@ -380,7 +380,7 @@ public class StatsPageServiceImpl implements StatsPageService {
 
     @Override
     public StatsWithUName getDifferenceStatsOfAllUsersCombined(String weekStr) {
-        boolean isAllTime = weekStr.equals("ALL_TIME");
+        boolean isAllTime = weekStr.equals(ALL_TIME);
         LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
         MindAndMaxWeek weekRange = getMindAndMaxWeek();
         System.out.println(weekRange.max);
@@ -403,7 +403,7 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
     @Override
     public UsersSummed getDifferenceUsersSummed(String weekStr) {
-        boolean isAllTime = weekStr.equals("ALL_TIME");
+        boolean isAllTime = weekStr.equals(ALL_TIME);
         LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
         MindAndMaxWeek weekRange = getMindAndMaxWeek();
         if (isAllTime) {

@@ -12,10 +12,13 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.dziem.popapi.service.StatsPageService.COMBINED_STATS;
+
 @Controller
 @RequiredArgsConstructor
 @SessionAttributes({"selectedWeek", "selectedMode"})
 public class StatsPageController {
+    public static final String ALL_TIME = "ALL_TIME";
     private final StatsPageService statsPageService;
     @GetMapping("/stats_for_chart")
     @ResponseBody
@@ -24,11 +27,11 @@ public class StatsPageController {
     }
     @ModelAttribute("selectedWeek")
     public String initSelectedWeek() {
-        return "ALL_TIME";
+        return ALL_TIME;
     }
     @ModelAttribute("selectedMode")
     public String initSelectedMode() {
-        return "COMBINED_STATS";
+        return COMBINED_STATS;
     }
 
     @GetMapping("/stats")
@@ -46,9 +49,9 @@ public class StatsPageController {
         String mode = (String) model.getAttribute("selectedMode");
         model.addAttribute("differenceUsersSummed", statsPageService.getDifferenceUsersSummed(week));
 
-        if("ALL_TIME".equals(week)) {
+        if(ALL_TIME.equals(week)) {
             model.addAttribute("users",statsPageService.getUsersSummedCurrent());
-            if ("COMBINED_STATS".equals(mode)) {
+            if (COMBINED_STATS.equals(mode)) {
                 model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersCurrent());
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getStatsOfAllUsersCombinedCurrent());
                 model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceStatsOfAllUsersCombined(week));
@@ -59,7 +62,7 @@ public class StatsPageController {
             }
         } else {
             LocalDate weekDate = LocalDate.parse(week);
-            if ("COMBINED_STATS".equals(mode)) {
+            if (COMBINED_STATS.equals(mode)) {
                 model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersFromWeek(weekDate));
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getStatsOfAllUsersCombinedFromWeek(weekDate));
                 model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceStatsOfAllUsersCombined(week));
