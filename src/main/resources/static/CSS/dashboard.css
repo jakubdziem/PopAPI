@@ -106,6 +106,13 @@ h2.usersSummed {
     font-size: 2em; /* Main heading font size */
 }
 
+td.trend-down {
+    color: red !important;
+}
+p.guestDifference.trend-down {
+    color: red !important; /* Enforces the red color for downward trends */
+}
+
 p.guestDifference {
     font-size: 1em; /* Smaller font size for the difference text */
     color: lightgreen; /* Set the color to light green */
