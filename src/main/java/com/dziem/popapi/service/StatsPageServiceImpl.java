@@ -54,15 +54,19 @@ public class StatsPageServiceImpl implements StatsPageService {
         Long timePlayedSeconds = 0L;
         Long totalScoredPoints = 0L;
         Integer numberOfWonGames = 0;
+        int numberOfAvgScoreGreaterThanZero = 0;
         for(Stats stat : stats) {
             totalGamePlayed += stat.getTotalGamePlayed();
-            avgScoreSummed = avgScoreSummed.add(stat.getAvgScore());
+            if(stat.getTotalGamePlayed() > 0) {
+                avgScoreSummed = avgScoreSummed.add(stat.getAvgScore());
+                numberOfAvgScoreGreaterThanZero++;
+            }
             timePlayedSeconds += stat.getTimePlayed();
             totalScoredPoints += stat.getTotalScoredPoints();
             numberOfWonGames += stat.getNumberOfWonGames();
         }
         String timePlayed = TimeConverter.convertSecondsToTime(timePlayedSeconds);
-        BigDecimal avgScore = avgScoreSummed.divide(BigDecimal.valueOf(stats.size()), RoundingMode.DOWN);
+        BigDecimal avgScore = avgScoreSummed.divide(BigDecimal.valueOf(numberOfAvgScoreGreaterThanZero), RoundingMode.DOWN);
         return StatsWithUName.builder()
                 .totalGamePlayed(totalGamePlayed)
                 .avgScore(avgScore)
@@ -84,15 +88,19 @@ public class StatsPageServiceImpl implements StatsPageService {
             Long totalScoredPoints = 0L;
             Integer numberOfWonGames = 0;
             List<ModeStats> modeStatsListOfCertainMode = modeStatsGroupedByMode.get(mode);
+            int numberOfAvgScoreGreaterThanZero = 0;
             for(ModeStats modeStat : modeStatsListOfCertainMode) {
                 totalGamePlayed += modeStat.getTotalGamePlayed();
-                avgScoreSummed = avgScoreSummed.add(modeStat.getAvgScore());
+                if(modeStat.getTotalGamePlayed() > 0) {
+                    avgScoreSummed = avgScoreSummed.add(modeStat.getAvgScore());
+                    numberOfAvgScoreGreaterThanZero++;
+                }
                 timePlayedSeconds += modeStat.getTimePlayed();
                 totalScoredPoints += modeStat.getTotalScoredPoints();
                 numberOfWonGames += modeStat.getNumberOfWonGames();
             }
             String timePlayed = TimeConverter.convertSecondsToTime(timePlayedSeconds);
-            BigDecimal avgScore = avgScoreSummed.divide(BigDecimal.valueOf(modeStatsListOfCertainMode.size()), RoundingMode.DOWN);
+            BigDecimal avgScore = avgScoreSummed.divide(BigDecimal.valueOf(numberOfAvgScoreGreaterThanZero), RoundingMode.DOWN);
             StatsWithUName singleModeStat = StatsWithUName.builder()
                     .totalGamePlayed(totalGamePlayed)
                     .avgScore(avgScore)
@@ -324,9 +332,9 @@ public class StatsPageServiceImpl implements StatsPageService {
     @Override
     public Map<String, StatsWithUName> getDifferenceGameStatsOffAllUsersCombined(String weekStr) {
         boolean isAllTime = weekStr.equals(ALL_TIME);
-        LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
         Map<String, StatsWithUName> statsWithUNameMap = new HashMap<>();
         MindAndMaxWeek weekRange = getMindAndMaxWeek();
+        LocalDate week = isAllTime ? weekRange.max : LocalDate.parse(weekStr);
         if (isAllTime) {
             Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
             Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(week);
@@ -360,13 +368,25 @@ public class StatsPageServiceImpl implements StatsPageService {
             return statsWithUNameMap;
         } else {
             for (Mode mode : Mode.values()) {
-                statsWithUNameMap.put(mode.toString(), new StatsWithUName());
+                statsWithUNameMap.put(mode.toString(), StatsWithUName.builder()
+                                .totalGamePlayed(0L)
+                                .totalScoredPoints(0L)
+                                .avgScore(BigDecimal.ZERO)
+                                .timePlayed(TimeConverter.convertSecondsToTime(0L))
+                                .numberOfWonGames(0)
+                        .build());
             }
             return statsWithUNameMap;
         }
     }
 
     private static StatsWithUName getWithUNameWithUserIdAndName(StatsWithUName statsWithUNameCurrent, StatsWithUName statsWithUNameBefore) {
+        if(statsWithUNameBefore == null) {
+            StatsWithUName blankStatsWithUName = getBlankStatsWithUName();
+            blankStatsWithUName.setName(statsWithUNameCurrent.getName());
+            blankStatsWithUName.setUserId(statsWithUNameCurrent.getUserId());
+            return blankStatsWithUName;
+        }
         return StatsWithUName.builder()
                 .userId(statsWithUNameCurrent.getUserId())
                 .totalGamePlayed(Math.max(statsWithUNameCurrent.getTotalGamePlayed()- statsWithUNameBefore.getTotalGamePlayed(), 0))
@@ -395,12 +415,23 @@ public class StatsPageServiceImpl implements StatsPageService {
                 StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
                 StatsWithUName statsWithUNameBefore = getStatsOfAllUsersCombinedFromWeek(week.minusDays(7));
                 if (statsWithUNameBefore.getTotalScoredPoints() == null) {
-                    return new StatsWithUName();
+                    return getBlankStatsWithUName();
                 }
                 return getStatsWithUName(statsWithUNameFromWeek, statsWithUNameBefore);
             }
-        return new StatsWithUName();
+        return getBlankStatsWithUName();
     }
+
+    private static StatsWithUName getBlankStatsWithUName() {
+        return StatsWithUName.builder()
+                .totalGamePlayed(0L)
+                .totalScoredPoints(0L)
+                .avgScore(BigDecimal.ZERO)
+                .timePlayed(TimeConverter.convertSecondsToTime(0L))
+                .numberOfWonGames(0)
+                .build();
+    }
+
     @Override
     public UsersSummed getDifferenceUsersSummed(String weekStr) {
         boolean isAllTime = weekStr.equals(ALL_TIME);
@@ -417,17 +448,27 @@ public class StatsPageServiceImpl implements StatsPageService {
             UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(week);
             UsersSummed usersSummedBefore = getUsersSummedFromWeek(week.minusDays(7));
             if (usersSummedBefore == null) {
-                return new UsersSummed();
+                return getBlankUsersSummed();
             }
             UsersSummed usersSummedDifference = new UsersSummed();
             usersSummedDifference.setGuestUsers(usersSummedFromWeek.getGuestUsers() - usersSummedBefore.getGuestUsers());
             usersSummedDifference.setGoogleOrEmailUsers(usersSummedFromWeek.getGoogleOrEmailUsers() - usersSummedBefore.getGoogleOrEmailUsers());
             return usersSummedDifference;
         }
-        return new UsersSummed();
+        return getBlankUsersSummed();
+    }
+
+    private static UsersSummed getBlankUsersSummed() {
+        UsersSummed usersSummed = new UsersSummed();
+        usersSummed.setGoogleOrEmailUsers(0);
+        usersSummed.setGuestUsers(0);
+        return usersSummed;
     }
 
     private StatsWithUName getStatsWithUName(StatsWithUName statsWithUNameCurrent, StatsWithUName statsWithUNameBefore) {
+        if(statsWithUNameCurrent == null || statsWithUNameBefore == null) {
+            return getBlankStatsWithUName();
+        }
         return StatsWithUName.builder()
                 .totalGamePlayed(Math.max(statsWithUNameCurrent.getTotalGamePlayed()-statsWithUNameBefore.getTotalGamePlayed(), 0))
                 .avgScore(statsWithUNameCurrent.getAvgScore().subtract(statsWithUNameBefore.getAvgScore()))
