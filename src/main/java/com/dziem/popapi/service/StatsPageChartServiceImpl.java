@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static com.dziem.popapi.controller.StatsPageController.ALL_TIME;
 import static com.dziem.popapi.service.StatsPageServiceImpl.COMBINED_STATS;
 
 @Service
@@ -31,7 +32,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     public void saveDailySummedStatsSnapshot() {
         logger.info("Starting daily summed stats snapshot...");
         DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
-        String weekStr = LocalDate.now().toString();
+        String weekStr = ALL_TIME;
         StatsWithUName stats = statsPageService.getDifferenceStatsOfAllUsersCombined(weekStr);
         Map<String, StatsWithUName> gameStats = statsPageService.getDifferenceGameStatsOffAllUsersCombined(weekStr);
         List<DailyStatsSummed> dailyStats = new ArrayList<>();
@@ -107,8 +108,8 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     }
     @Override
     public void populateWeek(LocalDate week) {
-        StatsWithUName stats = statsPageService.getStatsOfAllUsersCombinedFromWeek(week);
-        Map<String, StatsWithUName> gameStats = statsPageService.getGameStatsOffAllUsersCombinedFromWeek(week);
+        StatsWithUName stats = statsPageService.getStatsOfAllUsersCombinedFromWeek(LocalDate.parse("2024-11-10"));
+        Map<String, StatsWithUName> gameStats = statsPageService.getGameStatsOffAllUsersCombinedFromWeek(LocalDate.parse("2024-11-10"));
         List<DailyStatsSummed> dailyStatsSummed = new ArrayList<>();
         for(int i = 1; i <= 7; i++) {
             dailyStatsSummed.add(getDailyStatsSummedFromDayAndPerMode(stats, i, COMBINED_STATS, week));
