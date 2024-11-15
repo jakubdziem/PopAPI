@@ -9,7 +9,7 @@ import java.util.List;
 public interface ModeStatsRepository extends JpaRepository<ModeStats, Long> {
     @Query("""
 
-            SELECT s.user.userId, s.totalGamePlayed, s.avgScore, s.timePlayed, s.totalGamePlayed, s.numberOfWonGames, u.name
+            SELECT s.user.userId, s.totalGamePlayed, s.avgScore, s.timePlayed, s.totalScoredPoints, s.numberOfWonGames, u.name
             FROM ModeStats as s
             LEFT JOIN UName u ON s.user.userId = u.user.userId
             WHERE s.mode = ?1
