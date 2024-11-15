@@ -32,9 +32,8 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     public void saveDailySummedStatsSnapshot() {
         logger.info("Starting daily summed stats snapshot...");
         DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
-        String weekStr = ALL_TIME;
-        StatsWithUName stats = statsPageService.getDifferenceStatsOfAllUsersCombined(weekStr);
-        Map<String, StatsWithUName> gameStats = statsPageService.getDifferenceGameStatsOffAllUsersCombined(weekStr);
+        StatsWithUName stats = statsPageService.getDifferenceStatsOfAllUsersCombined(ALL_TIME);
+        Map<String, StatsWithUName> gameStats = statsPageService.getDifferenceGameStatsOffAllUsersCombined(ALL_TIME);
         List<DailyStatsSummed> dailyStats = new ArrayList<>();
         LocalDate day = LocalDate.now();
         if(!dayOfWeek.equals(DayOfWeek.SUNDAY)) {
@@ -43,44 +42,28 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
             dailyStats.add(DailyStatsSummed.builder()
                     .day(day)
                     .mode(COMBINED_STATS)
-                    .totalGamePlayed(stats.getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed())
-                    .avgScore(stats.getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()))
-                    .timePlayed(TimeConverter.differenceOfTime(stats.getTimePlayed(), combinedStatsPrevDay.getTimePlayed()))
-                    .totalScoredPoints(stats.getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints())
-                    .numberOfWonGames(stats.getNumberOfWonGames() - combinedStatsPrevDay.getNumberOfWonGames())
+                    .totalGamePlayed(Math.max(stats.getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed(),0))
+                    .avgScore(stats.getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()).compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO :
+                            stats.getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()))
+                    .timePlayed(TimeConverter.differenceOfTime(stats.getTimePlayed(), combinedStatsPrevDay.getTimePlayed()).equals("00:00:00") ? "00:00:00" :
+                            TimeConverter.differenceOfTime(stats.getTimePlayed(), combinedStatsPrevDay.getTimePlayed()))
+                    .totalScoredPoints(Math.max(stats.getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints(),0))
+                    .numberOfWonGames(Math.max(stats.getNumberOfWonGames() - combinedStatsPrevDay.getNumberOfWonGames(), 0))
                     .build());
             for(String mode : gameStats.keySet()) {
                 combinedStatsPrevDay = dailySummedStatsPrevDay.stream().filter(stat -> stat.getMode().equals(mode)).toList().get(0);
                 dailyStats.add(DailyStatsSummed.builder()
                         .day(day)
                         .mode(mode)
-                        .totalGamePlayed(gameStats.get(mode).getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed())
-                        .avgScore(gameStats.get(mode).getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()))
-                        .timePlayed(TimeConverter.differenceOfTime(gameStats.get(mode).getTimePlayed(), combinedStatsPrevDay.getTimePlayed()))
-                        .totalScoredPoints(gameStats.get(mode).getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints())
-                        .numberOfWonGames(gameStats.get(mode).getNumberOfWonGames()  - combinedStatsPrevDay.getNumberOfWonGames())
+                        .totalGamePlayed(Math.max(gameStats.get(mode).getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed(),0))
+                        .avgScore(gameStats.get(mode).getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()).compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO :
+                                gameStats.get(mode).getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()))
+                        .timePlayed(TimeConverter.differenceOfTime(gameStats.get(mode).getTimePlayed(), combinedStatsPrevDay.getTimePlayed()).equals("00:00:00") ? "00:00:00" :
+                                TimeConverter.differenceOfTime(gameStats.get(mode).getTimePlayed(), combinedStatsPrevDay.getTimePlayed()))
+                        .totalScoredPoints(Math.max(gameStats.get(mode).getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints(),0))
+                        .numberOfWonGames(Math.max(gameStats.get(mode).getNumberOfWonGames() - combinedStatsPrevDay.getNumberOfWonGames(), 0))
                         .build());
             }
-        }
-        dailyStats.add(DailyStatsSummed.builder()
-                .day(day)
-                .mode(COMBINED_STATS)
-                .totalGamePlayed(stats.getTotalGamePlayed())
-                .avgScore(stats.getAvgScore())
-                .timePlayed(stats.getTimePlayed())
-                .totalScoredPoints(stats.getTotalScoredPoints())
-                .numberOfWonGames(stats.getNumberOfWonGames())
-                .build());
-        for(String mode : gameStats.keySet()) {
-            dailyStats.add(DailyStatsSummed.builder()
-                    .day(day)
-                    .mode(mode)
-                    .totalGamePlayed(gameStats.get(mode).getTotalGamePlayed())
-                    .avgScore(gameStats.get(mode).getAvgScore())
-                    .timePlayed(gameStats.get(mode).getTimePlayed())
-                    .totalScoredPoints(gameStats.get(mode).getTotalScoredPoints())
-                    .numberOfWonGames(gameStats.get(mode).getNumberOfWonGames())
-                    .build());
         }
         dailyStatsSummedRepository.saveAll(dailyStats);
         logger.info("Daily summed stats snapshot completed.");
@@ -127,6 +110,6 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
 
     @Override
     public List<DailyStatsSummed> getDailyStatsSummedForChartPerMode(String mode) {
-        return null;
+        return dailyStatsSummedRepository.findAll().stream().filter(stats -> stats.getMode().equals(mode)).toList();
     }
 }

@@ -1,7 +1,8 @@
 package com.dziem.popapi.controller;
 
 import com.dziem.popapi.model.Mode;
-import com.dziem.popapi.model.webpage.StatsWithUName;
+import com.dziem.popapi.model.webpage.DailyStatsSummed;
+import com.dziem.popapi.service.StatsPageChartService;
 import com.dziem.popapi.service.StatsPageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,10 +21,11 @@ import static com.dziem.popapi.service.StatsPageService.COMBINED_STATS;
 public class StatsPageController {
     public static final String ALL_TIME = "ALL_TIME";
     private final StatsPageService statsPageService;
-    @GetMapping("/stats_for_chart")
+    private final StatsPageChartService statsPageChartService;
+    @GetMapping("/stats_for_chart/{mode}")
     @ResponseBody
-    public List<StatsWithUName> getStatsWithUNameOfAllUsersForChart() {
-        return statsPageService.getStatsWithUNameOfAllUsersCurrent();
+    public List<DailyStatsSummed> getStatsWithUNameOfAllUsersForChart(@PathVariable String mode) {
+        return statsPageChartService.getDailyStatsSummedForChartPerMode(mode);
     }
     @ModelAttribute("selectedWeek")
     public String initSelectedWeek() {
