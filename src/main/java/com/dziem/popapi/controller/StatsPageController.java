@@ -35,14 +35,21 @@ public class StatsPageController {
     public String initSelectedMode() {
         return COMBINED_STATS;
     }
+    @ModelAttribute("attributeSelect")
+    public String initAttributeSelect() {
+        return "totalGamePlayed";
+    }
 
     @GetMapping("/stats")
-    public String showStats(@RequestParam(required = false) String selectedMode, @RequestParam(required = false) String selectedWeek, Model model) {
+    public String showStats(@RequestParam(required = false) String selectedMode, @RequestParam(required = false) String selectedWeek,@RequestParam(required = false) String attributeSelect, Model model) {
         if (selectedWeek != null) {
             model.addAttribute("selectedWeek", selectedWeek);
         }
         if (selectedMode != null) {
             model.addAttribute("selectedMode", selectedMode);
+        }
+        if (attributeSelect != null) {
+            model.addAttribute("attributeSelect", attributeSelect);
         }
         List<String> modes = Arrays.stream(Mode.values()).map(Enum::toString).toList();
         model.addAttribute("modes", modes);

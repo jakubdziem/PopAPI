@@ -78,7 +78,20 @@
                 </div>
             </div>
 
+            <form action="/stats" method="get">
+                <label for="attributeSelect">Select Mode:</label>
+                <select id="attributeSelect" name="attributeSelect" class="form-select" onchange="this.form.submit()">
+                    <option value="totalGamePlayed" th:selected="${attributeSelect == 'totalGamePlayed'}">Total Games Played</option>
+                    <option value="avgScore" th:selected="${attributeSelect == 'avgScore'}">Average Score</option>
+                    <option value="timePlayed" th:selected="${attributeSelect == 'timePlayed'}">Time Played</option>
+                    <option value="totalScoredPoints" th:selected="${attributeSelect == 'totalScoredPoints'}">Total Scored Points</option>
+                    <option value="numberOfWonGames" th:selected="${attributeSelect == 'numberOfWonGames'}">Number of Won Games</option>
+                </select>
+            </form>
+
+
             <canvas class="my-4 w-100" id="myChart" width="900" height="380">Canvas not supported</canvas>
+
             <div class="table-responsive" id="generalStatsTable">
                 <table class="table table-striped table-sm">
                     <tr>

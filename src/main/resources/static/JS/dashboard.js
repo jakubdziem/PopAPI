@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const statsData = await response.json();
       let data;
       const labels = statsData.map(stat => stat.day); // X-axis: Days
-      const attributeSelect = document.getElementById("modeSelect");
+      const attributeSelect = document.getElementById("attributeSelect");
       switch (attributeSelect.value) {
         case "totalGamePlayed": data = statsData.map(stat => stat.totalGamePlayed); break;
         case "avgScore": data = statsData.map(stat => stat.avgScore); break;
