@@ -1,78 +1,99 @@
 document.addEventListener('DOMContentLoaded', function () {
   async function fetchAndRenderChart() {
-    const response = await fetch('/stats_for_chart');
-    const statsData = await response.json();
+    const modeSelector = document.getElementById("modeSelect");
+    const selectedMode = modeSelector.value; // Get the selected mode
+    try {
+      const response = await fetch(`/stats_for_chart/${selectedMode}`);
+      if (!response.ok) {
+        throw new Error(`Error fetching stats: ${response.status}`);
+      }
+      const statsData = await response.json();
+      let data;
+      const labels = statsData.map(stat => stat.day); // X-axis: Days
+      const attributeSelect = document.getElementById("modeSelect");
+      switch (attributeSelect.value) {
+        case "totalGamePlayed": data = statsData.map(stat => stat.totalGamePlayed); break;
+        case "avgScore": data = statsData.map(stat => stat.avgScore); break;
+        case "timePlayed": data = statsData.map(stat => stat.timePlayed); break;
+        case "totalScoredPoints": data = statsData.map(stat => stat.totalScoredPoints); break;
+        case "numberOfWonGames": data = statsData.map(stat => stat.numberOfWonGames); break;
+        default: data = statsData.map(stat => stat.totalGamePlayed); break;
+      }
 
-    const filteredData = statsData.filter(stat => stat.timePlayed !== '00:00:00' || stat.totalScoredPoints > 0);
 
-    const timePlayedInMinutes = filteredData.map(stat => {
-      const [hours, minutes] = stat.timePlayed.split(':').map(Number);
-      return hours * 60 + minutes;
-    });
-    const totalScoredPoints = filteredData.map(stat => stat.totalScoredPoints);
+      // Ensure data is valid
+      if (labels.length === 0 || data.length === 0) {
+        console.error('No valid data available to render the chart');
+        return;
+      }
 
-    if (timePlayedInMinutes.length === 0 || totalScoredPoints.length === 0) {
-      console.error('No valid data available to render the chart');
-      return;
-    }
-
-
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: timePlayedInMinutes,
-        datasets: [{
-          label: 'Total Scored Points',
-          data: totalScoredPoints,
-          lineTension: 0,
-          backgroundColor: 'transparent',
-          borderColor: '#007bff',
-          borderWidth: 4,
-          pointBackgroundColor: '#007bff'
-        }]
-      },
-      options: {
-        scales: {
-          x: {
-            type: 'linear',
-            position: 'bottom',
-            title: {
-              display: true,
-              text: 'Time Played (Minutes)'
-            },
-            ticks: {
-              callback: (value) => `${value} min`
-            }
-          },
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Total Scored Points'
-            },
-            ticks: {
-              stepSize: 500
-            }
-          }
+      // Render the chart
+      const ctx = document.getElementById('myChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Games Played',
+            data: data,
+            lineTension: 0.3,
+            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+            borderColor: '#007bff',
+            borderWidth: 2,
+            pointBackgroundColor: '#007bff'
+          }]
         },
-        plugins: {
-          legend: {
-            display: true
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              type: 'time',
+              time: {
+                unit: 'day',
+                tooltipFormat: 'MMM D',
+                displayFormats: {
+                  day: 'MMM D'
+                }
+              },
+              title: {
+                display: true,
+                text: 'Day'
+              }
+            },
+            y: {
+              min: 0,
+              title: {
+                display: true,
+                text: 'Total Games Played'
+              }
+            }
           },
-          title: {
-            display: true,
-            text: 'Time Played vs. Total Scored Points'
+          plugins: {
+            legend: {
+              display: true
+            },
+            title: {
+              display: true,
+              text: `Games Played Over Time for Mode: ${selectedMode}`
+            }
           }
         }
-      }
-    });
+      });
+    } catch (error) {
+      console.error("Error rendering chart:", error);
+    }
   }
 
+  // Add event listener to update the chart on mode change
+  const modeSelector = document.getElementById("modeSelect");
+  modeSelector.addEventListener("change", fetchAndRenderChart);
+
+  // Initial chart rendering
   fetchAndRenderChart();
 
 
-  let sortOrder = {};
+
+let sortOrder = {};
 
   function customSortTable(header, columnIndex) {
     const table = header.closest('table');

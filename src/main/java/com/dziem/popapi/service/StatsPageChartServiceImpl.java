@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -110,6 +111,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
 
     @Override
     public List<DailyStatsSummed> getDailyStatsSummedForChartPerMode(String mode) {
-        return dailyStatsSummedRepository.findAll().stream().filter(stats -> stats.getMode().equals(mode)).toList();
+        return dailyStatsSummedRepository.findAll().stream().filter(stats -> stats.getMode().equals(mode))
+                .sorted(Comparator.comparing(DailyStatsSummed::getDay)).toList();
     }
 }
