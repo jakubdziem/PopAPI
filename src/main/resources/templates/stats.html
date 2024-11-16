@@ -102,39 +102,64 @@
                         <th>Number of won games</th>
                     </tr>
                     <tr th:if="${selectedMode == 'COMBINED_STATS'}">
-                        <td th:text="${overallStatsOfUsersCombined.totalGamePlayed}
-                        + ${differenceOverallStatsOfUsersCombined.totalGamePlayed > 0 ? '🢁️' + differenceOverallStatsOfUsersCombined.totalGamePlayed : ''}">0</td>
-                        <td th:classappend="${differenceOverallStatsOfUsersCombined.avgScore.toString().contains('-') ? 'trend-down' : ''}"
-                            th:text="${overallStatsOfUsersCombined.avgScore}
-                        + ${differenceOverallStatsOfUsersCombined.avgScore != null && !differenceOverallStatsOfUsersCombined.avgScore.toString().equals('0') ?
-                         (differenceOverallStatsOfUsersCombined.avgScore.toString().contains('-') ? '🢃️️' : '🢁️') + differenceOverallStatsOfUsersCombined.avgScore : ''}">0</td>
-                        <td th:text="${overallStatsOfUsersCombined.timePlayed}
-                        + ${differenceOverallStatsOfUsersCombined.timePlayed != null && !differenceOverallStatsOfUsersCombined.timePlayed.equals('00:00:00') ?
-                         '🢁️' + differenceOverallStatsOfUsersCombined.timePlayed : ''}">0</td>
-                        <td th:text="${overallStatsOfUsersCombined.totalScoredPoints}
-                        + ${differenceOverallStatsOfUsersCombined.totalScoredPoints > 0 ? '🢁️' + differenceOverallStatsOfUsersCombined.totalScoredPoints : ''}">0</td>
-                        <td th:text="${overallStatsOfUsersCombined.numberOfWonGames}
-                        + ${differenceOverallStatsOfUsersCombined.numberOfWonGames > 0 ? '🢁️' + differenceOverallStatsOfUsersCombined.numberOfWonGames : ''}">0</td>
+                        <td>
+                            <span th:text="${overallStatsOfUsersCombined.totalGamePlayed}"></span>
+                            <span th:classappend="${differenceOverallStatsOfUsersCombined.totalGamePlayed > 0 ? 'trend-up' : 'trend-down'}"
+                                  th:text="${differenceOverallStatsOfUsersCombined.totalGamePlayed > 0 ? ' 🢁 ' + differenceOverallStatsOfUsersCombined.totalGamePlayed : ''}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${overallStatsOfUsersCombined.avgScore}"></span>
+                            <span th:classappend="${differenceOverallStatsOfUsersCombined.avgScore.toString().contains('-') ? 'trend-down' : 'trend-up'}"
+                                  th:text="${differenceOverallStatsOfUsersCombined.avgScore != null && !differenceOverallStatsOfUsersCombined.avgScore.toString().equals('0') ?
+                                  (differenceOverallStatsOfUsersCombined.avgScore.toString().contains('-') ? ' 🢃 ' : ' 🢁 ') + differenceOverallStatsOfUsersCombined.avgScore : ''}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${overallStatsOfUsersCombined.timePlayed}"></span>
+                            <span th:classappend="${differenceOverallStatsOfUsersCombined.timePlayed != null && !differenceOverallStatsOfUsersCombined.timePlayed.equals('00:00:00') ? 'trend-up' : ''}"
+                                  th:text="${differenceOverallStatsOfUsersCombined.timePlayed != null && !differenceOverallStatsOfUsersCombined.timePlayed.equals('00:00:00') ?
+                                  ' 🢁 ' + differenceOverallStatsOfUsersCombined.timePlayed : ''}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${overallStatsOfUsersCombined.totalScoredPoints}"></span>
+                            <span th:classappend="${differenceOverallStatsOfUsersCombined.totalScoredPoints > 0 ? 'trend-up' : 'trend-down'}"
+                                  th:text="${differenceOverallStatsOfUsersCombined.totalScoredPoints > 0 ? ' 🢁 ' + differenceOverallStatsOfUsersCombined.totalScoredPoints : ''}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${overallStatsOfUsersCombined.numberOfWonGames}"></span>
+                            <span th:classappend="${differenceOverallStatsOfUsersCombined.numberOfWonGames > 0 ? 'trend-up' : 'trend-down'}"
+                                  th:text="${differenceOverallStatsOfUsersCombined.numberOfWonGames > 0 ? ' 🢁 ' + differenceOverallStatsOfUsersCombined.numberOfWonGames : ''}"></span>
+                        </td>
+
                     </tr>
+
                     <tr th:if="${selectedMode != 'COMBINED_STATS' && selectedMode != null}">
-                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalGamePlayed}
-                        + ${differenceOverallStatsOfUsersCombined.get(selectedMode).totalGamePlayed > 0 ? '🢁️' + differenceOverallStatsOfUsersCombined.get(selectedMode).totalGamePlayed : ''}">0</td>
-                        <td th:classappend="${overallStatsOfUsersCombined.get(selectedMode).avgScore.toString().contains('-') ? 'trend-down' : ''}"
-                            th:text="${overallStatsOfUsersCombined.get(selectedMode).avgScore}
-                        + ${differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore != null && !differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore.toString().equals('0') ?
-                         (differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore.toString().contains('-') ? '🢃️️' : '🢁️') + differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore : ''}">0</td>
-                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).timePlayed}
-                        + ${differenceOverallStatsOfUsersCombined.get(selectedMode).timePlayed != null && !differenceOverallStatsOfUsersCombined.get(selectedMode).timePlayed.equals('00:00:00') ?
-                         '🢁️' + differenceOverallStatsOfUsersCombined.get(selectedMode).timePlayed : ''}">0</td>
-                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalScoredPoints}
-                        + ${differenceOverallStatsOfUsersCombined.get(selectedMode).totalScoredPoints > 0 ? '🢁️' + differenceOverallStatsOfUsersCombined.get(selectedMode).totalScoredPoints : ''}">0</td>
-                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).numberOfWonGames}
-                        + ${differenceOverallStatsOfUsersCombined.get(selectedMode).numberOfWonGames > 0 ? '🢁️' + differenceOverallStatsOfUsersCombined.get(selectedMode).numberOfWonGames : ''}">0</td>
-<!--                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalGamePlayed}">0</td>-->
-<!--                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).avgScore}">0</td>-->
-<!--                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).timePlayed}">0</td>-->
-<!--                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).totalScoredPoints}">0</td>-->
-<!--                        <td th:text="${overallStatsOfUsersCombined.get(selectedMode).numberOfWonGames}">0</td>-->
+                        <td>
+                            <span th:text="${overallStatsOfUsersCombined.get(selectedMode).totalGamePlayed}"></span>
+                            <span th:classappend="${differenceOverallStatsOfUsersCombined.get(selectedMode).totalGamePlayed > 0 ? 'trend-up' : 'trend-down'}"
+                                  th:text="${differenceOverallStatsOfUsersCombined.get(selectedMode).totalGamePlayed > 0 ? ' 🢁 ' + differenceOverallStatsOfUsersCombined.get(selectedMode).totalGamePlayed : ''}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${overallStatsOfUsersCombined.get(selectedMode).avgScore}"></span>
+                            <span th:classappend="${differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore.toString().contains('-') ? 'trend-down' : 'trend-up'}"
+                                  th:text="${differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore != null && !differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore.toString().equals('0') ?
+                                  (differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore.toString().contains('-') ? ' 🢃 ' : ' 🢁 ') + differenceOverallStatsOfUsersCombined.get(selectedMode).avgScore : ''}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${overallStatsOfUsersCombined.get(selectedMode).timePlayed}"></span>
+                            <span th:classappend="${differenceOverallStatsOfUsersCombined.get(selectedMode).timePlayed != null && !differenceOverallStatsOfUsersCombined.get(selectedMode).timePlayed.equals('00:00:00') ? 'trend-up' : ''}"
+                                  th:text="${differenceOverallStatsOfUsersCombined.get(selectedMode).timePlayed != null && !differenceOverallStatsOfUsersCombined.get(selectedMode).timePlayed.equals('00:00:00') ?
+                                  ' 🢁 ' + differenceOverallStatsOfUsersCombined.get(selectedMode).timePlayed : ''}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${overallStatsOfUsersCombined.get(selectedMode).totalScoredPoints}"></span>
+                            <span th:classappend="${differenceOverallStatsOfUsersCombined.get(selectedMode).totalScoredPoints > 0 ? 'trend-up' : 'trend-down'}"
+                                  th:text="${differenceOverallStatsOfUsersCombined.get(selectedMode).totalScoredPoints > 0 ? ' 🢁 ' + differenceOverallStatsOfUsersCombined.get(selectedMode).totalScoredPoints : ''}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${overallStatsOfUsersCombined.get(selectedMode).numberOfWonGames}"></span>
+                            <span th:classappend="${differenceOverallStatsOfUsersCombined.get(selectedMode).numberOfWonGames > 0 ? 'trend-up' : 'trend-down'}"
+                                  th:text="${differenceOverallStatsOfUsersCombined.get(selectedMode).numberOfWonGames > 0 ? ' 🢁 ' + differenceOverallStatsOfUsersCombined.get(selectedMode).numberOfWonGames : ''}"></span>
+                        </td>
                     </tr>
                 </table>
             </div>
