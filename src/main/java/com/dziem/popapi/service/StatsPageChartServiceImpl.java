@@ -29,7 +29,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     private final StatsPageService statsPageService;
     private final DailyStatsSummedRepository dailyStatsSummedRepository;
 
-    @Scheduled(cron = "0 30 17 * * *") //every day at 23:30 at GMT +1
+    @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw")
     @Override
     public void saveDailySummedStatsSnapshot() {
         logger.info("Starting daily summed stats snapshot...");

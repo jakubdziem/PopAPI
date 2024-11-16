@@ -243,7 +243,7 @@ public class StatsPageServiceImpl implements StatsPageService {
                 );
         return atomicReference.get();
     }
-    @Scheduled(cron = "0 0 0 * * SUN")
+    @Scheduled(cron = "0 0 6 * * SUN", zone = "Europe/Warsaw")
     @Override
     public void saveWeeklyStatsSnapshot() {
         logger.info("Starting weekly stats snapshot...");
