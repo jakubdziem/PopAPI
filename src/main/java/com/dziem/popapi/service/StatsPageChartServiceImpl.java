@@ -28,7 +28,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     private static final Logger logger = LoggerFactory.getLogger(StatsPageServiceImpl.class);
     private final StatsPageService statsPageService;
     private final DailyStatsSummedRepository dailyStatsSummedRepository;
-    @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "0 30 17 * * *") //every day at 23:30 at GMT +1
     @Override
     public void saveDailySummedStatsSnapshot() {
         logger.info("Starting daily summed stats snapshot...");
@@ -63,6 +63,27 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
                                 TimeConverter.differenceOfTime(gameStats.get(mode).getTimePlayed(), combinedStatsPrevDay.getTimePlayed()))
                         .totalScoredPoints(Math.max(gameStats.get(mode).getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints(),0))
                         .numberOfWonGames(Math.max(gameStats.get(mode).getNumberOfWonGames() - combinedStatsPrevDay.getNumberOfWonGames(), 0))
+                        .build());
+            }
+        } else {
+            dailyStats.add(DailyStatsSummed.builder()
+                    .day(day)
+                    .mode(COMBINED_STATS)
+                    .totalGamePlayed(stats.getTotalGamePlayed())
+                    .avgScore(stats.getAvgScore())
+                    .timePlayed(stats.getTimePlayed())
+                    .totalScoredPoints(stats.getTotalScoredPoints())
+                    .numberOfWonGames(stats.getNumberOfWonGames())
+                    .build());
+            for (String mode : gameStats.keySet()) {
+                dailyStats.add(DailyStatsSummed.builder()
+                        .day(day)
+                        .mode(mode)
+                        .totalGamePlayed(gameStats.get(mode).getTotalGamePlayed())
+                        .avgScore(gameStats.get(mode).getAvgScore())
+                        .timePlayed(gameStats.get(mode).getTimePlayed())
+                        .totalScoredPoints(gameStats.get(mode).getTotalScoredPoints())
+                        .numberOfWonGames(gameStats.get(mode).getNumberOfWonGames())
                         .build());
             }
         }

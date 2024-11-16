@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   async function fetchAndRenderChart() {
     const modeSelector = document.getElementById("modeSelect");
-    const selectedMode = modeSelector.value; // Get the selected mode
+    const selectedMode = modeSelector.value;
     try {
       const response = await fetch(`/stats_for_chart/${selectedMode}`);
       if (!response.ok) {
@@ -11,23 +11,38 @@ document.addEventListener('DOMContentLoaded', function () {
       let data;
       const labels = statsData.map(stat => stat.day); // X-axis: Days
       const attributeSelect = document.getElementById("attributeSelect");
-      switch (attributeSelect.value) {
-        case "totalGamePlayed": data = statsData.map(stat => stat.totalGamePlayed); break;
-        case "avgScore": data = statsData.map(stat => stat.avgScore); break;
-        case "timePlayed": data = statsData.map(stat => stat.timePlayed); break;
-        case "totalScoredPoints": data = statsData.map(stat => stat.totalScoredPoints); break;
-        case "numberOfWonGames": data = statsData.map(stat => stat.numberOfWonGames); break;
-        default: data = statsData.map(stat => stat.totalGamePlayed); break;
+
+      function timeToSeconds(timeStr) {
+        const [hours, minutes, seconds] = timeStr.split(":").map(Number);
+        return (hours * 3600) + (minutes * 60) + seconds;
       }
 
+      switch (attributeSelect.value) {
+        case "totalGamePlayed":
+          data = statsData.map(stat => stat.totalGamePlayed);
+          break;
+        case "avgScore":
+          data = statsData.map(stat => stat.avgScore);
+          break;
+        case "timePlayed":
+          data = statsData.map(stat => timeToSeconds(stat.timePlayed));
+          break;
+        case "totalScoredPoints":
+          data = statsData.map(stat => stat.totalScoredPoints);
+          break;
+        case "numberOfWonGames":
+          data = statsData.map(stat => stat.numberOfWonGames);
+          break;
+        default:
+          data = statsData.map(stat => stat.totalGamePlayed);
+          break;
+      }
 
-      // Ensure data is valid
       if (labels.length === 0 || data.length === 0) {
         console.error('No valid data available to render the chart');
         return;
       }
 
-      // Render the chart
       const ctx = document.getElementById('myChart').getContext('2d');
       new Chart(ctx, {
         type: 'line',
@@ -84,16 +99,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Add event listener to update the chart on mode change
   const modeSelector = document.getElementById("modeSelect");
   modeSelector.addEventListener("change", fetchAndRenderChart);
 
-  // Initial chart rendering
   fetchAndRenderChart();
 
-
-
-let sortOrder = {};
+  let sortOrder = {};
 
   function customSortTable(header, columnIndex) {
     const table = header.closest('table');

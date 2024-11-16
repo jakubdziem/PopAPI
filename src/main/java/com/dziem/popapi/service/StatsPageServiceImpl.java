@@ -403,10 +403,6 @@ public class StatsPageServiceImpl implements StatsPageService {
         boolean isAllTime = weekStr.equals(ALL_TIME);
         LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
         MindAndMaxWeek weekRange = getMindAndMaxWeek();
-        System.out.println(weekRange.max);
-        System.out.println(weekRange.min);
-        System.out.println(week);
-
             if (isAllTime) {
                 StatsWithUName statsWithUNameCurrent = getStatsOfAllUsersCombinedCurrent();
                 StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(weekRange.max);
