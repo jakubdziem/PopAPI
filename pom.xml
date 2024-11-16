@@ -105,7 +105,6 @@
                         </exclude>
                     </excludes>
                     <imageName>com.dziem/popapi</imageName>
-<!--                    change there the name of docker image-->
                 </configuration>
             </plugin>
             <plugin>

@@ -17,6 +17,17 @@ document.addEventListener('DOMContentLoaded', function () {
         return (hours * 3600) + (minutes * 60) + seconds;
       }
 
+      function secondsToTime(seconds) {
+        if (typeof seconds !== 'number' || isNaN(seconds)) {
+          console.error("Invalid seconds value:", seconds);  // Check if value is invalid
+          return 'Invalid Time';
+        }
+        const hrs = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        return `${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+
       switch (attributeSelect.value) {
         case "totalGamePlayed":
           data = statsData.map(stat => stat.totalGamePlayed);
@@ -43,13 +54,14 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
+      console.log('Data:', data);  // Log the data to check its structure
       const ctx = document.getElementById('myChart').getContext('2d');
       new Chart(ctx, {
         type: 'line',
         data: {
           labels: labels,
           datasets: [{
-            label: 'Games Played',
+            label: attributeSelect.value,
             data: data,
             lineTension: 0.3,
             backgroundColor: 'rgba(0, 123, 255, 0.1)',
@@ -62,14 +74,6 @@ document.addEventListener('DOMContentLoaded', function () {
           responsive: true,
           scales: {
             x: {
-              type: 'time',
-              time: {
-                unit: 'day',
-                tooltipFormat: 'MMM D',
-                displayFormats: {
-                  day: 'MMM D'
-                }
-              },
               title: {
                 display: true,
                 text: 'Day'
@@ -77,9 +81,14 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             y: {
               min: 0,
+              ticks: {
+                callback: function (value) {
+                  return attributeSelect.value === "timePlayed" ? secondsToTime(value) : value;
+                }
+              },
               title: {
-                display: true,
-                text: 'Total Games Played'
+                display: attributeSelect.value === "timePlayed",
+                text: 'Time Played (HH:MM:SS)'
               }
             }
           },
@@ -88,8 +97,16 @@ document.addEventListener('DOMContentLoaded', function () {
               display: true
             },
             title: {
-              display: true,
+              display: false,
               text: `Games Played Over Time for Mode: ${selectedMode}`
+            },
+            tooltip: {
+              callbacks: {
+                label: function (tooltipItem) {
+                  const rawValue = tooltipItem.raw; // Seconds
+                  return secondsToTime(rawValue);
+                }
+              }
             }
           }
         }
@@ -103,42 +120,4 @@ document.addEventListener('DOMContentLoaded', function () {
   modeSelector.addEventListener("change", fetchAndRenderChart);
 
   fetchAndRenderChart();
-
-  let sortOrder = {};
-
-  function customSortTable(header, columnIndex) {
-    const table = header.closest('table');
-    const tbody = table.querySelector('tbody');
-    const rows = Array.from(tbody.rows);
-    const isAsc = header.classList.contains('sort-asc');
-
-    table.querySelectorAll('th').forEach(th => {
-      th.classList.remove('sort-asc', 'sort-desc');
-    });
-
-    const numericColumns = [2, 3, 5];
-
-    rows.sort((a, b) => {
-      const cellA = a.cells[columnIndex].textContent.trim();
-      const cellB = b.cells[columnIndex].textContent.trim();
-
-      if (numericColumns.includes(columnIndex)) {
-        return isAsc ? Number(cellA) - Number(cellB) : Number(cellB) - Number(cellA);
-      } else {
-        return isAsc ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
-      }
-    });
-
-    rows.forEach(row => tbody.appendChild(row));
-
-    header.classList.toggle('sort-asc', !isAsc);
-    header.classList.toggle('sort-desc', isAsc);
-  }
-
-  document.querySelectorAll("th[data-sort]").forEach(header => {
-    header.addEventListener("click", function () {
-      const columnIndex = parseInt(header.getAttribute("data-sort"), 10);
-      customSortTable(header, columnIndex);
-    });
-  });
 });
