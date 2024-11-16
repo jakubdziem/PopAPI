@@ -17,7 +17,7 @@ import static com.dziem.popapi.service.StatsPageService.COMBINED_STATS;
 
 @Controller
 @RequiredArgsConstructor
-@SessionAttributes({"selectedWeek", "selectedMode"})
+@SessionAttributes({"selectedWeek", "selectedMode", "attributeSelect"})
 public class StatsPageController {
     public static final String ALL_TIME = "ALL_TIME";
     private final StatsPageService statsPageService;

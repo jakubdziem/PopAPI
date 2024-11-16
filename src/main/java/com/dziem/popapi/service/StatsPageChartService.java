@@ -9,4 +9,5 @@ public interface StatsPageChartService {
     void saveDailySummedStatsSnapshot();
     void populateWeek(LocalDate week);
     List<DailyStatsSummed> getDailyStatsSummedForChartPerMode(String mode);
+    void saveDailySummedStatsFirst();
 }

@@ -28,6 +28,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     private static final Logger logger = LoggerFactory.getLogger(StatsPageServiceImpl.class);
     private final StatsPageService statsPageService;
     private final DailyStatsSummedRepository dailyStatsSummedRepository;
+
     @Scheduled(cron = "0 30 17 * * *") //every day at 23:30 at GMT +1
     @Override
     public void saveDailySummedStatsSnapshot() {
@@ -37,31 +38,31 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
         Map<String, StatsWithUName> gameStats = statsPageService.getDifferenceGameStatsOffAllUsersCombined(ALL_TIME);
         List<DailyStatsSummed> dailyStats = new ArrayList<>();
         LocalDate day = LocalDate.now();
-        if(!dayOfWeek.equals(DayOfWeek.SUNDAY)) {
+        if (!dayOfWeek.equals(DayOfWeek.SUNDAY)) {
             List<DailyStatsSummed> dailySummedStatsPrevDay = dailyStatsSummedRepository.findAllByDay(day.minusDays(1));
             DailyStatsSummed combinedStatsPrevDay = dailySummedStatsPrevDay.stream().filter(stat -> stat.getMode().equals(COMBINED_STATS)).toList().get(0);
             dailyStats.add(DailyStatsSummed.builder()
                     .day(day)
                     .mode(COMBINED_STATS)
-                    .totalGamePlayed(Math.max(stats.getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed(),0))
-                    .avgScore(stats.getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()).compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO :
-                            stats.getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()))
+                    .totalGamePlayed(Math.max(stats.getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed(), 0))
+                    .avgScore(stats.getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()).compareTo(BigDecimal.ZERO) == 0 ? stats.getAvgScore() :
+                            stats.getAvgScore().subtract(stats.getAvgScore().subtract(combinedStatsPrevDay.getAvgScore())))
                     .timePlayed(TimeConverter.differenceOfTime(stats.getTimePlayed(), combinedStatsPrevDay.getTimePlayed()).equals("00:00:00") ? "00:00:00" :
                             TimeConverter.differenceOfTime(stats.getTimePlayed(), combinedStatsPrevDay.getTimePlayed()))
-                    .totalScoredPoints(Math.max(stats.getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints(),0))
+                    .totalScoredPoints(Math.max(stats.getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints(), 0))
                     .numberOfWonGames(Math.max(stats.getNumberOfWonGames() - combinedStatsPrevDay.getNumberOfWonGames(), 0))
                     .build());
-            for(String mode : gameStats.keySet()) {
+            for (String mode : gameStats.keySet()) {
                 combinedStatsPrevDay = dailySummedStatsPrevDay.stream().filter(stat -> stat.getMode().equals(mode)).toList().get(0);
                 dailyStats.add(DailyStatsSummed.builder()
                         .day(day)
                         .mode(mode)
-                        .totalGamePlayed(Math.max(gameStats.get(mode).getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed(),0))
-                        .avgScore(gameStats.get(mode).getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()).compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO :
-                                gameStats.get(mode).getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()))
+                        .totalGamePlayed(Math.max(gameStats.get(mode).getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed(), 0))
+                        .avgScore(gameStats.get(mode).getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()).compareTo(BigDecimal.ZERO) == 0 ? stats.getAvgScore() :
+                                gameStats.get(mode).getAvgScore().subtract(gameStats.get(mode).getAvgScore().subtract(combinedStatsPrevDay.getAvgScore())))
                         .timePlayed(TimeConverter.differenceOfTime(gameStats.get(mode).getTimePlayed(), combinedStatsPrevDay.getTimePlayed()).equals("00:00:00") ? "00:00:00" :
                                 TimeConverter.differenceOfTime(gameStats.get(mode).getTimePlayed(), combinedStatsPrevDay.getTimePlayed()))
-                        .totalScoredPoints(Math.max(gameStats.get(mode).getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints(),0))
+                        .totalScoredPoints(Math.max(gameStats.get(mode).getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints(), 0))
                         .numberOfWonGames(Math.max(gameStats.get(mode).getNumberOfWonGames() - combinedStatsPrevDay.getNumberOfWonGames(), 0))
                         .build());
             }
@@ -89,6 +90,34 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
         }
         dailyStatsSummedRepository.saveAll(dailyStats);
         logger.info("Daily summed stats snapshot completed.");
+    }
+    @Override
+    public void saveDailySummedStatsFirst() {
+        StatsWithUName stats = statsPageService.getDifferenceStatsOfAllUsersCombined(ALL_TIME);
+        Map<String, StatsWithUName> gameStats = statsPageService.getDifferenceGameStatsOffAllUsersCombined(ALL_TIME);
+        List<DailyStatsSummed> dailyStats = new ArrayList<>();
+        LocalDate day = LocalDate.now();
+        dailyStats.add(DailyStatsSummed.builder()
+                .day(day)
+                .mode(COMBINED_STATS)
+                .totalGamePlayed(stats.getTotalGamePlayed())
+                .avgScore(stats.getAvgScore())
+                .timePlayed(stats.getTimePlayed())
+                .totalScoredPoints(stats.getTotalScoredPoints())
+                .numberOfWonGames(stats.getNumberOfWonGames())
+                .build());
+        for (String mode : gameStats.keySet()) {
+            dailyStats.add(DailyStatsSummed.builder()
+                    .day(day)
+                    .mode(mode)
+                    .totalGamePlayed(gameStats.get(mode).getTotalGamePlayed())
+                    .avgScore(gameStats.get(mode).getAvgScore())
+                    .timePlayed(gameStats.get(mode).getTimePlayed())
+                    .totalScoredPoints(gameStats.get(mode).getTotalScoredPoints())
+                    .numberOfWonGames(gameStats.get(mode).getNumberOfWonGames())
+                    .build());
+        }
+        dailyStatsSummedRepository.saveAll(dailyStats);
     }
 
     private DailyStatsSummed getDailyStatsSummedFromDayAndPerMode(StatsWithUName stats ,int i, String mode, LocalDate week) {
