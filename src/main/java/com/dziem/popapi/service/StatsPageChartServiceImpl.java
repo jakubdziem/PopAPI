@@ -36,6 +36,8 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
         DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
         StatsWithUName stats = statsPageService.getDifferenceStatsOfAllUsersCombined(ALL_TIME);
         Map<String, StatsWithUName> gameStats = statsPageService.getDifferenceGameStatsOffAllUsersCombined(ALL_TIME);
+        StatsWithUName statsOfAllUsersCombinedCurrent = statsPageService.getStatsOfAllUsersCombinedCurrent();
+        Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = statsPageService.getGameStatsOffAllUsersCombinedCurrent();
         List<DailyStatsSummed> dailyStats = new ArrayList<>();
         LocalDate day = LocalDate.now();
         if (!dayOfWeek.equals(DayOfWeek.SUNDAY)) {
@@ -45,8 +47,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
                     .day(day)
                     .mode(COMBINED_STATS)
                     .totalGamePlayed(Math.max(stats.getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed(), 0))
-                    .avgScore(stats.getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()).compareTo(BigDecimal.ZERO) == 0 ? stats.getAvgScore() :
-                            stats.getAvgScore().subtract(stats.getAvgScore().subtract(combinedStatsPrevDay.getAvgScore())))
+                    .avgScore(statsOfAllUsersCombinedCurrent.getAvgScore())
                     .timePlayed(TimeConverter.differenceOfTime(stats.getTimePlayed(), combinedStatsPrevDay.getTimePlayed()).equals("00:00:00") ? "00:00:00" :
                             TimeConverter.differenceOfTime(stats.getTimePlayed(), combinedStatsPrevDay.getTimePlayed()))
                     .totalScoredPoints(Math.max(stats.getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints(), 0))
@@ -58,8 +59,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
                         .day(day)
                         .mode(mode)
                         .totalGamePlayed(Math.max(gameStats.get(mode).getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed(), 0))
-                        .avgScore(gameStats.get(mode).getAvgScore().subtract(combinedStatsPrevDay.getAvgScore()).compareTo(BigDecimal.ZERO) == 0 ? stats.getAvgScore() :
-                                gameStats.get(mode).getAvgScore().subtract(gameStats.get(mode).getAvgScore().subtract(combinedStatsPrevDay.getAvgScore())))
+                        .avgScore(gameStatsOffAllUsersCombinedCurrent.get(mode).getAvgScore())
                         .timePlayed(TimeConverter.differenceOfTime(gameStats.get(mode).getTimePlayed(), combinedStatsPrevDay.getTimePlayed()).equals("00:00:00") ? "00:00:00" :
                                 TimeConverter.differenceOfTime(gameStats.get(mode).getTimePlayed(), combinedStatsPrevDay.getTimePlayed()))
                         .totalScoredPoints(Math.max(gameStats.get(mode).getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints(), 0))
@@ -71,7 +71,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
                     .day(day)
                     .mode(COMBINED_STATS)
                     .totalGamePlayed(stats.getTotalGamePlayed())
-                    .avgScore(stats.getAvgScore())
+                    .avgScore(statsOfAllUsersCombinedCurrent.getAvgScore())
                     .timePlayed(stats.getTimePlayed())
                     .totalScoredPoints(stats.getTotalScoredPoints())
                     .numberOfWonGames(stats.getNumberOfWonGames())
@@ -81,7 +81,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
                         .day(day)
                         .mode(mode)
                         .totalGamePlayed(gameStats.get(mode).getTotalGamePlayed())
-                        .avgScore(gameStats.get(mode).getAvgScore())
+                        .avgScore(gameStatsOffAllUsersCombinedCurrent.get(mode).getAvgScore())
                         .timePlayed(gameStats.get(mode).getTimePlayed())
                         .totalScoredPoints(gameStats.get(mode).getTotalScoredPoints())
                         .numberOfWonGames(gameStats.get(mode).getNumberOfWonGames())
