@@ -350,7 +350,7 @@ public class StatsPageServiceImpl implements StatsPageService {
                 statsWithUNameMap.put(mode, statsDiff);
             }
             return statsWithUNameMap;
-        } else if (week.minusDays(7).isAfter(weekRange.min())) {
+        } else if (week.minusDays(7).isAfter(weekRange.min()) || week.minusDays(7).equals(weekRange.min())) {
             Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
             Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(week.minusDays(7));
             if (gameStatsOffAllUsersCombinedFromWeek.get(Mode.HISTORY.toString()) == null || !gameStatsOffAllUsersCombinedCurrent.keySet().containsAll(gameStatsOffAllUsersCombinedFromWeek.keySet())) {
@@ -407,7 +407,7 @@ public class StatsPageServiceImpl implements StatsPageService {
                 StatsWithUName statsWithUNameCurrent = getStatsOfAllUsersCombinedCurrent();
                 StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(weekRange.max);
                 return getStatsWithUName(statsWithUNameCurrent, statsWithUNameFromWeek);
-            } else if (week.minusDays(7).isAfter(weekRange.min())) {
+            } else if (week.minusDays(7).isAfter(weekRange.min()) || week.minusDays(7).equals(weekRange.min())) {
                 StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
                 StatsWithUName statsWithUNameBefore = getStatsOfAllUsersCombinedFromWeek(week.minusDays(7));
                 if (statsWithUNameBefore.getTotalScoredPoints() == null) {
@@ -440,7 +440,7 @@ public class StatsPageServiceImpl implements StatsPageService {
             usersSummedDifference.setGuestUsers(usersSummedCurrent.getGuestUsers() - usersSummedFromWeek.getGuestUsers());
             usersSummedDifference.setGoogleOrEmailUsers(usersSummedCurrent.getGoogleOrEmailUsers() - usersSummedFromWeek.getGoogleOrEmailUsers());
             return usersSummedDifference;
-        } else if (week.minusDays(7).isAfter(weekRange.min())) {
+        } else if (week.minusDays(7).isAfter(weekRange.min()) || week.minusDays(7).equals(weekRange.min())) {
             UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(week);
             UsersSummed usersSummedBefore = getUsersSummedFromWeek(week.minusDays(7));
             if (usersSummedBefore == null) {
