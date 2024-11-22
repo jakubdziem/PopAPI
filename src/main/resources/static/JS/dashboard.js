@@ -1,33 +1,40 @@
+function timeToSeconds(timeStr) {
+  const [hours, minutes, seconds] = timeStr.split(":").map(Number);
+  return (hours * 3600) + (minutes * 60) + seconds;
+}
+
+function secondsToTime(seconds) {
+  if (typeof seconds !== 'number' || isNaN(seconds)) {
+    console.error("Invalid seconds value:", seconds);  // Check if value is invalid
+    return 'Invalid Time';
+  }
+  const hrs = Math.floor(seconds / 3600);
+  const mins = Math.floor((seconds % 3600) / 60);
+  const secs = seconds % 60;
+  return `${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}
 document.addEventListener('DOMContentLoaded', function () {
   async function fetchAndRenderChart() {
     const modeSelector = document.getElementById("modeSelect");
     const selectedMode = modeSelector.value;
     try {
-      const response = await fetch(`/stats_for_chart/${selectedMode}`);
-      if (!response.ok) {
-        throw new Error(`Error fetching stats: ${response.status}`);
-      }
-      const statsData = await response.json();
-      let data;
-      const labels = statsData.map(stat => stat.day); // X-axis: Days
+      let statsData;
       const attributeSelect = document.getElementById("attributeSelect");
-
-      function timeToSeconds(timeStr) {
-        const [hours, minutes, seconds] = timeStr.split(":").map(Number);
-        return (hours * 3600) + (minutes * 60) + seconds;
-      }
-
-      function secondsToTime(seconds) {
-        if (typeof seconds !== 'number' || isNaN(seconds)) {
-          console.error("Invalid seconds value:", seconds);  // Check if value is invalid
-          return 'Invalid Time';
+      if(attributeSelect.value !== "newUsers") {
+        const response = await fetch(`/stats_for_chart/${selectedMode}`);
+        if (!response.ok) {
+          throw new Error(`Error fetching stats: ${response.status}`);
         }
-        const hrs = Math.floor(seconds / 3600);
-        const mins = Math.floor((seconds % 3600) / 60);
-        const secs = seconds % 60;
-        return `${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        statsData = await response.json();
+      } else {
+        const response = await fetch(`/stats_for_chart_new_users`);
+        if (!response.ok) {
+          throw new Error(`Error fetching stats: ${response.status}`);
+        }
+        statsData = await response.json();
       }
-
+      const labels = statsData.map(stat => stat.day); // X-axis: Days
+      let data;
       switch (attributeSelect.value) {
         case "totalGamePlayed":
           data = statsData.map(stat => stat.totalGamePlayed);
@@ -43,6 +50,9 @@ document.addEventListener('DOMContentLoaded', function () {
           break;
         case "numberOfWonGames":
           data = statsData.map(stat => stat.numberOfWonGames);
+          break;
+        case "newUsers":
+          data = statsData.map(stat => stat.numberOfUsers)
           break;
         default:
           data = statsData.map(stat => stat.totalGamePlayed);
