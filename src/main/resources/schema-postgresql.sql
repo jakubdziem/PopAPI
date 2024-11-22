@@ -202,3 +202,13 @@ CREATE TABLE daily_stats_summed (
                               total_scored_points BIGINT,
                               number_of_won_games INT
 );
+CREATE TABLE daily_users_summed(
+                              day DATE,
+                              guest_users INT,
+                              google_or_email_users INT,
+                              PRIMARY KEY (day)
+);
+INSERT INTO DAILY_USERS_SUMMED (day, guest_users, google_or_email_users) VALUES ('2024-11-18', 0, 0);
+INSERT INTO DAILY_USERS_SUMMED (day, guest_users, google_or_email_users) VALUES ('2024-11-19', 0, 0);
+INSERT INTO DAILY_USERS_SUMMED (day, guest_users, google_or_email_users) VALUES ('2024-11-20', 5, 8);
+INSERT INTO DAILY_USERS_SUMMED (day, guest_users, google_or_email_users) VALUES ('2024-11-21', 5, 5);

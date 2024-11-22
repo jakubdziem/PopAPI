@@ -1,10 +1,9 @@
 package com.dziem.popapi.service;
 
 import com.dziem.popapi.model.Mode;
-import com.dziem.popapi.model.webpage.DailyStatsSummed;
-import com.dziem.popapi.model.webpage.StatsWithUName;
-import com.dziem.popapi.model.webpage.TimeConverter;
+import com.dziem.popapi.model.webpage.*;
 import com.dziem.popapi.repository.DailyStatsSummedRepository;
+import com.dziem.popapi.repository.DailyUsersSummedRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +27,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     private static final Logger logger = LoggerFactory.getLogger(StatsPageServiceImpl.class);
     private final StatsPageService statsPageService;
     private final DailyStatsSummedRepository dailyStatsSummedRepository;
+    private final DailyUsersSummedRepository dailyUsersSummedRepository;
 
     @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw")
     @Override
@@ -90,6 +90,41 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
         }
         dailyStatsSummedRepository.saveAll(dailyStats);
         logger.info("Daily summed stats snapshot completed.");
+    }
+    @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw")
+    @Override
+    public void saveDailySummedUsersSnapshot() {
+        logger.info("Starting daily summed users snapshot...");
+        LocalDate today = LocalDate.now().plusDays(2);
+        DayOfWeek dayOfWeek = today.getDayOfWeek();
+        UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
+        if (!dayOfWeek.equals(DayOfWeek.SUNDAY)) {
+            DailyUsersSummed dailyUsersSummedPrevDayInAWeek = new DailyUsersSummed();
+            for(int i = dayOfWeek.getValue(); i >= 1; i--) {
+                DailyUsersSummed dailyUsersSummedPrevDay = dailyUsersSummedRepository.findById(today.minusDays(i))
+                        .orElse(DailyUsersSummed.builder()
+                        .day(today.minusDays(i))
+                        .guestUsers(0)
+                        .googleOrEmailUsers(0)
+                        .build());
+                dailyUsersSummedPrevDayInAWeek.setGuestUsers(dailyUsersSummedPrevDayInAWeek.getGuestUsers()
+                        + dailyUsersSummedPrevDay.getGuestUsers());
+                dailyUsersSummedPrevDayInAWeek.setGoogleOrEmailUsers(dailyUsersSummedPrevDayInAWeek.getGoogleOrEmailUsers()
+                        + dailyUsersSummedPrevDay.getGoogleOrEmailUsers());
+            }
+            dailyUsersSummedRepository.save(DailyUsersSummed.builder()
+                    .day(today)
+                    .guestUsers(differenceUsersSummed.getGuestUsers()-dailyUsersSummedPrevDayInAWeek.getGuestUsers())
+                    .googleOrEmailUsers(differenceUsersSummed.getGoogleOrEmailUsers()-dailyUsersSummedPrevDayInAWeek.getGoogleOrEmailUsers())
+                    .build());
+        } else {
+            dailyUsersSummedRepository.save(DailyUsersSummed.builder()
+                    .day(today)
+                    .guestUsers(differenceUsersSummed.getGuestUsers())
+                    .googleOrEmailUsers(differenceUsersSummed.getGoogleOrEmailUsers())
+                    .build());
+        }
+        logger.info("Daily summed users snapshot completed.");
     }
     @Override
     public void saveDailySummedStatsFirst() {
