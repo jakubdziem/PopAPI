@@ -135,3 +135,7 @@ div.usersSummedSmallDiv {
     align-items: center;
     width: 50%;
 }
+option.changed {
+    color: lightgreen;
+    font-weight: bold;
+}

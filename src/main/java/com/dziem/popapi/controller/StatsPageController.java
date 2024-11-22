@@ -3,6 +3,7 @@ package com.dziem.popapi.controller;
 import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.webpage.DailyStatsSummed;
 import com.dziem.popapi.model.webpage.DailyUsersSummedBoth;
+import com.dziem.popapi.model.webpage.StatsWithUName;
 import com.dziem.popapi.service.StatsPageChartService;
 import com.dziem.popapi.service.StatsPageService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static com.dziem.popapi.service.StatsPageService.COMBINED_STATS;
 
@@ -63,6 +66,15 @@ public class StatsPageController {
         String week = (String) model.getAttribute("selectedWeek");
         String mode = (String) model.getAttribute("selectedMode");
         model.addAttribute("differenceUsersSummed", statsPageService.getDifferenceUsersSummed(week));
+
+        Map<String, Boolean> modesWithPositiveDifference = modes.stream().collect(Collectors.toMap(
+                m -> m,
+                m -> {
+                    StatsWithUName difference = statsPageService.getDifferenceGameStatsOffAllUsersCombined(week).get(m);
+                    return difference != null && difference.getTotalGamePlayed() > 0;
+                }
+        ));
+        model.addAttribute("modesWithPositiveDifference", modesWithPositiveDifference);
 
         if(ALL_TIME.equals(week)) {
             model.addAttribute("users",statsPageService.getUsersSummedCurrent());

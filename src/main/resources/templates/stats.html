@@ -41,7 +41,8 @@
                                 <option th:each="mode : ${modes}"
                                         th:value="${mode}"
                                         th:text="${mode.toString().replace('_', ' ')}"
-                                        th:selected="${selectedMode == mode}">
+                                        th:selected="${selectedMode == mode}"
+                                        th:classappend="(${modesWithPositiveDifference.get(mode) ? 'changed' : ''})">
                                     Mode
                                 </option>
                             </select>
