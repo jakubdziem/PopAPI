@@ -199,4 +199,18 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
         return dailyStatsSummedRepository.findAll().stream().filter(stats -> stats.getMode().equals(mode))
                 .sorted(Comparator.comparing(DailyStatsSummed::getDay)).toList();
     }
+
+    @Override
+    public List<DailyUsersSummedBoth> getDailyUsersSummedForChart() {
+        List<DailyUsersSummed> dailyUsersSummedList = dailyUsersSummedRepository.findAll();
+        List<DailyUsersSummedBoth> dailyUsersSummedBothList = new ArrayList<>();
+        for(DailyUsersSummed daily : dailyUsersSummedList) {
+            dailyUsersSummedBothList.add(DailyUsersSummedBoth.builder()
+                    .day(daily.getDay())
+                    .numberOfUsers(daily.getGuestUsers() + daily.getGoogleOrEmailUsers())
+                    .build());
+        }
+        dailyUsersSummedBothList.sort(Comparator.comparing(DailyUsersSummedBoth::getDay));
+        return dailyUsersSummedBothList;
+    }
 }
