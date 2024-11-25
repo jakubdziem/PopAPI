@@ -95,7 +95,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     @Override
     public void saveDailySummedUsersSnapshot() {
         logger.info("Starting daily summed users snapshot...");
-        LocalDate today = LocalDate.now().plusDays(2);
+        LocalDate today = LocalDate.now();
         DayOfWeek dayOfWeek = today.getDayOfWeek();
         UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
         if (!dayOfWeek.equals(DayOfWeek.SUNDAY)) {
