@@ -13,13 +13,11 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.dziem.popapi.controller.StatsPageController.ALL_TIME;
 import static com.dziem.popapi.service.StatsPageServiceImpl.COMBINED_STATS;
+import static java.util.stream.Collectors.groupingBy;
 
 @Service
 @AllArgsConstructor
@@ -31,39 +29,63 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
 
     @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw")
     @Override
-    public void saveDailySummedStatsSnapshot() {
+    public void saveDailyStatsSummedSnapshot() {
         logger.info("Starting daily summed stats snapshot...");
-        DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
+        LocalDate day = LocalDate.now();
+        DayOfWeek dayOfWeek = day.getDayOfWeek();
         StatsWithUName stats = statsPageService.getDifferenceStatsOfAllUsersCombined(ALL_TIME);
         Map<String, StatsWithUName> gameStats = statsPageService.getDifferenceGameStatsOffAllUsersCombined(ALL_TIME);
         StatsWithUName statsOfAllUsersCombinedCurrent = statsPageService.getStatsOfAllUsersCombinedCurrent();
         Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = statsPageService.getGameStatsOffAllUsersCombinedCurrent();
         List<DailyStatsSummed> dailyStats = new ArrayList<>();
-        LocalDate day = LocalDate.now();
         if (!dayOfWeek.equals(DayOfWeek.SUNDAY)) {
-            List<DailyStatsSummed> dailySummedStatsPrevDay = dailyStatsSummedRepository.findAllByDay(day.minusDays(1));
-            DailyStatsSummed combinedStatsPrevDay = dailySummedStatsPrevDay.stream().filter(stat -> stat.getMode().equals(COMBINED_STATS)).toList().get(0);
-            dailyStats.add(DailyStatsSummed.builder()
-                    .day(day)
-                    .mode(COMBINED_STATS)
-                    .totalGamePlayed(Math.max(stats.getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed(), 0))
-                    .avgScore(statsOfAllUsersCombinedCurrent.getAvgScore())
-                    .timePlayed(TimeConverter.differenceOfTime(stats.getTimePlayed(), combinedStatsPrevDay.getTimePlayed()).equals("00:00:00") ? "00:00:00" :
-                            TimeConverter.differenceOfTime(stats.getTimePlayed(), combinedStatsPrevDay.getTimePlayed()))
-                    .totalScoredPoints(Math.max(stats.getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints(), 0))
-                    .numberOfWonGames(Math.max(stats.getNumberOfWonGames() - combinedStatsPrevDay.getNumberOfWonGames(), 0))
-                    .build());
-            for (String mode : gameStats.keySet()) {
-                combinedStatsPrevDay = dailySummedStatsPrevDay.stream().filter(stat -> stat.getMode().equals(mode)).toList().get(0);
+            Map<String, DailyStatsSummed> dailyStatsSummedInCurrentWeek = new HashMap<>();
+            List<String> modes = new ArrayList<>(Arrays.stream(Mode.values()).map(Enum::toString).toList());
+            modes.add(COMBINED_STATS);
+            for(String mode : modes) {
+                DailyStatsSummed dailyStatsSummed = DailyStatsSummed.builder()
+                        .mode(mode)
+                        .totalGamePlayed(0L)
+                        .totalScoredPoints(0L)
+                        .avgScore(BigDecimal.ZERO)
+                        .numberOfWonGames(0)
+                        .timePlayed("00:00:00").build();
+                dailyStatsSummedInCurrentWeek.put(mode,dailyStatsSummed);
+            }
+
+            for(int i = dayOfWeek.getValue(); i >= 1; i--) {
+                List<DailyStatsSummed> dailyStatsSummedPrevDayList = dailyStatsSummedRepository.findAllByDay(day.minusDays(i));
+                Map<String, List<DailyStatsSummed>> dailyStatsSummedPrevDayMap = dailyStatsSummedPrevDayList.stream().collect(groupingBy(DailyStatsSummed::getMode));
+                for (String mode : dailyStatsSummedPrevDayMap.keySet()) {
+                    DailyStatsSummed dailyStatsSummedPrevDay = dailyStatsSummedInCurrentWeek.get(mode);
+                    dailyStatsSummedPrevDay.setTotalGamePlayed(dailyStatsSummedPrevDayMap.get(mode).get(0).getTotalGamePlayed()
+                            + dailyStatsSummedPrevDay.getTotalGamePlayed());
+                    dailyStatsSummedPrevDay.setTimePlayed(TimeConverter.sumOfTime(dailyStatsSummedPrevDayMap.get(mode).get(0).getTimePlayed(),
+                            dailyStatsSummedPrevDay.getTimePlayed()));
+                    dailyStatsSummedPrevDay.setTotalScoredPoints(dailyStatsSummedPrevDayMap.get(mode).get(0).getTotalScoredPoints()
+                            + dailyStatsSummedPrevDay.getTotalScoredPoints());
+                    dailyStatsSummedPrevDay.setNumberOfWonGames(dailyStatsSummedPrevDayMap.get(mode).get(0).getNumberOfWonGames()
+                            + dailyStatsSummedPrevDay.getNumberOfWonGames());
+                    dailyStatsSummedInCurrentWeek.put(mode, dailyStatsSummedPrevDay);
+                }
+            }
+            for(String mode : dailyStatsSummedInCurrentWeek.keySet()) {
+                DailyStatsSummed dailyStatsSummed = dailyStatsSummedInCurrentWeek.get(mode);
+                StatsWithUName currentStats;
+                if(mode.equals(COMBINED_STATS)) {
+                    currentStats = stats;
+                } else {
+                    currentStats = gameStats.get(mode);
+                }
                 dailyStats.add(DailyStatsSummed.builder()
                         .day(day)
                         .mode(mode)
-                        .totalGamePlayed(Math.max(gameStats.get(mode).getTotalGamePlayed() - combinedStatsPrevDay.getTotalGamePlayed(), 0))
-                        .avgScore(gameStatsOffAllUsersCombinedCurrent.get(mode).getAvgScore())
-                        .timePlayed(TimeConverter.differenceOfTime(gameStats.get(mode).getTimePlayed(), combinedStatsPrevDay.getTimePlayed()).equals("00:00:00") ? "00:00:00" :
-                                TimeConverter.differenceOfTime(gameStats.get(mode).getTimePlayed(), combinedStatsPrevDay.getTimePlayed()))
-                        .totalScoredPoints(Math.max(gameStats.get(mode).getTotalScoredPoints() - combinedStatsPrevDay.getTotalScoredPoints(), 0))
-                        .numberOfWonGames(Math.max(gameStats.get(mode).getNumberOfWonGames() - combinedStatsPrevDay.getNumberOfWonGames(), 0))
+                        .totalGamePlayed(Math.max(currentStats.getTotalGamePlayed()-dailyStatsSummed.getTotalGamePlayed(),0))
+                        .avgScore(mode.equals(COMBINED_STATS) ? statsOfAllUsersCombinedCurrent.getAvgScore() : gameStatsOffAllUsersCombinedCurrent.get(mode).getAvgScore())
+                        .timePlayed(TimeConverter.differenceOfTime(currentStats.getTimePlayed(), dailyStatsSummed.getTimePlayed()).equals("00:00:00") ? "00:00:00"
+                                : TimeConverter.differenceOfTime(currentStats.getTimePlayed(), dailyStatsSummed.getTimePlayed()))
+                        .totalScoredPoints(Math.max(currentStats.getTotalScoredPoints()-dailyStatsSummed.getTotalScoredPoints(),0))
+                        .numberOfWonGames(Math.max(currentStats.getNumberOfWonGames() - dailyStatsSummed.getNumberOfWonGames(),0))
                         .build());
             }
         } else {

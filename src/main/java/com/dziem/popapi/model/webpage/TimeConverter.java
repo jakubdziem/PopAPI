@@ -15,6 +15,11 @@ public class TimeConverter {
         Long time2Seconds = getSeconds(time2.split(":"));
         return time1Seconds - time2Seconds > 0 ? convertSecondsToTime(time1Seconds - time2Seconds) : "00:00:00";
     }
+    public static String sumOfTime(String time1, String time2) {
+        Long time1Seconds = getSeconds(time1.split(":"));
+        Long time2Seconds = getSeconds(time2.split(":"));
+        return convertSecondsToTime(time1Seconds + time2Seconds);
+    }
 
     public static Long getSeconds(String[] split1) {
         long hours = split1[0].charAt(0) == 0 ? Integer.parseInt(String.valueOf(split1[0].charAt(1))) : Integer.parseInt(split1[0]) * 3600L;

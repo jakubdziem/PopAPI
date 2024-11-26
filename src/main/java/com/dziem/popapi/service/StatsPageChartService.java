@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface StatsPageChartService {
-    void saveDailySummedStatsSnapshot();
+    void saveDailyStatsSummedSnapshot();
     void saveDailySummedUsersSnapshot();
     void populateWeek(LocalDate week);
     List<DailyStatsSummed> getDailyStatsSummedForChartPerMode(String mode);
