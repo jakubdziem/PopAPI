@@ -212,3 +212,8 @@ INSERT INTO DAILY_USERS_SUMMED (day, guest_users, google_or_email_users) VALUES 
 INSERT INTO DAILY_USERS_SUMMED (day, guest_users, google_or_email_users) VALUES ('2024-11-19', 0, 0);
 INSERT INTO DAILY_USERS_SUMMED (day, guest_users, google_or_email_users) VALUES ('2024-11-20', 5, 8);
 INSERT INTO DAILY_USERS_SUMMED (day, guest_users, google_or_email_users) VALUES ('2024-11-21', 5, 5);
+
+insert into daily_users_summed (day, guest_users, google_or_email_users) values ('2024-11-22', 4, 5);
+insert into daily_users_summed (day, guest_users, google_or_email_users) values ('2024-11-23', 5, 5);
+insert into daily_users_summed (day, guest_users, google_or_email_users) values ('2024-11-24', 6, 2);
+insert into daily_users_summed (day, guest_users, google_or_email_users) values ('2024-11-25', 6, 3);
