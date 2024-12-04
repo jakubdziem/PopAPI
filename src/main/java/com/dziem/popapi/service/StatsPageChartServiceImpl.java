@@ -121,19 +121,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
         DayOfWeek dayOfWeek = today.getDayOfWeek();
         UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
         if (!dayOfWeek.equals(DayOfWeek.SUNDAY)) {
-            DailyUsersSummed dailyUsersSummedPrevDayInAWeek = new DailyUsersSummed();
-            for(int i = dayOfWeek.getValue(); i >= 1; i--) {
-                DailyUsersSummed dailyUsersSummedPrevDay = dailyUsersSummedRepository.findById(today.minusDays(i))
-                        .orElse(DailyUsersSummed.builder()
-                        .day(today.minusDays(i))
-                        .guestUsers(0)
-                        .googleOrEmailUsers(0)
-                        .build());
-                dailyUsersSummedPrevDayInAWeek.setGuestUsers(dailyUsersSummedPrevDayInAWeek.getGuestUsers()
-                        + dailyUsersSummedPrevDay.getGuestUsers());
-                dailyUsersSummedPrevDayInAWeek.setGoogleOrEmailUsers(dailyUsersSummedPrevDayInAWeek.getGoogleOrEmailUsers()
-                        + dailyUsersSummedPrevDay.getGoogleOrEmailUsers());
-            }
+            DailyUsersSummed dailyUsersSummedPrevDayInAWeek = getUsersSummedFromPrevDaysInAWeek(dayOfWeek, today);
             dailyUsersSummedRepository.save(DailyUsersSummed.builder()
                     .day(today)
                     .guestUsers(differenceUsersSummed.getGuestUsers()-dailyUsersSummedPrevDayInAWeek.getGuestUsers())
@@ -234,5 +222,34 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
         }
         dailyUsersSummedBothList.sort(Comparator.comparing(DailyUsersSummedBoth::getDay));
         return dailyUsersSummedBothList;
+    }
+
+    @Override
+    public DailyUsersSummed getTodayUserSummedDifference() {
+        LocalDate today = LocalDate.now();
+        DayOfWeek dayOfWeek = today.getDayOfWeek();
+        DailyUsersSummed dailyUsersSummedPrevDayInAWeek = getUsersSummedFromPrevDaysInAWeek(dayOfWeek, today);
+        UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
+        return DailyUsersSummed.builder()
+                .guestUsers(differenceUsersSummed.getGuestUsers()- dailyUsersSummedPrevDayInAWeek.getGuestUsers())
+                .googleOrEmailUsers(differenceUsersSummed.getGoogleOrEmailUsers() - dailyUsersSummedPrevDayInAWeek.getGoogleOrEmailUsers())
+                .build();
+    }
+
+    private DailyUsersSummed getUsersSummedFromPrevDaysInAWeek(DayOfWeek dayOfWeek, LocalDate today) {
+        DailyUsersSummed dailyUsersSummedPrevDayInAWeek = new DailyUsersSummed();
+        for(int i = dayOfWeek.getValue(); i >= 1; i--) {
+            DailyUsersSummed dailyUsersSummedPrevDay = dailyUsersSummedRepository.findById(today.minusDays(i))
+                    .orElse(DailyUsersSummed.builder()
+                            .day(today.minusDays(i))
+                            .guestUsers(0)
+                            .googleOrEmailUsers(0)
+                            .build());
+            dailyUsersSummedPrevDayInAWeek.setGuestUsers(dailyUsersSummedPrevDayInAWeek.getGuestUsers()
+                    + dailyUsersSummedPrevDay.getGuestUsers());
+            dailyUsersSummedPrevDayInAWeek.setGoogleOrEmailUsers(dailyUsersSummedPrevDayInAWeek.getGoogleOrEmailUsers()
+                    + dailyUsersSummedPrevDay.getGoogleOrEmailUsers());
+        }
+        return dailyUsersSummedPrevDayInAWeek;
     }
 }

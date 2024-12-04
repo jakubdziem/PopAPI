@@ -77,6 +77,7 @@ public class StatsPageController {
         model.addAttribute("modesWithPositiveDifference", modesWithPositiveDifference);
 
         if(ALL_TIME.equals(week)) {
+            model.addAttribute("dailyUsers", statsPageChartService.getTodayUserSummedDifference());
             model.addAttribute("users",statsPageService.getUsersSummedCurrent());
             if (COMBINED_STATS.equals(mode)) {
                 model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersCurrent());

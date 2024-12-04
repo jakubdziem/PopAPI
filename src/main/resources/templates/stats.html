@@ -80,6 +80,14 @@
                        th:text="${differenceUsersSummed.googleOrEmailUsers == 0 ? '' : (differenceUsersSummed.googleOrEmailUsers < 0 ? '🢃️️' : '🢁️') + differenceUsersSummed.googleOrEmailUsers}"></p>
                 </div>
             </div>
+            <div class="usersSummedDiv" th:if="${selectedWeek=='ALL_TIME'}">
+                <div class="usersSummedSmallDiv">
+                    <h3 th:text="'Guests today = ' + ${dailyUsers.guestUsers}"></h3>
+                </div>
+                <div class="usersSummedSmallDiv">
+                    <h3 th:text="'Registered today = ' + ${dailyUsers.googleOrEmailUsers}"></h3>
+                </div>
+            </div>
 
             <form action="/stats" method="get">
                 <label for="attributeSelect">Select Mode:</label>
