@@ -31,7 +31,7 @@ public interface WeeklyStatsRepository extends JpaRepository<WeeklyStats, Intege
     """)
     List<WeeklyStats> getAllGameStatsWithUNameOfAllUsersFromWeek(@Param("week") LocalDate week);
     @Query("""
-    SELECT distinct weekStartDate from WeeklyStats
+    SELECT distinct weekStartDate from WeeklyStats order by weekStartDate desc
 """)
     List<LocalDate> getWeeks();
 }
