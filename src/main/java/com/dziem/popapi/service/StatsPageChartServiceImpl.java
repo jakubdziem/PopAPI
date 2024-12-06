@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Stream;
 
 import static com.dziem.popapi.controller.StatsPageController.ALL_TIME;
 import static com.dziem.popapi.service.StatsPageServiceImpl.COMBINED_STATS;
@@ -204,15 +205,18 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     }
 
 
+    //note data before 2024-11-18 was calculated by function not saved daily like the other data
     @Override
     public List<DailyStatsSummed> getDailyStatsSummedForChartPerMode(String mode) {
-        return dailyStatsSummedRepository.findAll().stream().filter(stats -> stats.getMode().equals(mode))
+        Stream<DailyStatsSummed> allTrueDataStream = dailyStatsSummedRepository.findAll().stream()
+                .filter(d -> d.getDay().isAfter(LocalDate.of(2024, 11, 17)));
+        return allTrueDataStream.filter(stats -> stats.getMode().equals(mode))
                 .sorted(Comparator.comparing(DailyStatsSummed::getDay)).toList();
     }
-
+    //note data before 2024-11-18 was calculated by function not saved daily like the other data
     @Override
     public List<DailyUsersSummedBoth> getDailyUsersSummedForChart() {
-        List<DailyUsersSummed> dailyUsersSummedList = dailyUsersSummedRepository.findAll();
+        List<DailyUsersSummed> dailyUsersSummedList = dailyUsersSummedRepository.getAll();
         List<DailyUsersSummedBoth> dailyUsersSummedBothList = new ArrayList<>();
         for(DailyUsersSummed daily : dailyUsersSummedList) {
             dailyUsersSummedBothList.add(DailyUsersSummedBoth.builder()
