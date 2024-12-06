@@ -139,3 +139,8 @@ option.changed {
     color: lightgreen;
     font-weight: bold;
 }
+.table-striped tbody td.new {
+    background-color: rgba(0, 255, 0, 0.2) !important; /* Light green */
+    background-image: none !important; /* Clear striped background image */
+}
+
