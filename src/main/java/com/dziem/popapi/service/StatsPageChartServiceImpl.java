@@ -232,10 +232,16 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     public DailyUsersSummed getTodayUserSummedDifference() {
         LocalDate today = LocalDate.now();
         DayOfWeek dayOfWeek = today.getDayOfWeek();
-        DailyUsersSummed dailyUsersSummedPrevDayInAWeek = getUsersSummedFromPrevDaysInAWeek(dayOfWeek, today);
         UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
+        if(dayOfWeek == DayOfWeek.SUNDAY) {
+            return DailyUsersSummed.builder()
+                    .guestUsers(differenceUsersSummed.getGuestUsers())
+                    .googleOrEmailUsers(differenceUsersSummed.getGoogleOrEmailUsers())
+                    .build();
+        }
+        DailyUsersSummed dailyUsersSummedPrevDayInAWeek = getUsersSummedFromPrevDaysInAWeek(dayOfWeek, today);
         return DailyUsersSummed.builder()
-                .guestUsers(differenceUsersSummed.getGuestUsers()- dailyUsersSummedPrevDayInAWeek.getGuestUsers())
+                .guestUsers(differenceUsersSummed.getGuestUsers() - dailyUsersSummedPrevDayInAWeek.getGuestUsers())
                 .googleOrEmailUsers(differenceUsersSummed.getGoogleOrEmailUsers() - dailyUsersSummedPrevDayInAWeek.getGoogleOrEmailUsers())
                 .build();
     }
