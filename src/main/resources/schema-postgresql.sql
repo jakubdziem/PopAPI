@@ -262,3 +262,7 @@ CREATE TABLE daily_active_users (
                                      active_users INT,
                                      PRIMARY KEY (day)
 );
+
+INSERT INTO daily_active_users(day, active_users) VALUES('2024-12-09', 0);
+INSERT INTO daily_active_users(day, active_users) VALUES('2024-12-10', 0);
+INSERT INTO daily_active_users(day, active_users) VALUES('2024-12-11', 37);

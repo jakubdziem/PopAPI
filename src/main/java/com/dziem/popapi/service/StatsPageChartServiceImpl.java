@@ -162,7 +162,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     }
 
     @Override
-//    @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw") //start scheduling at sunday
+    @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw") //start scheduling at sunday
     public void saveDailyActiveUsers() {
         LocalDate today = LocalDate.now();
         DayOfWeek dayOfWeek = today.getDayOfWeek();
@@ -173,7 +173,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
              dailyActiveUsers.setActiveUsers(sizeToday);
         } else {
             Integer sumOfPrevActiveUsersThisWeek = 0;
-            for(int i = dayOfWeek.getValue(); i < 7; i++) {
+            for(int i = dayOfWeek.getValue(); i >= 1; i--) {
                 LocalDate prevDay = LocalDate.now().minusDays(i);
                 DailyActiveUsers dailyActiveUsersPrevDay = dailyActiveUsersRepository
                         .findById(prevDay).orElseGet(
