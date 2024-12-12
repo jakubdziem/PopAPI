@@ -2,8 +2,7 @@ package com.dziem.popapi.service;
 
 import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.webpage.*;
-import com.dziem.popapi.repository.DailyStatsSummedRepository;
-import com.dziem.popapi.repository.DailyUsersSummedRepository;
+import com.dziem.popapi.repository.*;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +26,10 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     private final StatsPageService statsPageService;
     private final DailyStatsSummedRepository dailyStatsSummedRepository;
     private final DailyUsersSummedRepository dailyUsersSummedRepository;
+    private final ActiveUsersPageService activeUsersPageService;
+    private final WeeklyActiveUsersRepository weeklyActiveUsersRepository;
+    private final WeeklyNewUsersSummedRepository weeklyNewUsersSummedRepository;
+    private final DailyActiveUsersRepository dailyActiveUsersRepository;
 
     @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw")
     @Override
@@ -137,6 +140,57 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
         }
         logger.info("Daily summed users snapshot completed.");
     }
+
+    @Override
+    @Scheduled(cron = "0 0 6 * * SUN", zone = "Europe/Warsaw")
+    public void saveWeeklyNewUsersSummed() {
+        UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
+        WeeklyNewUsersSummed weeklyNewUsersSummed = new WeeklyNewUsersSummed();
+        weeklyNewUsersSummed.setWeekStartDate(LocalDate.now());
+        weeklyNewUsersSummed.setNewUsers(differenceUsersSummed.getGuestUsers() + differenceUsersSummed.getGoogleOrEmailUsers());
+        weeklyNewUsersSummedRepository.save(weeklyNewUsersSummed);
+    }
+
+    @Override
+    @Scheduled(cron = "0 0 6 * * SUN", zone = "Europe/Warsaw")
+    public void saveWeeklyActiveUsers() {
+        Integer size = activeUsersPageService.getActiveUsersStatsThisWeek().size();
+        WeeklyActiveUsers weeklyActiveUsers = new WeeklyActiveUsers();
+        weeklyActiveUsers.setWeekStartDate(LocalDate.now());
+        weeklyActiveUsers.setActiveUsers(size);
+        weeklyActiveUsersRepository.save(weeklyActiveUsers);
+    }
+
+    @Override
+//    @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw") //start scheduling at sunday
+    public void saveDailyActiveUsers() {
+        LocalDate today = LocalDate.now();
+        DayOfWeek dayOfWeek = today.getDayOfWeek();
+        DailyActiveUsers dailyActiveUsers = new DailyActiveUsers();
+        dailyActiveUsers.setDay(today);
+        Integer sizeToday = activeUsersPageService.getActiveUsersStatsThisWeek().size();
+        if(dayOfWeek == DayOfWeek.SUNDAY) {
+             dailyActiveUsers.setActiveUsers(sizeToday);
+        } else {
+            Integer sumOfPrevActiveUsersThisWeek = 0;
+            for(int i = dayOfWeek.getValue(); i < 7; i++) {
+                LocalDate prevDay = LocalDate.now().minusDays(i);
+                DailyActiveUsers dailyActiveUsersPrevDay = dailyActiveUsersRepository
+                        .findById(prevDay).orElseGet(
+                                () -> {
+                                    DailyActiveUsers d = new DailyActiveUsers();
+                                    d.setActiveUsers(0);
+                                    d.setDay(prevDay);
+                                    return d;
+                                }
+                        );
+                sumOfPrevActiveUsersThisWeek += dailyActiveUsersPrevDay.getActiveUsers();
+            }
+            dailyActiveUsers.setActiveUsers(activeUsersPageService.getActiveUsersStatsThisWeek().size() - sumOfPrevActiveUsersThisWeek);
+        }
+        dailyActiveUsersRepository.save(dailyActiveUsers);
+    }
+
     @Override
     public void saveDailySummedStatsFirst() {
         StatsWithUName stats = statsPageService.getDifferenceStatsOfAllUsersCombined(ALL_TIME);

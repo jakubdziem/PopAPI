@@ -217,3 +217,48 @@ insert into daily_users_summed (day, guest_users, google_or_email_users) values 
 insert into daily_users_summed (day, guest_users, google_or_email_users) values ('2024-11-23', 5, 5);
 insert into daily_users_summed (day, guest_users, google_or_email_users) values ('2024-11-24', 6, 2);
 insert into daily_users_summed (day, guest_users, google_or_email_users) values ('2024-11-25', 6, 3);
+
+
+
+UPDATE daily_stats_summed SET total_game_played = total_game_played + 4 where day IN ('2024-11-23', '2024-11-22')
+                                                                          and mode = 'COUNTRIES_1939';
+select * from daily_stats_summed where (day = '2024-11-22' or day= '2024-11-23') and mode = 'COUNTRIES_1939';
+
+UPDATE daily_stats_summed SET total_game_played = total_game_played - 6 where day IN ('2024-11-23', '2024-11-22') and mode = 'COUNTRIES_1900';
+select * from daily_stats_summed where (day = '2024-11-22' or day= '2024-11-23') and mode = 'COUNTRIES_1900';
+
+
+UPDATE daily_stats_summed SET total_game_played = total_game_played - 288 where day IN ('2024-11-23', '2024-11-22') and mode = 'COMBINED_STATS';
+select * from daily_stats_summed where (day = '2024-11-22' or day= '2024-11-23') and mode = 'COMBINED_STATS';
+
+
+UPDATE daily_stats_summed SET total_game_played = total_game_played + 20 where day IN ('2024-11-23', '2024-11-22') and mode = 'COUNTRIES_1989';
+select * from daily_stats_summed where (day = '2024-11-22' or day= '2024-11-23') and mode = 'COUNTRIES_1989';
+
+
+UPDATE daily_stats_summed SET total_game_played = total_game_played - 62 where day IN ('2024-11-23', '2024-11-22') and mode = 'COUNTRIES_NORMAL';
+select * from daily_stats_summed where (day = '2024-11-22' or day= '2024-11-23') and mode = 'COUNTRIES_NORMAL';
+
+-- countries future no need
+
+
+UPDATE daily_stats_summed SET total_game_played = total_game_played +3 where day IN ('2024-11-23') and mode = 'COUNTRIES_CHAOS';
+select * from daily_stats_summed where (day = '2024-11-22' or day= '2024-11-23') and mode = 'COUNTRIES_CHAOS';
+
+UPDATE daily_stats_summed SET total_game_played = total_game_played +15 where day IN ('2024-11-24') and mode = 'SPOTIFY_TOP_ARTISTS';
+
+CREATE TABLE weekly_new_users_summed (
+                                         week_start_date DATE,
+                                         new_users INT,
+                                         PRIMARY KEY (week_start_date)
+);
+CREATE TABLE weekly_active_users (
+                                     week_start_date DATE,
+                                     active_users INT,
+                                     PRIMARY KEY (week_start_date)
+);
+CREATE TABLE daily_active_users (
+                                     day DATE,
+                                     active_users INT,
+                                     PRIMARY KEY (day)
+);
