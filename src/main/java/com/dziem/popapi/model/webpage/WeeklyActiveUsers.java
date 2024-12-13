@@ -12,4 +12,6 @@ public class WeeklyActiveUsers {
     @Id
     private LocalDate weekStartDate;
     private Integer activeUsers;
+    private Integer activeNewUsers;
+    private Integer activeOldUsers;
 }

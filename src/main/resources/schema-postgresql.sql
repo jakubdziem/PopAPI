@@ -255,6 +255,8 @@ CREATE TABLE weekly_new_users_summed (
 CREATE TABLE weekly_active_users (
                                      week_start_date DATE,
                                      active_users INT,
+                                     active_new_users INT,
+                                     active_old_users INT,
                                      PRIMARY KEY (week_start_date)
 );
 CREATE TABLE daily_active_users (
