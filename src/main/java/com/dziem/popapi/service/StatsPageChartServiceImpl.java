@@ -300,6 +300,13 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
                 .build();
     }
 
+    @Override
+    public List<DailyActiveUsers> getDailyActiveUsersForChart() {
+        List<DailyActiveUsers> dailyActiveUsersSorted = dailyActiveUsersRepository.findAll();
+        dailyActiveUsersSorted.sort((Comparator.comparing(DailyActiveUsers::getDay)));
+        return dailyActiveUsersSorted;
+    }
+
     private DailyUsersSummed getUsersSummedFromPrevDaysInAWeek(DayOfWeek dayOfWeek, LocalDate today) {
         DailyUsersSummed dailyUsersSummedPrevDayInAWeek = new DailyUsersSummed();
         for(int i = dayOfWeek.getValue(); i >= 1; i--) {

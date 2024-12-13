@@ -1,6 +1,7 @@
 package com.dziem.popapi.controller;
 
 import com.dziem.popapi.model.Mode;
+import com.dziem.popapi.model.webpage.DailyActiveUsers;
 import com.dziem.popapi.model.webpage.DailyStatsSummed;
 import com.dziem.popapi.model.webpage.DailyUsersSummedBoth;
 import com.dziem.popapi.model.webpage.StatsWithUName;
@@ -35,6 +36,11 @@ public class StatsPageController {
     @ResponseBody
     public List<DailyUsersSummedBoth> getUsersSummedForChart() {
         return statsPageChartService.getDailyUsersSummedForChart();
+    }
+    @GetMapping("/stats_for_chart_active_users")
+    @ResponseBody
+    public List<DailyActiveUsers> getDailyActiveUsersForChart() {
+        return statsPageChartService.getDailyActiveUsersForChart();
     }
     @ModelAttribute("selectedWeek")
     public String initSelectedWeek() {

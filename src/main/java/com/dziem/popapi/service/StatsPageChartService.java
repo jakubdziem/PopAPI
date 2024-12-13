@@ -1,5 +1,6 @@
 package com.dziem.popapi.service;
 
+import com.dziem.popapi.model.webpage.DailyActiveUsers;
 import com.dziem.popapi.model.webpage.DailyStatsSummed;
 import com.dziem.popapi.model.webpage.DailyUsersSummed;
 import com.dziem.popapi.model.webpage.DailyUsersSummedBoth;
@@ -17,6 +18,7 @@ public interface StatsPageChartService {
     List<DailyStatsSummed> getDailyStatsSummedForChartPerMode(String mode);
     List<DailyUsersSummedBoth> getDailyUsersSummedForChart();
     DailyUsersSummed getTodayUserSummedDifference();
+    List<DailyActiveUsers> getDailyActiveUsersForChart();
     void saveDailySummedStatsFirst();
 
 }
