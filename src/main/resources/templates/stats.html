@@ -98,7 +98,10 @@
                     <option value="timePlayed" th:selected="${attributeSelect == 'timePlayed'}">Time Played</option>
                     <option value="totalScoredPoints" th:selected="${attributeSelect == 'totalScoredPoints'}">Total Scored Points</option>
                     <option value="numberOfWonGames" th:selected="${attributeSelect == 'numberOfWonGames'}">Number of Won Games</option>
-                    <option value="newUsers" th:selected="${attributeSelect == 'newUsers'}">New users</option>
+                    <option value="newUsers" th:selected="${attributeSelect == 'newUsers'}">New users daily</option>
+                    <option value="activeUsers" th:selected="${attributeSelect == 'activeUsers'}">Active users daily</option>
+                    <option value="newUsersWeekly" th:selected="${attributeSelect == 'newUsersWeekly'}">New users weekly</option>
+                    <option value="activeUsersWeekly" th:selected="${attributeSelect == 'activeUsersWeekly'}">Active users weekly</option>
                 </select>
             </form>
 
@@ -205,6 +208,6 @@
         </main>
     </div>
 </div>
-<script th:src="@{/JS/dashboard.js}"></script>
+<script th:src="@{/JS/stats.js}"></script>
 </body>
 </html>

@@ -20,20 +20,42 @@ document.addEventListener('DOMContentLoaded', function () {
     try {
       let statsData;
       const attributeSelect = document.getElementById("attributeSelect");
-      if(attributeSelect.value !== "newUsers") {
-        const response = await fetch(`/stats_for_chart/${selectedMode}`);
-        if (!response.ok) {
-          throw new Error(`Error fetching stats: ${response.status}`);
-        }
-        statsData = await response.json();
-      } else {
+      if(attributeSelect.value === "newUsers") {
         const response = await fetch(`/stats_for_chart_new_users`);
         if (!response.ok) {
           throw new Error(`Error fetching stats: ${response.status}`);
         }
         statsData = await response.json();
+      } else if(attributeSelect.value === "newUsersWeekly") {
+        const response = await fetch(`/stats_for_chart_new_users_weekly`);
+        if (!response.ok) {
+          throw new Error(`Error fetching stats: ${response.status}`);
+        }
+        statsData = await response.json();
+      } else if(attributeSelect.value === "activeUsers") {
+        const response = await fetch(`/stats_for_chart_active_users`);
+        if (!response.ok) {
+          throw new Error(`Error fetching stats: ${response.status}`);
+        }
+        statsData = await response.json();
+      } else if(attributeSelect.value === "activeUsersWeekly") {
+        const response = await fetch(`/stats_for_chart_active_users_weekly`);
+        if (!response.ok) {
+          throw new Error(`Error fetching stats: ${response.status}`);
+        }
+        statsData = await response.json();
+      } else {
+        const response = await fetch(`/stats_for_chart/${selectedMode}`);
+        if (!response.ok) {
+          throw new Error(`Error fetching stats: ${response.status}`);
+        }
+        statsData = await response.json();
       }
-      const labels = statsData.map(stat => stat.day); // X-axis: Days
+      console.log("Stats Data:", statsData);
+      const labels = (attributeSelect.value === "activeUsersWeekly" || attributeSelect.value === "newUsersWeekly")
+          ? statsData.map(stat => stat.weekStartDate)
+          : statsData.map(stat => stat.day);
+      console.log(labels)
       let data;
       switch (attributeSelect.value) {
         case "totalGamePlayed":
@@ -54,17 +76,27 @@ document.addEventListener('DOMContentLoaded', function () {
         case "newUsers":
           data = statsData.map(stat => stat.numberOfUsers)
           break;
+        case "newUsersWeekly":
+          data = statsData.map(stat => stat.newUsers)
+          break;
+        case "activeUsers":
+          data = statsData.map(stat => stat.activeUsers)
+          break;
+        case "activeUsersWeekly":
+          data = statsData.map(stat => stat.activeUsers)
+          break;
         default:
           data = statsData.map(stat => stat.totalGamePlayed);
           break;
       }
+      console.log(data)
+
 
       if (labels.length === 0 || data.length === 0) {
         console.error('No valid data available to render the chart');
         return;
       }
 
-      console.log('Data:', data);  // Log the data to check its structure
       const ctx = document.getElementById('myChart').getContext('2d');
       new Chart(ctx, {
         type: 'line',
@@ -86,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
             x: {
               title: {
                 display: true,
-                text: 'Day'
+                text: attributeSelect.value === "activeUsersWeekly" || attributeSelect.value === "newUsersWeekly" ? 'First day of the week' : 'Day'
               }
             },
             y: {
