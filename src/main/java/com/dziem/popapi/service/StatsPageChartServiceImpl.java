@@ -302,9 +302,24 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
 
     @Override
     public List<DailyActiveUsers> getDailyActiveUsersForChart() {
-        List<DailyActiveUsers> dailyActiveUsersSorted = dailyActiveUsersRepository.findAll();
-        dailyActiveUsersSorted.sort((Comparator.comparing(DailyActiveUsers::getDay)));
+        List<DailyActiveUsers> dailyActiveUsersSorted = new ArrayList<>(dailyActiveUsersRepository.findAll().stream()
+                .filter(d -> d.getDay().isAfter(LocalDate.of(2024, 12, 12))).toList());
+        dailyActiveUsersSorted.sort(Comparator.comparing(DailyActiveUsers::getDay));
         return dailyActiveUsersSorted;
+    }
+
+    @Override
+    public List<WeeklyNewUsersSummed> getWeeklyNewUsersSummedForChart() {
+        List<WeeklyNewUsersSummed> weeklyNewUsersSummedSorted = weeklyNewUsersSummedRepository.findAll();
+        weeklyNewUsersSummedSorted.sort(Comparator.comparing(WeeklyNewUsersSummed::getWeekStartDate));
+        return weeklyNewUsersSummedSorted;
+    }
+
+    @Override
+    public List<WeeklyActiveUsers> getWeeklyActiveUsersForChart() {
+        List<WeeklyActiveUsers> weeklyActiveUsersSorted = weeklyActiveUsersRepository.findAll();
+        weeklyActiveUsersSorted.sort(Comparator.comparing(WeeklyActiveUsers::getWeekStartDate));
+        return weeklyActiveUsersSorted;
     }
 
     private DailyUsersSummed getUsersSummedFromPrevDaysInAWeek(DayOfWeek dayOfWeek, LocalDate today) {
