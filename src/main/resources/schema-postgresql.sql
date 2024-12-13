@@ -266,3 +266,8 @@ CREATE TABLE daily_active_users (
 INSERT INTO daily_active_users(day, active_users) VALUES('2024-12-09', 0);
 INSERT INTO daily_active_users(day, active_users) VALUES('2024-12-10', 0);
 INSERT INTO daily_active_users(day, active_users) VALUES('2024-12-11', 37);
+
+INSERT INTO weekly_new_users_summed (week_start_date, new_users) values ('2024-11-17', 3);
+INSERT INTO weekly_new_users_summed (week_start_date, new_users) values ('2024-11-24', 47);
+INSERT INTO weekly_new_users_summed (week_start_date, new_users) values ('2024-12-01', 36);
+INSERT INTO weekly_new_users_summed (week_start_date, new_users) values ('2024-12-08', 17);
