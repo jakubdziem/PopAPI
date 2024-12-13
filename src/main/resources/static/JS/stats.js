@@ -13,6 +13,49 @@ function secondsToTime(seconds) {
   const secs = seconds % 60;
   return `${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 }
+
+function renderChart(labels, data, label) {
+  const ctx = document.getElementById('myChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: label,
+        data: data,
+        lineTension: 0.3,
+        backgroundColor: 'rgba(0, 123, 255, 0.1)',
+        borderColor: '#007bff',
+        borderWidth: 2,
+        pointBackgroundColor: '#007bff'
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Week Start Date'
+          }
+        },
+        y: {
+          min: 0,
+          title: {
+            display: true,
+            text: 'Number of Users'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: true
+        }
+      }
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   async function fetchAndRenderChart() {
     const modeSelector = document.getElementById("modeSelect");
@@ -97,62 +140,70 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      const ctx = document.getElementById('myChart').getContext('2d');
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: attributeSelect.value,
-            data: data,
-            lineTension: 0.3,
-            backgroundColor: 'rgba(0, 123, 255, 0.1)',
-            borderColor: '#007bff',
-            borderWidth: 2,
-            pointBackgroundColor: '#007bff'
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: attributeSelect.value === "activeUsersWeekly" || attributeSelect.value === "newUsersWeekly" ? 'First day of the week' : 'Day'
+      if(attributeSelect.value !== "activeUsersWeekly"){
+        renderChart(labels, data, attributeSelect.value)
+      } else {
+        let summedActiveUsersData = statsData.map(stat => stat.activeUsers)
+        let newActiveUsersData = statsData.map(stat => stat.activeNewUsers)
+        let oldActiveUsersData = statsData.map(stat => stat.activeOldUsers)
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'New Active Users',
+                data: newActiveUsersData,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                borderWidth: 2,
+                tension: 0.3,
+              },
+              {
+                label: 'Old Active Users',
+                data: oldActiveUsersData,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                borderWidth: 2,
+                tension: 0.3,
+              },
+              {
+                label: 'Summed Active Users',
+                data: summedActiveUsersData,
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                borderWidth: 2,
+                tension: 0.3,
               }
-            },
-            y: {
-              min: 0,
-              ticks: {
-                callback: function (value) {
-                  return attributeSelect.value === "timePlayed" ? secondsToTime(value) : value;
+            ]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: 'Week Start Date',
                 }
               },
-              title: {
-                display: attributeSelect.value === "timePlayed",
-                text: 'Time Played (HH:MM:SS)'
-              }
-            }
-          },
-          plugins: {
-            legend: {
-              display: true
-            },
-            title: {
-              display: false,
-              text: `Games Played Over Time for Mode: ${selectedMode}`
-            },
-            tooltip: {
-              callbacks: {
-                label: function (tooltipItem) {
-                  const rawValue = tooltipItem.raw;
-                  return attributeSelect.value === "timePlayed" ? secondsToTime(rawValue) : rawValue;
+              y: {
+                min: 0,
+                title: {
+                  display: true,
+                  text: 'Number of Users',
                 }
               }
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: 'top',
+              },
             }
           }
-        }
-      });
+        });
+      }
     } catch (error) {
       console.error("Error rendering chart:", error);
     }

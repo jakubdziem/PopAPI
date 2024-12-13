@@ -154,10 +154,13 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     @Override
     @Scheduled(cron = "0 0 6 * * SUN", zone = "Europe/Warsaw")
     public void saveWeeklyActiveUsers() {
-        Integer size = activeUsersPageService.getActiveUsersStatsThisWeek().size();
+        List<ActiveUsersStats> activeUsersStatsThisWeek = activeUsersPageService.getActiveUsersStatsThisWeek();
+        Integer size = activeUsersStatsThisWeek.size();
         WeeklyActiveUsers weeklyActiveUsers = new WeeklyActiveUsers();
         weeklyActiveUsers.setWeekStartDate(LocalDate.now());
         weeklyActiveUsers.setActiveUsers(size);
+        weeklyActiveUsers.setActiveNewUsers(activeUsersStatsThisWeek.stream().filter(ActiveUsersStats::isNew).toList().size());
+        weeklyActiveUsers.setActiveOldUsers(weeklyActiveUsers.getActiveUsers()-weeklyActiveUsers.getActiveNewUsers());
         weeklyActiveUsersRepository.save(weeklyActiveUsers);
     }
 
