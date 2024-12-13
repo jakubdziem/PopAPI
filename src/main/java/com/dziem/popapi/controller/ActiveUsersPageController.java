@@ -24,7 +24,10 @@ public class ActiveUsersPageController {
         List<ActiveUsersStats> activeUsersStatsThisWeek = activeUsersPageService.getActiveUsersStatsThisWeek();
         model.addAttribute("activeUsers", activeUsersStatsThisWeek);
         model.addAttribute("activeUsersStatsCombined", statsPageService.getDifferenceStatsOfAllUsersCombined(ALL_TIME));
-        model.addAttribute("activeUsersCount", activeUsersStatsThisWeek.size());
+        int activeUsersCount = activeUsersStatsThisWeek.size();
+        int activeOldUsersCount = activeUsersStatsThisWeek.stream().filter(a -> !a.isNew()).toList().size();
+        model.addAttribute("activeOldUsersCount", activeOldUsersCount);
+        model.addAttribute("activeUsersCount", activeUsersCount);
         model.addAttribute("thisWeekUsers", statsPageService.getDifferenceUsersSummed(ALL_TIME));
         return "active";
     }

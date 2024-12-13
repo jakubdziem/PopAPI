@@ -26,6 +26,9 @@
         <div class="usersSummedSmallDiv">
             <h5 th:text="'New users this week = ' + ${thisWeekUsers.getGoogleOrEmailUsers() + thisWeekUsers.guestUsers}"></h5>
         </div>
+        <div class="usersSummedSmallDiv">
+            <h5 th:text="'Active old users this week = ' + ${activeOldUsersCount}"></h5>
+        </div>
     </div>
 
     <div class="table-responsive" id="generalStatsTable">
