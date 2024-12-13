@@ -27,21 +27,6 @@ public class StatsPageController {
     public static final String ALL_TIME = "ALL_TIME";
     private final StatsPageService statsPageService;
     private final StatsPageChartService statsPageChartService;
-    @GetMapping("/stats_for_chart/{mode}")
-    @ResponseBody
-    public List<DailyStatsSummed> getStatsWithUNameOfAllUsersForChart(@PathVariable String mode) {
-        return statsPageChartService.getDailyStatsSummedForChartPerMode(mode);
-    }
-    @GetMapping("/stats_for_chart_new_users")
-    @ResponseBody
-    public List<DailyUsersSummedBoth> getUsersSummedForChart() {
-        return statsPageChartService.getDailyUsersSummedForChart();
-    }
-    @GetMapping("/stats_for_chart_active_users")
-    @ResponseBody
-    public List<DailyActiveUsers> getDailyActiveUsersForChart() {
-        return statsPageChartService.getDailyActiveUsersForChart();
-    }
     @ModelAttribute("selectedWeek")
     public String initSelectedWeek() {
         return ALL_TIME;
