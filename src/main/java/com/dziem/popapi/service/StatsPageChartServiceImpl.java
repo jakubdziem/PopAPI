@@ -142,7 +142,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     }
 
     @Override
-    @Scheduled(cron = "0 0 6 * * SUN", zone = "Europe/Warsaw")
+    @Scheduled(cron = "0 10 6 * * SUN", zone = "Europe/Warsaw")
     public void saveWeeklyNewUsersSummed() {
         UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
         WeeklyNewUsersSummed weeklyNewUsersSummed = new WeeklyNewUsersSummed();
@@ -152,7 +152,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     }
 
     @Override
-    @Scheduled(cron = "0 0 6 * * SUN", zone = "Europe/Warsaw")
+    @Scheduled(cron = "0 10 6 * * SUN", zone = "Europe/Warsaw")
     public void saveWeeklyActiveUsers() {
         List<ActiveUsersStats> activeUsersStatsThisWeek = activeUsersPageService.getActiveUsersStatsThisWeek();
         Integer size = activeUsersStatsThisWeek.size();
