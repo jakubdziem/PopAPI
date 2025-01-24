@@ -19,7 +19,7 @@ public class LeaderboardController {
     private final LeaderboardService leaderboardService;
     @GetMapping("/api/v1/leaderboard/{mode}")
     public ResponseEntity<List<LeaderboardDTO>> getLeaderboard(@PathVariable String mode) {
-        return leaderboardService.getLeaderboard(mode);
+        return leaderboardService.getLeaderboardFirst200(mode);
     }
     @GetMapping("api/v1/rank/{userId}/{mode}")
     public ResponseEntity<RankScoreDTO> getRankOfUserInMode(@PathVariable String userId, @PathVariable String mode) {

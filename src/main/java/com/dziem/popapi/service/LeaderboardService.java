@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LeaderboardService {
-    ResponseEntity<List<LeaderboardDTO>> getLeaderboard(String mode);
+    ResponseEntity<List<LeaderboardDTO>> getLeaderboardFirst200(String mode);
 
     List<Leaderboard> initializeLeaderboard(String userId, User user);
 

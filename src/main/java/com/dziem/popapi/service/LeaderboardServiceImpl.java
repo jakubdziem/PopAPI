@@ -21,21 +21,8 @@ public class LeaderboardServiceImpl implements LeaderboardService {
     private final LeaderboardMapper leaderboardMapper;
     private final UserRepository userRepository;
     @Override
-    public ResponseEntity<List<LeaderboardDTO>> getLeaderboard(String mode) {
-        boolean modeExisting = isModeExisting(mode);
-        if(!modeExisting) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Leaderboard> leaderboardList = leaderboardRepository.findAll().stream().filter(leaderboard -> leaderboard.getMode().equals(mode)).toList();
-        List<LeaderboardDTO> leaderboardDTOList = new ArrayList<>();
-        for(Leaderboard leaderboard : leaderboardList) {
-            LeaderboardDTO leaderboardDTO = leaderboardMapper.leaderboardtoLeaderboardDTO(leaderboard);
-            leaderboardDTOList.add(leaderboardDTO);
-        }
-        List<LeaderboardDTO> list = leaderboardDTOList.stream().sorted((o1, o2) -> (o1.compareTo(o2) == 0 ? (o1.getId() < o2.getId() ? -1 : 1) : o1.compareTo(o2))).toList();
-        //it's reversed, because I couldn't find using reversed() in lambda
-        list = list.stream().limit(200).toList();
-        return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
+    public ResponseEntity<List<LeaderboardDTO>> getLeaderboardFirst200(String mode) {
+        return new ResponseEntity<>(getLeaderboard(mode).stream().limit(200).toList(), HttpStatus.ACCEPTED);
     }
 
     @Override
@@ -63,7 +50,7 @@ public class LeaderboardServiceImpl implements LeaderboardService {
                 if (existing.isGuest()) {
                     atomicReference.set(Optional.empty());
                 } else {
-                    List<LeaderboardDTO> leaderboard = getLeaderboard(mode).getBody();
+                    List<LeaderboardDTO> leaderboard = getLeaderboard(mode);
                     int rank = 0;
                     int score = 0;
                     for (int i = 0; i < (leaderboard != null ? leaderboard.size() : 0); i++) {
@@ -85,6 +72,22 @@ public class LeaderboardServiceImpl implements LeaderboardService {
             return Optional.empty();
         }
     }
+
+    private List<LeaderboardDTO> getLeaderboard(String mode) {
+        boolean modeExisting = isModeExisting(mode);
+        if(!modeExisting) {
+            return new ArrayList<>();
+        }
+        List<Leaderboard> leaderboardList = leaderboardRepository.findAll().stream().filter(leaderboard -> leaderboard.getMode().equals(mode)).toList();
+        List<LeaderboardDTO> leaderboardDTOList = new ArrayList<>();
+        for(Leaderboard leaderboard : leaderboardList) {
+            LeaderboardDTO leaderboardDTO = leaderboardMapper.leaderboardtoLeaderboardDTO(leaderboard);
+            leaderboardDTOList.add(leaderboardDTO);
+        }
+        return leaderboardDTOList.stream().sorted((o1, o2) -> (o1.compareTo(o2) == 0 ? (o1.getId() < o2.getId() ? -1 : 1) : o1.compareTo(o2))).toList();
+        //it's reversed, because I couldn't find using reversed() in lambda
+    }
+
 
     private static boolean isModeExisting(String mode) {
         boolean modeExisting = false;
