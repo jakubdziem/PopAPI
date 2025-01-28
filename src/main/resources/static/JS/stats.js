@@ -49,14 +49,18 @@ function extractChartData(attributeSelect, statsData) {
     case "activeUsers":
       data = statsData.map(stat => stat.activeUsers);
       break;
-    case "activeUsersWeekly":
-      data = statsData.map(stat => stat.activeUsers);
-      break;
     default:
       data = statsData.map(stat => stat.totalGamePlayed);
       break;
   }
   return data;
+}
+
+function getActiveUsersWeeklyData(statsData) {
+  let summedActiveUsersData = statsData.map(stat => stat.activeUsers)
+  let newActiveUsersData = statsData.map(stat => stat.activeNewUsers)
+  let oldActiveUsersData = statsData.map(stat => stat.activeOldUsers)
+  return {summedActiveUsersData, newActiveUsersData, oldActiveUsersData};
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -69,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentChart) {
       currentChart.destroy();
     }
-
     // Create a new chart and assign it to the currentChart variable
     currentChart = new Chart(ctx, {
       type: 'line',
@@ -91,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
           x: {
             title: {
               display: true,
-              text: label.includes('newUsersWeekly') || label.includes('activeUsersWeekly')  ?  'Week Start Date' : 'Day'
+              text: label.includes('newUsersWeekly') || label.includes('activeUsersWeekly') ? 'Week Start Date' : 'Day'
             }
           },
           y: {
@@ -106,6 +109,71 @@ document.addEventListener('DOMContentLoaded', function () {
           legend: {
             display: true
           }
+        }
+      }
+    });
+  }
+  function renderChartActiveUsersWeekly(labels, summedActiveUsersData, newActiveUsersData, oldActiveUsersData) {
+    // Create a new chart and assign it to the currentChart variable
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    // Destroy the current chart if it exists
+    if (currentChart) {
+      currentChart.destroy();
+    }
+    currentChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'New Active Users',
+            data: newActiveUsersData,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.1)',
+            borderWidth: 2,
+            tension: 0.3,
+          },
+          {
+            label: 'Old Active Users',
+            data: oldActiveUsersData,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(255, 99, 132, 0.1)',
+            borderWidth: 2,
+            tension: 0.3,
+          },
+          {
+            label: 'Summed Active Users',
+            data: summedActiveUsersData,
+            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: 'rgba(54, 162, 235, 0.1)',
+            borderWidth: 2,
+            tension: 0.3,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Week Start Date',
+            }
+          },
+          y: {
+            min: 0,
+            title: {
+              display: true,
+              text: 'Number of Users',
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+          },
         }
       }
     });
@@ -149,14 +217,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       let labels = extractLabels(attributeSelect, statsData);
-      let data = extractChartData(attributeSelect, statsData);
-
-      if (labels.length === 0 || data.length === 0) {
-        console.error('No valid data available to render the chart');
+      if (labels.length === 0 ) {
+        console.error('No valid labels available to render the chart');
         return;
       }
 
-      renderChart(labels, data, attributeSelect.value);
+      if(attributeSelect.value === "activeUsersWeekly") {
+        let {summedActiveUsersData, newActiveUsersData, oldActiveUsersData} = getActiveUsersWeeklyData(statsData);
+        renderChartActiveUsersWeekly(labels, summedActiveUsersData, newActiveUsersData, oldActiveUsersData)
+      } else {
+        let data = extractChartData(attributeSelect, statsData);
+        if (data.length === 0) {
+          console.error('No valid labels available to render the chart');
+          return;
+        }
+        renderChart(labels, data, attributeSelect.value);
+      }
 
       // Add event listener for "Show This Month" button
       document.getElementById('filterThisMonth').addEventListener('click', () => {
@@ -168,12 +244,16 @@ document.addEventListener('DOMContentLoaded', function () {
           const statDate = new Date(stat.day || stat.weekStartDate);
           return statDate.getMonth() === currentMonth && statDate.getFullYear() === currentYear;
         });
-        console.log(filteredData)
 
         const filteredLabels = extractLabels(attributeSelect, filteredData)
-        let filteredChartData = extractChartData(attributeSelect, filteredData);
+        if (attributeSelect.value === "activeUsersWeekly") {
+          let {summedActiveUsersData, newActiveUsersData, oldActiveUsersData} = getActiveUsersWeeklyData(filteredData);
+          renderChartActiveUsersWeekly(filteredLabels, summedActiveUsersData, newActiveUsersData, oldActiveUsersData)
+        } else {
+          let filteredChartData = extractChartData(attributeSelect, filteredData);
+          renderChart(filteredLabels, filteredChartData, `${attributeSelect.value} (Last 28 Days)`);
+        }
 
-        renderChart(filteredLabels, filteredChartData, `${attributeSelect.value} (This Month)`);
       });
 
       document.getElementById('filterLast28Days').addEventListener('click', () => {
@@ -186,12 +266,14 @@ document.addEventListener('DOMContentLoaded', function () {
           return statDate >= startDate && statDate <= now; // Check if within 28 days span
         });
 
-        console.log(filteredData);
-
-        const filteredLabels = extractLabels(attributeSelect, filteredData);
-        let filteredChartData = extractChartData(attributeSelect, filteredData);
-
-        renderChart(filteredLabels, filteredChartData, `${attributeSelect.value} (Last 28 Days)`);
+        const filteredLabels = extractLabels(attributeSelect, filteredData)
+        if (attributeSelect.value === "activeUsersWeekly") {
+          let {summedActiveUsersData, newActiveUsersData, oldActiveUsersData} = getActiveUsersWeeklyData(filteredData);
+          renderChartActiveUsersWeekly(filteredLabels, summedActiveUsersData, newActiveUsersData, oldActiveUsersData)
+        } else {
+          let filteredChartData = extractChartData(attributeSelect, filteredData);
+          renderChart(filteredLabels, filteredChartData, `${attributeSelect.value} (Last 28 Days)`);
+        }
       });
 
 
