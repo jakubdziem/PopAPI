@@ -159,7 +159,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
         WeeklyActiveUsers weeklyActiveUsers = new WeeklyActiveUsers();
         weeklyActiveUsers.setWeekStartDate(LocalDate.now());
         weeklyActiveUsers.setActiveUsers(size);
-        weeklyActiveUsers.setActiveNewUsers(activeUsersStatsThisWeek.stream().filter(ActiveUsersStats::isNew).toList().size());
+        weeklyActiveUsers.setActiveNewUsers(activeUsersStatsThisWeek.stream().filter(ActiveUsersStats::isNewUser).toList().size());
         weeklyActiveUsers.setActiveOldUsers(weeklyActiveUsers.getActiveUsers()-weeklyActiveUsers.getActiveNewUsers());
         weeklyActiveUsersRepository.save(weeklyActiveUsers);
     }

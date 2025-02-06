@@ -16,5 +16,5 @@ public class ActiveUsersStats {
     private Long totalScoredPoints;
     private Integer numberOfWonGames;
     private String name;
-    private boolean isNew;
+    private boolean newUser;
 }
