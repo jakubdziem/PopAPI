@@ -19,12 +19,30 @@
     <!--    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
 </header>
 <main style="padding-left: 5px">
+
+    <ul class="nav flex-column">
+        <li class="nav-item">
+        <form action="/active" method="get">
+            <label for="weekSelect">Select Week:</label>
+            <select id="weekSelect" name="selectedWeek" class="form-select" onchange="this.form.submit()">
+                <option value="ALL_TIME" th:selected="${selectedWeek == 'ALL_TIME'}">All time</option>
+
+                <option th:each="week : ${weeks}"
+                        th:value="${week}"
+                        th:text="${week.toString()}"
+                        th:selected="${selectedWeek == week.toString()}">
+                    Week
+                </option>
+            </select>
+        </form>
+        </li>
+    </ul>
     <div class="usersSummedDiv">
         <div class="usersSummedSmallDiv">
             <h5 th:text="'Active users this week = ' + ${activeUsersCount}"></h5>
         </div>
         <div class="usersSummedSmallDiv">
-            <h5 th:text="'New users this week = ' + ${thisWeekUsers.getGoogleOrEmailUsers() + thisWeekUsers.guestUsers}"></h5>
+            <h5 th:text="'New users this week = ' + ${thisWeekUsers}"></h5>
         </div>
         <div class="usersSummedSmallDiv">
             <h5 th:text="'Active old users this week = ' + ${activeOldUsersCount}"></h5>
@@ -67,13 +85,13 @@
             </thead>
             <tbody>
                 <tr th:each="stat : ${activeUsers}">
-                    <td th:text="${stat.userId}" th:classappend="${stat.isNew} ? 'new' : ''">1</td>
-                    <td th:text="${stat.name}" th:classappend="${stat.isNew} ? 'new' : ''">User</td>
-                    <td th:text="${stat.totalGamePlayed}" th:classappend="${stat.isNew} ? 'new' : ''">0</td>
-                    <td th:text="${stat.avgScore}" th:classappend="${stat.isNew} ? 'new' : ''">0</td>
-                    <td th:text="${stat.timePlayed}" th:classappend="${stat.isNew} ? 'new' : ''">0</td>
-                    <td th:text="${stat.totalScoredPoints}" th:classappend="${stat.isNew} ? 'new' : ''">0</td>
-                    <td th:text="${stat.numberOfWonGames}" th:classappend="${stat.isNew} ? 'new' : ''">0</td>
+                    <td th:text="${stat.userId}" th:classappend="${stat.isNewUser} ? 'new' : ''">1</td>
+                    <td th:text="${stat.name}" th:classappend="${stat.isNewUser} ? 'new' : ''">User</td>
+                    <td th:text="${stat.totalGamePlayed}" th:classappend="${stat.isNewUser} ? 'new' : ''">0</td>
+                    <td th:text="${stat.avgScore}" th:classappend="${stat.isNewUser} ? 'new' : ''">0</td>
+                    <td th:text="${stat.timePlayed}" th:classappend="${stat.isNewUser} ? 'new' : ''">0</td>
+                    <td th:text="${stat.totalScoredPoints}" th:classappend="${stat.isNewUser} ? 'new' : ''">0</td>
+                    <td th:text="${stat.numberOfWonGames}" th:classappend="${stat.isNewUser} ? 'new' : ''">0</td>
                 </tr>
             </tbody>
         </table>
