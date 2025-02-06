@@ -273,3 +273,17 @@ INSERT INTO weekly_new_users_summed (week_start_date, new_users) values ('2024-1
 INSERT INTO weekly_new_users_summed (week_start_date, new_users) values ('2024-11-24', 47);
 INSERT INTO weekly_new_users_summed (week_start_date, new_users) values ('2024-12-01', 36);
 INSERT INTO weekly_new_users_summed (week_start_date, new_users) values ('2024-12-08', 17);
+
+CREATE TABLE weekly_active_users_stats (
+                                           id SERIAL PRIMARY KEY,
+                                           week_start_date DATE,
+                                           user_id VARCHAR(50),
+                                           total_game_played BIGINT,
+                                           avg_score DECIMAL(10, 2),
+                                           time_played VARCHAR(255),
+                                           total_scored_points BIGINT,
+                                           number_of_won_games INT,
+                                           name VARCHAR(255),
+                                           new_user bool
+
+);
