@@ -80,6 +80,11 @@
                     <p class="guestDifference" th:classappend = "${differenceUsersSummed.googleOrEmailUsers < 0 ? 'trend-down' : ''}"
                        th:text="${differenceUsersSummed.googleOrEmailUsers == 0 ? '' : (differenceUsersSummed.googleOrEmailUsers < 0 ? '🢃️️' : '🢁️') + differenceUsersSummed.googleOrEmailUsers}"></p>
                 </div>
+                <div class="usersSummedSmallDiv">
+                    <h2 class="usersSummed" th:text="'All users = ' + ${users.googleOrEmailUsers + users.guestUsers}"></h2>
+                    <p class="guestDifference" th:classappend = "${differenceUsersSummed.googleOrEmailUsers + differenceUsersSummed.guestUsers < 0 ? 'trend-down' : ''}"
+                       th:text="${differenceUsersSummed.googleOrEmailUsers + differenceUsersSummed.guestUsers == 0 ? '' : (differenceUsersSummed.googleOrEmailUsers + differenceUsersSummed.guestUsers < 0 ? '🢃️️' : '🢁️') + (differenceUsersSummed.googleOrEmailUsers + differenceUsersSummed.guestUsers)}"></p>
+                </div>
             </div>
             <div class="usersSummedDiv" th:if="${selectedWeek=='ALL_TIME'}">
                 <div class="usersSummedSmallDiv">
