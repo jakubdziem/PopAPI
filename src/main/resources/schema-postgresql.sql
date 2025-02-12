@@ -287,3 +287,13 @@ CREATE TABLE weekly_active_users_stats (
                                            new_user bool
 
 );
+
+CREATE TABLE top_drivers_podiums(
+                     id SERIAL PRIMARY KEY,
+                     name varchar(255),
+                     podiums INT,
+                     image_url VARCHAR(255),
+                     image_source varchar(500),
+                     image_source_short varchar(50),
+                     tier INT
+);

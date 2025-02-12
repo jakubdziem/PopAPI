@@ -22,5 +22,6 @@ public enum Mode {
     SOCIAL_MEDIA_YOUTUBE,
     MOVIES,
     TV_SHOWS,
+    TOP_DRIVERS_PODIUMS,
     CELEBS
 }
