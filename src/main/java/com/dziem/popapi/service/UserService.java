@@ -14,4 +14,5 @@ public interface UserService {
     Optional<String> migrateProfileToGoogle(String anonimUserId, String googleId);
 
     Optional<String> createGoogleUser(String googleId);
+    void addNewModesToUsers();
 }

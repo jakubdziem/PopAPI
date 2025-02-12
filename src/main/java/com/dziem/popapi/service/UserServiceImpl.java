@@ -5,6 +5,7 @@ import com.dziem.popapi.repository.LeaderboardRepository;
 import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -83,12 +84,7 @@ public class UserServiceImpl implements UserService {
             List<Leaderboard> leaderboardList = new ArrayList<>();
             for(Score score : anonimUser.getBestScores()) {
 
-                Leaderboard leaderboardEntity = Leaderboard.builder()
-                        .score(score.getBestScore())
-                            .mode(score.getMode())
-                            .user(googleUser)
-                            .name(googleUser.getUName().getName())
-                            .build();
+                Leaderboard leaderboardEntity = initializeLeaderboard(score, googleUser);
                 leaderboardList.add(leaderboardEntity);
                 leaderboardRepository.save(leaderboardEntity);
 
@@ -114,6 +110,15 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    private static Leaderboard initializeLeaderboard(Score score, User googleUser) {
+        return Leaderboard.builder()
+                .score(score.getBestScore())
+                    .mode(score.getMode())
+                    .user(googleUser)
+                    .name(googleUser.getUName().getName())
+                    .build();
+    }
+
     @Override
     public Optional<String> createGoogleUser(String googleId) {
         if(userRepository.existsById(googleId)) {
@@ -123,6 +128,41 @@ public class UserServiceImpl implements UserService {
             user.setLeaderboard(leaderboardService.initializeLeaderboard(googleId, user));
             userRepository.save(user);
             return Optional.of(user.getUName().getName());
+        }
+    }
+
+    @Override
+    @Transactional
+    public void addNewModesToUsers() {
+        List<User> users = userRepository.findAll();
+        for(User user : users) {
+            List<Score> bestScores = user.getBestScores();
+            List<ModeStats> modeStats = user.getModeStats();
+            List<String> modesInBestScore = bestScores.stream().map(Score::getMode).toList();
+            List<String> modesInModeStats = modeStats.stream().map(ModeStats::getMode).toList();
+            for(Mode mode : Mode.values()) {
+                if(!modesInBestScore.contains(mode.toString())) {
+                    bestScores.add(scoreService.initializeScore(mode.toString(), user));
+                }
+                if(!modesInModeStats.contains(mode.toString())) {
+                    modeStats.add(modeStatsService.initializeModeStats(user, mode.toString()));
+                }
+            }
+            user.setModeStats(modeStats);
+            user.setBestScores(bestScores);
+            if(!user.isGuest()) {
+                List<Leaderboard> leaderboard = user.getLeaderboard();
+                List<String> modesInLeaderboard = leaderboard.stream().map(Leaderboard::getMode).toList();
+                for(Score bestScore : bestScores) {
+                    if(!modesInLeaderboard.contains(bestScore.getMode())) {
+                        Leaderboard leaderboardEntity = initializeLeaderboard(bestScore, user);
+                        leaderboard.add(leaderboardEntity);
+                        leaderboardRepository.save(leaderboardEntity);
+                    }
+                }
+                user.setLeaderboard(leaderboard);
+            }
+            userRepository.save(user);
         }
     }
 }
