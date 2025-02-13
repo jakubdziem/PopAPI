@@ -2,7 +2,7 @@ package com.dziem.popapi.config;
 
 import com.dziem.popapi.formatter.GetShortImageSource;
 import com.dziem.popapi.formatter.NameListGetter;
-import com.dziem.popapi.service.DataService;
+import com.dziem.popapi.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.scheduling.annotation.Async;
@@ -17,6 +17,10 @@ public class DataLoader implements CommandLineRunner {
     private final DataService dataService;
     private final NameListGetter nameListGetter;
     private final GetShortImageSource getShortImageSource;
+    private final StatsPageService statsPageService;
+    private final StatsPageChartService statsPageChartService;
+    private final ActiveUsersPageService activeUsersPageService;
+    private final UserService userService;
     @Async
     public CompletableFuture<Void> asyncGetData2024_2100() {
         dataService.getData2024_2100();
@@ -62,5 +66,16 @@ public class DataLoader implements CommandLineRunner {
 //        dataService.addSourcesToCinema("Movies", "src/main/resources/imageSource/moviesSourcesOfPhotos.txt");
 //        dataService.addSourcesToSong("src/main/resources/imageSource/songsSourcesOfPhotos.txt");
 //        getShortImageSource.printShortSource();
+//        statsPageService.saveWeeklyStatsSnapshot();
+//        statsPageChartService.populateWeek(LocalDate.now());
+//        System.out.println("******************FINISHED");
+//        statsPageChartService.saveDailySummedStatsSnapshot();
+//        statsPageChartService.saveDailySummedUsersSnapshot();
+//        statsPageChartService.saveDailyActiveUsers();
+//        statsPageChartService.saveWeeklyActiveUsers();
+//        statsPageChartService.saveWeeklyNewUsersSummed();
+//        System.out.println("******************FINISHED");
+//        activeUsersPageService.saveWeeklyActiveUsersStatsSnapshot();
+//        userService.addNewModesToUsers();
     }
 }

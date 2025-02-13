@@ -100,7 +100,11 @@ public class StatsPageServiceImpl implements StatsPageService {
                 numberOfWonGames += modeStat.getNumberOfWonGames();
             }
             String timePlayed = TimeConverter.convertSecondsToTime(timePlayedSeconds);
-            BigDecimal avgScore = avgScoreSummed.divide(BigDecimal.valueOf(numberOfAvgScoreGreaterThanZero), RoundingMode.DOWN);
+            BigDecimal divisor = BigDecimal.valueOf(numberOfAvgScoreGreaterThanZero);
+            if(divisor.equals(BigDecimal.ZERO)) {
+                divisor = BigDecimal.ONE;
+            }
+            BigDecimal avgScore = avgScoreSummed.divide(divisor, RoundingMode.DOWN);
             StatsWithUName singleModeStat = StatsWithUName.builder()
                     .totalGamePlayed(totalGamePlayed)
                     .avgScore(avgScore)
