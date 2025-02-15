@@ -12,6 +12,12 @@ Spotify:
     Top Songs - Rock -> first 200 from Hard Rock / Metal, Rock: https://chartmasters.org/most-streamed-artists-ever-on-spotify/
 Formula 1:
     Top Drivers - Points -> https://www.statsf1.com/en/statistiques/pilote/point/nombre.aspx
+    Top Drivers - Podiums -> https://www.statsf1.com/en/statistiques/pilote/podium/nombre.aspx
+    Top Drivers - Fastest Laps -> https://www.statsf1.com/en/statistiques/pilote/meilleurtour/nombre.aspx
+    Top Drivers - Grand Prix -> https://www.statsf1.com/en/statistiques/pilote/gp/nombre.aspx
+    Top Countries - Grand Prix -> https://www.statsf1.com/en/statistiques/nation/gp/nombre.aspx
+    Top Teams - Points -> https://www.statsf1.com/en/statistiques/constructeur/point/nombre.aspx
+    Top Teams - Grand Prix -> https://www.statsf1.com/en/statistiques/constructeur/gp/nombre.aspx
 Apartments:
     Price per m2 - World -> https://www.numbeo.com/cost-of-living/country_price_rankings?itemId=100
     Price per m2 - Poland -> https://sonarhome.pl/ceny-mieszkan?page=1&sort=most_expensive
