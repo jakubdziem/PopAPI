@@ -23,6 +23,12 @@ RUN mvn -version
 
 # Copy the pom.xml and source code
 COPY pom.xml ./
+
+# Copy static files explicitly to force updates when they change
+ARG CACHEBUST=1
+COPY src/main/resources/static/CSS/dashboard.css /app/src/main/resources/static/dashboard.css
+COPY src/main/resources/static/JS/stats.js /app/src/main/resources/static/stats.js
+
 COPY src /app/src
 
 # Download the JDK
@@ -56,4 +62,7 @@ EXPOSE 8080
 # Run the application
 CMD ["java", "-jar", "/app/PopAPI-0.0.1-SNAPSHOT.jar"]
 
+# Force update restricted words file and static resources
 COPY src/main/resources/restricted_words.txt /app/src/main/resources/restricted_words.txt
+COPY src/main/resources/static/CSS/dashboard.css /app/src/main/resources/static/dashboard.css
+COPY src/main/resources/static/JS/stats.js /app/src/main/resources/static/stats.js

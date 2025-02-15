@@ -34,5 +34,6 @@ build/
 **/private
 #**/src/main/java/com/dziem/popapi/scrapping/
 /src/main/resources/application-docker.properties
+/src/main/resources/application-test.properties
 
 
