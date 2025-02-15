@@ -288,7 +288,7 @@ CREATE TABLE weekly_active_users_stats (
 
 );
 
-CREATE TABLE top_drivers_podiums(
+CREATE TABLE drivers_podiums(
                      id SERIAL PRIMARY KEY,
                      name varchar(255),
                      podiums INT,
@@ -296,4 +296,13 @@ CREATE TABLE top_drivers_podiums(
                      image_source varchar(500),
                      image_source_short varchar(50),
                      tier INT
+);
+CREATE TABLE drivers_fastest_laps(
+                                    id SERIAL PRIMARY KEY,
+                                    name varchar(255),
+                                    laps INT,
+                                    image_url VARCHAR(255),
+                                    image_source varchar(500),
+                                    image_source_short varchar(50),
+                                    tier INT
 );
