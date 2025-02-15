@@ -25,6 +25,8 @@ public class ModeStatsServiceImpl implements ModeStatsService {
     private final HistoryRepository historyRepository;
     private final SocialMediaRepository socialMediaRepository;
     private final CinemaRepository cinemaRepository;
+    private final DriverPodiumsRepository driverPodiumsRepository;
+    private final DriverFastestLapsRepository driverFastestLapsRepository;
 
     @Override
     public ModeStats initializeModeStats(User user, String mode) {
@@ -238,6 +240,43 @@ public class ModeStatsServiceImpl implements ModeStatsService {
                     .imageUrl(cinema.getImageUrl())
                     .tier(cinema.getTier())
                     .imageSource(cinema.getImageSourceShort())
+                    .build();
+            baseGameModelDTOS.add(baseGameModelDTO);
+        }
+        return baseGameModelDTOS;
+
+    }
+
+    @Override
+    public List<BaseGameModelDTO> convertDriverPodiumsToBaseGameModelDTO() {
+        List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
+        List<DriverPodiums> driverPodiums = driverPodiumsRepository.findAll();
+        for(DriverPodiums driverPodium : driverPodiums) {
+            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+                    .name(driverPodium.getName())
+                    .comparableValue((float)(driverPodium.getPodiums()))
+                    .comparableValueLabel("podiums")
+                    .imageUrl(driverPodium.getImageUrl())
+                    .tier(driverPodium.getTier())
+                    .imageSource(driverPodium.getImageSourceShort())
+                    .build();
+            baseGameModelDTOS.add(baseGameModelDTO);
+        }
+        return baseGameModelDTOS;
+    }
+
+    @Override
+    public List<BaseGameModelDTO> convertDriverFastestLapsToBaseGameModelDTO() {
+        List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
+        List<DriverFastestLaps> driversFastestLaps = driverFastestLapsRepository.findAll();
+        for(DriverFastestLaps driverFastestLaps : driversFastestLaps) {
+            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+                    .name(driverFastestLaps.getName())
+                    .comparableValue((float)(driverFastestLaps.getLaps()))
+                    .comparableValueLabel("laps")
+                    .imageUrl(driverFastestLaps.getImageUrl())
+                    .tier(driverFastestLaps.getTier())
+                    .imageSource(driverFastestLaps.getImageSourceShort())
                     .build();
             baseGameModelDTOS.add(baseGameModelDTO);
         }

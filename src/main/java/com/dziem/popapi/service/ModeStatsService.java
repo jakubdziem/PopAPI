@@ -23,4 +23,7 @@ public interface ModeStatsService {
 
     List<BaseGameModelDTO> convertCinemaToBaseGameModelDTO(String type);
 
+    List<BaseGameModelDTO> convertDriverPodiumsToBaseGameModelDTO();
+
+    List<BaseGameModelDTO> convertDriverFastestLapsToBaseGameModelDTO();
 }

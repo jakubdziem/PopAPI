@@ -38,7 +38,8 @@ public class ModeController {
             case Mode.MOVIES -> modeStatsService.convertCinemaToBaseGameModelDTO("Movies");
             case Mode.TV_SHOWS -> modeStatsService.convertCinemaToBaseGameModelDTO("TV Shows");
             case Mode.CELEBS -> modeStatsService.convertCinemaToBaseGameModelDTO("Celebs");
-            case Mode.TOP_DRIVERS_PODIUMS -> modeStatsService.convertFormulaToBaseGameModelDTO();
+            case Mode.FORMULA_TOP_DRIVERS_PODIUMS -> modeStatsService.convertDriverPodiumsToBaseGameModelDTO();
+            case Mode.FORMULA_TOP_DRIVERS_FASTEST_LAPS -> modeStatsService.convertDriverFastestLapsToBaseGameModelDTO();
         };
     }
 }
