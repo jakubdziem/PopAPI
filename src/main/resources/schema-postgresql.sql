@@ -334,3 +334,12 @@ CREATE TABLE f1_teams_points(
                              image_source_short varchar(50),
                              tier INT
 );
+CREATE TABLE f1_teams_gp(
+                             id SERIAL PRIMARY KEY,
+                             name varchar(255),
+                             gp INT,
+                             image_url VARCHAR(255),
+                             image_source varchar(500),
+                             image_source_short varchar(50),
+                             tier INT
+);

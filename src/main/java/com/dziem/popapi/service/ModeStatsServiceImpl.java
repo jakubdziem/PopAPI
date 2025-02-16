@@ -30,6 +30,7 @@ public class ModeStatsServiceImpl implements ModeStatsService {
     private final DriverGPRepository driverGPRepository;
     private final CountryGPRepository countryGPRepository;
     private final TeamsPointsRepository teamsPointsRepository;
+    private final TeamsGPRepository teamsGPRepository;
 
     @Override
     public ModeStats initializeModeStats(User user, String mode) {
@@ -343,6 +344,19 @@ public class ModeStatsServiceImpl implements ModeStatsService {
 
     @Override
     public List<BaseGameModelDTO> convertTeamsGPToBaseGameModelDTO() {
-        return null;
+        List<BaseGameModelDTO> baseGameModelDTOS = new ArrayList<>();
+        List<TeamsGP> teamsGP = teamsGPRepository.findAll();
+        for(TeamsGP teamGP : teamsGP) {
+            BaseGameModelDTO baseGameModelDTO = BaseGameModelDTO.builder()
+                    .name(teamGP.getName())
+                    .comparableValue((float)(teamGP.getGp()))
+                    .comparableValueLabel("gp")
+                    .imageUrl(teamGP.getImageUrl())
+                    .tier(teamGP.getTier())
+                    .imageSource(teamGP.getImageSourceShort())
+                    .build();
+            baseGameModelDTOS.add(baseGameModelDTO);
+        }
+        return baseGameModelDTOS;
     }
 }
