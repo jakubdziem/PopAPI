@@ -40,6 +40,10 @@ public class ModeController {
             case Mode.CELEBS -> modeStatsService.convertCinemaToBaseGameModelDTO("Celebs");
             case Mode.FORMULA_TOP_DRIVERS_PODIUMS -> modeStatsService.convertDriverPodiumsToBaseGameModelDTO();
             case Mode.FORMULA_TOP_DRIVERS_FASTEST_LAPS -> modeStatsService.convertDriverFastestLapsToBaseGameModelDTO();
+            case Mode.FORMULA_TOP_DRIVERS_GP -> modeStatsService.convertDriverGPToBaseGameModelDTO();
+            case Mode.FORMULA_TOP_COUNTRIES_GP -> modeStatsService.convertCountryGPToBaseGameModelDTO();
+            case Mode.FORMULA_TOP_TEAMS_POINTS -> modeStatsService.convertTeamsPointsToBaseGameModelDTO();
+            case Mode.FORMULA_TOP_TEAMS_GP -> modeStatsService.convertTeamsGPToBaseGameModelDTO();
         };
     }
 }

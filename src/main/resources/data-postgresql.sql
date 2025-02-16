@@ -6612,7 +6612,7 @@
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Webber Mark', 215, '/images/f1/Webber_Mark.png', 1, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Berger Gerhard', 210, '/images/f1/Berger_Gerhard.png', 1, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Verstappen Max', 209, '/images/f1/Verstappen_Max.png', 1, '', '');
--- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('De CESARIS', 208, '/images/f1/De_CESARIS.png', 1, '', '');
+-- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('De Cesaris Andrea', 208, '/images/f1/De_Cesaris_Andrea.png', 1, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Rosberg Nico', 206, '/images/f1/Rosberg_Nico.png', 1, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Sainz Carlos', 206, '/images/f1/Sainz_Carlos.png', 1, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Piquet Nelson', 204, '/images/f1/Piquet_Nelson.png', 1, '', '');
@@ -6667,10 +6667,10 @@
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Salo Mika', 110, '/images/f1/Salo_Mika.png', 2, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Kvyat Daniil', 110, '/images/f1/Kvyat_Daniil.png', 2, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Alliot Philippe', 109, '/images/f1/Alliot_Philippe.png', 2, '', '');
--- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('De ANGELIS', 108, '/images/f1/De_ANGELIS.png', 2, '', '');
+-- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('De Angelis Elio', 108, '/images/f1/De_Angelis_Elio.png', 2, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Verstappen Jos', 107, '/images/f1/Verstappen_Jos.png', 2, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Mass Jochen', 105, '/images/f1/Mass_Jochen.png', 2, '', '');
--- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('de la', 105, '/images/f1/de_la.png', 2, '', '');
+-- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('de la Rosa Pedro', 105, '/images/f1/de_la_Rosa_Pedro.png', 2, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Bonnier Jo', 104, '/images/f1/Bonnier_Jo.png', 2, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Albon Alexander', 104, '/images/f1/Albon_Alexander.png', 2, '', '');
 -- INSERT INTO DRIVERS_GP (NAME, GP, IMAGE_URL, TIER, IMAGE_SOURCE_SHORT, IMAGE_SOURCE) VALUES ('Stewart Jackie', 99, '/images/f1/Stewart_Jackie.png', 2, '', '');

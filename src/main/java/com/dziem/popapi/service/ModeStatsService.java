@@ -26,4 +26,12 @@ public interface ModeStatsService {
     List<BaseGameModelDTO> convertDriverPodiumsToBaseGameModelDTO();
 
     List<BaseGameModelDTO> convertDriverFastestLapsToBaseGameModelDTO();
+
+    List<BaseGameModelDTO> convertDriverGPToBaseGameModelDTO();
+
+    List<BaseGameModelDTO> convertCountryGPToBaseGameModelDTO();
+
+    List<BaseGameModelDTO> convertTeamsPointsToBaseGameModelDTO();
+
+    List<BaseGameModelDTO> convertTeamsGPToBaseGameModelDTO();
 }
