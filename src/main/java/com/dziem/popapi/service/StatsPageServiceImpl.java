@@ -7,9 +7,6 @@ import com.dziem.popapi.model.User;
 import com.dziem.popapi.model.webpage.*;
 import com.dziem.popapi.repository.*;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -24,7 +21,6 @@ import static java.util.stream.Collectors.groupingBy;
 @Service
 @RequiredArgsConstructor
 public class StatsPageServiceImpl implements StatsPageService {
-    private static final Logger logger = LoggerFactory.getLogger(StatsPageServiceImpl.class);
     private final StatsRepository statsRepository;
     private final ModeStatsRepository modeStatsRepository;
     private final UserRepository userRepository;
@@ -247,10 +243,8 @@ public class StatsPageServiceImpl implements StatsPageService {
                 );
         return atomicReference.get();
     }
-    @Scheduled(cron = "0 0 6 * * SUN", zone = "Europe/Warsaw")
     @Override
     public void saveWeeklyStatsSnapshot() {
-        logger.info("Starting weekly stats snapshot...");
         LocalDate week = LocalDate.now();
         List<WeeklyStats> weeklyStats = new ArrayList<>();
 
@@ -325,7 +319,6 @@ public class StatsPageServiceImpl implements StatsPageService {
                 .googleOrEmailUsers(usersSummedCurrent.getGoogleOrEmailUsers())
                 .build();
         weeklyUsersSummedRepository.save(weeklyUsersSummed);
-        logger.info("Weekly stats snapshot completed.");
     }
 
     @Override

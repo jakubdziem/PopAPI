@@ -4,9 +4,6 @@ import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.webpage.*;
 import com.dziem.popapi.repository.*;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -22,7 +19,6 @@ import static java.util.stream.Collectors.groupingBy;
 @Service
 @AllArgsConstructor
 public class StatsPageChartServiceImpl implements StatsPageChartService {
-    private static final Logger logger = LoggerFactory.getLogger(StatsPageServiceImpl.class);
     private final StatsPageService statsPageService;
     private final DailyStatsSummedRepository dailyStatsSummedRepository;
     private final DailyUsersSummedRepository dailyUsersSummedRepository;
@@ -31,10 +27,8 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     private final WeeklyNewUsersSummedRepository weeklyNewUsersSummedRepository;
     private final DailyActiveUsersRepository dailyActiveUsersRepository;
 
-    @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw")
     @Override
     public void saveDailyStatsSummedSnapshot() {
-        logger.info("Starting daily summed stats snapshot...");
         LocalDate day = LocalDate.now();
         DayOfWeek dayOfWeek = day.getDayOfWeek();
         StatsWithUName stats = statsPageService.getDifferenceStatsOfAllUsersCombined(ALL_TIME);
@@ -115,12 +109,9 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
             }
         }
         dailyStatsSummedRepository.saveAll(dailyStats);
-        logger.info("Daily summed stats snapshot completed.");
     }
-    @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw")
     @Override
     public void saveDailySummedUsersSnapshot() {
-        logger.info("Starting daily summed users snapshot...");
         LocalDate today = LocalDate.now();
         DayOfWeek dayOfWeek = today.getDayOfWeek();
         UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
@@ -138,11 +129,9 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
                     .googleOrEmailUsers(differenceUsersSummed.getGoogleOrEmailUsers())
                     .build());
         }
-        logger.info("Daily summed users snapshot completed.");
     }
 
     @Override
-    @Scheduled(cron = "0 55 5 * * SUN", zone = "Europe/Warsaw")
     public void saveWeeklyNewUsersSummed() {
         UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
         WeeklyNewUsersSummed weeklyNewUsersSummed = new WeeklyNewUsersSummed();
@@ -152,7 +141,6 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     }
 
     @Override
-    @Scheduled(cron = "0 55 5 * * SUN", zone = "Europe/Warsaw")
     public void saveWeeklyActiveUsers() {
         List<ActiveUsersStats> activeUsersStatsThisWeek = activeUsersPageService.getActiveUsersStatsThisWeek();
         Integer size = activeUsersStatsThisWeek.size();
@@ -165,7 +153,6 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     }
 
     @Override
-    @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw") //start scheduling at sunday
     public void saveDailyActiveUsers() {
         LocalDate today = LocalDate.now();
         DayOfWeek dayOfWeek = today.getDayOfWeek();

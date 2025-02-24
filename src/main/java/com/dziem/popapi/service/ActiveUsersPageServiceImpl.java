@@ -7,7 +7,6 @@ import com.dziem.popapi.model.webpage.TimeConverter;
 import com.dziem.popapi.model.webpage.WeeklyActiveUsersStats;
 import com.dziem.popapi.repository.WeeklyActiveUsersStatsRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -64,7 +63,6 @@ public class ActiveUsersPageServiceImpl implements ActiveUsersPageService {
 
 
 
-    @Scheduled(cron = "0 55 5 * * SUN", zone = "Europe/Warsaw")
     @Override
     public void saveWeeklyActiveUsersStatsSnapshot() {
         List<WeeklyActiveUsersStats> weeklyActiveUsersStats = getActiveUsersStatsThisWeek().stream().map(activeUserStatsMapper::activeUsersStatsToWeeklyActiveUsersStats).toList();
