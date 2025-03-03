@@ -461,3 +461,20 @@ CREATE TABLE f1_teams_gp(
 -- UPDATE F1_TEAMS_GP SET IMAGE_SOURCE_SHORT = 'Wikipedia', IMAGE_SOURCE = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/HRT_F1_TEAM_2012.svg/1200px-HRT_F1_TEAM_2012.svg.png' where image_url = '/images/f1_teams/HRT.png';
 -- UPDATE F1_TEAMS_GP SET IMAGE_SOURCE_SHORT = 'am-online.com', IMAGE_SOURCE = 'https://www.am-online.com/news/2014/1/21/caterham-reveals-new-branding/34256/' where image_url = '/images/f1_teams/Caterham.png';
 -- UPDATE F1_TEAMS_GP SET IMAGE_SOURCE_SHORT = 'f1.fandom.com', IMAGE_SOURCE = 'https://f1.fandom.com/wiki/Zakspeed' where image_url = '/images/f1_teams/Zakspeed.png';
+
+
+-- fixes the incrementation guy problem
+-- UPDATE public.daily_stats_summed AS target
+-- SET
+--     total_game_played = source.total_game_played,
+--     avg_score = source.avg_score,
+--     time_played = source.time_played,
+--     total_scored_points = source.total_scored_points,
+--     number_of_won_games = source.number_of_won_games
+-- FROM public.daily_stats_summed AS source
+-- WHERE source.day = '2025-02-08'
+--   AND target.day = '2025-02-16'
+--   AND source.mode = target.mode;
+
+-- alter table weekly_stats  alter column user_id type varchar(51);
+
