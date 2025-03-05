@@ -93,9 +93,6 @@ public class CountryServiceImpl implements CountryService{
                                     !yearAndPopulation.getCountry().getCountryName().endsWith("1900") &&
                                     !yearAndPopulation.getCountry().getCountryName().endsWith("1939"))
                                     && yearAndPopulation.getYearOfMeasurement().equals(String.valueOf(yearNum))).toList();
-//                    for(YearAndPopulation yearAndPopulation : yearAndPopulationList) {
-//                        System.out.println(yearAndPopulation);
-//                    }
                 } else {
                     return new ArrayList<>();
                 }

@@ -1,8 +1,6 @@
 package com.dziem.popapi.model.webpage;
 
-import lombok.Data;
 
-@Data
 public class TimeConverter {
     public static String convertSecondsToTime(Long totalSeconds) {
         long seconds = totalSeconds % 60;

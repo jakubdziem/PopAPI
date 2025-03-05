@@ -1,9 +1,6 @@
 package com.dziem.popapi.controller;
 
 import com.dziem.popapi.model.Mode;
-import com.dziem.popapi.model.webpage.DailyActiveUsers;
-import com.dziem.popapi.model.webpage.DailyStatsSummed;
-import com.dziem.popapi.model.webpage.DailyUsersSummedBoth;
 import com.dziem.popapi.model.webpage.StatsWithUName;
 import com.dziem.popapi.service.StatsPageChartService;
 import com.dziem.popapi.service.StatsPageService;
