@@ -68,34 +68,12 @@ public class UserController {
             }
         }
     }
-    @Deprecated
-    @PutMapping("/api/v1/{userId}/{stats}")
-    public ResponseEntity<Void> updateStatistics(@PathVariable String userId, @PathVariable String stats) {
-        if(!statsService.updateStatistics(userId, stats)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            modeStatsService.updateStatistics(userId, stats);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-    }
     @PutMapping(value = "/api/v1/statsjson/{userId}", consumes = "application/json")
     public ResponseEntity<Void> updateStatisticsMultipleInput(@PathVariable String userId, @RequestBody List<GameStatsDTO> gameStatsDTOS) {
         if(!statsService.updateStatisticsMultipleInput(userId, gameStatsDTOS)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             modeStatsService.updateStatisticsMultipleInput(userId, gameStatsDTOS);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-    }
-    @Deprecated
-    @PutMapping("/api/v1/{userId}/{mode}/{newScore}")
-    public ResponseEntity<String> updateBestScore(@PathVariable String userId, @PathVariable String mode, @PathVariable String newScore) {
-        if(!scoreService.checkIsMode(mode)) {
-            return new ResponseEntity<>("Mode not found, list of modes:" + Arrays.toString(Mode.values()),HttpStatus.NOT_FOUND);
-        }
-        if(!scoreService.updateBestScore(userId, mode, newScore)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
@@ -138,6 +116,28 @@ public class UserController {
                 result.add(wonGameDTO);
             }
             return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
+        }
+    }
+    @Deprecated
+    @PutMapping("/api/v1/{userId}/{mode}/{newScore}")
+    public ResponseEntity<String> updateBestScore(@PathVariable String userId, @PathVariable String mode, @PathVariable String newScore) {
+        if(!scoreService.checkIsMode(mode)) {
+            return new ResponseEntity<>("Mode not found, list of modes:" + Arrays.toString(Mode.values()),HttpStatus.NOT_FOUND);
+        }
+        if(!scoreService.updateBestScore(userId, mode, newScore)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+    @Deprecated
+    @PutMapping("/api/v1/{userId}/{stats}")
+    public ResponseEntity<Void> updateStatistics(@PathVariable String userId, @PathVariable String stats) {
+        if(!statsService.updateStatistics(userId, stats)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            modeStatsService.updateStatistics(userId, stats);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 }
