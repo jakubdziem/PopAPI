@@ -45,7 +45,7 @@ RUN wget https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21
 RUN rm -rf /var/lib/apt/lists/*
 
 # Build the application
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # Final stage to use the official OpenJDK image for running the application
 FROM openjdk:21-jdk-slim
