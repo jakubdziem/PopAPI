@@ -478,3 +478,8 @@ CREATE TABLE f1_teams_gp(
 
 -- alter table weekly_stats  alter column user_id type varchar(51);
 
+update daily_active_users set active_users = 18 where day = '2025-02-23';
+update daily_active_users set active_users = 24 where day = '2025-03-02';
+
+update daily_users_summed set guest_users = 4, google_or_email_users = 4 where day = '2025-02-23';
+update daily_users_summed set guest_users = 13, google_or_email_users = 10 where day = '2025-03-02';
