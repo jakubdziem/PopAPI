@@ -59,7 +59,7 @@ public class StatsPageController {
                 m -> m,
                 m -> {
                     StatsWithUName difference = statsPageService.getDifferenceGameStatsOffAllUsersCombined(week).get(m);
-                    return difference != null && difference.getTotalGamePlayed() > 0;
+                    return difference != null && difference.getTotalGamePlayed() != null && difference.getTotalGamePlayed() > 0;
                 }
         ));
         model.addAttribute("modesWithPositiveDifference", modesWithPositiveDifference);
@@ -82,6 +82,7 @@ public class StatsPageController {
                 model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersFromWeek(weekDate));
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getStatsOfAllUsersCombinedFromWeek(weekDate));
                 model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceStatsOfAllUsersCombined(week));
+                StatsWithUName differenceStatsOfAllUsersCombined = statsPageService.getDifferenceStatsOfAllUsersCombined(week);
             } else {
                 model.addAttribute("overallStats", statsPageService.getAllGameStatsWithUNameOfAllUsersFromWeek(weekDate));
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getGameStatsOffAllUsersCombinedFromWeek(weekDate));
