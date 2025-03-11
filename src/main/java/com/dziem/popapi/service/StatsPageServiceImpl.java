@@ -247,7 +247,7 @@ public class StatsPageServiceImpl implements StatsPageService {
     public void saveWeeklyStatsSnapshot() {
         LocalDate week = LocalDate.now();
         List<WeeklyStats> weeklyStats = new ArrayList<>();
-
+        System.out.println("Started");
         List<StatsWithUName> statsWithUNameOfAllUsersCurrent = getStatsWithUNameOfAllUsersCurrent();
         for(StatsWithUName stat : statsWithUNameOfAllUsersCurrent) {
             weeklyStats.add(WeeklyStats.builder()
@@ -262,6 +262,7 @@ public class StatsPageServiceImpl implements StatsPageService {
                     .name(stat.getName())
                     .build());
         }
+        System.out.println("Passed statsWithUNameOfAllUsersCurrent");
 
         Map<String, List<StatsWithUName>> allGameStatsWithUNameOfAllUsersCurrent = getAllGameStatsWithUNameOfAllUsersCurrent();
         for(String mode : allGameStatsWithUNameOfAllUsersCurrent.keySet()) {
@@ -280,7 +281,10 @@ public class StatsPageServiceImpl implements StatsPageService {
             }
         }
 
+        System.out.println("Passed allGameStatsWithUNameOfAllUsersCurrent");
+
         StatsWithUName statsOfAllUsersCombinedCurrent = getStatsOfAllUsersCombinedCurrent();
+        System.out.println("Hello");
         weeklyStats.add(WeeklyStats.builder()
                 .weekStartDate(week)
                 .userId(STATS_OFF_ALL_USERS)
@@ -292,9 +296,14 @@ public class StatsPageServiceImpl implements StatsPageService {
                 .numberOfWonGames(statsOfAllUsersCombinedCurrent.getNumberOfWonGames())
                 .name(null)
                 .build());
+        System.out.println("Size of allGameStatsWithUNameOfAllUsersCurrent: " + allGameStatsWithUNameOfAllUsersCurrent.size());
 
         Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
+        System.out.println("Size of gameStatsOffAllUsersCombinedCurrent: " + gameStatsOffAllUsersCombinedCurrent.size());
+        System.out.println("Total entries to save: " + weeklyStats.size());
+        System.out.println(getGameStatsOffAllUsersCombinedCurrent().keySet().size());
         for(String mode : gameStatsOffAllUsersCombinedCurrent.keySet()) {
+            System.out.println("Now " + mode + "!");
             StatsWithUName stat = gameStatsOffAllUsersCombinedCurrent.get(mode);
             weeklyStats.add(WeeklyStats.builder()
                     .weekStartDate(week)
@@ -308,6 +317,8 @@ public class StatsPageServiceImpl implements StatsPageService {
                     .name(null)
                     .build());
         }
+        System.out.println("Total entries to save2: " + weeklyStats.size());
+        System.out.println("Passed gameStatsOffAllUsersCombinedCurrent");
 
 
         weeklyStatsRepository.saveAll(weeklyStats);
@@ -347,34 +358,46 @@ public class StatsPageServiceImpl implements StatsPageService {
                 statsWithUNameMap.put(mode, statsDiff);
             }
             return statsWithUNameMap;
-        } else if (week.minusDays(7).isAfter(weekRange.min()) || week.minusDays(7).equals(weekRange.min())) {
-            Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
-            Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(week.minusDays(7));
-            if (gameStatsOffAllUsersCombinedFromWeek.get(Mode.HISTORY.toString()) == null || !gameStatsOffAllUsersCombinedCurrent.keySet().containsAll(gameStatsOffAllUsersCombinedFromWeek.keySet())) {
+        } else {
+            LocalDate prevWeek = week.minusDays(7);
+            List<LocalDate> weeks = getWeeks();
+            if ((prevWeek.isAfter(weekRange.min()) || prevWeek.equals(weekRange.min())) && weeks.contains(prevWeek)) {
+                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
+                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(prevWeek);
+                return getStringStatsWithUNameMap(gameStatsOffAllUsersCombinedFromWeek, gameStatsOffAllUsersCombinedCurrent, statsWithUNameMap);
+            } else if(week.equals(weekRange.min)) {
                 for (Mode mode : Mode.values()) {
-                    statsWithUNameMap.put(mode.toString(), new StatsWithUName());
+                    statsWithUNameMap.put(mode.toString(), StatsWithUName.builder()
+                                    .totalGamePlayed(0L)
+                                    .totalScoredPoints(0L)
+                                    .avgScore(BigDecimal.ZERO)
+                                    .timePlayed(TimeConverter.convertSecondsToTime(0L))
+                                    .numberOfWonGames(0)
+                            .build());
                 }
                 return statsWithUNameMap;
+            } else {
+                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
+                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(weeks.stream().sorted(Comparator.reverseOrder()).toList().get(weeks.indexOf(week)+1));
+                return getStringStatsWithUNameMap(gameStatsOffAllUsersCombinedFromWeek, gameStatsOffAllUsersCombinedCurrent, statsWithUNameMap);
             }
-            for (String mode : gameStatsOffAllUsersCombinedCurrent.keySet()) {
-                StatsWithUName statsWithUNameCurrent = gameStatsOffAllUsersCombinedCurrent.get(mode);
-                StatsWithUName statsWithUNameBefore = gameStatsOffAllUsersCombinedFromWeek.get(mode);
-                StatsWithUName statsDiff = getWithUNameWithUserIdAndName(statsWithUNameCurrent, statsWithUNameBefore);
-                statsWithUNameMap.put(mode, statsDiff);
-            }
-            return statsWithUNameMap;
-        } else {
+        }
+    }
+
+    private static Map<String, StatsWithUName> getStringStatsWithUNameMap(Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek, Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent, Map<String, StatsWithUName> statsWithUNameMap) {
+        if (gameStatsOffAllUsersCombinedFromWeek.get(Mode.HISTORY.toString()) == null || !gameStatsOffAllUsersCombinedCurrent.keySet().containsAll(gameStatsOffAllUsersCombinedFromWeek.keySet())) {
             for (Mode mode : Mode.values()) {
-                statsWithUNameMap.put(mode.toString(), StatsWithUName.builder()
-                                .totalGamePlayed(0L)
-                                .totalScoredPoints(0L)
-                                .avgScore(BigDecimal.ZERO)
-                                .timePlayed(TimeConverter.convertSecondsToTime(0L))
-                                .numberOfWonGames(0)
-                        .build());
+                statsWithUNameMap.put(mode.toString(), new StatsWithUName());
             }
             return statsWithUNameMap;
         }
+        for (String mode : gameStatsOffAllUsersCombinedCurrent.keySet()) {
+            StatsWithUName statsWithUNameCurrent = gameStatsOffAllUsersCombinedCurrent.get(mode);
+            StatsWithUName statsWithUNameBefore = gameStatsOffAllUsersCombinedFromWeek.get(mode);
+            StatsWithUName statsDiff = getWithUNameWithUserIdAndName(statsWithUNameCurrent, statsWithUNameBefore);
+            statsWithUNameMap.put(mode, statsDiff);
+        }
+        return statsWithUNameMap;
     }
 
     private static StatsWithUName getWithUNameWithUserIdAndName(StatsWithUName statsWithUNameCurrent, StatsWithUName statsWithUNameBefore) {
@@ -404,15 +427,29 @@ public class StatsPageServiceImpl implements StatsPageService {
                 StatsWithUName statsWithUNameCurrent = getStatsOfAllUsersCombinedCurrent();
                 StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(weekRange.max);
                 return getStatsWithUName(statsWithUNameCurrent, statsWithUNameFromWeek);
-            } else if (week.minusDays(7).isAfter(weekRange.min()) || week.minusDays(7).equals(weekRange.min())) {
-                StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
-                StatsWithUName statsWithUNameBefore = getStatsOfAllUsersCombinedFromWeek(week.minusDays(7));
-                if (statsWithUNameBefore.getTotalScoredPoints() == null) {
+            } else {
+                List<LocalDate> weeks = getWeeks();
+                LocalDate prevWeek = week.minusDays(7);
+                if ((prevWeek.isAfter(weekRange.min()) || prevWeek.equals(weekRange.min())) && weeks.contains(prevWeek)) {
+                    StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
+                    StatsWithUName statsWithUNameBefore = getStatsOfAllUsersCombinedFromWeek(prevWeek);
+                    if (statsWithUNameBefore.getTotalScoredPoints() == null) {
+                        return getBlankStatsWithUName();
+                    }
+                    return getStatsWithUName(statsWithUNameFromWeek, statsWithUNameBefore);
+                } else if(week.equals(weekRange.min)) {
                     return getBlankStatsWithUName();
+                } else {
+                    StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
+                    System.out.println(weeks);
+                    System.out.println(weeks.indexOf(week));
+                    StatsWithUName statsWithUNameBefore = getStatsOfAllUsersCombinedFromWeek(weeks.stream().sorted(Comparator.reverseOrder()).toList().get(weeks.indexOf(week)+1));
+                    if (statsWithUNameBefore.getTotalScoredPoints() == null) {
+                        return getBlankStatsWithUName();
+                    }
+                    return getStatsWithUName(statsWithUNameFromWeek, statsWithUNameBefore);
                 }
-                return getStatsWithUName(statsWithUNameFromWeek, statsWithUNameBefore);
             }
-        return getBlankStatsWithUName();
     }
 
     private static StatsWithUName getBlankStatsWithUName() {
@@ -430,6 +467,7 @@ public class StatsPageServiceImpl implements StatsPageService {
         boolean isAllTime = weekStr.equals(ALL_TIME);
         LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
         MindAndMaxWeek weekRange = getMindAndMaxWeek();
+        List<LocalDate> weeks = getWeeks();
         if (isAllTime) {
             UsersSummed usersSummedCurrent = getUsersSummedCurrent();
             UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(weekRange.max);
@@ -437,7 +475,7 @@ public class StatsPageServiceImpl implements StatsPageService {
             usersSummedDifference.setGuestUsers(usersSummedCurrent.getGuestUsers() - usersSummedFromWeek.getGuestUsers());
             usersSummedDifference.setGoogleOrEmailUsers(usersSummedCurrent.getGoogleOrEmailUsers() - usersSummedFromWeek.getGoogleOrEmailUsers());
             return usersSummedDifference;
-        } else if (week.minusDays(7).isAfter(weekRange.min()) || week.minusDays(7).equals(weekRange.min())) {
+        } else if ((week.minusDays(7).isAfter(weekRange.min()) || week.minusDays(7).equals(weekRange.min())) && weeks.contains(week.minusDays(7))) {
             UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(week);
             UsersSummed usersSummedBefore = getUsersSummedFromWeek(week.minusDays(7));
             if (usersSummedBefore == null) {
@@ -447,8 +485,19 @@ public class StatsPageServiceImpl implements StatsPageService {
             usersSummedDifference.setGuestUsers(usersSummedFromWeek.getGuestUsers() - usersSummedBefore.getGuestUsers());
             usersSummedDifference.setGoogleOrEmailUsers(usersSummedFromWeek.getGoogleOrEmailUsers() - usersSummedBefore.getGoogleOrEmailUsers());
             return usersSummedDifference;
+        } else if(week.equals(weekRange.min)){
+            return getBlankUsersSummed();
+        } else {
+            UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(week);
+            UsersSummed usersSummedBefore = getUsersSummedFromWeek(weeks.stream().sorted(Comparator.reverseOrder()).toList().get((weeks.indexOf(week)+1)));
+            if (usersSummedBefore == null) {
+                return getBlankUsersSummed();
+            }
+            UsersSummed usersSummedDifference = new UsersSummed();
+            usersSummedDifference.setGuestUsers(usersSummedFromWeek.getGuestUsers() - usersSummedBefore.getGuestUsers());
+            usersSummedDifference.setGoogleOrEmailUsers(usersSummedFromWeek.getGoogleOrEmailUsers() - usersSummedBefore.getGoogleOrEmailUsers());
+            return usersSummedDifference;
         }
-        return getBlankUsersSummed();
     }
 
     private static UsersSummed getBlankUsersSummed() {

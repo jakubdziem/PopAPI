@@ -82,7 +82,6 @@ public class StatsPageController {
                 model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersFromWeek(weekDate));
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getStatsOfAllUsersCombinedFromWeek(weekDate));
                 model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceStatsOfAllUsersCombined(week));
-                StatsWithUName differenceStatsOfAllUsersCombined = statsPageService.getDifferenceStatsOfAllUsersCombined(week);
             } else {
                 model.addAttribute("overallStats", statsPageService.getAllGameStatsWithUNameOfAllUsersFromWeek(weekDate));
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getGameStatsOffAllUsersCombinedFromWeek(weekDate));
