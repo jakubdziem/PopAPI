@@ -17,27 +17,27 @@ public class SaveStatsServiceImpl implements SaveStatsService {
     @Scheduled(cron = "0 0 6 * * SUN", zone = "Europe/Warsaw")
     public void saveWeeklySnapshots() {
         logger.info("Starting weekly stats snapshot...");
-        statsPageService.saveWeeklyStatsSnapshot(); //had logger
+        statsPageService.saveWeeklyStatsSnapshot();
         logger.info("Weekly stats snapshot completed.");
-        logger.info("Starting weekly active users stats snapshot...");
-        activeUsersPageService.saveWeeklyActiveUsersStatsSnapshot();
-        logger.info("Weekly active users stats snapshot completed.");
         logger.info("Starting weekly new users summed snapshot...");
         statsPageChartService.saveWeeklyNewUsersSummed();
         logger.info("Weekly new users summed snapshot completed.");
         logger.info("Starting weekly active users summed snapshot...");
         statsPageChartService.saveWeeklyActiveUsers();
         logger.info("Weekly active users summed completed.");
+        logger.info("Starting weekly active users stats snapshot...");
+        activeUsersPageService.saveWeeklyActiveUsersStatsSnapshot();
+        logger.info("Weekly active users stats snapshot completed.");
     }
 
     @Override
     @Scheduled(cron = "0 30 23 * * *", zone = "Europe/Warsaw")
     public void saveDailySnapshots() {
         logger.info("Starting daily summed stats snapshot...");
-        statsPageChartService.saveDailyStatsSummedSnapshot(); //had logger
+        statsPageChartService.saveDailyStatsSummedSnapshot();
         logger.info("Daily summed stats snapshot completed.");
         logger.info("Starting daily summed users snapshot...");
-        statsPageChartService.saveDailySummedUsersSnapshot(); //had logger
+        statsPageChartService.saveDailySummedUsersSnapshot();
         logger.info("Daily summed users snapshot completed.");
         logger.info("Starting daily active users snapshot...");
         statsPageChartService.saveDailyActiveUsers();

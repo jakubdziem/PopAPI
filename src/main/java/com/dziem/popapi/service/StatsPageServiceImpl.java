@@ -441,8 +441,6 @@ public class StatsPageServiceImpl implements StatsPageService {
                     return getBlankStatsWithUName();
                 } else {
                     StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
-                    System.out.println(weeks);
-                    System.out.println(weeks.indexOf(week));
                     StatsWithUName statsWithUNameBefore = getStatsOfAllUsersCombinedFromWeek(weeks.stream().sorted(Comparator.reverseOrder()).toList().get(weeks.indexOf(week)+1));
                     if (statsWithUNameBefore.getTotalScoredPoints() == null) {
                         return getBlankStatsWithUName();
