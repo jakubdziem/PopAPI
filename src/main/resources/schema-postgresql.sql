@@ -483,3 +483,38 @@ update daily_active_users set active_users = 24 where day = '2025-03-02';
 
 update daily_users_summed set guest_users = 4, google_or_email_users = 4 where day = '2025-02-23';
 update daily_users_summed set guest_users = 13, google_or_email_users = 10 where day = '2025-03-02';
+
+
+-- update daily_stats_summed set total_game_played = total_game_played - 5200,
+-- time_played = '04:00:42', total_scored_points = total_scored_points - 8886
+-- where day = '2025-03-07' and mode = 'COMBINED_STATS';;
+-- SELECT *
+-- FROM public.daily_stats_summed where day = '2025-03-07' and mode = 'COMBINED_STATS';
+
+-- update weekly_stats set total_game_played = 32, time_played = '00:48:24',
+-- total_scored_points = 0
+-- where user_id = 'GTK1BYggHwZvRVGB1o67svLIcjG3' and mode = 'COMBINED_STATS';
+-- select * from weekly_stats where user_id = 'GTK1BYggHwZvRVGB1o67svLIcjG3' and mode = 'COMBINED_STATS'
+
+-- update daily_stats_summed set total_game_played = 428,
+-- time_played = '04:04:39', total_scored_points = 1915
+-- where day = '2025-02-23' and mode = 'COMBINED_STATS';
+-- SELECT *
+-- FROM public.daily_stats_summed where day = '2025-02-23' and mode = 'COMBINED_STATS';
+
+-- update daily_stats_summed set total_game_played = 549,
+-- time_played = '03:20:45' 12045, total_scored_points = 1787
+-- where day = '2025-03-02' and mode = 'COMBINED_STATS';
+-- SELECT *
+-- FROM public.daily_stats_summed where day = '2025-03-02' and mode = 'COMBINED_STATS';
+
+-- update daily_stats_summed set total_game_played = 549,
+--                               time_played = '03:20:45', total_scored_points = 1787
+-- where day = '2025-03-02' and mode = 'COMBINED_STATS';
+-- SELECT *
+-- FROM public.daily_stats_summed where day = '2025-03-02' and mode = 'COMBINED_STATS';
+
+-- update weekly_new_users_summed set new_users = 75 where week_start_date = '2025-03-09'
+-- update weekly_active_users set active_users = 97, active_new_users = 75, active_old_users = 22 where week_start_date = '2025-03-09';
+-- update daily_active_users set active_users = 11 where day = '2025-03-08';
+-- update daily_users_summed set guest_users = 5, google_or_email_users = 6 where day = '2025-03-08';
