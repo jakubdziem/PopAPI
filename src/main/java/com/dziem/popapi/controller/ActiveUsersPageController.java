@@ -20,22 +20,22 @@ import static com.dziem.popapi.controller.StatsPageController.ALL_TIME;
 
 @Controller
 @RequiredArgsConstructor
-@SessionAttributes({"selectedWeek"})
+@SessionAttributes({"selectedWeekActive"})
 public class ActiveUsersPageController {
     private final StatsPageService statsPageService;
     private final StatsPageChartService statsPageChartService;
     private final ActiveUsersPageService activeUsersPageService;
-    @ModelAttribute("selectedWeek")
+    @ModelAttribute("selectedWeekActive")
     public String initSelectedWeek() {
         return ALL_TIME;
     }
     @GetMapping("/active")
     public String showActiveUsers(Model model, @RequestParam(required = false) String selectedWeek) {
         if (selectedWeek != null) {
-            model.addAttribute("selectedWeek", selectedWeek);
+            model.addAttribute("selectedWeekActive", selectedWeek);
         }
         model.addAttribute("weeks", activeUsersPageService.getWeeks());
-        String week = (String) model.getAttribute("selectedWeek");
+        String week = (String) model.getAttribute("selectedWeekActive");
 
         if(ALL_TIME.equals(week)) {
             List<ActiveUsersStats> activeUsersStatsThisWeek = activeUsersPageService.getActiveUsersStatsThisWeek();
