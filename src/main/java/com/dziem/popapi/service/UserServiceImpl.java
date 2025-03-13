@@ -4,6 +4,8 @@ import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.LeaderboardRepository;
 import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +24,7 @@ public class UserServiceImpl implements UserService {
     private final LeaderboardRepository leaderboardRepository;
     private final LeaderboardService leaderboardService;
     private final ModeStatsService modeStatsService;
+    private static final Logger logger = LoggerFactory.getLogger(StatsPageServiceImpl.class);
 
     @Override
     public String generateUniqueUUID() {
@@ -134,7 +137,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void addNewModesToUsers() {
+        logger.info("Starting adding new modes to users.");
         List<User> users = userRepository.findAll();
+        int i = 0;
         for(User user : users) {
             List<Score> bestScores = user.getBestScores();
             List<ModeStats> modeStats = user.getModeStats();
@@ -163,6 +168,8 @@ public class UserServiceImpl implements UserService {
                 user.setLeaderboard(leaderboard);
             }
             userRepository.save(user);
+            i++;
+            logger.info("Added " + i + " user");
         }
     }
 }
