@@ -24,13 +24,13 @@
         <li class="nav-item">
         <form action="/active" method="get">
             <label for="weekSelect">Select Week:</label>
-            <select id="weekSelect" name="selectedWeek" class="form-select" onchange="this.form.submit()">
-                <option value="ALL_TIME" th:selected="${selectedWeek == 'ALL_TIME'}">Current week</option>
+            <select id="weekSelect" name="selectedWeekActive" class="form-select" onchange="this.form.submit()">
+                <option value="ALL_TIME" th:selected="${selectedWeekActive == 'ALL_TIME'}">Current week</option>
 
                 <option th:each="week : ${weeks}"
                         th:value="${week}"
                         th:text="${week.toString()}"
-                        th:selected="${selectedWeek == week.toString()}">
+                        th:selected="${selectedWeekActive == week.toString()}">
                     Week
                 </option>
             </select>

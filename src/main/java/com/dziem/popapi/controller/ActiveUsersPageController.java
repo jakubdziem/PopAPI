@@ -30,9 +30,9 @@ public class ActiveUsersPageController {
         return ALL_TIME;
     }
     @GetMapping("/active")
-    public String showActiveUsers(Model model, @RequestParam(required = false) String selectedWeek) {
-        if (selectedWeek != null) {
-            model.addAttribute("selectedWeekActive", selectedWeek);
+    public String showActiveUsers(Model model, @RequestParam(required = false) String selectedWeekActive) {
+        if (selectedWeekActive != null) {
+            model.addAttribute("selectedWeekActive", selectedWeekActive);
         }
         model.addAttribute("weeks", activeUsersPageService.getWeeks());
         String week = (String) model.getAttribute("selectedWeekActive");
