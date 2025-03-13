@@ -518,3 +518,15 @@ update daily_users_summed set guest_users = 13, google_or_email_users = 10 where
 -- update weekly_active_users set active_users = 97, active_new_users = 75, active_old_users = 22 where week_start_date = '2025-03-09';
 -- update daily_active_users set active_users = 11 where day = '2025-03-08';
 -- update daily_users_summed set guest_users = 5, google_or_email_users = 6 where day = '2025-03-08';
+
+
+-- update stats set total_game_played = 32, time_played = 2904, total_scored_points = 0 where user_id = 'GTK1BYggHwZvRVGB1o67svLIcjG3';
+-- SELECT * from stats where user_id = 'GTK1BYggHwZvRVGB1o67svLIcjG3';
+
+-- update weekly_stats set total_game_played = total_game_played - 5200, time_played = '189:59:37'
+-- , total_scored_points = total_scored_points - 8886
+-- where user_id = 'STATS_OFF_ALL_USERS'
+-- and mode = 'COMBINED_STATS' and week_start_date = '2025-03-09';
+--
+-- select * from weekly_stats where user_id = 'STATS_OFF_ALL_USERS'
+-- and mode = 'COMBINED_STATS' and week_start_date = '2025-03-09';
