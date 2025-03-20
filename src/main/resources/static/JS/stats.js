@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
     table.querySelectorAll('th').forEach(th => {
       th.classList.remove('sort-asc', 'sort-desc');
     });
-    const numericColumns = [2, 3, 5];
+    const numericColumns = [2, 3, 5, 6];
     rows.sort((a, b) => {
       const cellA = a.cells[columnIndex].textContent.trim();
       const cellB = b.cells[columnIndex].textContent.trim();
