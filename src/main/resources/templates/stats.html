@@ -25,7 +25,6 @@
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-<!--    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
 </header>
 
 <div class="container-fluid">
@@ -196,31 +195,10 @@
                 </table>
             </div>
 
-            <div class="table-responsive" id="modeStatsTable">
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr class="sortable">
-                        <th scope="col" data-sort="0">UserId</th>
-                        <th scope="col" data-sort="1">Name</th>
-                        <th scope="col" data-sort="2">Total game played</th>
-                        <th scope="col" data-sort="3">Average score</th>
-                        <th scope="col" data-sort="4">Time played</th>
-                        <th scope="col" data-sort="5">Total scored points</th>
-                        <th scope="col" data-sort="6">Number of won games</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="stat : ${selectedMode != null && selectedMode != 'COMBINED_STATS' ? overallStats.get(selectedMode) : overallStats}">
-                            <td th:text="${stat.userId}">1</td>
-                            <td th:text="${stat.name}">User</td>
-                            <td th:text="${stat.totalGamePlayed}">0</td>
-                            <td th:text="${stat.avgScore}">0</td>
-                            <td th:text="${stat.timePlayed}">0</td>
-                            <td th:text="${stat.totalScoredPoints}">0</td>
-                            <td th:text="${stat.numberOfWonGames}">0</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div style="margin-top: 10px; margin-bottom: 10px; text-align: center;">
+                <a th:href="@{/allUsers}" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    All users
+                </a>
             </div>
         </main>
     </div>
