@@ -8,8 +8,8 @@ import difflib
 import unicodedata
 
 # Spotify API credentials (replace with your actual credentials)
-client_id = '9f34bd232b0546ebb38f71aca424ebf0'
-client_secret = 'bb17b16a89524c15a6da390f3d6c953a'
+client_id = ''
+client_secret = ''
 
 # Directory to save downloaded images
 output_directory = 'src/main/resources/static/images/spotify'

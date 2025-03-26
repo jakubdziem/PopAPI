@@ -9,8 +9,8 @@ import requests
 import unicodedata
 from PIL import Image
 
-client_id = '509e1507a3f94365b6a276955fedf4e1'
-client_secret = '1b46ea3bc4864930a108660a0ddb631f'
+client_id = ''
+client_secret = ''
 
 # Directory to save downloaded images
 output_directory = 'src/main/resources/static/images/spotify/songs'
