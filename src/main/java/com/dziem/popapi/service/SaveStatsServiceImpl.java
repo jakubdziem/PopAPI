@@ -16,9 +16,6 @@ public class SaveStatsServiceImpl implements SaveStatsService {
     @Override
     @Scheduled(cron = "0 0 6 * * SUN", zone = "Europe/Warsaw")
     public void saveWeeklySnapshots() {
-        logger.info("Starting weekly stats snapshot...");
-        statsPageService.saveWeeklyStatsSnapshot();
-        logger.info("Weekly stats snapshot completed.");
         logger.info("Starting weekly new users summed snapshot...");
         statsPageChartService.saveWeeklyNewUsersSummed();
         logger.info("Weekly new users summed snapshot completed.");
@@ -28,6 +25,9 @@ public class SaveStatsServiceImpl implements SaveStatsService {
         logger.info("Starting weekly active users stats snapshot...");
         activeUsersPageService.saveWeeklyActiveUsersStatsSnapshot();
         logger.info("Weekly active users stats snapshot completed.");
+        logger.info("Starting weekly stats snapshot...");
+        statsPageService.saveWeeklyStatsSnapshot();
+        logger.info("Weekly stats snapshot completed.");
     }
 
     @Override
