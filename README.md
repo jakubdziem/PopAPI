@@ -11,8 +11,7 @@ This repository contains the backend server for the mobile game **Higher or Lowe
 - **PostgreSQL** – Relational database for storing player and game data  
 - **Docker** – Server deployment and containerization  
 - **AWS EC2 (Free Tier)** – Hosting environment with security rules restricting database and SSH access to the developer's IP only  
-- **AWS ECR** – Used for storing and managing Docker images  
-- **Firebase** – Authentication and user management  
+- **AWS ECR** – Used for storing and managing Docker images   
 - **Python** – Data scraping for game modes, images, and game data  
 - **Selenium & Jsoup** – Web scraping and image source verification  
 - **MapStruct** – Extensively used for object mapping, with modifications  
