@@ -1,7 +1,6 @@
 # Higher or Lower - Server 🏆📊
 
-![18](https://github.com/user-attachments/assets/35c74a56-54ba-46bf-8459-c2a3c6567c97)
-
+<p align="center"><img src="https://github.com/user-attachments/assets/35c74a56-54ba-46bf-8459-c2a3c6567c97" height="400" align="center" /></p>
 
 ## Overview
 This repository contains the backend server for the mobile game **Higher or Lower**, available on [Google Play](https://play.google.com/store/apps/details?id=com.adamdawi.higherorlower). The game has been downloaded over **1,000 times**, and the server is responsible for managing player statistics, game data, image storage, and a private statistics webpage for the development team.
