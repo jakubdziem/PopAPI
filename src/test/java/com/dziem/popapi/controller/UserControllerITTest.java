@@ -60,7 +60,7 @@ public class UserControllerITTest {
     @Test
     void anonimUserMigrationToGoogleTest() throws Exception {
         String responseContent  = mockMvc.perform(get("/api/v1/anonim_user_id"))
-                .andReturn().getResponse().getContentAsString();;
+                .andReturn().getResponse().getContentAsString();
         UserDTO userDTO = objectMapper.readValue(responseContent, UserDTO.class);
         User anonimUser = userRepository.findById(userDTO.getUserId()).get();
         String googleId = "TESTING";
