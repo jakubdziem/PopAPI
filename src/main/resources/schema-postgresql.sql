@@ -519,6 +519,7 @@ update daily_users_summed set guest_users = 13, google_or_email_users = 10 where
 -- update daily_active_users set active_users = 11 where day = '2025-03-08';
 -- update daily_users_summed set guest_users = 5, google_or_email_users = 6 where day = '2025-03-08';
 
+--     TODO
 
 -- update stats set total_game_played = 32, time_played = 2904, total_scored_points = 0 where user_id = 'GTK1BYggHwZvRVGB1o67svLIcjG3';
 -- SELECT * from stats where user_id = 'GTK1BYggHwZvRVGB1o67svLIcjG3';
@@ -530,3 +531,22 @@ update daily_users_summed set guest_users = 13, google_or_email_users = 10 where
 --
 -- select * from weekly_stats where user_id = 'STATS_OFF_ALL_USERS'
 -- and mode = 'COMBINED_STATS' and week_start_date = '2025-03-09';
+
+update song set image_url = '/images/spotify/songs/Where Is The Love - Black Eyed Peas.jpg' where image_url = '/images/spotify/songs/Where Is The Love  - Black Eyed Peas.jpg';
+update song set image_url = '/images/spotify/songs/Do I Wanna Know - Arctic Monkeys.jpg' where image_url = '/images/spotify/songs/Do I Wanna Know  - Arctic Monkeys.jpg';
+update song set image_url = '/images/spotify/songs/Why''d You Only Call Me When You''re High - Arctic Monkeys.jpg'
+where image_url = '/images/spotify/songs/Why''d You Only Call Me When You''re High  - Arctic Monkeys.jpg';
+update song set image_url = '/images/spotify/songs/R U Mine - Arctic Monkeys.jpg'
+where image_url = '/images/spotify/songs/R U Mine  - Arctic Monkeys.jpg';
+update song set image_url = '/images/spotify/songs/What''s Up - 4 Non Blondes.jpg'
+where image_url = '/images/spotify/songs/What''s Up  - 4 Non Blondes.jpg';
+update song set image_url = '/images/spotify/songs/What''s My Age Again - Blink-182.jpg'
+where image_url = '/images/spotify/songs/What''s My Age Again  - Blink-182.jpg';
+update song set image_url = '/images/spotify/songs/What Do You Mean - Justin Bieber.jpg'
+where image_url = '/images/spotify/songs/What Do You Mean  - Justin Bieber.jpg';
+update cinema set image_url = '/images/tv_shows/Sarabhai_V_S_Sarabhai.png'
+where image_url = '/images/tv_shows/Sarabhai_V S_Sarabhai.png';
+update cinema set image_url = '/images/tv_shows/Steins_Gate.png'
+where image_url = '/images/tv_shows/Steins;Gate.png';
+update cinema set image_url = '/images/movies/L_A__Confidential.png'
+where image_url = '/images/movies/L.A._Confidential.png';

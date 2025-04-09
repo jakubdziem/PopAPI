@@ -1,5 +1,6 @@
 package com.dziem.popapi.controller;
 
+import com.dziem.popapi.model.User;
 import com.dziem.popapi.model.UserDTO;
 import com.dziem.popapi.repository.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,6 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -54,5 +56,27 @@ public class UserControllerITTest {
 
 
         assertThat(userRepository.findById(userDTO.getUserId())).isPresent();
+    }
+    @Test
+    void anonimUserMigrationToGoogleTest() throws Exception {
+        String responseContent  = mockMvc.perform(get("/api/v1/anonim_user_id"))
+                .andReturn().getResponse().getContentAsString();
+        UserDTO userDTO = objectMapper.readValue(responseContent, UserDTO.class);
+        User anonimUser = userRepository.findById(userDTO.getUserId()).get();
+        String googleId = "TESTING";
+        String anonimUserId = anonimUser.getUserId();
+        String nickName = mockMvc.perform(put("/api/v1/google/" + anonimUserId + "/" + googleId))
+                .andExpect(status().isAccepted())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+
+        assertThat(nickName).isNotEmpty();
+        System.out.println(nickName);
+        assertThat(uNameRepository.findById(googleId).get().getName()).isEqualTo(nickName);
+        assertThat(userRepository.findById(anonimUserId)).isNotPresent();
+        assertThat(userRepository.findById(googleId)).isPresent();
     }
 }
