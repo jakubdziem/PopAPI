@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
         user.setBestScores(bestScore);
         user.setGuest(guest);
         user.setUName(UName.builder()
-                .name(uNameService.generateRandomUserName())
+                .name(uNameService.generateRandomUsername())
                 .lastUpdate(LocalDateTime.of(2000,1,1,0,0,0,0))
                 .user(user)
                 .build());

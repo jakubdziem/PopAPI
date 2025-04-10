@@ -48,11 +48,11 @@ public class UserController {
         return atomicReference.get();
     }
     @PutMapping("api/v1/set_name/{googleId}/{name}")
-    public ResponseEntity<String> setUserNameForGoogleUser(@PathVariable String googleId, @PathVariable String name) {
-        if(!uNameService.validateUserName(name)) {
+    public ResponseEntity<String> setUsernameForGoogleUser(@PathVariable String googleId, @PathVariable String name) {
+        if(!uNameService.validateUsername(name)) {
             return new ResponseEntity<>("Contained restricted word.", HttpStatus.BAD_REQUEST); //400
         }
-        String result = uNameService.setUserName(googleId, name);
+        String result = uNameService.setUsername(googleId, name);
         switch (result) {
             case "Not yet" -> {
                 return new ResponseEntity<>(uNameService.howLongToChangingName(googleId).toString(),HttpStatus.CONFLICT);
