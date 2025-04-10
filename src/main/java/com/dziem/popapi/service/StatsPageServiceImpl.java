@@ -506,7 +506,8 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     private StatsWithUName getStatsWithUName(StatsWithUName statsWithUNameCurrent, StatsWithUName statsWithUNameBefore) {
-        if(statsWithUNameCurrent == null || statsWithUNameBefore == null) {
+        if(statsWithUNameCurrent == null || statsWithUNameBefore == null
+                || statsWithUNameBefore.getTotalGamePlayed() == null || statsWithUNameCurrent.getTotalGamePlayed() == null) {
             return getBlankStatsWithUName();
         }
         return StatsWithUName.builder()
