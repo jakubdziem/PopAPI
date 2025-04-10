@@ -1,7 +1,6 @@
 package com.dziem.popapi.controller;
 
-import com.dziem.popapi.model.User;
-import com.dziem.popapi.model.UserDTO;
+import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,10 +14,16 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -37,11 +42,35 @@ public class UserControllerITTest {
     private WebApplicationContext webApplicationContext;
     @Autowired
     ObjectMapper objectMapper;
+    @Autowired
+    private StatsRepository statsRepository;
+    @Autowired
+    private ScoreRepository scoreRepository;
+    @Autowired
+    private ModeStatsRepository modeStatsRepository;
     private MockMvc mockMvc;
     @BeforeEach
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        userRepository.deleteAll();
     }
+    private static List<GameStatsDTO> createGameStatsDTOList() {
+        List<GameStatsDTO> gameStatsDTOList = new ArrayList<>();
+        gameStatsDTOList.add(GameStatsDTO.builder()
+                .gameMode("COUNTRIES_1900")
+                .wonGame(false)
+                .scoredPoints(18)
+                .timePlayedSeconds(29)
+                .build());
+        gameStatsDTOList.add(GameStatsDTO.builder()
+                .gameMode("COUNTRIES_1939")
+                .wonGame(false)
+                .scoredPoints(10)
+                .timePlayedSeconds(18)
+                .build());
+        return gameStatsDTOList;
+    }
+
     @Test
     void shouldCreateAnonimUserId() throws Exception {
         String responseContent  = mockMvc.perform(get("/api/v1/anonim_user_id"))
@@ -99,8 +128,7 @@ public class UserControllerITTest {
     }
     @Test
     void shouldReturnConflictWhenCreatingGoogleUserThatAlreadyExists() throws Exception {
-        String googleId = "TESTING";
-        mockMvc.perform(post("/api/v1/google/" + googleId));
+        String googleId = createUser();
 
         assertThat(userRepository.findById(googleId)).isPresent();
 
@@ -222,5 +250,167 @@ public class UserControllerITTest {
         String anonimUsernameAfterRequest = uNameRepository.findById(anonimUserId).get().getName();
 
         assertThat(anonimUsername).isEqualTo(anonimUsernameAfterRequest);
+    }
+
+    @Test
+    void shouldReturnNotFoundWhenInvalidUserIdIsProvided() throws Exception {
+        List<GameStatsDTO> gameStatsDTOList = createGameStatsDTOList();
+
+        String googleId = "not_valid_id";
+
+        mockMvc.perform(put("/api/v1/statsjson/" + googleId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(gameStatsDTOList)))
+                .andExpect(status().isNotFound());
+    }
+    @Test
+    void shouldUpdateStatisticsSuccessfullyWhenValidDataIsProvided() throws Exception {
+        List<GameStatsDTO> gameStatsDTOList = createGameStatsDTOList();
+
+        String googleId = createUser();
+
+        mockMvc.perform(put("/api/v1/statsjson/" + googleId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(gameStatsDTOList)))
+                .andExpect(status().isNoContent());
+    }
+    @Test
+    void shouldUpdateStatisticsSuccessfullyForMultipleGameStats() throws Exception {
+        List<GameStatsDTO> gameStatsDTOList = createGameStatsDTOList();
+
+        String googleId = createUser();
+
+        Stats statsOfGoogleUserBeforeUpdate = statsRepository.findAll().stream().filter(stats -> stats.getUser().getUserId().equals(googleId)).toList().getFirst();
+
+        assertStatsBeforeUpdate(statsOfGoogleUserBeforeUpdate, googleId);
+
+        Map<String, List<ModeStats>> modeStatsGroupedBeforeUpdate = modeStatsRepository.findAll().stream()
+                .filter(stats -> stats.getUser().getUserId().equals(googleId))
+                .filter(stats -> stats.getMode().equals("COUNTRIES_1900") || stats.getMode().equals("COUNTRIES_1939"))
+                .collect(Collectors.groupingBy(ModeStats::getMode));
+
+        assertModeStatsBeforeUpdate(modeStatsGroupedBeforeUpdate, googleId);
+
+        Map<String, List<Score>> scoreGroupedBeforeUpdate = scoreRepository.findAll().stream().filter(score -> score.getUser().getUserId().equals(googleId))
+                .filter(score -> score.getMode().equals("COUNTRIES_1900") || score.getMode().equals("COUNTRIES_1939"))
+                .collect(Collectors.groupingBy(Score::getMode));
+
+        assertScoreBeforeUpdate(scoreGroupedBeforeUpdate, googleId);
+
+        mockMvc.perform(put("/api/v1/statsjson/" + googleId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(gameStatsDTOList)))
+                .andExpect(status().isNoContent());
+
+        Stats statsOfGoogleUserAfterUpdate = statsRepository.findAll().stream().filter(stats -> stats.getUser().getUserId().equals(googleId)).toList().getFirst();
+
+        assertStatsAfterUpdate(statsOfGoogleUserAfterUpdate, googleId, gameStatsDTOList);
+
+        Map<String, List<ModeStats>> modeStatsGroupedAfterUpdate = modeStatsRepository.findAll().stream()
+                .filter(stats -> stats.getUser().getUserId().equals(googleId))
+                .filter(stats -> stats.getMode().equals("COUNTRIES_1900") || stats.getMode().equals("COUNTRIES_1939"))
+                .collect(Collectors.groupingBy(ModeStats::getMode));
+
+        assertModeStatsAfterUpdate(modeStatsGroupedAfterUpdate, googleId);
+
+        Map<String, List<Score>> scoreGroupedAfterUpdate = scoreRepository.findAll().stream().filter(score -> score.getUser().getUserId().equals(googleId))
+                .filter(score -> score.getMode().equals("COUNTRIES_1900") || score.getMode().equals("COUNTRIES_1939"))
+                .collect(Collectors.groupingBy(Score::getMode));
+
+        assertScoreAfterUpdate(scoreGroupedAfterUpdate, googleId);
+
+    }
+
+    private static void assertScoreAfterUpdate(Map<String, List<Score>> scoreGroupedAfterUpdate, String googleId) {
+        Score scoreOfCountries1900AfterUpdate = scoreGroupedAfterUpdate.get("COUNTRIES_1900").getFirst();
+
+        assertThat(scoreOfCountries1900AfterUpdate.getUser().getUserId()).isEqualTo(googleId);
+        assertThat(scoreOfCountries1900AfterUpdate.getMode()).isEqualTo("COUNTRIES_1900");
+        assertThat(scoreOfCountries1900AfterUpdate.getBestScore()).isEqualTo(18);
+
+        Score scoreOfCountries1939AfterUpdate = scoreGroupedAfterUpdate.get("COUNTRIES_1939").getFirst();
+
+        assertThat(scoreOfCountries1939AfterUpdate.getUser().getUserId()).isEqualTo(googleId);
+        assertThat(scoreOfCountries1939AfterUpdate.getMode()).isEqualTo("COUNTRIES_1939");
+        assertThat(scoreOfCountries1939AfterUpdate.getBestScore()).isEqualTo(10);
+    }
+
+    private static void assertScoreBeforeUpdate(Map<String, List<Score>> statsGroupedBeforeUpdate, String googleId) {
+        Score scoreOfCountries1900BeforeUpdate = statsGroupedBeforeUpdate.get("COUNTRIES_1900").getFirst();
+
+        assertThat(scoreOfCountries1900BeforeUpdate.getUser().getUserId()).isEqualTo(googleId);
+        assertThat(scoreOfCountries1900BeforeUpdate.getMode()).isEqualTo("COUNTRIES_1900");
+        assertThat(scoreOfCountries1900BeforeUpdate.getBestScore()).isEqualTo(0);
+
+        Score scoreOfCountries1939BeforeUpdate = statsGroupedBeforeUpdate.get("COUNTRIES_1939").getFirst();
+
+        assertThat(scoreOfCountries1939BeforeUpdate.getUser().getUserId()).isEqualTo(googleId);
+        assertThat(scoreOfCountries1939BeforeUpdate.getMode()).isEqualTo("COUNTRIES_1939");
+        assertThat(scoreOfCountries1939BeforeUpdate.getBestScore()).isEqualTo(0);
+    }
+
+    private static void assertModeStatsAfterUpdate(Map<String, List<ModeStats>> modeStatsGroupedAfterUpdate, String googleId) {
+        ModeStats modeStatsOfCountries1900AfterUpdate = modeStatsGroupedAfterUpdate.get("COUNTRIES_1900").getFirst();
+
+        assertThat(modeStatsOfCountries1900AfterUpdate.getUser().getUserId()).isEqualTo(googleId);
+        assertThat(modeStatsOfCountries1900AfterUpdate.getTotalGamePlayed()).isEqualTo(1);
+        assertThat(modeStatsOfCountries1900AfterUpdate.getTimePlayed()).isEqualTo(29);
+        assertThat(modeStatsOfCountries1900AfterUpdate.getTotalScoredPoints()).isEqualTo(18);
+        assertThat(modeStatsOfCountries1900AfterUpdate.getNumberOfWonGames()).isEqualTo(0);
+        assertThat(modeStatsOfCountries1900AfterUpdate.getAvgScore()).isEqualTo(new BigDecimal("18.00"));
+
+        ModeStats modeStatsOfCountries1939AfterUpdate = modeStatsGroupedAfterUpdate.get("COUNTRIES_1939").getFirst();
+
+        assertThat(modeStatsOfCountries1939AfterUpdate.getUser().getUserId()).isEqualTo(googleId);
+        assertThat(modeStatsOfCountries1939AfterUpdate.getTotalGamePlayed()).isEqualTo(1);
+        assertThat(modeStatsOfCountries1939AfterUpdate.getTimePlayed()).isEqualTo(18);
+        assertThat(modeStatsOfCountries1939AfterUpdate.getTotalScoredPoints()).isEqualTo(10);
+        assertThat(modeStatsOfCountries1939AfterUpdate.getNumberOfWonGames()).isEqualTo(0);
+        assertThat(modeStatsOfCountries1939AfterUpdate.getAvgScore()).isEqualTo(new BigDecimal("10.00"));
+    }
+
+    private static void assertStatsAfterUpdate(Stats statsOfGoogleUserAfterUpdate, String googleId, List<GameStatsDTO> gameStatsDTOList) {
+        assertThat(statsOfGoogleUserAfterUpdate.getUserId()).isEqualTo(googleId);
+        assertThat(statsOfGoogleUserAfterUpdate.getTotalGamePlayed()).isEqualTo(gameStatsDTOList.size());
+        assertThat(statsOfGoogleUserAfterUpdate.getTimePlayed()).isEqualTo(29 + 18);
+        assertThat(statsOfGoogleUserAfterUpdate.getTotalScoredPoints()).isEqualTo(18 + 10);
+        assertThat(statsOfGoogleUserAfterUpdate.getNumberOfWonGames()).isEqualTo(0);
+        assertThat(statsOfGoogleUserAfterUpdate.getAvgScore()).isEqualTo((new BigDecimal(18).add(new BigDecimal(10))
+                .divide(new BigDecimal(statsOfGoogleUserAfterUpdate.getTotalGamePlayed()), 2, RoundingMode.HALF_UP)));
+    }
+
+    private static void assertModeStatsBeforeUpdate(Map<String, List<ModeStats>> modeStatsGroupedBeforeUpdate, String googleId) {
+        ModeStats modeStatsOfCountries1900BeforeUpdate = modeStatsGroupedBeforeUpdate.get("COUNTRIES_1900").getFirst();
+
+        assertThat(modeStatsOfCountries1900BeforeUpdate.getUser().getUserId()).isEqualTo(googleId);
+        assertThat(modeStatsOfCountries1900BeforeUpdate.getTotalGamePlayed()).isEqualTo(0);
+        assertThat(modeStatsOfCountries1900BeforeUpdate.getTimePlayed()).isEqualTo(0);
+        assertThat(modeStatsOfCountries1900BeforeUpdate.getTotalScoredPoints()).isEqualTo(0);
+        assertThat(modeStatsOfCountries1900BeforeUpdate.getNumberOfWonGames()).isEqualTo(0);
+        assertThat(modeStatsOfCountries1900BeforeUpdate.getAvgScore()).isEqualTo(new BigDecimal("0.00"));
+
+        ModeStats modeStatsOfCountries1939BeforeUpdate = modeStatsGroupedBeforeUpdate.get("COUNTRIES_1939").getFirst();
+
+        assertThat(modeStatsOfCountries1939BeforeUpdate.getUser().getUserId()).isEqualTo(googleId);
+        assertThat(modeStatsOfCountries1939BeforeUpdate.getTotalGamePlayed()).isEqualTo(0);
+        assertThat(modeStatsOfCountries1939BeforeUpdate.getTimePlayed()).isEqualTo(0);
+        assertThat(modeStatsOfCountries1939BeforeUpdate.getTotalScoredPoints()).isEqualTo(0);
+        assertThat(modeStatsOfCountries1939BeforeUpdate.getNumberOfWonGames()).isEqualTo(0);
+        assertThat(modeStatsOfCountries1939BeforeUpdate.getAvgScore()).isEqualTo(new BigDecimal("0.00"));
+    }
+
+    private static void assertStatsBeforeUpdate(Stats statsOfGoogleUserBeforeUpdate, String googleId) {
+        assertThat(statsOfGoogleUserBeforeUpdate.getUserId()).isEqualTo(googleId);
+        assertThat(statsOfGoogleUserBeforeUpdate.getTotalGamePlayed()).isEqualTo(0);
+        assertThat(statsOfGoogleUserBeforeUpdate.getTimePlayed()).isEqualTo(0);
+        assertThat(statsOfGoogleUserBeforeUpdate.getTotalScoredPoints()).isEqualTo(0);
+        assertThat(statsOfGoogleUserBeforeUpdate.getNumberOfWonGames()).isEqualTo(0);
+        assertThat(statsOfGoogleUserBeforeUpdate.getAvgScore()).isEqualTo(new BigDecimal("0.00"));
+    }
+    private String createUser() throws Exception {
+        String googleId = "TESTING";
+
+        mockMvc.perform(post("/api/v1/google/" + googleId));
+        return googleId;
     }
 }
