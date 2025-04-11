@@ -1,7 +1,10 @@
 package com.dziem.popapi.controller;
 
+import com.dziem.popapi.mapper.ModeStatsMapper;
+import com.dziem.popapi.mapper.StatsMapper;
 import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.*;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,13 +22,11 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -48,6 +49,10 @@ public class UserControllerITTest {
     private ScoreRepository scoreRepository;
     @Autowired
     private ModeStatsRepository modeStatsRepository;
+    @Autowired
+    private StatsMapper statsMapper;
+    @Autowired
+    private ModeStatsMapper modeStatsMapper;
     private MockMvc mockMvc;
     @BeforeEach
     public void setUp() {
@@ -320,6 +325,121 @@ public class UserControllerITTest {
         assertScoreAfterUpdate(scoreGroupedAfterUpdate, googleId);
 
     }
+    @Test
+    public void shouldReturnBestScoresWhenUserExists() throws Exception {
+        String googleId = createUser();
+
+        mockMvc.perform(get("/api/v1/bestscore/" + googleId))
+                .andExpect(status().isAccepted())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.length()", is(Mode.values().length)));
+
+    }
+    @Test
+    public void shouldReturnNotFoundWhenGettingBestScoresForNonexistentUser() throws Exception {
+        String googleId = "google_user_id_that_doesnt_exist";
+
+        mockMvc.perform(get("/api/v1/bestscore/" + googleId))
+                .andExpect(status().isNotFound());
+    }
+    @Test
+    public void shouldReturnStatsWhenUserExists() throws Exception {
+        String googleId = createUser();
+
+        String responseContent = mockMvc.perform(get("/api/v1/stats/" + googleId))
+                .andExpect(status().isAccepted())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        StatsDTO statsDTO = objectMapper.readValue(responseContent, StatsDTO.class);
+
+        statsDTO.setUserId(googleId); //setting userId because StatsDTO have JsonIgnore so it is mapped to null by statsMapper
+        assertStatsBeforeUpdate(statsMapper.statsDTOToStats(statsDTO), googleId);
+
+    }
+    @Test
+    public void shouldReturnNotFoundWhenGettingStatsForNonexistentUser() throws Exception {
+        String googleId = "google_user_id_that_doesnt_exist";
+
+        mockMvc.perform(get("/api/v1/bestscore/" + googleId))
+                .andExpect(status().isNotFound());
+    }
+    @Test
+    public void shouldReturnAllStatsWhenUserExists() throws Exception {
+        String googleId = createUser();
+        User user = userRepository.findById(googleId).get();
+
+        String responseContent = mockMvc.perform(get("/api/v1/all_stats/" + googleId))
+                .andExpect(status().isAccepted())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        List<ModeStatsDTO> modeStatsDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<ModeStatsDTO>>() {}
+        );
+
+
+        List<ModeStats> modeStatsList = modeStatsDTOS.stream().map(modeStatsDTO -> {
+            ModeStats modeStats = modeStatsMapper.modeStatsDTOtoModeStats(modeStatsDTO);
+            modeStats.setUser(user);
+            return modeStats;
+        }).toList();
+
+        assertAllModeStatsBeforeUpdate(modeStatsList, user);
+    }
+    @Test
+    public void shouldReturnNotFoundWhenGettingAllStatsForNonexistentUser() throws Exception {
+        String googleId = "google_user_id_that_doesnt_exist";
+
+        mockMvc.perform(get("/api/v1/all_stats/" + googleId))
+                .andExpect(status().isNotFound());
+
+    }
+    @Test
+    public void shouldReturnWonGamesWhenUserExists() throws Exception {
+        String googleId = createUser();
+
+        String responseContent = mockMvc.perform(get("/api/v1/won_games/" + googleId))
+                .andExpect(status().isAccepted())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        List<WonGameDTO> wonGameDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<WonGameDTO>>() {}
+        );
+
+
+        Set<Mode> modeSet = new HashSet<>(Arrays.asList(Mode.values()));
+
+        assertThat(wonGameDTOS.size()).isEqualTo(modeSet.size());
+
+        for(WonGameDTO wonGameDTO : wonGameDTOS) {
+            assertThat(wonGameDTO.isWon()).isFalse();
+            modeSet.remove(Mode.valueOf(wonGameDTO.getMode()));
+        }
+        assertThat(modeSet).isEmpty();
+    }
+    @Test
+    public void shouldReturnNotFoundWhenGettingWonGamesForNonexistentUser() throws Exception {
+        String googleId = "google_user_id_that_doesnt_exist";
+
+        mockMvc.perform(get("/api/v1/won_games/" + googleId))
+                .andExpect(status().isNotFound());
+    }
+    private String createUser() throws Exception {
+        String googleId = "TESTING";
+
+        mockMvc.perform(post("/api/v1/google/" + googleId));
+        return googleId;
+    }
 
     private static void assertScoreAfterUpdate(Map<String, List<Score>> scoreGroupedAfterUpdate, String googleId) {
         Score scoreOfCountries1900AfterUpdate = scoreGroupedAfterUpdate.get("COUNTRIES_1900").getFirst();
@@ -407,10 +527,14 @@ public class UserControllerITTest {
         assertThat(statsOfGoogleUserBeforeUpdate.getNumberOfWonGames()).isEqualTo(0);
         assertThat(statsOfGoogleUserBeforeUpdate.getAvgScore()).isEqualTo(new BigDecimal("0.00"));
     }
-    private String createUser() throws Exception {
-        String googleId = "TESTING";
-
-        mockMvc.perform(post("/api/v1/google/" + googleId));
-        return googleId;
+    private static void assertAllModeStatsBeforeUpdate(List<ModeStats> modeStatsList, User user) {
+        for(ModeStats modeStats : modeStatsList) {
+            assertThat(modeStats.getUser()).isEqualTo(user);
+            assertThat(modeStats.getTotalGamePlayed()).isEqualTo(0);
+            assertThat(modeStats.getTimePlayed()).isEqualTo(0);
+            assertThat(modeStats.getTotalScoredPoints()).isEqualTo(0);
+            assertThat(modeStats.getNumberOfWonGames()).isEqualTo(0);
+            assertThat(modeStats.getAvgScore()).isEqualTo(new BigDecimal("0.00"));
+        }
     }
 }
