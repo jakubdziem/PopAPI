@@ -73,7 +73,7 @@ public class LeaderboardServiceImpl implements LeaderboardService {
         }
     }
 
-    private List<LeaderboardDTO> getLeaderboard(String mode) {
+    public List<LeaderboardDTO> getLeaderboard(String mode) {
         boolean modeExisting = isModeExisting(mode);
         if(!modeExisting) {
             return new ArrayList<>();
