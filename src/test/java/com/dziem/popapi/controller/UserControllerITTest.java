@@ -34,15 +34,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("dev")
 public class UserControllerITTest {
     @Autowired
-    UserController userController;
+    private UserRepository userRepository;
     @Autowired
-    UserRepository userRepository;
-    @Autowired
-    UNameRepository uNameRepository;
+    private UNameRepository uNameRepository;
     @Autowired
     private WebApplicationContext webApplicationContext;
     @Autowired
-    ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
     @Autowired
     private StatsRepository statsRepository;
     @Autowired
