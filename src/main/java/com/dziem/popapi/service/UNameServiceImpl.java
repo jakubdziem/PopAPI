@@ -44,7 +44,7 @@ public class UNameServiceImpl implements UNameService {
             "ArtistScout"
     };
     @Override
-    public String generateRandomUserName() {
+    public String generateRandomUsername() {
         long count = uNameRepository.count();
         Random random = new Random();
         int min = 0;
@@ -56,14 +56,13 @@ public class UNameServiceImpl implements UNameService {
         return userName;
     }
     @Override
-    public String setUserName(String userId, String name) {
+    public String setUsername(String userId, String name) {
         AtomicReference<String> atomicReference = new AtomicReference<>();
         uNameRepository.findById(userId).ifPresentOrElse(
                 uName -> {
                     if(uName.getUser().isGuest()) {
                         atomicReference.set("Guest");
-                    }
-                    if(LocalDateTime.now().isAfter(LocalDateTime.of(uName.getLastUpdate().toLocalDate().plusMonths(1), LocalTime.of(0,0,0,0)))) {
+                    }else if(LocalDateTime.now().isAfter(LocalDateTime.of(uName.getLastUpdate().toLocalDate().plusMonths(1), LocalTime.of(0,0,0,0)))) {
                         atomicReference.set("Success");
                         uName.setName(name);
                         uName.setLastUpdate(LocalDateTime.now());
@@ -85,7 +84,7 @@ public class UNameServiceImpl implements UNameService {
     }
 
     @Override
-    public boolean validateUserName(String name) {
+    public boolean validateUsername(String name) {
         if(name.length() < 3 || name.length() > 20) {
             return false;
         }

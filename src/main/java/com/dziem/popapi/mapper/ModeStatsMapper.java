@@ -11,4 +11,5 @@ public interface ModeStatsMapper {
     @Mapping(expression = "java(modeStats.getUser().getBestScores().stream().filter(score -> score.getMode().equals(modeStats.getMode())).toList().get(0).getBestScore())", target = "bestScore")
     ModeStatsDTO modeStatsToModeStatsDTO(ModeStats modeStats);
 
+    ModeStats modeStatsDTOtoModeStats(ModeStatsDTO modeStatsDTO);
 }

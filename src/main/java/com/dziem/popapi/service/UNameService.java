@@ -6,11 +6,11 @@ import com.dziem.popapi.model.UName;
 import java.time.LocalDateTime;
 
 public interface UNameService {
-    String generateRandomUserName();
+    String generateRandomUsername();
     @Deprecated
     UName initializeUserName(User user);
-    boolean validateUserName(String name);
+    boolean validateUsername(String name);
 
-    String setUserName(String userId, String name);
+    String setUsername(String userId, String name);
     LocalDateTime howLongToChangingName(String userId);
 }

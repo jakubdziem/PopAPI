@@ -5,8 +5,6 @@ import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.LeaderboardRepository;
 import com.dziem.popapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,8 +19,8 @@ public class LeaderboardServiceImpl implements LeaderboardService {
     private final LeaderboardMapper leaderboardMapper;
     private final UserRepository userRepository;
     @Override
-    public ResponseEntity<List<LeaderboardDTO>> getLeaderboardFirst200(String mode) {
-        return new ResponseEntity<>(getLeaderboard(mode).stream().limit(200).toList(), HttpStatus.ACCEPTED);
+    public List<LeaderboardDTO> getLeaderboardFirst200(String mode) {
+        return getLeaderboard(mode).stream().limit(200).toList();
     }
 
     @Override
@@ -73,7 +71,7 @@ public class LeaderboardServiceImpl implements LeaderboardService {
         }
     }
 
-    private List<LeaderboardDTO> getLeaderboard(String mode) {
+    public List<LeaderboardDTO> getLeaderboard(String mode) {
         boolean modeExisting = isModeExisting(mode);
         if(!modeExisting) {
             return new ArrayList<>();
