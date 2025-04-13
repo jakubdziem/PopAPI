@@ -198,4 +198,109 @@ public class ModeControllerIT {
 
         assertThat(baseGameModelDTOS.size()).isEqualTo(200);
     }
+    @Test
+    void shouldReturnElementsForFormulaTopScoreMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_SCORE))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(100);
+    }
+    @Test
+    void shouldReturnElementsForFormulaTopDriversPodiumsMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_DRIVERS_PODIUMS))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(100);
+    }
+    @Test
+    void shouldReturnElementsForFormulaTopDriversFastestLapsMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_DRIVERS_FASTEST_LAPS))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(50);
+    }
+    @Test
+    void shouldReturnElementsForFormulaTopDriversGPMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_DRIVERS_GP))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(100);
+    }
+    @Test
+    void shouldReturnElementsForFormulaTopCountriesGPMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_COUNTRIES_GP))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(39);
+    }
+    @Test
+    void shouldReturnElementsForFormulaTopTeamsPointsMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_TEAMS_POINTS))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(50);
+    }
+    @Test
+    void shouldReturnElementsForFormulaTopTeamsGPMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_TEAMS_GP))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(50);
+    }
 }
