@@ -123,4 +123,79 @@ public class ModeControllerIT {
 
         assertThat(baseGameModelDTOS.size()).isEqualTo(720);
     }
+    @Test
+    void shouldReturnElementsForSpotifyTopArtistsMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.SPOTIFY_TOP_ARTISTS))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(200);
+    }
+    @Test
+    void shouldReturnElementsForSpotifyTopSongsGeneralMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.SPOTIFY_TOP_SONGS_GENERAL))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(200);
+    }
+    @Test
+    void shouldReturnElementsForSpotifyTopSongsPopMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.SPOTIFY_TOP_SONGS_POP))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(200);
+    }
+    @Test
+    void shouldReturnElementsForSpotifyTopSongsHipHopMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.SPOTIFY_TOP_SONGS_HIP_HOP))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(200);
+    }
+    @Test
+    void shouldReturnElementsForSpotifyTopSongsRockMode() throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.SPOTIFY_TOP_SONGS_ROCK))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
+                responseContent,
+                new TypeReference<List<BaseGameModelDTO>>() {}
+        );
+
+        assertThat(baseGameModelDTOS.size()).isEqualTo(200);
+    }
 }
