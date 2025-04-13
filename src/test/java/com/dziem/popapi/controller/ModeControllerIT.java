@@ -35,262 +35,79 @@ public class ModeControllerIT {
     }
     @Test
     void shouldReturnElementsForCountries1900Mode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.COUNTRIES_1900))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(89);
+        assertThatRequestedModeHasSize(Mode.COUNTRIES_1900, 89);
     }
     @Test
     void shouldReturnElementsForCountries1939Mode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.COUNTRIES_1939))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(70);
+        assertThatRequestedModeHasSize(Mode.COUNTRIES_1939, 70);
     }
     @Test
     void shouldReturnElementsForCountries1989Mode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.COUNTRIES_1989))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(171);
+        assertThatRequestedModeHasSize(Mode.COUNTRIES_1989, 171);
     }
     @Test
     void shouldReturnElementsForCountriesNormalMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.COUNTRIES_NORMAL))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(195);
+        assertThatRequestedModeHasSize(Mode.COUNTRIES_NORMAL, 195);
     }
     @Test
     void shouldReturnElementsForCountriesFutureMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.COUNTRIES_FUTURE))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(195);
+        assertThatRequestedModeHasSize(Mode.COUNTRIES_FUTURE, 195);
     }
     @Test
     void shouldReturnElementsForCountriesChaosMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.COUNTRIES_CHAOS))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(720);
+        assertThatRequestedModeHasSize(Mode.COUNTRIES_CHAOS, 720);
     }
     @Test
     void shouldReturnElementsForSpotifyTopArtistsMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.SPOTIFY_TOP_ARTISTS))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(200);
+        assertThatRequestedModeHasSize(Mode.SPOTIFY_TOP_ARTISTS, 200);
     }
     @Test
     void shouldReturnElementsForSpotifyTopSongsGeneralMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.SPOTIFY_TOP_SONGS_GENERAL))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(200);
+        assertThatRequestedModeHasSize(Mode.SPOTIFY_TOP_SONGS_GENERAL, 200);
     }
     @Test
     void shouldReturnElementsForSpotifyTopSongsPopMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.SPOTIFY_TOP_SONGS_POP))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(200);
+        assertThatRequestedModeHasSize(Mode.SPOTIFY_TOP_SONGS_POP, 200);
     }
     @Test
     void shouldReturnElementsForSpotifyTopSongsHipHopMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.SPOTIFY_TOP_SONGS_HIP_HOP))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(200);
+        assertThatRequestedModeHasSize(Mode.SPOTIFY_TOP_SONGS_HIP_HOP, 200);
     }
     @Test
     void shouldReturnElementsForSpotifyTopSongsRockMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.SPOTIFY_TOP_SONGS_ROCK))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(200);
+        assertThatRequestedModeHasSize(Mode.SPOTIFY_TOP_SONGS_ROCK, 200);
     }
     @Test
     void shouldReturnElementsForFormulaTopScoreMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_SCORE))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(100);
+        assertThatRequestedModeHasSize(Mode.FORMULA_TOP_SCORE, 100);
     }
     @Test
     void shouldReturnElementsForFormulaTopDriversPodiumsMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_DRIVERS_PODIUMS))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(100);
+        assertThatRequestedModeHasSize(Mode.FORMULA_TOP_DRIVERS_PODIUMS, 100);
     }
     @Test
     void shouldReturnElementsForFormulaTopDriversFastestLapsMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_DRIVERS_FASTEST_LAPS))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(50);
+        assertThatRequestedModeHasSize(Mode.FORMULA_TOP_DRIVERS_FASTEST_LAPS, 50);
     }
     @Test
     void shouldReturnElementsForFormulaTopDriversGPMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_DRIVERS_GP))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(100);
+        assertThatRequestedModeHasSize(Mode.FORMULA_TOP_DRIVERS_GP, 100);
     }
     @Test
     void shouldReturnElementsForFormulaTopCountriesGPMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_COUNTRIES_GP))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(39);
+        assertThatRequestedModeHasSize(Mode.FORMULA_TOP_COUNTRIES_GP, 39);
     }
     @Test
     void shouldReturnElementsForFormulaTopTeamsPointsMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_TEAMS_POINTS))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-        List<BaseGameModelDTO> baseGameModelDTOS = objectMapper.readValue(
-                responseContent,
-                new TypeReference<List<BaseGameModelDTO>>() {}
-        );
-
-        assertThat(baseGameModelDTOS.size()).isEqualTo(50);
+        assertThatRequestedModeHasSize(Mode.FORMULA_TOP_TEAMS_POINTS, 50);
     }
     @Test
     void shouldReturnElementsForFormulaTopTeamsGPMode() throws Exception {
-        String responseContent = mockMvc.perform(get("/api/v1/mode/" + Mode.FORMULA_TOP_TEAMS_GP))
+        assertThatRequestedModeHasSize(Mode.FORMULA_TOP_TEAMS_GP, 50);
+    }
+
+    private void assertThatRequestedModeHasSize(Mode mode, int size) throws Exception {
+        String responseContent = mockMvc.perform(get("/api/v1/mode/" + mode))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn()
@@ -301,6 +118,47 @@ public class ModeControllerIT {
                 new TypeReference<List<BaseGameModelDTO>>() {}
         );
 
-        assertThat(baseGameModelDTOS.size()).isEqualTo(50);
+        assertThat(baseGameModelDTOS.size()).isEqualTo(size);
+    }
+
+    @Test
+    void shouldReturnElementsForApartmentsWorldMode() throws Exception {
+        assertThatRequestedModeHasSize(Mode.APARTMENTS_WORLD, 96);
+    }
+    @Test
+    void shouldReturnElementsForApartmentsPolandMode() throws Exception {
+        assertThatRequestedModeHasSize(Mode.APARTMENTS_POLAND, 65);
+    }
+    @Test
+    void shouldReturnElementsForHistoryMode() throws Exception {
+        assertThatRequestedModeHasSize(Mode.HISTORY, 124);
+    }
+    @Test
+    void shouldReturnElementsForSocialMediaTwitterMode() throws Exception {
+        assertThatRequestedModeHasSize(Mode.SOCIAL_MEDIA_TWITTER, 50);
+    }
+    @Test
+    void shouldReturnElementsForSocialMediaInstagramMode() throws Exception {
+        assertThatRequestedModeHasSize(Mode.SOCIAL_MEDIA_INSTAGRAM, 50);
+    }
+    @Test
+    void shouldReturnElementsForSocialMediaTikTokMode() throws Exception {
+        assertThatRequestedModeHasSize(Mode.SOCIAL_MEDIA_TIK_TOK, 50);
+    }
+    @Test
+    void shouldReturnElementsForSocialMediaYouTubeMode() throws Exception {
+        assertThatRequestedModeHasSize(Mode.SOCIAL_MEDIA_YOUTUBE, 50);
+    }
+    @Test
+    void shouldReturnElementsForMoviesMode() throws Exception {
+        assertThatRequestedModeHasSize(Mode.MOVIES, 150);
+    }
+    @Test
+    void shouldReturnElementsForTVShowsMode() throws Exception {
+        assertThatRequestedModeHasSize(Mode.TV_SHOWS, 150);
+    }
+    @Test
+    void shouldReturnElementsForCelebsMode() throws Exception {
+        assertThatRequestedModeHasSize(Mode.CELEBS, 100);
     }
 }
