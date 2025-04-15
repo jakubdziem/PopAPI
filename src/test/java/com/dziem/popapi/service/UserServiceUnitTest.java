@@ -44,8 +44,6 @@ public class UserServiceUnitTest {
     @InjectMocks
     private UserServiceImpl userService;
 
-    private final String EXISTING_USER_ID = UUID.randomUUID().toString();
-
     @BeforeEach
     void setUp() {
     }
@@ -60,8 +58,17 @@ public class UserServiceUnitTest {
 
     @Test
     void shouldCreateAnonimUserSuccessfully() {
-        String generatedUserId = userService.generateUniqueUUID();
+        boolean guest = true;
+        assertThatUserInitializationIsCorrect(guest);
+    }
+    @Test
+    void shouldCreateGoogleUserSuccessfully() {
+        boolean guest = false;
+        assertThatUserInitializationIsCorrect(guest);
+    }
 
+    private void assertThatUserInitializationIsCorrect(boolean guest) {
+        String generatedUserId = userService.generateUniqueUUID();
         when(statsService.initializeStats(any(User.class))).thenReturn(new Stats());
         Set<Mode> modeSet = new HashSet<>(Arrays.asList(Mode.values()));
         for(Mode mode : modeSet) {
@@ -86,9 +93,9 @@ public class UserServiceUnitTest {
             return user;
         });
 
-        User user = userService.createUser(generatedUserId, true);
+        User user = userService.createUser(generatedUserId, guest);
         assertThat(user).isNotNull();
-        assertThat(user.isGuest()).isTrue();
+        assertThat(user.isGuest()).isEqualTo(guest);
         assertThat(user.getStatistics()).isNotNull();
 
         assertThat(user.getBestScores()).isNotNull();
@@ -111,6 +118,6 @@ public class UserServiceUnitTest {
         assertThat(user.getUName().getName()).isEqualTo(setUsername);
         assertThat(user.getUName().getUser()).isEqualTo(user);
         assertThat(user.getUName().getLastUpdate()).isEqualTo(LocalDateTime.of(2000,1,1,0,0,0,0));
-
     }
+
 }
