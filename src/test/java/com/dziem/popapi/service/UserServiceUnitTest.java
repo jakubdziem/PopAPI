@@ -66,6 +66,17 @@ public class UserServiceUnitTest {
         boolean guest = false;
         assertThatUserInitializationIsCorrect(guest);
     }
+    @Test
+    void shouldReturnTrueIfUserExists() {
+        when(userRepository.existsById(anyString())).thenReturn(true);
+        assertThat(userService.userExists(UUID.randomUUID().toString())).isTrue();
+    }
+    @Test
+    void shouldReturnFalseIfUserDoesNotExist() {
+        String userId = UUID.randomUUID().toString();
+        when(userRepository.existsById(eq(userId))).thenReturn(false);
+        assertThat(userService.userExists(userId)).isFalse();
+    }
 
     private void assertThatUserInitializationIsCorrect(boolean guest) {
         String generatedUserId = userService.generateUniqueUUID();
