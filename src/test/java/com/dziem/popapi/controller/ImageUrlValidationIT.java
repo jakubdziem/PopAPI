@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-public class ImageUrlValidationTest {
+public class ImageUrlValidationIT {
     @Autowired
     private WebApplicationContext webApplicationContext;
     @Autowired
@@ -36,11 +36,102 @@ public class ImageUrlValidationTest {
     private SocialMediaRepository socialMediaRepository;
     @Autowired
     private CinemaRepository cinemaRepository;
+    @Autowired
+    private DriverRepository driverRepository;
+    @Autowired
+    private DriverPodiumsRepository driverPodiumsRepository;
+    @Autowired
+    private DriverGPRepository driverGPRepository;
+    @Autowired
+    private DriverFastestLapsRepository driverFastestLapsRepository;
+    @Autowired
+    private CountryGPRepository countryGPRepository;
+    @Autowired
+    private TeamsPointsRepository teamsPointsRepository;
+    @Autowired
+    private TeamsGPRepository teamsGPRepository;
 
     private MockMvc mockMvc;
     @BeforeEach
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
+    @Test
+    void allDriversHaveValidImageUrlTest() throws Exception {
+        List<Driver> drivers = driverRepository.findAll();
+        for (Driver driver : drivers) {
+            String imageUrl = driver.getImageUrl();
+            System.out.println("Testing image URL: " + imageUrl);
+            mockMvc.perform(get(imageUrl))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType("image/png"));
+        }
+    }
+    @Test
+    void allDriversPodiumsHaveValidImageUrlTest() throws Exception {
+        List<DriverPodiums> drivers = driverPodiumsRepository.findAll();
+        for (DriverPodiums driver : drivers) {
+            String imageUrl = driver.getImageUrl();
+            System.out.println("Testing image URL: " + imageUrl);
+            mockMvc.perform(get(imageUrl))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType("image/png"));
+        }
+    }
+    @Test
+    void allDriversGPHaveValidImageUrlTest() throws Exception {
+        List<DriverGP> drivers = driverGPRepository.findAll();
+        for (DriverGP driver : drivers) {
+            String imageUrl = driver.getImageUrl();
+            System.out.println("Testing image URL: " + imageUrl);
+            mockMvc.perform(get(imageUrl))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType("image/png"));
+        }
+    }
+    @Test
+    void allDriversFastestLapsHaveValidImageUrlTest() throws Exception {
+        List<DriverFastestLaps> drivers = driverFastestLapsRepository.findAll();
+        for (DriverFastestLaps driver : drivers) {
+            String imageUrl = driver.getImageUrl();
+            System.out.println("Testing image URL: " + imageUrl);
+            mockMvc.perform(get(imageUrl))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType("image/png"));
+        }
+    }
+    @Test
+    void allCountriesGPHaveValidImageUrlTest() throws Exception {
+        List<CountryGP> countries = countryGPRepository.findAll();
+        for (CountryGP country : countries) {
+            String imageUrl = country.getImageUrl();
+            System.out.println("Testing image URL: " + imageUrl);
+            mockMvc.perform(get(imageUrl))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType("image/png"));
+        }
+    }
+    @Test
+    void allTeamsPointsHaveValidImageUrlTest() throws Exception {
+        List<TeamsPoints> teams = teamsPointsRepository.findAll();
+        for (TeamsPoints team : teams) {
+            String imageUrl = team.getImageUrl();
+            System.out.println("Testing image URL: " + imageUrl);
+            mockMvc.perform(get(imageUrl))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType("image/png"));
+        }
+    }
+    @Test
+    void allTeamsGPHaveValidImageUrlTest() throws Exception {
+        List<TeamsGP> teams = teamsGPRepository.findAll();
+        for (TeamsGP team : teams) {
+            String imageUrl = team.getImageUrl();
+            System.out.println("Testing image URL: " + imageUrl);
+            mockMvc.perform(get(imageUrl))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType("image/png"));
+        }
     }
     @Test
     void allCountriesHaveValidFlagUrlUrlTest() throws Exception {
