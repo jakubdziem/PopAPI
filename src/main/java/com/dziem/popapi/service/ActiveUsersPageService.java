@@ -1,15 +1,15 @@
 package com.dziem.popapi.service;
 
-import com.dziem.popapi.model.webpage.ActiveUsersStats;
+import com.dziem.popapi.dto.webpage.ActiveUsersStatsDTO;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public interface ActiveUsersPageService {
-    List<ActiveUsersStats> getActiveUsersStatsThisWeek();
+    List<ActiveUsersStatsDTO> getActiveUsersStatsThisWeek();
     void saveWeeklyActiveUsersStatsSnapshot();
 
-    List<ActiveUsersStats> getActiveUsersStatsFromWeek(String week);
+    List<ActiveUsersStatsDTO> getActiveUsersStatsFromWeek(String week);
 
     List<LocalDate> getWeeks();
 }

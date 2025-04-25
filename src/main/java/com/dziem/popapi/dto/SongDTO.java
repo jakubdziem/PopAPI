@@ -1,4 +1,4 @@
-package com.dziem.popapi.model;
+package com.dziem.popapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -6,12 +6,15 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class ArtistDTO {
+public class SongDTO {
     @JsonIgnore
     Long id;
+    String songName;
     String artistName;
-    String leadStreams;
+    String totalStreams;
     String imageUrl;
+    @JsonIgnore
+    String genre;
     @JsonIgnore
     LocalDate lastUpdate;
     String imageSource;

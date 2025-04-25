@@ -2,7 +2,7 @@ package com.dziem.popapi.service;
 
 import com.dziem.popapi.mapper.CountryMapper;
 import com.dziem.popapi.model.Country;
-import com.dziem.popapi.model.CountryDTO;
+import com.dziem.popapi.dto.CountryDTO;
 import com.dziem.popapi.model.YearAndPopulation;
 import com.dziem.popapi.repository.CountryRepository;
 import com.dziem.popapi.repository.YearAndPopulationRepository;

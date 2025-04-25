@@ -1,5 +1,7 @@
 package com.dziem.popapi.controller;
 
+import com.dziem.popapi.model.webpage.DailyActiveUsers;
+import com.dziem.popapi.dto.webpage.DailyUsersSummedBothDTO;
 import com.dziem.popapi.model.webpage.*;
 import com.dziem.popapi.service.StatsPageChartService;
 import lombok.AllArgsConstructor;
@@ -21,7 +23,7 @@ public class StatsPageChartController {
     }
     @GetMapping("/stats_for_chart_new_users")
     @ResponseBody
-    public List<DailyUsersSummedBoth> getUsersSummedForChart() {
+    public List<DailyUsersSummedBothDTO> getUsersSummedForChart() {
         return statsPageChartService.getDailyUsersSummedForChart();
     }
     @GetMapping("/stats_for_chart_new_users_weekly")

@@ -1,7 +1,7 @@
 package com.dziem.popapi.service;
 
 import com.dziem.popapi.model.Score;
-import com.dziem.popapi.model.ScoreDTO;
+import com.dziem.popapi.dto.ScoreDTO;
 import com.dziem.popapi.model.User;
 
 import java.util.List;

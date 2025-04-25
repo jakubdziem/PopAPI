@@ -1,5 +1,6 @@
 package com.dziem.popapi.controller;
 
+import com.dziem.popapi.dto.BaseGameModelDTO;
 import com.dziem.popapi.model.*;
 import com.dziem.popapi.service.ModeStatsService;
 import lombok.RequiredArgsConstructor;

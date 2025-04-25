@@ -1,5 +1,7 @@
 package com.dziem.popapi.service;
 
+import com.dziem.popapi.dto.LeaderboardDTO;
+import com.dziem.popapi.dto.RankScoreDTO;
 import com.dziem.popapi.mapper.LeaderboardMapper;
 import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.LeaderboardRepository;

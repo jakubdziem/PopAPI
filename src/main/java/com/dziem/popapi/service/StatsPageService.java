@@ -1,7 +1,7 @@
 package com.dziem.popapi.service;
 
-import com.dziem.popapi.model.webpage.StatsWithUName;
-import com.dziem.popapi.model.webpage.UsersSummed;
+import com.dziem.popapi.dto.webpage.StatsWithUNameDTO;
+import com.dziem.popapi.dto.webpage.UsersSummedDTO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,22 +10,22 @@ import java.util.Map;
 public interface StatsPageService {
     String COMBINED_STATS = "COMBINED_STATS";
     String STATS_OFF_ALL_USERS = "STATS_OFF_ALL_USERS";
-    List<StatsWithUName> getStatsWithUNameOfAllUsersCurrent();
-    Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsersCurrent();
-    StatsWithUName getStatsOfAllUsersCombinedCurrent();
-    Map<String, StatsWithUName> getGameStatsOffAllUsersCombinedCurrent();
+    List<StatsWithUNameDTO> getStatsWithUNameOfAllUsersCurrent();
+    Map<String, List<StatsWithUNameDTO>> getAllGameStatsWithUNameOfAllUsersCurrent();
+    StatsWithUNameDTO getStatsOfAllUsersCombinedCurrent();
+    Map<String, StatsWithUNameDTO> getGameStatsOffAllUsersCombinedCurrent();
 
-    UsersSummed getUsersSummedCurrent();
+    UsersSummedDTO getUsersSummedCurrent();
 
-    List<StatsWithUName> getStatsWithUNameOfAllUsersFromWeek(LocalDate week);
-    Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsersFromWeek(LocalDate week);
-    StatsWithUName getStatsOfAllUsersCombinedFromWeek(LocalDate week);
-    Map<String, StatsWithUName> getGameStatsOffAllUsersCombinedFromWeek(LocalDate week);
+    List<StatsWithUNameDTO> getStatsWithUNameOfAllUsersFromWeek(LocalDate week);
+    Map<String, List<StatsWithUNameDTO>> getAllGameStatsWithUNameOfAllUsersFromWeek(LocalDate week);
+    StatsWithUNameDTO getStatsOfAllUsersCombinedFromWeek(LocalDate week);
+    Map<String, StatsWithUNameDTO> getGameStatsOffAllUsersCombinedFromWeek(LocalDate week);
 
-    UsersSummed getUsersSummedFromWeek(LocalDate week);
+    UsersSummedDTO getUsersSummedFromWeek(LocalDate week);
     void saveWeeklyStatsSnapshot();
     List<LocalDate> getWeeks();
-    UsersSummed getDifferenceUsersSummed(String weekStr);
-    Map<String, StatsWithUName> getDifferenceGameStatsOffAllUsersCombined(String weekStr);
-    StatsWithUName getDifferenceStatsOfAllUsersCombined(String weekStr);
+    UsersSummedDTO getDifferenceUsersSummed(String weekStr);
+    Map<String, StatsWithUNameDTO> getDifferenceGameStatsOffAllUsersCombined(String weekStr);
+    StatsWithUNameDTO getDifferenceStatsOfAllUsersCombined(String weekStr);
 }

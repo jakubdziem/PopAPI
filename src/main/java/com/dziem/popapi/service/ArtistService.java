@@ -1,6 +1,6 @@
 package com.dziem.popapi.service;
 
-import com.dziem.popapi.model.ArtistDTO;
+import com.dziem.popapi.dto.ArtistDTO;
 
 import java.util.List;
 

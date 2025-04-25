@@ -1,7 +1,7 @@
 package com.dziem.popapi.controller;
 
 import com.dziem.popapi.model.Mode;
-import com.dziem.popapi.model.webpage.StatsWithUName;
+import com.dziem.popapi.dto.webpage.StatsWithUNameDTO;
 import com.dziem.popapi.service.StatsPageChartService;
 import com.dziem.popapi.service.StatsPageService;
 import lombok.RequiredArgsConstructor;
@@ -58,7 +58,7 @@ public class StatsPageController {
         Map<String, Boolean> modesWithPositiveDifference = modes.stream().collect(Collectors.toMap(
                 m -> m,
                 m -> {
-                    StatsWithUName difference = statsPageService.getDifferenceGameStatsOffAllUsersCombined(week).get(m);
+                    StatsWithUNameDTO difference = statsPageService.getDifferenceGameStatsOffAllUsersCombined(week).get(m);
                     return difference != null && difference.getTotalGamePlayed() != null && difference.getTotalGamePlayed() > 0;
                 }
         ));

@@ -1,7 +1,7 @@
 package com.dziem.popapi.mapper;
 
 import com.dziem.popapi.model.YearAndPopulation;
-import com.dziem.popapi.model.YearAndPopulationDTO;
+import com.dziem.popapi.dto.YearAndPopulationDTO;
 import org.mapstruct.Mapper;
 
 
