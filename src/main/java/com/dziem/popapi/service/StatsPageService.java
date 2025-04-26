@@ -28,4 +28,5 @@ public interface StatsPageService {
     UsersSummedDTO getDifferenceUsersSummed(String weekStr);
     Map<String, StatsWithUNameDTO> getDifferenceGameStatsOffAllUsersCombined(String weekStr);
     StatsWithUNameDTO getDifferenceStatsOfAllUsersCombined(String weekStr);
+    Map<String, Boolean> getModesWithPositiveDifference(String week, List<String> modes);
 }

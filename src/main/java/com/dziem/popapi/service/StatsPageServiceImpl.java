@@ -17,6 +17,7 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 import static com.dziem.popapi.controller.StatsPageController.ALL_TIME;
 import static java.util.stream.Collectors.groupingBy;
@@ -451,6 +452,17 @@ public class StatsPageServiceImpl implements StatsPageService {
                     return getStatsWithUName(statsWithUNameDTOFromWeek, statsWithUNameDTOBefore);
                 }
             }
+    }
+
+    @Override
+    public Map<String, Boolean> getModesWithPositiveDifference(String week, List<String> modes) {
+        return modes.stream().collect(Collectors.toMap(
+                m -> m,
+                m -> {
+                    StatsWithUNameDTO difference = getDifferenceGameStatsOffAllUsersCombined(week).get(m);
+                    return difference != null && difference.getTotalGamePlayed() != null && difference.getTotalGamePlayed() > 0;
+                }
+        ));
     }
 
     private static StatsWithUNameDTO getBlankStatsWithUName() {

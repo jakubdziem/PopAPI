@@ -1,7 +1,6 @@
 package com.dziem.popapi.controller;
 
 import com.dziem.popapi.model.Mode;
-import com.dziem.popapi.dto.webpage.StatsWithUNameDTO;
 import com.dziem.popapi.service.StatsPageChartService;
 import com.dziem.popapi.service.StatsPageService;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static com.dziem.popapi.service.StatsPageService.COMBINED_STATS;
 
@@ -22,6 +20,7 @@ import static com.dziem.popapi.service.StatsPageService.COMBINED_STATS;
 @SessionAttributes({"selectedWeek", "selectedMode", "attributeSelect"})
 public class StatsPageController {
     public static final String ALL_TIME = "ALL_TIME";
+    public static final String DEFAULT_ATTRIBUTE = "totalGamePlayed";
     private final StatsPageService statsPageService;
     private final StatsPageChartService statsPageChartService;
     @ModelAttribute("selectedWeek")
@@ -34,7 +33,7 @@ public class StatsPageController {
     }
     @ModelAttribute("attributeSelect")
     public String initAttributeSelect() {
-        return "totalGamePlayed";
+        return DEFAULT_ATTRIBUTE;
     }
 
     @GetMapping("/stats")
@@ -55,13 +54,8 @@ public class StatsPageController {
         String mode = (String) model.getAttribute("selectedMode");
         model.addAttribute("differenceUsersSummed", statsPageService.getDifferenceUsersSummed(week));
 
-        Map<String, Boolean> modesWithPositiveDifference = modes.stream().collect(Collectors.toMap(
-                m -> m,
-                m -> {
-                    StatsWithUNameDTO difference = statsPageService.getDifferenceGameStatsOffAllUsersCombined(week).get(m);
-                    return difference != null && difference.getTotalGamePlayed() != null && difference.getTotalGamePlayed() > 0;
-                }
-        ));
+        Map<String, Boolean> modesWithPositiveDifference = statsPageService.getModesWithPositiveDifference(week, modes);
+
         model.addAttribute("modesWithPositiveDifference", modesWithPositiveDifference);
 
         if(ALL_TIME.equals(week)) {
@@ -91,4 +85,5 @@ public class StatsPageController {
         }
         return "stats";
     }
+
 }
