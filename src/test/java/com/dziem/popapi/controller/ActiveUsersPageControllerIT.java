@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,6 +25,7 @@ import java.util.Map;
 import static com.dziem.popapi.controller.StatsPageController.ALL_TIME;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 @SpringBootTest
 @ActiveProfiles("test")
@@ -48,6 +50,7 @@ public class ActiveUsersPageControllerIT {
     void shouldReturnAllTimeActiveUsersAndStats_whenSelectedWeekIsAllTime() throws Exception {
         MvcResult result = mockMvc.perform(get("/active?selectedWeekActive=ALL_TIME"))
                 .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andReturn();
         Map<String, Object> model = result.getModelAndView().getModel();
         List<LocalDate> weeks = activeUsersPageService.getWeeks();
@@ -60,6 +63,7 @@ public class ActiveUsersPageControllerIT {
         String week = weeks.getFirst().toString();
         MvcResult result = mockMvc.perform(get("/active?selectedWeekActive=" + week))
                 .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andReturn();
         Map<String, Object> model = result.getModelAndView().getModel();
         List<ActiveUsersStatsDTO> activeUsersStatsThisWeek = weeklyActiveUsersStatsRepository.getAllActiveUsersStatsFromWeek(LocalDate.parse(week))
@@ -70,6 +74,7 @@ public class ActiveUsersPageControllerIT {
     void shouldHandleNullSelectedWeekGracefully() throws Exception {
         MvcResult result = mockMvc.perform(get("/active"))
                 .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andReturn();
         Map<String, Object> model = result.getModelAndView().getModel();
         List<LocalDate> weeks = activeUsersPageService.getWeeks();
@@ -97,6 +102,7 @@ public class ActiveUsersPageControllerIT {
         String week = "1000-01-01";
         MvcResult result = mockMvc.perform(get("/active?selectedWeekActive=" + week))
                 .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andReturn();
         Map<String, Object> model = result.getModelAndView().getModel();
         List<LocalDate> weeks = activeUsersPageService.getWeeks();
@@ -112,6 +118,7 @@ public class ActiveUsersPageControllerIT {
         assertThat(weeks.contains(week)).isFalse();
         MvcResult result = mockMvc.perform(get("/active?selectedWeekActive=" + week))
                 .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andReturn();
         Map<String, Object> model = result.getModelAndView().getModel();
         List<ActiveUsersStatsDTO> activeUsersStatsThisWeek = activeUsersPageService.getActiveUsersStatsFromWeek(week.toString());
