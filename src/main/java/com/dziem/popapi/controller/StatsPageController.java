@@ -72,6 +72,7 @@ public class StatsPageController {
             }
         } else {
             LocalDate weekDate = LocalDate.parse(week);
+            model.addAttribute("users", statsPageService.getUsersSummedFromWeek(weekDate));
             if (COMBINED_STATS.equals(mode)) {
                 model.addAttribute("overallStats", statsPageService.getStatsWithUNameOfAllUsersFromWeek(weekDate));
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getStatsOfAllUsersCombinedFromWeek(weekDate));
@@ -81,7 +82,6 @@ public class StatsPageController {
                 model.addAttribute("overallStatsOfUsersCombined", statsPageService.getGameStatsOffAllUsersCombinedFromWeek(weekDate));
                 model.addAttribute("differenceOverallStatsOfUsersCombined", statsPageService.getDifferenceGameStatsOffAllUsersCombined(week));
             }
-            model.addAttribute("users", statsPageService.getUsersSummedFromWeek(weekDate));
         }
         return "stats";
     }
