@@ -163,19 +163,17 @@ public class StatsPageControllerIT {
                 .andReturn();
 
         Map<String, Object> model = result.getModelAndView().getModel();
-        List<String> modes = Arrays.stream(Mode.values()).map(Enum::toString).toList();
-        List<LocalDate> weeks = statsPageService.getWeeks();
-        assertStatsPageModelAttributes(model, ALL_TIME, COMBINED_STATS, DEFAULT_ATTRIBUTE, modes, weeks);
+        assertModesAndWeeksAttributes(model);
+        assertStatsPageModelAttributes(model, ALL_TIME, COMBINED_STATS, DEFAULT_ATTRIBUTE);
     }
 
-    private void assertStatsPageModelAttributes(Map<String, Object> model, String week, String mode, String selectedAttribute, List<String> modes, List<LocalDate> weeks) {
+    private void assertStatsPageModelAttributes(Map<String, Object> model, String week, String mode,
+                                                String selectedAttribute) {
         assertThat(model.get("selectedWeek")).isEqualTo(week);
         assertThat(model.get("selectedMode")).isEqualTo(mode);
         assertThat(model.get("attributeSelect")).isEqualTo(selectedAttribute);
-        assertThat(model.get("modes")).isEqualTo(modes);
-        assertThat(model.get("weeks")).isEqualTo(weeks);
         assertThat(model.get("differenceUsersSummed")).isEqualTo(statsPageService.getDifferenceUsersSummed(week));
-        assertThat(model.get("modesWithPositiveDifference")).isEqualTo(statsPageService.getModesWithPositiveDifference(week, modes));
+        assertThat(model.get("modesWithPositiveDifference")).isEqualTo(statsPageService.getModesWithPositiveDifference(week, Arrays.stream(Mode.values()).map(Enum::toString).toList()));
         if (week.equals(ALL_TIME)) {
             assertThat(model.get("dailyUsers")).isEqualTo(statsPageChartService.getTodayUserSummedDifference());
             assertThat(model.get("users"))
@@ -206,7 +204,6 @@ public class StatsPageControllerIT {
     @Test
     void shouldShowStatsPageWithProvidedSessionAttributes_whenRequestParametersProvided() throws Exception {
         List<LocalDate> weeks = statsPageService.getWeeks();
-        List<String> modes = Arrays.stream(Mode.values()).map(Enum::toString).toList();
         String week = weeks.getFirst().toString();
         String mode = Mode.FORMULA_TOP_TEAMS_GP.toString();
         String attribute = "avgScore";
@@ -216,7 +213,25 @@ public class StatsPageControllerIT {
                 .andReturn();
 
         Map<String, Object> model = result.getModelAndView().getModel();
-        assertStatsPageModelAttributes(model, week, mode, attribute, modes, weeks);
+        assertModesAndWeeksAttributes(model);
+        assertStatsPageModelAttributes(model, week, mode, attribute);
+    }
+    @Test
+    void shouldPopulateModelForAllTimeWeek_whenSelectedWeekIsAllTime() throws Exception {
+        String week = ALL_TIME;
+        MvcResult result = mockMvc.perform(get("/stats?selectedWeek=" + week))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andReturn();
+        Map<String, Object> model = result.getModelAndView().getModel();
+        assertModesAndWeeksAttributes(model);
+        assertStatsPageModelAttributes(model, week, COMBINED_STATS, DEFAULT_ATTRIBUTE);
+    }
+    void assertModesAndWeeksAttributes(Map<String, Object> model) {
+        List<LocalDate> weeks = statsPageService.getWeeks();
+        List<String> modes = Arrays.stream(Mode.values()).map(Enum::toString).toList();
+        assertThat(model.get("modes")).isEqualTo(modes);
+        assertThat(model.get("weeks")).isEqualTo(weeks);
     }
 
 }
