@@ -1,7 +1,7 @@
 package com.dziem.popapi.controller;
 
-import com.dziem.popapi.model.LeaderboardDTO;
-import com.dziem.popapi.model.RankScoreDTO;
+import com.dziem.popapi.dto.LeaderboardDTO;
+import com.dziem.popapi.dto.RankScoreDTO;
 import com.dziem.popapi.service.LeaderboardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,11 @@ public class LeaderboardController {
     private final LeaderboardService leaderboardService;
     @GetMapping("/api/v1/leaderboard/{mode}")
     public ResponseEntity<List<LeaderboardDTO>> getLeaderboard(@PathVariable String mode) {
-        return leaderboardService.getLeaderboardFirst200(mode);
+        List<LeaderboardDTO> leaderboardFirst200 = leaderboardService.getLeaderboardFirst200(mode);
+        if(leaderboardFirst200.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(leaderboardFirst200, HttpStatus.ACCEPTED);
     }
     @GetMapping("api/v1/rank/{userId}/{mode}")
     public ResponseEntity<RankScoreDTO> getRankOfUserInMode(@PathVariable String userId, @PathVariable String mode) {

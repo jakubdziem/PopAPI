@@ -1,4 +1,4 @@
-package com.dziem.popapi.model;
+package com.dziem.popapi.dto;
 
 import lombok.Builder;
 import lombok.Data;

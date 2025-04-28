@@ -1,4 +1,4 @@
-package com.dziem.popapi.model.webpage;
+package com.dziem.popapi.dto.webpage;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Data
 @Builder
 @AllArgsConstructor
-public class DailyUsersSummedBoth {
+public class DailyUsersSummedBothDTO {
     private LocalDate day;
     private int numberOfUsers;
 }

@@ -1,5 +1,7 @@
 package com.dziem.popapi.service;
 
+import com.dziem.popapi.dto.GameStatsDTO;
+import com.dziem.popapi.dto.StatsDTO;
 import com.dziem.popapi.mapper.StatsMapper;
 import com.dziem.popapi.model.*;
 import com.dziem.popapi.repository.StatsRepository;

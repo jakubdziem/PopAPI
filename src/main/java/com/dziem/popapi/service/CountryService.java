@@ -1,6 +1,6 @@
 package com.dziem.popapi.service;
 
-import com.dziem.popapi.model.CountryDTO;
+import com.dziem.popapi.dto.CountryDTO;
 
 import java.util.List;
 

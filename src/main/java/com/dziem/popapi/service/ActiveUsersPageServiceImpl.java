@@ -1,9 +1,9 @@
 package com.dziem.popapi.service;
 
 import com.dziem.popapi.mapper.ActiveUserStatsMapper;
-import com.dziem.popapi.model.webpage.ActiveUsersStats;
-import com.dziem.popapi.model.webpage.StatsWithUName;
-import com.dziem.popapi.model.webpage.TimeConverter;
+import com.dziem.popapi.dto.webpage.ActiveUsersStatsDTO;
+import com.dziem.popapi.dto.webpage.StatsWithUNameDTO;
+import com.dziem.popapi.formatter.TimeConverter;
 import com.dziem.popapi.model.webpage.WeeklyActiveUsersStats;
 import com.dziem.popapi.repository.WeeklyActiveUsersStatsRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,16 +22,16 @@ public class ActiveUsersPageServiceImpl implements ActiveUsersPageService {
     private final WeeklyActiveUsersStatsRepository weeklyActiveUsersStatsRepository;
     private final ActiveUserStatsMapper activeUserStatsMapper;
     @Override
-    public List<ActiveUsersStats> getActiveUsersStatsThisWeek() {
-        List<ActiveUsersStats> activeUsersStats = new ArrayList<>();
-        List<StatsWithUName> statsWithUNameOfAllUsersCurrent = statsPageService.getStatsWithUNameOfAllUsersCurrent();
+    public List<ActiveUsersStatsDTO> getActiveUsersStatsThisWeek() {
+        List<ActiveUsersStatsDTO> activeUsersStatDTOS = new ArrayList<>();
+        List<StatsWithUNameDTO> statsWithUNameDTOOfAllUsersCurrent = statsPageService.getStatsWithUNameOfAllUsersCurrent();
         LocalDate latestSavedWeek = statsPageService.getWeeks().stream().max((d1, d2) -> d1.isAfter(d2) ? 1 : d1.equals(d2) ? 0 : -1).get();
-        List<StatsWithUName> statsWithUNameOfAllUsersFromLatestWeek = statsPageService.getStatsWithUNameOfAllUsersFromWeek(latestSavedWeek);
+        List<StatsWithUNameDTO> statsWithUNameDTOOfAllUsersFromLatestWeek = statsPageService.getStatsWithUNameOfAllUsersFromWeek(latestSavedWeek);
 
-        for(StatsWithUName stats : statsWithUNameOfAllUsersCurrent) {
-            Optional<StatsWithUName> statsLatestWeekOpt = statsWithUNameOfAllUsersFromLatestWeek.stream().filter(s -> s.getUserId().equals(stats.getUserId())).findFirst();
+        for(StatsWithUNameDTO stats : statsWithUNameDTOOfAllUsersCurrent) {
+            Optional<StatsWithUNameDTO> statsLatestWeekOpt = statsWithUNameDTOOfAllUsersFromLatestWeek.stream().filter(s -> s.getUserId().equals(stats.getUserId())).findFirst();
             if(statsLatestWeekOpt.isEmpty()) {
-                activeUsersStats.add(ActiveUsersStats.builder()
+                activeUsersStatDTOS.add(ActiveUsersStatsDTO.builder()
                         .userId(stats.getUserId())
                         .totalGamePlayed(stats.getTotalGamePlayed())
                         .avgScore(stats.getAvgScore())
@@ -42,8 +42,8 @@ public class ActiveUsersPageServiceImpl implements ActiveUsersPageService {
                         .newUser(true)
                         .build());
             } else {
-                StatsWithUName statsLatestWeek = statsLatestWeekOpt.get();
-                ActiveUsersStats statsWithUNameDifference = ActiveUsersStats.builder()
+                StatsWithUNameDTO statsLatestWeek = statsLatestWeekOpt.get();
+                ActiveUsersStatsDTO statsWithUNameDifference = ActiveUsersStatsDTO.builder()
                         .userId(stats.getUserId())
                         .totalGamePlayed(stats.getTotalGamePlayed() - statsLatestWeek.getTotalGamePlayed())
                         .avgScore(stats.getAvgScore())
@@ -54,23 +54,23 @@ public class ActiveUsersPageServiceImpl implements ActiveUsersPageService {
                         .newUser(false)
                         .build();
                 if(statsWithUNameDifference.getTotalGamePlayed() > 0) {
-                    activeUsersStats.add(statsWithUNameDifference);
+                    activeUsersStatDTOS.add(statsWithUNameDifference);
                 }
             }
         }
-        return activeUsersStats;
+        return activeUsersStatDTOS;
     }
 
 
 
     @Override
     public void saveWeeklyActiveUsersStatsSnapshot() {
-        List<WeeklyActiveUsersStats> weeklyActiveUsersStats = getActiveUsersStatsThisWeek().stream().map(activeUserStatsMapper::activeUsersStatsToWeeklyActiveUsersStats).toList();
+        List<WeeklyActiveUsersStats> weeklyActiveUsersStats = getActiveUsersStatsThisWeek().stream().map(activeUserStatsMapper::activeUsersStatsDTOToWeeklyActiveUsersStats).toList();
         weeklyActiveUsersStatsRepository.saveAll(weeklyActiveUsersStats);
     }
 
     @Override
-    public List<ActiveUsersStats> getActiveUsersStatsFromWeek(String week) {
+    public List<ActiveUsersStatsDTO> getActiveUsersStatsFromWeek(String week) {
         return weeklyActiveUsersStatsRepository.getAllActiveUsersStatsFromWeek(LocalDate.parse(week)).stream().map(activeUserStatsMapper::weeklyActiveUsersStatsToActiveUsersStats).toList();
     }
 

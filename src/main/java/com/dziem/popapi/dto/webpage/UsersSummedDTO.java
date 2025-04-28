@@ -1,9 +1,9 @@
-package com.dziem.popapi.model.webpage;
+package com.dziem.popapi.dto.webpage;
 
 import lombok.Data;
 
 @Data
-public class UsersSummed {
+public class UsersSummedDTO {
     private int guestUsers;
     private int googleOrEmailUsers;
 }

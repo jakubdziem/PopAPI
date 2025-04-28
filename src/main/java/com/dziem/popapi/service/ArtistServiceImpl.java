@@ -2,7 +2,7 @@ package com.dziem.popapi.service;
 
 import com.dziem.popapi.mapper.ArtistMapper;
 import com.dziem.popapi.model.Artist;
-import com.dziem.popapi.model.ArtistDTO;
+import com.dziem.popapi.dto.ArtistDTO;
 import com.dziem.popapi.repository.ArtistRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,5 +1,8 @@
-package com.dziem.popapi.model;
+package com.dziem.popapi.dto;
 
+import com.dziem.popapi.model.ModeStats;
+import com.dziem.popapi.model.Score;
+import com.dziem.popapi.model.Stats;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 

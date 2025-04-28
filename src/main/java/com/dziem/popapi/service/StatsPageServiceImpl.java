@@ -1,5 +1,8 @@
 package com.dziem.popapi.service;
 
+import com.dziem.popapi.dto.webpage.StatsWithUNameDTO;
+import com.dziem.popapi.dto.webpage.UsersSummedDTO;
+import com.dziem.popapi.formatter.TimeConverter;
 import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.ModeStats;
 import com.dziem.popapi.model.Stats;
@@ -14,6 +17,7 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 import static com.dziem.popapi.controller.StatsPageController.ALL_TIME;
 import static java.util.stream.Collectors.groupingBy;
@@ -28,22 +32,22 @@ public class StatsPageServiceImpl implements StatsPageService {
     private final WeeklyUsersSummedRepository weeklyUsersSummedRepository;
 
     @Override
-    public List<StatsWithUName> getStatsWithUNameOfAllUsersCurrent() {
+    public List<StatsWithUNameDTO> getStatsWithUNameOfAllUsersCurrent() {
         return getAllStatsWithUname(COMBINED_STATS);
     }
 
     @Override
-    public Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsersCurrent() {
-        Map<String, List<StatsWithUName>> modeStatsWithUNameHashMap = new HashMap<>();
+    public Map<String, List<StatsWithUNameDTO>> getAllGameStatsWithUNameOfAllUsersCurrent() {
+        Map<String, List<StatsWithUNameDTO>> modeStatsWithUNameHashMap = new HashMap<>();
         for(Mode mode : Mode.values()) {
-            List<StatsWithUName> modeStatsWithUNameByCertainMode = getAllStatsWithUname(mode.toString());
-            modeStatsWithUNameHashMap.put(mode.toString(), modeStatsWithUNameByCertainMode);
+            List<StatsWithUNameDTO> modeStatsWithUNameDTOByCertainMode = getAllStatsWithUname(mode.toString());
+            modeStatsWithUNameHashMap.put(mode.toString(), modeStatsWithUNameDTOByCertainMode);
         }
         return modeStatsWithUNameHashMap;
     }
 
     @Override
-    public StatsWithUName getStatsOfAllUsersCombinedCurrent() {
+    public StatsWithUNameDTO getStatsOfAllUsersCombinedCurrent() {
         List<Stats> stats = statsRepository.findAll();
         Long totalGamePlayed = 0L;
         BigDecimal avgScoreSummed = BigDecimal.ZERO;
@@ -63,7 +67,7 @@ public class StatsPageServiceImpl implements StatsPageService {
         }
         String timePlayed = TimeConverter.convertSecondsToTime(timePlayedSeconds);
         BigDecimal avgScore = avgScoreSummed.divide(BigDecimal.valueOf(numberOfAvgScoreGreaterThanZero), RoundingMode.DOWN);
-        return StatsWithUName.builder()
+        return StatsWithUNameDTO.builder()
                 .totalGamePlayed(totalGamePlayed)
                 .avgScore(avgScore)
                 .timePlayed(timePlayed)
@@ -73,8 +77,8 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     @Override
-    public Map<String, StatsWithUName> getGameStatsOffAllUsersCombinedCurrent() {
-        Map<String, StatsWithUName> modeStatsWithUNameHashMap = new HashMap<>();
+    public Map<String, StatsWithUNameDTO> getGameStatsOffAllUsersCombinedCurrent() {
+        Map<String, StatsWithUNameDTO> modeStatsWithUNameHashMap = new HashMap<>();
         Map<String, List<ModeStats>> modeStatsGroupedByMode = modeStatsRepository.findAll().stream().collect(groupingBy(ModeStats::getMode));
 
         for(String mode : modeStatsGroupedByMode.keySet()) {
@@ -101,7 +105,7 @@ public class StatsPageServiceImpl implements StatsPageService {
                 divisor = BigDecimal.ONE;
             }
             BigDecimal avgScore = avgScoreSummed.divide(divisor, RoundingMode.DOWN);
-            StatsWithUName singleModeStat = StatsWithUName.builder()
+            StatsWithUNameDTO singleModeStat = StatsWithUNameDTO.builder()
                     .totalGamePlayed(totalGamePlayed)
                     .avgScore(avgScore)
                     .timePlayed(timePlayed)
@@ -114,17 +118,17 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     @Override
-    public UsersSummed getUsersSummedCurrent() {
+    public UsersSummedDTO getUsersSummedCurrent() {
         Map<Boolean, List<User>> usersDistiguishedPerGuestBoolean = userRepository.findAll().stream().collect(groupingBy(User::isGuest));
         List<User> guests = usersDistiguishedPerGuestBoolean.get(true);
         List<User> googleOrEmailUsers = usersDistiguishedPerGuestBoolean.get(false);
-        UsersSummed usersSummed = new UsersSummed();
-        usersSummed.setGuestUsers(guests.size());
-        usersSummed.setGoogleOrEmailUsers(googleOrEmailUsers.size());
-        return usersSummed;
+        UsersSummedDTO usersSummedDTO = new UsersSummedDTO();
+        usersSummedDTO.setGuestUsers(guests.size());
+        usersSummedDTO.setGoogleOrEmailUsers(googleOrEmailUsers.size());
+        return usersSummedDTO;
     }
 
-    private List<StatsWithUName> getAllStatsWithUname(String mode) {
+    private List<StatsWithUNameDTO> getAllStatsWithUname(String mode) {
         List<Object[]> result;
         boolean contains = false;
         for(Mode modeEnum : Mode.values()) {
@@ -140,9 +144,9 @@ public class StatsPageServiceImpl implements StatsPageService {
         } else {
             return new ArrayList<>();
         }
-        List<StatsWithUName> statsWithUNameList = new ArrayList<>();
+        List<StatsWithUNameDTO> statsWithUNameDTOList = new ArrayList<>();
         for (Object[] row : result) {
-            StatsWithUName statsWithUName = StatsWithUName.builder()
+            StatsWithUNameDTO statsWithUNameDTO = StatsWithUNameDTO.builder()
                     .userId((String) row[0])
                     .totalGamePlayed((Long) row[1])
                     .avgScore(new BigDecimal(String.valueOf(row[2])))
@@ -151,17 +155,17 @@ public class StatsPageServiceImpl implements StatsPageService {
                     .numberOfWonGames((Integer) row[5])
                     .name((String) row[6])
                     .build();
-            statsWithUNameList.add(statsWithUName);
+            statsWithUNameDTOList.add(statsWithUNameDTO);
         }
-        return statsWithUNameList;
+        return statsWithUNameDTOList;
     }
 
     @Override
-    public List<StatsWithUName> getStatsWithUNameOfAllUsersFromWeek(LocalDate week) {
+    public List<StatsWithUNameDTO> getStatsWithUNameOfAllUsersFromWeek(LocalDate week) {
         List<WeeklyStats> weeklyStats = weeklyStatsRepository.getStatsWithUNameOfAllUsersFromWeek(week);
-        List<StatsWithUName> statsWithUNames = new ArrayList<>();
+        List<StatsWithUNameDTO> statsWithUNameDTOS = new ArrayList<>();
         for(WeeklyStats stat : weeklyStats) {
-            statsWithUNames.add(StatsWithUName.builder()
+            statsWithUNameDTOS.add(StatsWithUNameDTO.builder()
                     .userId(stat.getUserId())
                     .totalGamePlayed(stat.getTotalGamePlayed())
                     .avgScore(stat.getAvgScore())
@@ -171,18 +175,18 @@ public class StatsPageServiceImpl implements StatsPageService {
                     .name(stat.getName())
                     .build());
         }
-        return statsWithUNames;
+        return statsWithUNameDTOS;
     }
 
     @Override
-    public Map<String, List<StatsWithUName>> getAllGameStatsWithUNameOfAllUsersFromWeek(LocalDate week) {
+    public Map<String, List<StatsWithUNameDTO>> getAllGameStatsWithUNameOfAllUsersFromWeek(LocalDate week) {
         List<WeeklyStats> weeklyStats = weeklyStatsRepository.getAllGameStatsWithUNameOfAllUsersFromWeek(week);
-        Map<String, List<StatsWithUName>> gameStatsWithUnameMap = new HashMap<>();
+        Map<String, List<StatsWithUNameDTO>> gameStatsWithUnameMap = new HashMap<>();
         for(Mode mode : Mode.values()) {
-            List<StatsWithUName> gameStatsWithUnames = new ArrayList<>();
+            List<StatsWithUNameDTO> gameStatsWithUnameDTOS = new ArrayList<>();
             List<WeeklyStats> filteredWeeklyStatsFromLoopedMode = weeklyStats.stream().filter(weeklyStat -> weeklyStat.getMode().equals(mode.toString())).toList();
             for(WeeklyStats weeklyStat : filteredWeeklyStatsFromLoopedMode) {
-                gameStatsWithUnames.add(StatsWithUName.builder()
+                gameStatsWithUnameDTOS.add(StatsWithUNameDTO.builder()
                         .userId(weeklyStat.getUserId())
                         .totalGamePlayed(weeklyStat.getTotalGamePlayed())
                         .avgScore(weeklyStat.getAvgScore())
@@ -192,18 +196,18 @@ public class StatsPageServiceImpl implements StatsPageService {
                         .name(weeklyStat.getName())
                         .build());
             }
-            gameStatsWithUnameMap.put(mode.toString(), gameStatsWithUnames);
+            gameStatsWithUnameMap.put(mode.toString(), gameStatsWithUnameDTOS);
         }
         return gameStatsWithUnameMap;
     }
 
     @Override
-    public StatsWithUName getStatsOfAllUsersCombinedFromWeek(LocalDate week) {
+    public StatsWithUNameDTO getStatsOfAllUsersCombinedFromWeek(LocalDate week) {
         WeeklyStats weeklyStats = weeklyStatsRepository.getStatsOfAllUsersCombinedFromWeek(week);
         if(weeklyStats == null) {
-            return new StatsWithUName();
+            return new StatsWithUNameDTO();
         }
-        return StatsWithUName.builder()
+        return StatsWithUNameDTO.builder()
                 .totalGamePlayed(weeklyStats.getTotalGamePlayed())
                 .avgScore(weeklyStats.getAvgScore())
                 .timePlayed(weeklyStats.getTimePlayed())
@@ -213,11 +217,11 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     @Override
-    public Map<String, StatsWithUName> getGameStatsOffAllUsersCombinedFromWeek(LocalDate week) {
+    public Map<String, StatsWithUNameDTO> getGameStatsOffAllUsersCombinedFromWeek(LocalDate week) {
         List<WeeklyStats> allGameStatsWithUNameOfAllUsersFromWeek = weeklyStatsRepository.getGameStatsOffAllUsersCombinedFromWeek(week);
-        Map<String, StatsWithUName> statsWithUNameMap = new HashMap<>();
+        Map<String, StatsWithUNameDTO> statsWithUNameMap = new HashMap<>();
         for(WeeklyStats weeklyStats : allGameStatsWithUNameOfAllUsersFromWeek) {
-            statsWithUNameMap.put(weeklyStats.getMode(), StatsWithUName.builder()
+            statsWithUNameMap.put(weeklyStats.getMode(), StatsWithUNameDTO.builder()
                     .totalGamePlayed(weeklyStats.getTotalGamePlayed())
                     .avgScore(weeklyStats.getAvgScore())
                     .timePlayed(weeklyStats.getTimePlayed())
@@ -229,15 +233,15 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     @Override
-    public UsersSummed getUsersSummedFromWeek(LocalDate week) {
-        AtomicReference<UsersSummed> atomicReference = new AtomicReference<>();
+    public UsersSummedDTO getUsersSummedFromWeek(LocalDate week) {
+        AtomicReference<UsersSummedDTO> atomicReference = new AtomicReference<>();
         weeklyUsersSummedRepository.findById(week)
                 .ifPresentOrElse(
                         weeklyUsersSummed -> {
-                            UsersSummed usersSummed = new UsersSummed();
-                            usersSummed.setGuestUsers(weeklyUsersSummed.getGuestUsers());
-                            usersSummed.setGoogleOrEmailUsers(weeklyUsersSummed.getGoogleOrEmailUsers());
-                            atomicReference.set(usersSummed);
+                            UsersSummedDTO usersSummedDTO = new UsersSummedDTO();
+                            usersSummedDTO.setGuestUsers(weeklyUsersSummed.getGuestUsers());
+                            usersSummedDTO.setGoogleOrEmailUsers(weeklyUsersSummed.getGoogleOrEmailUsers());
+                            atomicReference.set(usersSummedDTO);
                         },
                         () -> atomicReference.set(null)
                 );
@@ -248,8 +252,8 @@ public class StatsPageServiceImpl implements StatsPageService {
         LocalDate week = LocalDate.now();
         List<WeeklyStats> weeklyStats = new ArrayList<>();
         System.out.println("Started");
-        List<StatsWithUName> statsWithUNameOfAllUsersCurrent = getStatsWithUNameOfAllUsersCurrent();
-        for(StatsWithUName stat : statsWithUNameOfAllUsersCurrent) {
+        List<StatsWithUNameDTO> statsWithUNameDTOOfAllUsersCurrent = getStatsWithUNameOfAllUsersCurrent();
+        for(StatsWithUNameDTO stat : statsWithUNameDTOOfAllUsersCurrent) {
             weeklyStats.add(WeeklyStats.builder()
                     .weekStartDate(week)
                     .userId(stat.getUserId())
@@ -264,9 +268,9 @@ public class StatsPageServiceImpl implements StatsPageService {
         }
         System.out.println("Passed statsWithUNameOfAllUsersCurrent");
 
-        Map<String, List<StatsWithUName>> allGameStatsWithUNameOfAllUsersCurrent = getAllGameStatsWithUNameOfAllUsersCurrent();
+        Map<String, List<StatsWithUNameDTO>> allGameStatsWithUNameOfAllUsersCurrent = getAllGameStatsWithUNameOfAllUsersCurrent();
         for(String mode : allGameStatsWithUNameOfAllUsersCurrent.keySet()) {
-            for(StatsWithUName stat : allGameStatsWithUNameOfAllUsersCurrent.get(mode)) {
+            for(StatsWithUNameDTO stat : allGameStatsWithUNameOfAllUsersCurrent.get(mode)) {
                 weeklyStats.add(WeeklyStats.builder()
                         .weekStartDate(week)
                         .userId(stat.getUserId())
@@ -283,7 +287,7 @@ public class StatsPageServiceImpl implements StatsPageService {
 
         System.out.println("Passed allGameStatsWithUNameOfAllUsersCurrent");
 
-        StatsWithUName statsOfAllUsersCombinedCurrent = getStatsOfAllUsersCombinedCurrent();
+        StatsWithUNameDTO statsOfAllUsersCombinedCurrent = getStatsOfAllUsersCombinedCurrent();
         System.out.println("Hello");
         weeklyStats.add(WeeklyStats.builder()
                 .weekStartDate(week)
@@ -298,13 +302,13 @@ public class StatsPageServiceImpl implements StatsPageService {
                 .build());
         System.out.println("Size of allGameStatsWithUNameOfAllUsersCurrent: " + allGameStatsWithUNameOfAllUsersCurrent.size());
 
-        Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
+        Map<String, StatsWithUNameDTO> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
         System.out.println("Size of gameStatsOffAllUsersCombinedCurrent: " + gameStatsOffAllUsersCombinedCurrent.size());
         System.out.println("Total entries to save: " + weeklyStats.size());
         System.out.println(getGameStatsOffAllUsersCombinedCurrent().keySet().size());
         for(String mode : gameStatsOffAllUsersCombinedCurrent.keySet()) {
             System.out.println("Now " + mode + "!");
-            StatsWithUName stat = gameStatsOffAllUsersCombinedCurrent.get(mode);
+            StatsWithUNameDTO stat = gameStatsOffAllUsersCombinedCurrent.get(mode);
             weeklyStats.add(WeeklyStats.builder()
                     .weekStartDate(week)
                     .userId(STATS_OFF_ALL_USERS + mode)
@@ -323,11 +327,11 @@ public class StatsPageServiceImpl implements StatsPageService {
 
         weeklyStatsRepository.saveAll(weeklyStats);
 
-        UsersSummed usersSummedCurrent = getUsersSummedCurrent();
+        UsersSummedDTO usersSummedDTOCurrent = getUsersSummedCurrent();
         WeeklyUsersSummed weeklyUsersSummed = WeeklyUsersSummed.builder()
                 .weekStartDate(week)
-                .guestUsers(usersSummedCurrent.getGuestUsers())
-                .googleOrEmailUsers(usersSummedCurrent.getGoogleOrEmailUsers())
+                .guestUsers(usersSummedDTOCurrent.getGuestUsers())
+                .googleOrEmailUsers(usersSummedDTOCurrent.getGoogleOrEmailUsers())
                 .build();
         weeklyUsersSummedRepository.save(weeklyUsersSummed);
     }
@@ -338,23 +342,23 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     @Override
-    public Map<String, StatsWithUName> getDifferenceGameStatsOffAllUsersCombined(String weekStr) {
+    public Map<String, StatsWithUNameDTO> getDifferenceGameStatsOffAllUsersCombined(String weekStr) {
         boolean isAllTime = weekStr.equals(ALL_TIME);
-        Map<String, StatsWithUName> statsWithUNameMap = new HashMap<>();
+        Map<String, StatsWithUNameDTO> statsWithUNameMap = new HashMap<>();
         MindAndMaxWeek weekRange = getMindAndMaxWeek();
         LocalDate week = isAllTime ? weekRange.max : LocalDate.parse(weekStr);
         if (isAllTime) {
-            Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
-            Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(week);
+            Map<String, StatsWithUNameDTO> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
+            Map<String, StatsWithUNameDTO> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(week);
             if (!gameStatsOffAllUsersCombinedCurrent.keySet().containsAll(gameStatsOffAllUsersCombinedFromWeek.keySet())) {
                 for (Mode mode : Mode.values()) {
-                    statsWithUNameMap.put(mode.toString(), new StatsWithUName());
+                    statsWithUNameMap.put(mode.toString(), new StatsWithUNameDTO());
                 }
             }
             for (String mode : gameStatsOffAllUsersCombinedCurrent.keySet()) {
-                StatsWithUName statsWithUNameCurrent = gameStatsOffAllUsersCombinedCurrent.get(mode);
-                StatsWithUName statsWithUNameBefore = gameStatsOffAllUsersCombinedFromWeek.get(mode);
-                StatsWithUName statsDiff = getWithUNameWithUserIdAndName(statsWithUNameCurrent, statsWithUNameBefore);
+                StatsWithUNameDTO statsWithUNameDTOCurrent = gameStatsOffAllUsersCombinedCurrent.get(mode);
+                StatsWithUNameDTO statsWithUNameDTOBefore = gameStatsOffAllUsersCombinedFromWeek.get(mode);
+                StatsWithUNameDTO statsDiff = getWithUNameWithUserIdAndName(statsWithUNameDTOCurrent, statsWithUNameDTOBefore);
                 statsWithUNameMap.put(mode, statsDiff);
             }
             return statsWithUNameMap;
@@ -362,12 +366,12 @@ public class StatsPageServiceImpl implements StatsPageService {
             LocalDate prevWeek = week.minusDays(7);
             List<LocalDate> weeks = getWeeks();
             if ((prevWeek.isAfter(weekRange.min()) || prevWeek.equals(weekRange.min())) && weeks.contains(prevWeek)) {
-                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
-                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(prevWeek);
+                Map<String, StatsWithUNameDTO> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
+                Map<String, StatsWithUNameDTO> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(prevWeek);
                 return getStringStatsWithUNameMap(gameStatsOffAllUsersCombinedFromWeek, gameStatsOffAllUsersCombinedCurrent, statsWithUNameMap);
             } else if(week.equals(weekRange.min)) {
                 for (Mode mode : Mode.values()) {
-                    statsWithUNameMap.put(mode.toString(), StatsWithUName.builder()
+                    statsWithUNameMap.put(mode.toString(), StatsWithUNameDTO.builder()
                                     .totalGamePlayed(0L)
                                     .totalScoredPoints(0L)
                                     .avgScore(BigDecimal.ZERO)
@@ -377,81 +381,92 @@ public class StatsPageServiceImpl implements StatsPageService {
                 }
                 return statsWithUNameMap;
             } else {
-                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
-                Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(weeks.stream().sorted(Comparator.reverseOrder()).toList().get(weeks.indexOf(week)+1));
+                Map<String, StatsWithUNameDTO> gameStatsOffAllUsersCombinedCurrent = getGameStatsOffAllUsersCombinedCurrent();
+                Map<String, StatsWithUNameDTO> gameStatsOffAllUsersCombinedFromWeek = getGameStatsOffAllUsersCombinedFromWeek(weeks.stream().sorted(Comparator.reverseOrder()).toList().get(weeks.indexOf(week)+1));
                 return getStringStatsWithUNameMap(gameStatsOffAllUsersCombinedFromWeek, gameStatsOffAllUsersCombinedCurrent, statsWithUNameMap);
             }
         }
     }
 
-    private static Map<String, StatsWithUName> getStringStatsWithUNameMap(Map<String, StatsWithUName> gameStatsOffAllUsersCombinedFromWeek, Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent, Map<String, StatsWithUName> statsWithUNameMap) {
+    private static Map<String, StatsWithUNameDTO> getStringStatsWithUNameMap(Map<String, StatsWithUNameDTO> gameStatsOffAllUsersCombinedFromWeek, Map<String, StatsWithUNameDTO> gameStatsOffAllUsersCombinedCurrent, Map<String, StatsWithUNameDTO> statsWithUNameMap) {
         if (gameStatsOffAllUsersCombinedFromWeek.get(Mode.HISTORY.toString()) == null || !gameStatsOffAllUsersCombinedCurrent.keySet().containsAll(gameStatsOffAllUsersCombinedFromWeek.keySet())) {
             for (Mode mode : Mode.values()) {
-                statsWithUNameMap.put(mode.toString(), new StatsWithUName());
+                statsWithUNameMap.put(mode.toString(), new StatsWithUNameDTO());
             }
             return statsWithUNameMap;
         }
         for (String mode : gameStatsOffAllUsersCombinedCurrent.keySet()) {
-            StatsWithUName statsWithUNameCurrent = gameStatsOffAllUsersCombinedCurrent.get(mode);
-            StatsWithUName statsWithUNameBefore = gameStatsOffAllUsersCombinedFromWeek.get(mode);
-            StatsWithUName statsDiff = getWithUNameWithUserIdAndName(statsWithUNameCurrent, statsWithUNameBefore);
+            StatsWithUNameDTO statsWithUNameDTOCurrent = gameStatsOffAllUsersCombinedCurrent.get(mode);
+            StatsWithUNameDTO statsWithUNameDTOBefore = gameStatsOffAllUsersCombinedFromWeek.get(mode);
+            StatsWithUNameDTO statsDiff = getWithUNameWithUserIdAndName(statsWithUNameDTOCurrent, statsWithUNameDTOBefore);
             statsWithUNameMap.put(mode, statsDiff);
         }
         return statsWithUNameMap;
     }
 
-    private static StatsWithUName getWithUNameWithUserIdAndName(StatsWithUName statsWithUNameCurrent, StatsWithUName statsWithUNameBefore) {
-        if(statsWithUNameBefore == null) {
-            StatsWithUName blankStatsWithUName = getBlankStatsWithUName();
-            blankStatsWithUName.setName(statsWithUNameCurrent.getName());
-            blankStatsWithUName.setUserId(statsWithUNameCurrent.getUserId());
-            return blankStatsWithUName;
+    private static StatsWithUNameDTO getWithUNameWithUserIdAndName(StatsWithUNameDTO statsWithUNameDTOCurrent, StatsWithUNameDTO statsWithUNameDTOBefore) {
+        if(statsWithUNameDTOBefore == null) {
+            StatsWithUNameDTO blankStatsWithUNameDTO = getBlankStatsWithUName();
+            blankStatsWithUNameDTO.setName(statsWithUNameDTOCurrent.getName());
+            blankStatsWithUNameDTO.setUserId(statsWithUNameDTOCurrent.getUserId());
+            return blankStatsWithUNameDTO;
         }
-        return StatsWithUName.builder()
-                .userId(statsWithUNameCurrent.getUserId())
-                .totalGamePlayed(Math.max(statsWithUNameCurrent.getTotalGamePlayed()- statsWithUNameBefore.getTotalGamePlayed(), 0))
-                .avgScore(BigDecimal.ZERO.max(statsWithUNameCurrent.getAvgScore().subtract(statsWithUNameBefore.getAvgScore())))
-                .timePlayed(TimeConverter.differenceOfTime(statsWithUNameCurrent.getTimePlayed(), statsWithUNameBefore.getTimePlayed()))
-                .totalScoredPoints(Math.max(statsWithUNameCurrent.getTotalScoredPoints()- statsWithUNameBefore.getTotalScoredPoints(),0))
-                .numberOfWonGames(Math.max(statsWithUNameCurrent.getNumberOfWonGames()- statsWithUNameBefore.getNumberOfWonGames(),0))
-                .name(statsWithUNameCurrent.getName())
+        return StatsWithUNameDTO.builder()
+                .userId(statsWithUNameDTOCurrent.getUserId())
+                .totalGamePlayed(Math.max(statsWithUNameDTOCurrent.getTotalGamePlayed()- statsWithUNameDTOBefore.getTotalGamePlayed(), 0))
+                .avgScore(BigDecimal.ZERO.max(statsWithUNameDTOCurrent.getAvgScore().subtract(statsWithUNameDTOBefore.getAvgScore())))
+                .timePlayed(TimeConverter.differenceOfTime(statsWithUNameDTOCurrent.getTimePlayed(), statsWithUNameDTOBefore.getTimePlayed()))
+                .totalScoredPoints(Math.max(statsWithUNameDTOCurrent.getTotalScoredPoints()- statsWithUNameDTOBefore.getTotalScoredPoints(),0))
+                .numberOfWonGames(Math.max(statsWithUNameDTOCurrent.getNumberOfWonGames()- statsWithUNameDTOBefore.getNumberOfWonGames(),0))
+                .name(statsWithUNameDTOCurrent.getName())
                 .build();
     }
 
     @Override
-    public StatsWithUName getDifferenceStatsOfAllUsersCombined(String weekStr) {
+    public StatsWithUNameDTO getDifferenceStatsOfAllUsersCombined(String weekStr) {
         boolean isAllTime = weekStr.equals(ALL_TIME);
         LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
         MindAndMaxWeek weekRange = getMindAndMaxWeek();
             if (isAllTime) {
-                StatsWithUName statsWithUNameCurrent = getStatsOfAllUsersCombinedCurrent();
-                StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(weekRange.max);
-                return getStatsWithUName(statsWithUNameCurrent, statsWithUNameFromWeek);
+                StatsWithUNameDTO statsWithUNameDTOCurrent = getStatsOfAllUsersCombinedCurrent();
+                StatsWithUNameDTO statsWithUNameDTOFromWeek = getStatsOfAllUsersCombinedFromWeek(weekRange.max);
+                return getStatsWithUName(statsWithUNameDTOCurrent, statsWithUNameDTOFromWeek);
             } else {
                 List<LocalDate> weeks = getWeeks();
                 LocalDate prevWeek = week.minusDays(7);
                 if ((prevWeek.isAfter(weekRange.min()) || prevWeek.equals(weekRange.min())) && weeks.contains(prevWeek)) {
-                    StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
-                    StatsWithUName statsWithUNameBefore = getStatsOfAllUsersCombinedFromWeek(prevWeek);
-                    if (statsWithUNameBefore.getTotalScoredPoints() == null) {
+                    StatsWithUNameDTO statsWithUNameDTOFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
+                    StatsWithUNameDTO statsWithUNameDTOBefore = getStatsOfAllUsersCombinedFromWeek(prevWeek);
+                    if (statsWithUNameDTOBefore.getTotalScoredPoints() == null) {
                         return getBlankStatsWithUName();
                     }
-                    return getStatsWithUName(statsWithUNameFromWeek, statsWithUNameBefore);
+                    return getStatsWithUName(statsWithUNameDTOFromWeek, statsWithUNameDTOBefore);
                 } else if(week.equals(weekRange.min)) {
                     return getBlankStatsWithUName();
                 } else {
-                    StatsWithUName statsWithUNameFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
-                    StatsWithUName statsWithUNameBefore = getStatsOfAllUsersCombinedFromWeek(weeks.stream().sorted(Comparator.reverseOrder()).toList().get(weeks.indexOf(week)+1));
-                    if (statsWithUNameBefore.getTotalScoredPoints() == null) {
+                    StatsWithUNameDTO statsWithUNameDTOFromWeek = getStatsOfAllUsersCombinedFromWeek(week);
+                    StatsWithUNameDTO statsWithUNameDTOBefore = getStatsOfAllUsersCombinedFromWeek(weeks.stream().sorted(Comparator.reverseOrder()).toList().get(weeks.indexOf(week)+1));
+                    if (statsWithUNameDTOBefore.getTotalScoredPoints() == null) {
                         return getBlankStatsWithUName();
                     }
-                    return getStatsWithUName(statsWithUNameFromWeek, statsWithUNameBefore);
+                    return getStatsWithUName(statsWithUNameDTOFromWeek, statsWithUNameDTOBefore);
                 }
             }
     }
 
-    private static StatsWithUName getBlankStatsWithUName() {
-        return StatsWithUName.builder()
+    @Override
+    public Map<String, Boolean> getModesWithPositiveDifference(String week, List<String> modes) {
+        return modes.stream().collect(Collectors.toMap(
+                m -> m,
+                m -> {
+                    StatsWithUNameDTO difference = getDifferenceGameStatsOffAllUsersCombined(week).get(m);
+                    return difference != null && difference.getTotalGamePlayed() != null && difference.getTotalGamePlayed() > 0;
+                }
+        ));
+    }
+
+    private static StatsWithUNameDTO getBlankStatsWithUName() {
+        return StatsWithUNameDTO.builder()
                 .totalGamePlayed(0L)
                 .totalScoredPoints(0L)
                 .avgScore(BigDecimal.ZERO)
@@ -461,61 +476,61 @@ public class StatsPageServiceImpl implements StatsPageService {
     }
 
     @Override
-    public UsersSummed getDifferenceUsersSummed(String weekStr) {
+    public UsersSummedDTO getDifferenceUsersSummed(String weekStr) {
         boolean isAllTime = weekStr.equals(ALL_TIME);
         LocalDate week = isAllTime ? LocalDate.now() : LocalDate.parse(weekStr);
         MindAndMaxWeek weekRange = getMindAndMaxWeek();
         List<LocalDate> weeks = getWeeks();
         if (isAllTime) {
-            UsersSummed usersSummedCurrent = getUsersSummedCurrent();
-            UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(weekRange.max);
-            UsersSummed usersSummedDifference = new UsersSummed();
-            usersSummedDifference.setGuestUsers(usersSummedCurrent.getGuestUsers() - usersSummedFromWeek.getGuestUsers());
-            usersSummedDifference.setGoogleOrEmailUsers(usersSummedCurrent.getGoogleOrEmailUsers() - usersSummedFromWeek.getGoogleOrEmailUsers());
-            return usersSummedDifference;
+            UsersSummedDTO usersSummedDTOCurrent = getUsersSummedCurrent();
+            UsersSummedDTO usersSummedDTOFromWeek = getUsersSummedFromWeek(weekRange.max);
+            UsersSummedDTO usersSummedDTODifference = new UsersSummedDTO();
+            usersSummedDTODifference.setGuestUsers(usersSummedDTOCurrent.getGuestUsers() - usersSummedDTOFromWeek.getGuestUsers());
+            usersSummedDTODifference.setGoogleOrEmailUsers(usersSummedDTOCurrent.getGoogleOrEmailUsers() - usersSummedDTOFromWeek.getGoogleOrEmailUsers());
+            return usersSummedDTODifference;
         } else if ((week.minusDays(7).isAfter(weekRange.min()) || week.minusDays(7).equals(weekRange.min())) && weeks.contains(week.minusDays(7))) {
-            UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(week);
-            UsersSummed usersSummedBefore = getUsersSummedFromWeek(week.minusDays(7));
-            if (usersSummedBefore == null) {
+            UsersSummedDTO usersSummedDTOFromWeek = getUsersSummedFromWeek(week);
+            UsersSummedDTO usersSummedDTOBefore = getUsersSummedFromWeek(week.minusDays(7));
+            if (usersSummedDTOBefore == null) {
                 return getBlankUsersSummed();
             }
-            UsersSummed usersSummedDifference = new UsersSummed();
-            usersSummedDifference.setGuestUsers(usersSummedFromWeek.getGuestUsers() - usersSummedBefore.getGuestUsers());
-            usersSummedDifference.setGoogleOrEmailUsers(usersSummedFromWeek.getGoogleOrEmailUsers() - usersSummedBefore.getGoogleOrEmailUsers());
-            return usersSummedDifference;
+            UsersSummedDTO usersSummedDTODifference = new UsersSummedDTO();
+            usersSummedDTODifference.setGuestUsers(usersSummedDTOFromWeek.getGuestUsers() - usersSummedDTOBefore.getGuestUsers());
+            usersSummedDTODifference.setGoogleOrEmailUsers(usersSummedDTOFromWeek.getGoogleOrEmailUsers() - usersSummedDTOBefore.getGoogleOrEmailUsers());
+            return usersSummedDTODifference;
         } else if(week.equals(weekRange.min)){
             return getBlankUsersSummed();
         } else {
-            UsersSummed usersSummedFromWeek = getUsersSummedFromWeek(week);
-            UsersSummed usersSummedBefore = getUsersSummedFromWeek(weeks.stream().sorted(Comparator.reverseOrder()).toList().get((weeks.indexOf(week)+1)));
-            if (usersSummedBefore == null) {
+            UsersSummedDTO usersSummedDTOFromWeek = getUsersSummedFromWeek(week);
+            UsersSummedDTO usersSummedDTOBefore = getUsersSummedFromWeek(weeks.stream().sorted(Comparator.reverseOrder()).toList().get((weeks.indexOf(week)+1)));
+            if (usersSummedDTOBefore == null) {
                 return getBlankUsersSummed();
             }
-            UsersSummed usersSummedDifference = new UsersSummed();
-            usersSummedDifference.setGuestUsers(usersSummedFromWeek.getGuestUsers() - usersSummedBefore.getGuestUsers());
-            usersSummedDifference.setGoogleOrEmailUsers(usersSummedFromWeek.getGoogleOrEmailUsers() - usersSummedBefore.getGoogleOrEmailUsers());
-            return usersSummedDifference;
+            UsersSummedDTO usersSummedDTODifference = new UsersSummedDTO();
+            usersSummedDTODifference.setGuestUsers(usersSummedDTOFromWeek.getGuestUsers() - usersSummedDTOBefore.getGuestUsers());
+            usersSummedDTODifference.setGoogleOrEmailUsers(usersSummedDTOFromWeek.getGoogleOrEmailUsers() - usersSummedDTOBefore.getGoogleOrEmailUsers());
+            return usersSummedDTODifference;
         }
     }
 
-    private static UsersSummed getBlankUsersSummed() {
-        UsersSummed usersSummed = new UsersSummed();
-        usersSummed.setGoogleOrEmailUsers(0);
-        usersSummed.setGuestUsers(0);
-        return usersSummed;
+    private static UsersSummedDTO getBlankUsersSummed() {
+        UsersSummedDTO usersSummedDTO = new UsersSummedDTO();
+        usersSummedDTO.setGoogleOrEmailUsers(0);
+        usersSummedDTO.setGuestUsers(0);
+        return usersSummedDTO;
     }
 
-    private StatsWithUName getStatsWithUName(StatsWithUName statsWithUNameCurrent, StatsWithUName statsWithUNameBefore) {
-        if(statsWithUNameCurrent == null || statsWithUNameBefore == null
-                || statsWithUNameBefore.getTotalGamePlayed() == null || statsWithUNameCurrent.getTotalGamePlayed() == null) {
+    private StatsWithUNameDTO getStatsWithUName(StatsWithUNameDTO statsWithUNameDTOCurrent, StatsWithUNameDTO statsWithUNameDTOBefore) {
+        if(statsWithUNameDTOCurrent == null || statsWithUNameDTOBefore == null
+                || statsWithUNameDTOBefore.getTotalGamePlayed() == null || statsWithUNameDTOCurrent.getTotalGamePlayed() == null) {
             return getBlankStatsWithUName();
         }
-        return StatsWithUName.builder()
-                .totalGamePlayed(Math.max(statsWithUNameCurrent.getTotalGamePlayed()-statsWithUNameBefore.getTotalGamePlayed(), 0))
-                .avgScore(statsWithUNameCurrent.getAvgScore().subtract(statsWithUNameBefore.getAvgScore()))
-                .timePlayed(TimeConverter.differenceOfTime(statsWithUNameCurrent.getTimePlayed(), statsWithUNameBefore.getTimePlayed()))
-                .totalScoredPoints(Math.max(statsWithUNameCurrent.getTotalScoredPoints()-statsWithUNameBefore.getTotalScoredPoints(),0))
-                .numberOfWonGames(Math.max(statsWithUNameCurrent.getNumberOfWonGames()-statsWithUNameBefore.getNumberOfWonGames(),0))
+        return StatsWithUNameDTO.builder()
+                .totalGamePlayed(Math.max(statsWithUNameDTOCurrent.getTotalGamePlayed()- statsWithUNameDTOBefore.getTotalGamePlayed(), 0))
+                .avgScore(statsWithUNameDTOCurrent.getAvgScore().subtract(statsWithUNameDTOBefore.getAvgScore()))
+                .timePlayed(TimeConverter.differenceOfTime(statsWithUNameDTOCurrent.getTimePlayed(), statsWithUNameDTOBefore.getTimePlayed()))
+                .totalScoredPoints(Math.max(statsWithUNameDTOCurrent.getTotalScoredPoints()- statsWithUNameDTOBefore.getTotalScoredPoints(),0))
+                .numberOfWonGames(Math.max(statsWithUNameDTOCurrent.getNumberOfWonGames()- statsWithUNameDTOBefore.getNumberOfWonGames(),0))
                 .build();
     }
 
