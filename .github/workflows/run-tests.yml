@@ -1,0 +1,62 @@
+name: Run Tests with PostgreSQL
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: from_test_backup_2
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Wait for PostgreSQL to start
+        run: sleep 10
+
+      - name: Initialize database schema
+        run: |
+          psql -h localhost -U postgres -d from_test_backup_2 -f src/test/resources/schema-postgresql.sql
+          psql -h localhost -U postgres -d from_test_backup_2 -f src/test/resources/data-postgresql.sql
+        env:
+          PGPASSWORD: postgres
+
+      - name: Run tests
+        run: ./gradlew test -Dspring.profiles.active=dev
