@@ -29,5 +29,5 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Run tests with active profile
-        run: SPRING_PROFILES_ACTIVE=test mvn clean test
+        run: SPRING_PROFILES_ACTIVE=dev mvn clean test
 
