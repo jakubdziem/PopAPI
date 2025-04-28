@@ -1,7 +1,7 @@
 package com.dziem.popapi.mapper;
 
 import com.dziem.popapi.model.ModeStats;
-import com.dziem.popapi.model.ModeStatsDTO;
+import com.dziem.popapi.dto.ModeStatsDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

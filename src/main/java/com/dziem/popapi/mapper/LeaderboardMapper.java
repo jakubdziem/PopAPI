@@ -1,7 +1,7 @@
 package com.dziem.popapi.mapper;
 
 import com.dziem.popapi.model.Leaderboard;
-import com.dziem.popapi.model.LeaderboardDTO;
+import com.dziem.popapi.dto.LeaderboardDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

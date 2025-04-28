@@ -1,7 +1,7 @@
 package com.dziem.popapi.mapper;
 
 import com.dziem.popapi.model.User;
-import com.dziem.popapi.model.UserDTO;
+import com.dziem.popapi.dto.UserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

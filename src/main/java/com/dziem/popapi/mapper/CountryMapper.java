@@ -1,7 +1,7 @@
 package com.dziem.popapi.mapper;
 
 import com.dziem.popapi.model.Country;
-import com.dziem.popapi.model.CountryDTO;
+import com.dziem.popapi.dto.CountryDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

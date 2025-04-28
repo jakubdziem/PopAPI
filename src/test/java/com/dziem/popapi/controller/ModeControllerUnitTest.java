@@ -1,6 +1,6 @@
 package com.dziem.popapi.controller;
 
-import com.dziem.popapi.model.BaseGameModelDTO;
+import com.dziem.popapi.dto.BaseGameModelDTO;
 import com.dziem.popapi.service.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

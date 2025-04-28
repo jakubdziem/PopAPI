@@ -1,5 +1,8 @@
 package com.dziem.popapi.service;
 
+import com.dziem.popapi.dto.BaseGameModelDTO;
+import com.dziem.popapi.dto.GameStatsDTO;
+import com.dziem.popapi.dto.ModeStatsDTO;
 import com.dziem.popapi.model.*;
 
 import java.util.List;

@@ -1,5 +1,6 @@
 package com.dziem.popapi.controller;
 
+import com.dziem.popapi.dto.*;
 import com.dziem.popapi.mapper.ModeStatsMapper;
 import com.dziem.popapi.mapper.StatsMapper;
 import com.dziem.popapi.model.*;

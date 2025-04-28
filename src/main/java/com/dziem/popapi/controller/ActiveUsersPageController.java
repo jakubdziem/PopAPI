@@ -1,6 +1,6 @@
 package com.dziem.popapi.controller;
 
-import com.dziem.popapi.model.webpage.ActiveUsersStats;
+import com.dziem.popapi.dto.webpage.ActiveUsersStatsDTO;
 import com.dziem.popapi.model.webpage.WeeklyActiveUsers;
 import com.dziem.popapi.service.ActiveUsersPageService;
 import com.dziem.popapi.service.StatsPageChartService;
@@ -38,18 +38,18 @@ public class ActiveUsersPageController {
         String week = (String) model.getAttribute("selectedWeekActive");
 
         if(ALL_TIME.equals(week)) {
-            List<ActiveUsersStats> activeUsersStatsThisWeek = activeUsersPageService.getActiveUsersStatsThisWeek();
-            model.addAttribute("activeUsers", activeUsersStatsThisWeek);
+            List<ActiveUsersStatsDTO> activeUsersStatsDTOThisWeek = activeUsersPageService.getActiveUsersStatsThisWeek();
+            model.addAttribute("activeUsers", activeUsersStatsDTOThisWeek);
             model.addAttribute("activeUsersStatsCombined", statsPageService.getDifferenceStatsOfAllUsersCombined(week));
-            int activeUsersCount = activeUsersStatsThisWeek.size();
-            int activeOldUsersCount = activeUsersStatsThisWeek.stream().filter(a -> !a.isNewUser()).toList().size();
+            int activeUsersCount = activeUsersStatsDTOThisWeek.size();
+            int activeOldUsersCount = activeUsersStatsDTOThisWeek.stream().filter(a -> !a.isNewUser()).toList().size();
             model.addAttribute("activeOldUsersCount", activeOldUsersCount);
             model.addAttribute("activeUsersCount", activeUsersCount);
             model.addAttribute("thisWeekUsers", activeUsersCount - activeOldUsersCount);
         } else {
             LocalDate weekDate = LocalDate.parse(week);
-            List<ActiveUsersStats> activeUsersStatsSelectedWeek = activeUsersPageService.getActiveUsersStatsFromWeek(week);
-            model.addAttribute("activeUsers", activeUsersStatsSelectedWeek);
+            List<ActiveUsersStatsDTO> activeUsersStatsDTOSelectedWeek = activeUsersPageService.getActiveUsersStatsFromWeek(week);
+            model.addAttribute("activeUsers", activeUsersStatsDTOSelectedWeek);
             model.addAttribute("activeUsersStatsCombined", statsPageService.getDifferenceStatsOfAllUsersCombined(week));
             WeeklyActiveUsers weeklyActiveUsers = statsPageChartService.getWeeklyActiveUsersForChart().stream()
                     .filter(w -> w.getWeekStartDate().equals(weekDate)).findFirst().orElseGet(

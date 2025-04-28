@@ -1,7 +1,7 @@
 package com.dziem.popapi.controller;
 
-import com.dziem.popapi.model.LeaderboardDTO;
-import com.dziem.popapi.model.RankScoreDTO;
+import com.dziem.popapi.dto.LeaderboardDTO;
+import com.dziem.popapi.dto.RankScoreDTO;
 import com.dziem.popapi.service.LeaderboardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.dziem.popapi.model.webpage;
+package com.dziem.popapi.formatter;
 
 
 public class TimeConverter {

@@ -1,5 +1,6 @@
-package com.dziem.popapi.model;
+package com.dziem.popapi.dto;
 
+import com.dziem.popapi.model.Country;
 import lombok.Data;
 
 @Data

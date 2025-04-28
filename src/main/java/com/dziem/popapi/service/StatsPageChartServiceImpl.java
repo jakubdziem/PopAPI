@@ -1,5 +1,7 @@
 package com.dziem.popapi.service;
 
+import com.dziem.popapi.dto.webpage.*;
+import com.dziem.popapi.formatter.TimeConverter;
 import com.dziem.popapi.model.Mode;
 import com.dziem.popapi.model.webpage.*;
 import com.dziem.popapi.repository.*;
@@ -31,10 +33,10 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     public void saveDailyStatsSummedSnapshot() {
         LocalDate day = LocalDate.now();
         DayOfWeek dayOfWeek = day.getDayOfWeek();
-        StatsWithUName stats = statsPageService.getDifferenceStatsOfAllUsersCombined(ALL_TIME);
-        Map<String, StatsWithUName> gameStats = statsPageService.getDifferenceGameStatsOffAllUsersCombined(ALL_TIME);
-        StatsWithUName statsOfAllUsersCombinedCurrent = statsPageService.getStatsOfAllUsersCombinedCurrent();
-        Map<String, StatsWithUName> gameStatsOffAllUsersCombinedCurrent = statsPageService.getGameStatsOffAllUsersCombinedCurrent();
+        StatsWithUNameDTO stats = statsPageService.getDifferenceStatsOfAllUsersCombined(ALL_TIME);
+        Map<String, StatsWithUNameDTO> gameStats = statsPageService.getDifferenceGameStatsOffAllUsersCombined(ALL_TIME);
+        StatsWithUNameDTO statsOfAllUsersCombinedCurrent = statsPageService.getStatsOfAllUsersCombinedCurrent();
+        Map<String, StatsWithUNameDTO> gameStatsOffAllUsersCombinedCurrent = statsPageService.getGameStatsOffAllUsersCombinedCurrent();
         List<DailyStatsSummed> dailyStats = new ArrayList<>();
         if (!dayOfWeek.equals(DayOfWeek.SUNDAY)) {
             Map<String, DailyStatsSummed> dailyStatsSummedInCurrentWeek = new HashMap<>();
@@ -69,7 +71,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
             }
             for(String mode : dailyStatsSummedInCurrentWeek.keySet()) {
                 DailyStatsSummed dailyStatsSummed = dailyStatsSummedInCurrentWeek.get(mode);
-                StatsWithUName currentStats;
+                StatsWithUNameDTO currentStats;
                 if(mode.equals(COMBINED_STATS)) {
                     currentStats = stats;
                 } else {
@@ -114,40 +116,40 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     public void saveDailySummedUsersSnapshot() {
         LocalDate today = LocalDate.now();
         DayOfWeek dayOfWeek = today.getDayOfWeek();
-        UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
+        UsersSummedDTO differenceUsersSummedDTO = statsPageService.getDifferenceUsersSummed(ALL_TIME);
         if (!dayOfWeek.equals(DayOfWeek.SUNDAY)) {
             DailyUsersSummed dailyUsersSummedPrevDayInAWeek = getUsersSummedFromPrevDaysInAWeek(dayOfWeek, today);
             dailyUsersSummedRepository.save(DailyUsersSummed.builder()
                     .day(today)
-                    .guestUsers(differenceUsersSummed.getGuestUsers()-dailyUsersSummedPrevDayInAWeek.getGuestUsers())
-                    .googleOrEmailUsers(differenceUsersSummed.getGoogleOrEmailUsers()-dailyUsersSummedPrevDayInAWeek.getGoogleOrEmailUsers())
+                    .guestUsers(differenceUsersSummedDTO.getGuestUsers()-dailyUsersSummedPrevDayInAWeek.getGuestUsers())
+                    .googleOrEmailUsers(differenceUsersSummedDTO.getGoogleOrEmailUsers()-dailyUsersSummedPrevDayInAWeek.getGoogleOrEmailUsers())
                     .build());
         } else {
             dailyUsersSummedRepository.save(DailyUsersSummed.builder()
                     .day(today)
-                    .guestUsers(differenceUsersSummed.getGuestUsers())
-                    .googleOrEmailUsers(differenceUsersSummed.getGoogleOrEmailUsers())
+                    .guestUsers(differenceUsersSummedDTO.getGuestUsers())
+                    .googleOrEmailUsers(differenceUsersSummedDTO.getGoogleOrEmailUsers())
                     .build());
         }
     }
 
     @Override
     public void saveWeeklyNewUsersSummed() {
-        UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
+        UsersSummedDTO differenceUsersSummedDTO = statsPageService.getDifferenceUsersSummed(ALL_TIME);
         WeeklyNewUsersSummed weeklyNewUsersSummed = new WeeklyNewUsersSummed();
         weeklyNewUsersSummed.setWeekStartDate(LocalDate.now());
-        weeklyNewUsersSummed.setNewUsers(differenceUsersSummed.getGuestUsers() + differenceUsersSummed.getGoogleOrEmailUsers());
+        weeklyNewUsersSummed.setNewUsers(differenceUsersSummedDTO.getGuestUsers() + differenceUsersSummedDTO.getGoogleOrEmailUsers());
         weeklyNewUsersSummedRepository.save(weeklyNewUsersSummed);
     }
 
     @Override
     public void saveWeeklyActiveUsers() {
-        List<ActiveUsersStats> activeUsersStatsThisWeek = activeUsersPageService.getActiveUsersStatsThisWeek();
-        Integer size = activeUsersStatsThisWeek.size();
+        List<ActiveUsersStatsDTO> activeUsersStatsDTOThisWeek = activeUsersPageService.getActiveUsersStatsThisWeek();
+        Integer size = activeUsersStatsDTOThisWeek.size();
         WeeklyActiveUsers weeklyActiveUsers = new WeeklyActiveUsers();
         weeklyActiveUsers.setWeekStartDate(LocalDate.now());
         weeklyActiveUsers.setActiveUsers(size);
-        weeklyActiveUsers.setActiveNewUsers(activeUsersStatsThisWeek.stream().filter(ActiveUsersStats::isNewUser).toList().size());
+        weeklyActiveUsers.setActiveNewUsers(activeUsersStatsDTOThisWeek.stream().filter(ActiveUsersStatsDTO::isNewUser).toList().size());
         weeklyActiveUsers.setActiveOldUsers(weeklyActiveUsers.getActiveUsers()-weeklyActiveUsers.getActiveNewUsers());
         weeklyActiveUsersRepository.save(weeklyActiveUsers);
     }
@@ -183,8 +185,8 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
 
     @Override
     public void saveDailySummedStatsFirst() {
-        StatsWithUName stats = statsPageService.getDifferenceStatsOfAllUsersCombined(ALL_TIME);
-        Map<String, StatsWithUName> gameStats = statsPageService.getDifferenceGameStatsOffAllUsersCombined(ALL_TIME);
+        StatsWithUNameDTO stats = statsPageService.getDifferenceStatsOfAllUsersCombined(ALL_TIME);
+        Map<String, StatsWithUNameDTO> gameStats = statsPageService.getDifferenceGameStatsOffAllUsersCombined(ALL_TIME);
         List<DailyStatsSummed> dailyStats = new ArrayList<>();
         LocalDate day = LocalDate.now();
         dailyStats.add(DailyStatsSummed.builder()
@@ -210,7 +212,7 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
         dailyStatsSummedRepository.saveAll(dailyStats);
     }
 
-    private DailyStatsSummed getDailyStatsSummedFromDayAndPerMode(StatsWithUName stats ,int i, String mode, LocalDate week) {
+    private DailyStatsSummed getDailyStatsSummedFromDayAndPerMode(StatsWithUNameDTO stats , int i, String mode, LocalDate week) {
         long restTotalGamePlayed = stats.getTotalGamePlayed() % 7;
         long totalGamePlayedPerDay = stats.getTotalGamePlayed() / 7;
         long seconds = TimeConverter.getSeconds(stats.getTimePlayed().split(":"));
@@ -232,15 +234,15 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     }
     @Override
     public void populateWeek(LocalDate week) {
-        StatsWithUName stats = statsPageService.getStatsOfAllUsersCombinedFromWeek(LocalDate.parse("2024-11-10"));
-        Map<String, StatsWithUName> gameStats = statsPageService.getGameStatsOffAllUsersCombinedFromWeek(LocalDate.parse("2024-11-10"));
+        StatsWithUNameDTO stats = statsPageService.getStatsOfAllUsersCombinedFromWeek(LocalDate.parse("2024-11-10"));
+        Map<String, StatsWithUNameDTO> gameStats = statsPageService.getGameStatsOffAllUsersCombinedFromWeek(LocalDate.parse("2024-11-10"));
         List<DailyStatsSummed> dailyStatsSummed = new ArrayList<>();
         for(int i = 1; i <= 7; i++) {
             dailyStatsSummed.add(getDailyStatsSummedFromDayAndPerMode(stats, i, COMBINED_STATS, week));
         }
         for(Mode modeEnum : Mode.values()) {
             String mode = modeEnum.toString();
-            StatsWithUName gameStat = gameStats.get(mode);
+            StatsWithUNameDTO gameStat = gameStats.get(mode);
             for(int i = 1 ; i <= 7; i++) {
                 dailyStatsSummed.add(getDailyStatsSummedFromDayAndPerMode(gameStat, i, mode, week));
             }
@@ -259,34 +261,34 @@ public class StatsPageChartServiceImpl implements StatsPageChartService {
     }
     //note data before 2024-11-18 was calculated by function not saved daily like the other data
     @Override
-    public List<DailyUsersSummedBoth> getDailyUsersSummedForChart() {
+    public List<DailyUsersSummedBothDTO> getDailyUsersSummedForChart() {
         List<DailyUsersSummed> dailyUsersSummedList = dailyUsersSummedRepository.getAll();
-        List<DailyUsersSummedBoth> dailyUsersSummedBothList = new ArrayList<>();
+        List<DailyUsersSummedBothDTO> dailyUsersSummedBothDTOList = new ArrayList<>();
         for(DailyUsersSummed daily : dailyUsersSummedList) {
-            dailyUsersSummedBothList.add(DailyUsersSummedBoth.builder()
+            dailyUsersSummedBothDTOList.add(DailyUsersSummedBothDTO.builder()
                     .day(daily.getDay())
                     .numberOfUsers(daily.getGuestUsers() + daily.getGoogleOrEmailUsers())
                     .build());
         }
-        dailyUsersSummedBothList.sort(Comparator.comparing(DailyUsersSummedBoth::getDay));
-        return dailyUsersSummedBothList;
+        dailyUsersSummedBothDTOList.sort(Comparator.comparing(DailyUsersSummedBothDTO::getDay));
+        return dailyUsersSummedBothDTOList;
     }
 
     @Override
     public DailyUsersSummed getTodayUserSummedDifference() {
         LocalDate today = LocalDate.now();
         DayOfWeek dayOfWeek = today.getDayOfWeek();
-        UsersSummed differenceUsersSummed = statsPageService.getDifferenceUsersSummed(ALL_TIME);
+        UsersSummedDTO differenceUsersSummedDTO = statsPageService.getDifferenceUsersSummed(ALL_TIME);
         if(dayOfWeek == DayOfWeek.SUNDAY) {
             return DailyUsersSummed.builder()
-                    .guestUsers(differenceUsersSummed.getGuestUsers())
-                    .googleOrEmailUsers(differenceUsersSummed.getGoogleOrEmailUsers())
+                    .guestUsers(differenceUsersSummedDTO.getGuestUsers())
+                    .googleOrEmailUsers(differenceUsersSummedDTO.getGoogleOrEmailUsers())
                     .build();
         }
         DailyUsersSummed dailyUsersSummedPrevDayInAWeek = getUsersSummedFromPrevDaysInAWeek(dayOfWeek, today);
         return DailyUsersSummed.builder()
-                .guestUsers(differenceUsersSummed.getGuestUsers() - dailyUsersSummedPrevDayInAWeek.getGuestUsers())
-                .googleOrEmailUsers(differenceUsersSummed.getGoogleOrEmailUsers() - dailyUsersSummedPrevDayInAWeek.getGoogleOrEmailUsers())
+                .guestUsers(differenceUsersSummedDTO.getGuestUsers() - dailyUsersSummedPrevDayInAWeek.getGuestUsers())
+                .googleOrEmailUsers(differenceUsersSummedDTO.getGoogleOrEmailUsers() - dailyUsersSummedPrevDayInAWeek.getGoogleOrEmailUsers())
                 .build();
     }
 

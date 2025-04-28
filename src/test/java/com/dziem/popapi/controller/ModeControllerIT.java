@@ -1,6 +1,6 @@
 package com.dziem.popapi.controller;
 
-import com.dziem.popapi.model.BaseGameModelDTO;
+import com.dziem.popapi.dto.BaseGameModelDTO;
 import com.dziem.popapi.model.Mode;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
