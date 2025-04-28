@@ -227,6 +227,29 @@ public class StatsPageControllerIT {
         assertModesAndWeeksAttributes(model);
         assertStatsPageModelAttributes(model, week, COMBINED_STATS, DEFAULT_ATTRIBUTE);
     }
+    @Test
+    void shouldPopulateModelForSpecificWeek_whenSelectedWeekIsDate() throws Exception {
+        List<LocalDate> weeks = statsPageService.getWeeks();
+        String week = weeks.getFirst().toString();
+        MvcResult result = mockMvc.perform(get("/stats?selectedWeek=" + week))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andReturn();
+        Map<String, Object> model = result.getModelAndView().getModel();
+        assertModesAndWeeksAttributes(model);
+        assertStatsPageModelAttributes(model, week, COMBINED_STATS, DEFAULT_ATTRIBUTE);
+    }
+    @Test
+    void shouldPopulateModelForCombinedStatsMode_whenSelectedModeIsCombined() throws Exception {
+        String mode = COMBINED_STATS;
+        MvcResult result = mockMvc.perform(get("/stats?selectedMode=" + mode))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andReturn();
+        Map<String, Object> model = result.getModelAndView().getModel();
+        assertModesAndWeeksAttributes(model);
+        assertStatsPageModelAttributes(model, ALL_TIME, mode, DEFAULT_ATTRIBUTE);
+    }
     void assertModesAndWeeksAttributes(Map<String, Object> model) {
         List<LocalDate> weeks = statsPageService.getWeeks();
         List<String> modes = Arrays.stream(Mode.values()).map(Enum::toString).toList();
