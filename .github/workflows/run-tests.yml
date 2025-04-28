@@ -1,4 +1,4 @@
-name: Run Tests with PostgreSQL
+name: Run Tests
 
 on:
   workflow_dispatch:
@@ -9,21 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: from_test_backup_2
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
       - name: Checkout code
@@ -43,15 +28,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Wait for PostgreSQL to start
-        run: sleep 10
-
-      - name: Initialize database schema
-        run: |
-          psql -h localhost -U postgres -d from_test_backup_2 -f src/test/resources/schema-postgresql.sql
-          psql -h localhost -U postgres -d from_test_backup_2 -f src/test/resources/data-postgresql.sql
-        env:
-          PGPASSWORD: postgres
-
       - name: Run tests
-        run: mvn clean test -Dspring.profiles.active=dev
+        run:  mvn clean test -Ptest
