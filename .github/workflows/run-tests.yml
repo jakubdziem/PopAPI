@@ -28,5 +28,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Run tests with dev profile
-        run: mvn clean test -Pdev
+      - name: Run tests with active profile
+        run: SPRING_PROFILES_ACTIVE=test mvn clean test
+
