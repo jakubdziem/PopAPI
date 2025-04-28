@@ -28,5 +28,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Run tests
-        run:  mvn clean test -Ptest
+      - name: Run tests with dev profile
+        run: mvn clean test -Pdev

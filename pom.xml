@@ -167,5 +167,13 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>test</id>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
